@@ -1,0 +1,145 @@
+<%- include('./imports') -%>
+<div class="container-fluid">
+    <form action="">
+        <h1>Property Details</h1>
+            <h3>Property For</h3>
+            <input type="radio" id="PropertyforSale" name="Propertyfor" value="Sale">
+            <label for="PropertyforSale">Sale</label>
+            <input type="radio" id="PropertyforRent" name="Propertyfor" value="Rent/Lease">
+            <label for="PropertyforRent">Rent/Lease</label>
+            <input type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
+            <label for="PropertyforPG">PG/Hostel</label>
+            <br>
+            <br>
+            <label for="PropertyType">Property type</label>
+            <br>
+            <br>
+            <select name=" PropertyType" id="PropertyType">
+                <option value="">Select</option>
+                <optgroup label="Residental">
+                    <option value="Flat/Apartment"> Flat/Apartment </option>
+                    <option value="Residential House"> Residential House </option>
+                    <option value="Villa"> Villa </option>
+                    <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+                    <option value="Penthouse"> Penthouse </option>
+                    <option value="Studio Apartment"> Studio Apartment </option>
+                </optgroup>
+                <optgroup label="Commercial">
+                    <option value="Commercial Shop"> Commercial Shop </option>
+                    <option value="Commercial Office Space"> Commercial Office Space </option>
+                    <option value="Commercial Showroom"> Commercial Showroom </option>
+                    <option value="Warehouse/Godows">Warehouse/Godows </option>
+                    <option value="Industrial Shed"> Industrial Shed </option>
+                </optgroup>
+                <optgroup label="Others">
+                    <option value="Land"> Land </option>
+                    <option value="Farm House"> Farm House </option>
+                </optgroup>
+            </select>
+            <br>
+            <br>
+            <label for="Locality">Locality</label>
+            <br>
+            <br>
+            <select name="Locality" id="Locality">
+               <option value="Rodpali">Rodpali</option>
+               <option value="Kalamboli">Kalamboli</option>
+               <option value="Kharghar">Kharghar</option>
+            </select>
+            <br>
+            <br>
+            <h3>Property Features</h3>
+            <div class="d-flex flex-row">
+                <label for="Bedrooms">Bedrooms</label>
+                <br>
+                <select name="Bedrooms" id="Bedrooms">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="more than 4">more than 4</option>
+                </select>
+                <label for="Balconies" style="padding-left: 10%;">Balconies</label>
+                <br>
+                <select name="Balconies" id="Balconies">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="more than 4">more than 4</option>
+                </select>
+            </div>
+            <br>
+            <label for="floorNo">Floor No.</label>
+            <br>
+            <input type="text" id="floorNo" name="floorNo">   
+            <br>
+            <br>
+            <label for="totalFloors">Total Floors</label>
+            <br>
+            <input type="text" id="totalFloors" name="totalFloors">   
+            <br>
+            <br>
+            <label for="furnishingStatus" >Furnishing Status</label>
+                <br>
+                <select name="furnishingStatus" id="furnishingStatus">
+                    <option value="">Select</option>
+                    <option value="Furnished">Furnished</option>
+                    <option value="Unfurnished">Unfurnished</option>
+                    <option value="Semi-Furnished">Semi-Furnished</option>
+                </select>
+            <br>
+            <br>
+            <label for="bathroom" >Bathroom</label>
+            <br>
+            <select name="bathroom" id="bathroom">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="more than 4">more than 4</option>
+            </select>    
+            <br>
+            <h3>Area</h3>
+
+            <label for="carpetArea">Carpet Area</label>
+            <br>
+            <input type="text" id="carpetArea" name="carpetArea"><span>
+                <select name="furnishingStatus" id="furnishingStatus">
+                    <option value="Sqft">Sqft</option>
+                    <option value="Acer">Acer</option>
+                    <option value="Sq-M">Sq-M</option>
+                </select>
+            </span> 
+            <br>
+            <br>
+            <label for="superBuiltUpArea">Super BuiltUp Area</label>
+            <br>
+            <input type="text" id="superBuiltUpArea" name="superBuiltUpArea"><span>
+                <select name="builtUpArea" id="builtUpArea">
+                    <option value="Sqft">Sqft</option>
+                    <option value="Acer">Acer</option>
+                    <option value="Sq-M">Sq-M</option>
+                </select>
+            </span>
+            <br>
+            <br>
+            <label for="builtUpArea">BuiltUp Area</label>
+            <br>
+            <input type="text" id="builtUpArea" name="builtUpArea"><span>
+                <select name="builtUpArea" id="builtUpArea">
+                    <option value="Sqft">Sqft</option>
+                    <option value="Acer">Acer</option>
+                    <option value="Sq-M">Sq-M</option>
+                </select>
+            </span>  
+            <br>
+            <br>    
+        </form>
+        
+</div>
+
+<%- include('./Footer') -%>
