@@ -47,13 +47,12 @@ priceDetails :{
         month :{
             type : String,
             enum : ["January"],
-            required : true
+            required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
         },
         year :{
             type : Number,
-            required : true
-        },
-        required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
+            required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
+        }
     },
     ageOfConstruction : {
         type : String,
@@ -80,7 +79,7 @@ priceDetails :{
     }],
     stampDutyCharges : {
         type : Boolean,
-        required : ture
+        required : true
     },
     tokenAmount : {
         type : String,
@@ -142,7 +141,7 @@ propertyFeatures : {
         required : true
     },
     flatsOnFloor : {
-        tpe : Number,
+        type : Number,
         required : true
     },
     furnishingStatus :{

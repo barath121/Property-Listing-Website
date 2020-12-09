@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static('public'));
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./.env" });
 
 
 
