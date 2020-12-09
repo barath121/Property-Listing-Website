@@ -15,7 +15,6 @@ let options = {
 };
 mongoose.connect(DBstring,options)
 .then(conn=>{
-    console.log(DBstring)
 console.log("Connection to database sucessful");
 })
 .catch(err=>{
