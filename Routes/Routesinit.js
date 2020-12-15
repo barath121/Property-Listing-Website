@@ -3,6 +3,9 @@ const AppError = require('./../Utils/appError');
 const Routesinit = (app) => {
 
     app.use('/property', PropertyRoutes);
+    app.use('/search', (req,res)=>{
+        res.render('Search_page')
+    });
     app.use((req, res, next) => {
         const err = new Error("Hello");
         err.status = 'fail';
