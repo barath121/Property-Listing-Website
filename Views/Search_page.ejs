@@ -1,62 +1,85 @@
-<%- include('./imports') -%>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
+<%- include('./layouts/imports') -%>
+    <div class="uk-background-muted p-4 ">
+        <div class="container mt-4 ">
+            <div class="d-flex w-100 justify-content-center mb-4">
+                <h3>
+                    100 Properties matching your preference
+                </h3>
             </div>
-        </div>
-    </nav>
-    <div class="uk-background-muted p-4">
-        <div class="container mt-4">
-            <div class="row no-gutters">
-                <div class="col-lg-4 ">
-                    <div class="uk-background-default p-3 shadow">
-                        
-                        <p class="text-center" style="font-weight: 600;"><span uk-icon="settings"></span>Filters</p>
+            <div class="row ">
+                <div class="col-lg-4">
+                    <div class="uk-background-default p-5 shadow">
+                        <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
+                        </p>
+                        <form action="">
+                            <label for="Range" class="text-center">Budget</label>
+                            <input type="range" class="form-control-range" min="0" max="100" value="0" id="Range"
+                                name="Range">
+                            <output id="amount" name="amount" class="mb-2" for="Range">0</output>
+
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="rent">
+                                <label class="form-check-label" for="rent">
+                                    Rent
+                                </label>
+                            </div>
+
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="buy">
+                                <label class="form-check-label" for="buy">
+                                    Buy
+                                </label>
+                            </div>
+
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="furnished">
+                                <label class="form-check-label" for="furnished">
+                                    Furnished
+                                </label>
+                            </div>
+
+                            <br>
+                            <label for="builtUpArea">BuiltUp Area</label>
+                            <div class="input-group">
+                                <input type="text" id="builtUpArea"
+                                    class="form-control border-top-0 border-left-0 border-right-0"
+                                    name="builtUpArea"><span>
+                                    <select name="builtUpArea"
+                                        class="form-control border-top-0 border-left-0 border-right-0"
+                                        class="form-control" id="builtUpArea">
+                                        <option value="Sqft">Sqft</option>
+                                        <option value="Acer">Acer</option>
+                                        <option value="Sq-M">Sq-M</option>
+                                    </select>
+                                </span>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg-8 col-12">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quidem impedit vitae,
-                    voluptatem sequi mollitia facere tempora architecto quia modi rem voluptates voluptate quod! Ducimus
-                    vero, quod quis earum velit praesentium, odit ratione inventore repellendus nulla amet? Minus ad ea,
-                    soluta hic, cum exercitationem, explicabo praesentium repellendus repudiandae quidem perferendis.
+                    <div class="">
+                        <% for(var i=0; i< 10; i++) {%>
+                            <div class="card mb-4 shadow rounded">
+                                <div class="row card-body">
+                                    <div class="col-4">
+                                        <img src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                            alt="Img" height="500px">
+                                    </div>
+                                    <div class="col-8">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <%- include('./Footer') -%>
+    <script type="module" src="/js/searchPage.js"></script>
+    <%- include('./layouts/Footer') -%>
