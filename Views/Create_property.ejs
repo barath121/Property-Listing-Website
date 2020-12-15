@@ -1,62 +1,27 @@
-<%- include('./imports') -%>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-
+<%- include('./layouts/imports') -%>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@s uk-background-default p-4">
       <form action="">
         <h1 class="font-weight-bold">Property Details</h1>
         <h3>Property For</h3>
-        <input type="radio" id="PropertyforSale" class="form-check-input" name="Propertyfor" value="Sale">
-        <label for="PropertyforSale" style="margin-right: 20px;">Sale</label>
-        <input type="radio" id="PropertyforRent" class="form-check-input" name="Propertyfor" value="Rent/Lease">
-        <label for="PropertyforRent" style="margin-right: 20px;">Rent/Lease</label>
-        <input type="radio" id="PropertyforPG" class="form-check-input" name="Propertyfor" value="PG/Hostel">
-        <label for="PropertyforPG">PG/Hostel</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="Propertyfor" value="Sale" id="PropertyforSale">
+          <label class="form-check-label" for="PropertyforSale">Sale</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease" id="PropertyforRent">
+          <label class="form-check-label" for="PropertyforRent">Rent</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
+          <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
+        </div>
         <br>
         <br>
         <label for="PropertyType">Property type</label>
         <br>
         <br>
-        <select class="form-select w-50" name=" PropertyType" id="PropertyType">
+        <select class="form-control w-50" name=" PropertyType" id="PropertyType">
           <option value="">Select</option>
           <optgroup label="Residental">
             <option value="Flat/Apartment"> Flat/Apartment </option>
@@ -83,7 +48,7 @@
         <label for="Locality">Locality</label>
         <br>
         <br>
-        <select class="form-select w-50" name="Locality" id="Locality">
+        <select class="form-control w-50" name="Locality" id="Locality">
           <option value="Rodpali">Rodpali</option>
           <option value="Kalamboli">Kalamboli</option>
           <option value="Kharghar">Kharghar</option>
@@ -94,7 +59,7 @@
         <div>
           <label for="Bedrooms">Bedrooms</label>
           <br>
-          <select class="form-select w-50" name="Bedrooms" id="Bedrooms">
+          <select class="form-control w-50" name="Bedrooms" id="Bedrooms">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -105,7 +70,7 @@
           <br>
           <label for="Balconies">Balconies</label>
           <br>
-          <select class="form-select w-50" name="Balconies" id="Balconies">
+          <select class="form-control w-50" name="Balconies" id="Balconies">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -127,7 +92,7 @@
         <br>
         <label for="furnishingStatus">Furnishing Status</label>
         <br>
-        <select class="form-select w-50" name="furnishingStatus" id="furnishingStatus">
+        <select class="form-control w-50" name="furnishingStatus" id="furnishingStatus">
           <option value="">Select</option>
           <option value="Furnished">Furnished</option>
           <option value="Unfurnished">Unfurnished</option>
@@ -137,7 +102,7 @@
         <br>
         <label for="bathroom">Bathroom</label>
         <br>
-        <select class="form-select w-50" name="bathroom" id="bathroom">
+        <select class="form-control w-50" name="bathroom" id="bathroom">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -151,9 +116,9 @@
         <label for="carpetArea">Carpet Area</label>
         <br>
         <div class="input-group w-50">
-          <input type="text" id="carpetArea" class="form-control border-top-0 border-start-0 border-end-0"
+          <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
             name="carpetArea"><span>
-            <select name="furnishingStatus" class="form-control border-top-0 border-start-0 border-end-0"
+            <select name="furnishingStatus" class="form-control border-top-0 border-left-0 border-right-0"
               id="furnishingStatus">
               <option value="Sqft">Sqft</option>
               <option value="Acer">Acer</option>
@@ -166,9 +131,9 @@
         <label for="superBuiltUpArea">Super BuiltUp Area</label>
         <br>
         <div class="input-group w-50">
-          <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-start-0 border-end-0"
+          <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
             name="superBuiltUpArea"><span>
-            <select name="builtUpArea" class="form-control border-top-0 border-start-0 border-end-0" id="builtUpArea">
+            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0" id="builtUpArea">
               <option value="Sqft">Sqft</option>
               <option value="Acer">Acer</option>
               <option value="Sq-M">Sq-M</option>
@@ -181,9 +146,9 @@
         <label for="builtUpArea">BuiltUp Area</label>
         <br>
         <div class="input-group w-50">
-          <input type="text" id="builtUpArea" class="form-control border-top-0 border-start-0 border-end-0"
+          <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
             name="builtUpArea"><span>
-            <select name="builtUpArea" class="form-control border-top-0 border-start-0 border-end-0 "
+            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
               class="form-control" id="builtUpArea">
               <option value="Sqft">Sqft</option>
               <option value="Acer">Acer</option>
@@ -278,7 +243,32 @@
             Curtains
           </label>
         </div>
+        <h3>Photos</h3>
+        <div class="mb-3">
+          <div class="custom-file">
+            <input class="custom-file-input" type="file" accept=".jpeg,.png,.jpg" onchange='loadFile(event)'
+              id="images">
+            <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
+              file</label>
+          </div>
+        </div>
+        <div id="output">
+
+        </div>
       </form>
     </div>
   </div>
+  <script>
+    function ImgTag(event) {
+      var Img = document.createElement("img")
+      var imageDiv = document.getElementById('output');
+      Img.src = URL.createObjectURL(event.target.files[0]);
+      Img.height = "300px";
+      imageDiv.appendChild(Img)
+    }
 
+    var loadFile = function (event) {
+      ImgTag(event);
+    };
+  </script>
+  <%- include('./layouts/Footer') -%>
