@@ -1,145 +1,274 @@
-<%- include('./imports') -%>
-<div class="container-fluid">
-    <form action="">
-        <h1>Property Details</h1>
-            <h3>Property For</h3>
-            <input type="radio" id="PropertyforSale" name="Propertyfor" value="Sale">
-            <label for="PropertyforSale">Sale</label>
-            <input type="radio" id="PropertyforRent" name="Propertyfor" value="Rent/Lease">
-            <label for="PropertyforRent">Rent/Lease</label>
-            <input type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
-            <label for="PropertyforPG">PG/Hostel</label>
-            <br>
-            <br>
-            <label for="PropertyType">Property type</label>
-            <br>
-            <br>
-            <select name=" PropertyType" id="PropertyType">
-                <option value="">Select</option>
-                <optgroup label="Residental">
-                    <option value="Flat/Apartment"> Flat/Apartment </option>
-                    <option value="Residential House"> Residential House </option>
-                    <option value="Villa"> Villa </option>
-                    <option value="Builder Floor Apartment">Builder Floor Apartment </option>
-                    <option value="Penthouse"> Penthouse </option>
-                    <option value="Studio Apartment"> Studio Apartment </option>
-                </optgroup>
-                <optgroup label="Commercial">
-                    <option value="Commercial Shop"> Commercial Shop </option>
-                    <option value="Commercial Office Space"> Commercial Office Space </option>
-                    <option value="Commercial Showroom"> Commercial Showroom </option>
-                    <option value="Warehouse/Godows">Warehouse/Godows </option>
-                    <option value="Industrial Shed"> Industrial Shed </option>
-                </optgroup>
-                <optgroup label="Others">
-                    <option value="Land"> Land </option>
-                    <option value="Farm House"> Farm House </option>
-                </optgroup>
-            </select>
-            <br>
-            <br>
-            <label for="Locality">Locality</label>
-            <br>
-            <br>
-            <select name="Locality" id="Locality">
-               <option value="Rodpali">Rodpali</option>
-               <option value="Kalamboli">Kalamboli</option>
-               <option value="Kharghar">Kharghar</option>
-            </select>
-            <br>
-            <br>
-            <h3>Property Features</h3>
-            <div class="d-flex flex-row">
-                <label for="Bedrooms">Bedrooms</label>
-                <br>
-                <select name="Bedrooms" id="Bedrooms">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="more than 4">more than 4</option>
-                </select>
-                <label for="Balconies" style="padding-left: 10%;">Balconies</label>
-                <br>
-                <select name="Balconies" id="Balconies">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="more than 4">more than 4</option>
-                </select>
-            </div>
-            <br>
-            <label for="floorNo">Floor No.</label>
-            <br>
-            <input type="text" id="floorNo" name="floorNo">   
-            <br>
-            <br>
-            <label for="totalFloors">Total Floors</label>
-            <br>
-            <input type="text" id="totalFloors" name="totalFloors">   
-            <br>
-            <br>
-            <label for="furnishingStatus" >Furnishing Status</label>
-                <br>
-                <select name="furnishingStatus" id="furnishingStatus">
-                    <option value="">Select</option>
-                    <option value="Furnished">Furnished</option>
-                    <option value="Unfurnished">Unfurnished</option>
-                    <option value="Semi-Furnished">Semi-Furnished</option>
-                </select>
-            <br>
-            <br>
-            <label for="bathroom" >Bathroom</label>
-            <br>
-            <select name="bathroom" id="bathroom">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="more than 4">more than 4</option>
-            </select>    
-            <br>
-            <h3>Area</h3>
+<%- include('./layouts/imports') -%>
+  <div class="uk-background-muted p-4">
+    <div class="container-fluid uk-width-1-2@s uk-background-default p-4">
+      <form action="">
+        <h1 class="font-weight-bold">Property Details</h1>
+        <h3>Property For</h3>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="Propertyfor" value="Sale" id="PropertyforSale">
+          <label class="form-check-label" for="PropertyforSale">Sale</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease" id="PropertyforRent">
+          <label class="form-check-label" for="PropertyforRent">Rent</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
+          <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
+        </div>
+        <br>
+        <br>
+        <label for="PropertyType">Property type</label>
+        <br>
+        <br>
+        <select class="form-control w-50" name=" PropertyType" id="PropertyType">
+          <option value="">Select</option>
+          <optgroup label="Residental">
+            <option value="Flat/Apartment"> Flat/Apartment </option>
+            <option value="Residential House"> Residential House </option>
+            <option value="Villa"> Villa </option>
+            <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+            <option value="Penthouse"> Penthouse </option>
+            <option value="Studio Apartment"> Studio Apartment </option>
+          </optgroup>
+          <optgroup label="Commercial">
+            <option value="Commercial Shop"> Commercial Shop </option>
+            <option value="Commercial Office Space"> Commercial Office Space </option>
+            <option value="Commercial Showroom"> Commercial Showroom </option>
+            <option value="Warehouse/Godows">Warehouse/Godows </option>
+            <option value="Industrial Shed"> Industrial Shed </option>
+          </optgroup>
+          <optgroup label="Others">
+            <option value="Land"> Land </option>
+            <option value="Farm House"> Farm House </option>
+          </optgroup>
+        </select>
+        <br>
+        <br>
+        <label for="Locality">Locality</label>
+        <br>
+        <br>
+        <select class="form-control w-50" name="Locality" id="Locality">
+          <option value="Rodpali">Rodpali</option>
+          <option value="Kalamboli">Kalamboli</option>
+          <option value="Kharghar">Kharghar</option>
+        </select>
+        <br>
+        <br>
+        <h3>Property Features</h3>
+        <div>
+          <label for="Bedrooms">Bedrooms</label>
+          <br>
+          <select class="form-control w-50" name="Bedrooms" id="Bedrooms">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="more than 4">more than 4</option>
+          </select>
+          <br>
+          <label for="Balconies">Balconies</label>
+          <br>
+          <select class="form-control w-50" name="Balconies" id="Balconies">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="more than 4">more than 4</option>
+          </select>
+        </div>
+        <br>
+        <label for="floorNo">Floor No.</label>
+        <br>
+        <input type="text" class="form-control w-50" id="floorNo" name="floorNo">
+        <br>
+        <br>
+        <label for="totalFloors">Total Floors</label>
+        <br>
+        <input type="text" class="form-control w-50" id="totalFloors" name="totalFloors">
+        <br>
+        <br>
+        <label for="furnishingStatus">Furnishing Status</label>
+        <br>
+        <select class="form-control w-50" name="furnishingStatus" id="furnishingStatus">
+          <option value="">Select</option>
+          <option value="Furnished">Furnished</option>
+          <option value="Unfurnished">Unfurnished</option>
+          <option value="Semi-Furnished">Semi-Furnished</option>
+        </select>
+        <br>
+        <br>
+        <label for="bathroom">Bathroom</label>
+        <br>
+        <select class="form-control w-50" name="bathroom" id="bathroom">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="more than 4">more than 4</option>
+        </select>
+        <br>
+        <h3>Area</h3>
 
-            <label for="carpetArea">Carpet Area</label>
-            <br>
-            <input type="text" id="carpetArea" name="carpetArea"><span>
-                <select name="furnishingStatus" id="furnishingStatus">
-                    <option value="Sqft">Sqft</option>
-                    <option value="Acer">Acer</option>
-                    <option value="Sq-M">Sq-M</option>
-                </select>
-            </span> 
-            <br>
-            <br>
-            <label for="superBuiltUpArea">Super BuiltUp Area</label>
-            <br>
-            <input type="text" id="superBuiltUpArea" name="superBuiltUpArea"><span>
-                <select name="builtUpArea" id="builtUpArea">
-                    <option value="Sqft">Sqft</option>
-                    <option value="Acer">Acer</option>
-                    <option value="Sq-M">Sq-M</option>
-                </select>
-            </span>
-            <br>
-            <br>
-            <label for="builtUpArea">BuiltUp Area</label>
-            <br>
-            <input type="text" id="builtUpArea" name="builtUpArea"><span>
-                <select name="builtUpArea" id="builtUpArea">
-                    <option value="Sqft">Sqft</option>
-                    <option value="Acer">Acer</option>
-                    <option value="Sq-M">Sq-M</option>
-                </select>
-            </span>  
-            <br>
-            <br>    
-        </form>
-        
-</div>
+        <label for="carpetArea">Carpet Area</label>
+        <br>
+        <div class="input-group w-50">
+          <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
+            name="carpetArea"><span>
+            <select name="furnishingStatus" class="form-control border-top-0 border-left-0 border-right-0"
+              id="furnishingStatus">
+              <option value="Sqft">Sqft</option>
+              <option value="Acer">Acer</option>
+              <option value="Sq-M">Sq-M</option>
+            </select>
+          </span>
+        </div>
+        <br>
+        <br>
+        <label for="superBuiltUpArea">Super BuiltUp Area</label>
+        <br>
+        <div class="input-group w-50">
+          <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+            name="superBuiltUpArea"><span>
+            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0" id="builtUpArea">
+              <option value="Sqft">Sqft</option>
+              <option value="Acer">Acer</option>
+              <option value="Sq-M">Sq-M</option>
+            </select>
+          </span>
+        </div>
 
-<%- include('./Footer') -%>
+        <br>
+        <br>
+        <label for="builtUpArea">BuiltUp Area</label>
+        <br>
+        <div class="input-group w-50">
+          <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+            name="builtUpArea"><span>
+            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
+              class="form-control" id="builtUpArea">
+              <option value="Sqft">Sqft</option>
+              <option value="Acer">Acer</option>
+              <option value="Sq-M">Sq-M</option>
+            </select>
+          </span>
+        </div>
+        <br>
+        <br>
+        <h3>Furniture</h3>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="TV">
+          <label class="form-check-label" for="TV">
+            TV
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="TV unit">
+          <label class="form-check-label" for="TV unit">
+            TV unit
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Sofa">
+          <label class="form-check-label" for="Sofa">
+            Sofa
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Dining Table">
+          <label class="form-check-label" for="Dining Table">
+            Dining Table
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Fan">
+          <label class="form-check-label" for="Fan">
+            Fan
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Light">
+          <label class="form-check-label" for="Light">
+            Light
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Modular Kitchen">
+          <label class="form-check-label" for="Modular Kitchen">
+            Modular Kitchen
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Chimney">
+          <label class="form-check-label" for="Chimney">
+            Chimney
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Microwave">
+          <label class="form-check-label" for="Microwave">
+            Microwave
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Fridge">
+          <label class="form-check-label" for="Fridge">
+            Fridge
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Washingmachine">
+          <label class="form-check-label" for="Washingmachine">
+            Washing machine
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Bed">
+          <label class="form-check-label" for="Bed">
+            Bed
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Wadrobe">
+          <label class="form-check-label" for="Wadrobe">
+            Wadrobe
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" value="" id="Curtains">
+          <label class="form-check-label" for="Curtains">
+            Curtains
+          </label>
+        </div>
+        <h3>Photos</h3>
+        <div class="mb-3">
+          <div class="custom-file">
+            <input class="custom-file-input" type="file" accept=".jpeg,.png,.jpg" onchange='loadFile(event)'
+              id="images">
+            <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
+              file</label>
+          </div>
+        </div>
+        <div id="output">
+
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function ImgTag(event) {
+      var Img = document.createElement("img")
+      var imageDiv = document.getElementById('output');
+      Img.src = URL.createObjectURL(event.target.files[0]);
+      Img.height = "300px";
+      imageDiv.appendChild(Img)
+    }
+
+    var loadFile = function (event) {
+      ImgTag(event);
+    };
+  </script>
+  <%- include('./layouts/Footer') -%>
