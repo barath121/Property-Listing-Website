@@ -161,6 +161,78 @@ propertyFeatures : {
     }]
 
 },
+additionalFeaturess : {
+additonalRooms : [{
+    type : String,
+    enum : ['Puja Room','Study Room','Store Room','Servant Room','None of these'],
+    required : true
+}],
+facing :{
+    type : String,
+    enum : ['North','East','West','South','North-West','North-East','South-West','South-East'],
+    required : true
+},
+overlooking : [{
+    type : String,
+    enum : ['Garden/Park','Pool','Main Road','Not Availiable'],
+    required : true
+}],
+carParking : [{
+    type : String,
+    enum : ['Covered','Open','None'],
+    required : true
+}],
+liftsInTheTower : {
+    type : Number,
+    enum : ['1','2','3','4','4+'],
+    required : true
+},
+multipleUnitsAvaliable : {
+    type : Boolean,
+    required  : true
+}
+},
+statusOfWaterandElectric : {
+avaliablityOfWater :{
+    type :  String,
+    enum :['24 Hours Avaliable','12 Hours Avaliable','6 Hours Avaliable','2 Hours Avaliable','1 Hours Avaliable'],
+    required : true
+},
+avaliablityOfElectricity :{
+    type :  String,
+    enum :['24 Hours Avaliable','12 Hours Avaliable','6 Hours Avaliable','2 Hours Avaliable','1 Hours Avaliable'],
+    required : true
+}
+},
+ownershipAndApproval : {
+    ownershipStatus : {
+        type : String,
+        enum : ['Freehold','Leasehold','Power Of Attorney','Co-operative Society'],
+        required : true
+    },
+    // approvedBy : {
+    //     type : String,
+    //     enum : ['','','Power Of Attorney','Co-operative Society'],
+    //     required : true
+    // }
+},
+flooring : [{
+type : String,
+enum : ['Ceramic Tiles','Granite','Marble','Marbonite','Mosaic','Normal Tiles/Kotha Stone','Vitrified','Wooden'],
+required : True
+}],
+amenities : [{
+type : String,
+enum : ['Air Conditioned','Banquet Hall','Bar/Lounge','Cafeteria/Food Court','Club House','Conference Room','DTH Television Facility','Gymnasium','Intercom Facility','Internet/Wi-Fi Connectivity','Jogging and Strolling Track','Laundry Service','Lift','Maintenance Staff','Outdoor Tennis Courts','Park','Piped Gas','Power Back Up','Private Terrace/Garden','RO Water System','Rain Water Harvesting','Reserved Parking','Security','Service/Goods Lift','Swimming Pool','Vaastu Compliant','Visitor Parking','Waste Disposal','Water Storage'],
+}],
+description : {
+    type  : String,
+    required : true
+},
+landmarks : {
+    type  : String,
+    required : true
+},
 images :{
     exteriorView : [{
         type : String,
@@ -193,7 +265,7 @@ images :{
     other : [{
         type : String,
         required : true
-    }],
+    }]
 } 
 });
 
