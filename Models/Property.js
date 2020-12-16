@@ -219,7 +219,7 @@ ownershipAndApproval : {
 flooring : [{
 type : String,
 enum : ['Ceramic Tiles','Granite','Marble','Marbonite','Mosaic','Normal Tiles/Kotha Stone','Vitrified','Wooden'],
-required : True
+required : true
 }],
 amenities : [{
 type : String,
