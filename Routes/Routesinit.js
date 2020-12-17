@@ -2,9 +2,20 @@ PropertyRoutes = require('./PropertyRoute')
 const AppError = require('./../Utils/appError');
 const Routesinit = (app) => {
 
+    // Terry created routes 
     app.get('/', (req, res) => {
         res.render('index')
     })
+
+    app.get('/contact', (req, res) => {
+        res.render('contact')
+    })
+
+    app.get('/property-detail', (req, res) => {
+        res.render('property-detail')
+    })
+
+    // -----------------------------
 
     app.use('/property', PropertyRoutes);
     app.use('/search', (req,res)=>{
