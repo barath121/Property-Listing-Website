@@ -1,8 +1,8 @@
+/* Custom CSS */
 body {
     margin: 0;
     padding: 0;
-    font-size: small;
-    font-weight: 600;
+    font-family: 'Ubuntu', sans-serif!important; 
 }
 
 .header-bg {
@@ -38,6 +38,19 @@ body {
 
 .hr-custom {
     width: 250px;
-    background-color:  rgba(9,9,121,1);
+    background-color:  #d9534f;
     height: 5px;
+    margin-top: 10px!important;
+}
+
+.breeSerif {
+    font-family: 'Bree Serif', serif;
+}
+
+.hammersmithOne {
+    font-family: 'Hammersmith One', sans-serif;
+}
+
+.ubuntu {
+    font-family: 'Ubuntu', sans-serif; 
 }
