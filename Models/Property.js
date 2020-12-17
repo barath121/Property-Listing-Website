@@ -64,7 +64,7 @@ priceDetails :{
         enum : ["Fixed","Negotiable","Call for Price"],
         required : true
     },
-    maintaninceChargeType : {
+    maintaninceCharge : {
         type : String,
         required : true
     },
@@ -83,7 +83,8 @@ priceDetails :{
     },
     tokenAmount : {
         type : String,
-        required : true
+        required : false,
+        default: "0"
     },
     saleBrokerage : {
         type : String,
