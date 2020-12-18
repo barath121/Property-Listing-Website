@@ -5,11 +5,13 @@
         <h1 class="font-weight-bold">Property Details</h1>
         <h3>Property For</h3>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="Propertyfor" value="Sale" id="PropertyforSale">
+          <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
+            id="PropertyforSale">
           <label class="form-check-label" for="PropertyforSale">Sale</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease" id="PropertyforRent">
+          <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
+            id="PropertyforRent">
           <label class="form-check-label" for="PropertyforRent">Rent</label>
         </div>
         <div class="form-check form-check-inline">
@@ -245,12 +247,12 @@
         </div>
         <h3>Photos</h3>
 
-        <ul uk-tab>
+        <!-- <ul uk-tab>
           <li class="uk-active"><a href="#">Kitchen</a></li>
           <li><a href="#">Hall</a></li>
           <li><a href="#">Bathroom</a></li>
           <li><a href="#">Bedroom</a></li>
-        </ul>
+        </ul> -->
 
         <div class="mb-3">
           <div class="custom-file">
@@ -277,65 +279,54 @@
         </div>
 
         <h3>Price Details</h3>
-        <label for="expectedPrice">Expected Price</label>
-        <br>
-        <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-          name="expectedPrice" placeholder="Enter total price"><span>
+        <div id="sale">
+          <label for="expectedPrice">Expected Price</label>
           <br>
-          <br>
-          <label for="bookingAmount">Booking Amount</label>
-          <br>
-          <input type="text" id="bookingAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-            name="bookingAmount" placeholder="Enter total price"><span>
+          <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+            name="expectedPrice" placeholder="Enter total price"><span>
             <br>
             <br>
-            <label for="expectedRent">Expected Rent</label>
+            <label for="bookingAmount">Booking Amount</label>
             <br>
-            <input type="text" id="expectedRent" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedRent" placeholder="Enter total price"><span>
+            <input type="text" id="bookingAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+              name="bookingAmount" placeholder="Enter total price"><span>
               <br>
               <br>
-              <label for="securityDeposit">Security Deposit</label>
+              <label>Transaction Type</label>
               <br>
-              <input type="text" id="securityDeposit"
-                class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
-                placeholder="Enter total price"><span>
-                <br>
-
-                <label>Transaction Type</label>
-                <br>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="transactionType" value="Sale"
-                    id="transactionTypenew">
-                  <label class="form-check-label" for="transactionTypenew">New Property</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="transactionType" value="Rent/Lease"
-                    id="transactionTypeReSale">
-                  <label class="form-check-label" for="transactionTypeReSale">Resale</label>
-                </div>
-                <br>
-                <br>
-                <label>Possession Status </label>
-                <br>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="possessionStatus" value="Sale"
-                    id="possessionStatusUnder">
-                  <label class="form-check-label" for="transactionTypenew">Under Construction</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="possessionStatus" value="Rent/Lease"
-                    id="possessionStatusReady">
-                  <label class="form-check-label" for="transactionTypeReSale">Ready to Move</label>
-                </div>
-                <br>
-                <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="transactionType" value="Sale"
+                  id="transactionTypenew">
+                <label class="form-check-label" for="transactionTypenew">New Property</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="transactionType" value="Rent/Lease"
+                  id="transactionTypeReSale">
+                <label class="form-check-label" for="transactionTypeReSale">Resale</label>
+              </div>
+              <br>
+              <br>
+              <label>Possession Status </label>
+              <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
+                  value="Sale" id="possessionStatusUnder">
+                <label class="form-check-label" for="transactionTypenew">Under Construction</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
+                  value="Rent/Lease" id="possessionStatusReady">
+                <label class="form-check-label" for="transactionTypeReSale">Ready to Move</label>
+              </div>
+              <br>
+              <br>
+              <div id="construction">
                 <label>Available From</label>
                 <br>
                 <br>
-                <label for="bathroom">Month</label>
+                <label for="month">Month</label>
                 <br>
-                <select class="form-control w-50" name="bathroom" id="bathroom">
+                <select class="form-control w-50" name="month" id="month">
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -350,9 +341,9 @@
                   <option value="Devember">Devember</option>
                 </select>
                 <br>
-                <label for="bathroom">Year</label>
+                <label for="year">Year</label>
                 <br>
-                <select class="form-control w-50" name="bathroom" id="bathroom">
+                <select class="form-control w-50" name="year" id="year">
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -366,76 +357,134 @@
                   <option value="November">november</option>
                   <option value="Devember">Devember</option>
                 </select>
+              </div>
 
-                <br>
-                <br>
+              <br>
+              <br>
+              <div id="age">
                 <label for="ageOfConstruction">Age Of Construction</label>
                 <br>
                 <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction">
-                  <option value="Monthly">Monthly</option>
-                  <option value="Quaterly">Quaterly</option>
-                  <option value="Yearly">Yearly</option>
-                  <option value="One Time">One Time</option>
-                  <option value="Per sq. Unit Monthly">Per sq. Unit Monthly</option>
+                  <option value="New Construction">New Construction</option>
+                  <option value="Less than 5 years">Less than 5 years</option>
+                  <option value="5 to 10 years">5 to 10 years</option>
+                  <option value="10 to 15 years">10 to 15 years</option>
+                  <option value="15 to 20 years">15 to 20 years</option>
+                  <option value="Above 20 years">Above 20 years</option>
                 </select>
-                <br>
-                <br>
-                <label for="priceType">Price Type</label>
-                <br>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="priceType" value="Fixed" id="priceTypeFixed">
-                  <label class="form-check-label" for="priceTypeFixed">Fixed</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="priceType" value="Negotiable"
-                    id="priceTypeNegotiable">
-                  <label class="form-check-label" for="priceTypeNegotiable">Negotiable</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" id="priceTypeCall" name="priceType"
-                    value="Call for Price">
-                  <label class="form-check-label" for="priceTypeCall">Call for Price</label>
-                </div>
-                <br>
-                <br>
-                <label for="maintaninceCharge">Maintanince Charge</label>
-                <br>
-                <input type="text" id="maintaninceCharge"
-                  class="form-control border-top-0 border-left-0 border-right-0 w-50" name="maintaninceCharge"
-                  placeholder="Enter total price"><span>
-                  <br>
-                  <br>
-                  <label for="maintaninceChargeType">Maintanince Charge Type</label>
-                  <br>
-                  <select class="form-control w-50" name="maintaninceChargeType" id="maintaninceChargeType">
-                    <option value="New Construction">New Construction</option>
-                    <option value="Less than 5 years">Less than 5 years</option>
-                    <option value="5 to 10 years">5 to 10 years</option>
-                    <option value="10 to 15 years">10 to 15 years</option>
-                    <option value="15 to 20 years">15 to 20 years</option>
-                    <option value="Above 20 years">Above 20 years</option>
-                  </select>
-                  <br>
-                  <br>
-                  <label for="priceIncludes">Price Includes</label>
-                  <br>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL"
-                      id="priceIncludesPCL">
-                    <label class="form-check-label" for="priceIncludesPCL">PCL</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="priceIncludes" value="Car Parking"
-                      id="priceIncludesCar">
-                    <label class="form-check-label" for="priceIncludesCar">Car Parking</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="priceIncludesClub" name="priceIncludes"
-                      value="Club Membership">
-                    <label class="form-check-label" for="priceIncludesClub">Club Membership</label>
-                  </div>
+              </div>
+
+              <br>
+              <br>
+              <label for="saleBrokerage">Sale Brokerage</label>
+              <br>
+              <select class="form-control w-50" name="saleBrokerage" id="saleBrokerage">
+                <option value="No Brokerage">No Brokerage</option>
+                <option value="0.25%">0.25%</option>
+                <option value="0.5%">0.5%</option>
+                <option value="0.75%">0.75%</option>
+                <option value="1%">1%</option>
+                <option value="1.5%">1.5%</option>
+                <option value="2%">2%</option>
+                <option value="3%">3%</option>
+                <option value="4%">4%</option>
+              </select>
+              <br>
+              <br>
+        </div>
+        <div id="rent">
+          <label for="expectedRent">Expected Rent</label>
+          <br>
+          <input type="text" id="expectedRent" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+            name="expectedRent" placeholder="Enter total price"><span>
+            <br>
+            <br>
+            <label for="securityDeposit">Security Deposit</label>
+            <br>
+            <input type="text" id="securityDeposit" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+              name="securityDeposit" placeholder="Enter total price"><span>
+              <br>
+              <br>
+              <label for="rentBrokerage">Rent Brokerage</label>
+              <br>
+              <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage">
+                <option value="No Brokerage">No Brokerage</option>
+                <option value="30 Days">30 Days</option>
+                <option value="45 Days">45 Days</option>
+                <option value="60 Days">60 Days</option>
+              </select>
+              <br>
+              <br>
+        </div>
 
 
+        <label for="priceType">Price Type</label>
+        <br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="priceType" value="Fixed" id="priceTypeFixed">
+          <label class="form-check-label" for="priceTypeFixed">Fixed</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="priceType" value="Negotiable" id="priceTypeNegotiable">
+          <label class="form-check-label" for="priceTypeNegotiable">Negotiable</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="priceTypeCall" name="priceType" value="Call for Price">
+          <label class="form-check-label" for="priceTypeCall">Call for Price</label>
+        </div>
+        <br>
+        <br>
+        <label for="maintaninceCharge">Maintanince Charge</label>
+        <br>
+        <input type="text" id="maintaninceCharge" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+          name="maintaninceCharge" placeholder="Enter total price"><span>
+          <br>
+          <br>
+          <label for="maintaninceChargeType">Maintanince Charge Type</label>
+          <br>
+          <select class="form-control w-50" name="maintaninceChargeType" id="maintaninceChargeType">
+            <option value="New Construction">New Construction</option>
+            <option value="Less than 5 years">Less than 5 years</option>
+            <option value="5 to 10 years">5 to 10 years</option>
+            <option value="10 to 15 years">10 to 15 years</option>
+            <option value="15 to 20 years">15 to 20 years</option>
+            <option value="Above 20 years">Above 20 years</option>
+          </select>
+          <br>
+          <br>
+          <label for="priceIncludes">Price Includes</label>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL" id="priceIncludesPCL">
+            <label class="form-check-label" for="priceIncludesPCL">PCL</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="priceIncludes" value="Car Parking"
+              id="priceIncludesCar">
+            <label class="form-check-label" for="priceIncludesCar">Car Parking</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="priceIncludesClub" name="priceIncludes"
+              value="Club Membership">
+            <label class="form-check-label" for="priceIncludesClub">Club Membership</label>
+          </div>
+          <br>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="stampDutyCharges" value="true" id="stampDutyCharges">
+            <label class="form-check-label" for="stampDutyCharges">Stamp Duty Charges</label>
+          </div>
+          <br>
+          <br>
+          <label for="saleBrokerage">Token Amount</label>
+          <input type="text" id="tokenAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+            name="tokenAmount" placeholder="Enter total price"><span>
+
+            <br>
+            <br>
+            <div class="d-flex w-100 justify-content-center">
+              <button class="btn btn-outline-danger" type="submit">Next Page</button>
+            </div>
       </form>
     </div>
   </div>
@@ -484,6 +533,23 @@
     var loadFile = function (event) {
       ImgTag(event);
     };
+
+    function RentSelected() {
+      document.getElementById("sale").classList.add("d-none");
+      document.getElementById("rent").classList.remove("d-none");
+    }
+    function saleSelected() {
+      document.getElementById("sale").classList.remove("d-none");
+      document.getElementById("rent").classList.add("d-none");
+    }
+    function Underconstruction() {
+      document.getElementById("age").classList.add("d-none");
+      document.getElementById("construction").classList.remove("d-none");
+    }
+    function Readyconstruction() {
+      document.getElementById("age").classList.remove("d-none");
+      document.getElementById("construction").classList.add("d-none");
+    }
 
   </script>
   <%- include('./layouts/Footer') -%>
