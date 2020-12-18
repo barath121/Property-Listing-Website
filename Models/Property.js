@@ -162,6 +162,7 @@ propertyFeatures : {
     }]
 
 },
+
 additionalFeaturess : {
 additonalRooms : [{
     type : String,
