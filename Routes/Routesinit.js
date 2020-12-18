@@ -1,9 +1,8 @@
 PropertyRoutes = require('./PropertyRoute')
-//const fileUpload = require('express-fileupload');
 const AppError = require('./../Utils/appError');
-const PropertyRoute = require('./PropertyRoute');
-const multer = require('multer');
 const Routesinit = (app) => {
+
+    // Terry created routes 
     app.get('/', (req, res) => {
         res.render('index')
     })
@@ -19,7 +18,6 @@ const Routesinit = (app) => {
     // -----------------------------
 
     app.use('/property', PropertyRoutes);
-
     app.use('/search', (req,res)=>{
         res.render('Search_page')
     });
