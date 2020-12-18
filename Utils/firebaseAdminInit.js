@@ -8,11 +8,11 @@ const { Storage } = Cloud
 
 const storage = new Storage({
   keyFilename: serviceKey,
-  projectId: 'santoshproperty-4b66f',
+  projectId: process.env.FBProjectId,
 })
 
 const gc = storage
-const bucket = gc.bucket('gs://santoshproperty-4b66f.appspot.com')
+const bucket = gc.bucket(process.env.FBStorageBucket)
 
 module.exports.uploadFile = (file) => new Promise((resolve, reject) => {
   const { originalname, buffer } = file
