@@ -75,7 +75,7 @@ priceDetails :{
     },
     maintaninceChargeType : {
         type : String,
-        enum : ['Monthly','Quaterly','Yearly','One Time','Per sq. Unit Monthly'],
+        enum : ['Monthly','Quaterly','One Time','Per sq. Unit Monthly'],
         required : true
     },
     priceIncludes : [{
