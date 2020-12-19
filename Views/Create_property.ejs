@@ -1,7 +1,7 @@
 <%- include('./layouts/imports') -%>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="/property/createproperty" enctype="multipart/form-data" method="POST">
+      <form action="">
         <h1 class="font-weight-bold">Property Details</h1>
         <h3>Property For</h3>
         <div class="form-check form-check-inline">
@@ -101,65 +101,6 @@
           <option value="Semi-Furnished">Semi-Furnished</option>
         </select>
         <br>
-        <br>
-        <label for="bathroom">Bathroom</label>
-        <br>
-        <select class="form-control w-50" name="bathroom" id="bathroom">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="more than 4">more than 4</option>
-        </select>
-        <br>
-        <h3>Area</h3>
-
-        <label for="carpetArea">Carpet Area</label>
-        <br>
-        <div class="input-group w-50">
-          <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
-            name="carpetArea"><span>
-            <select name="furnishingStatus" class="form-control border-top-0 border-left-0 border-right-0"
-              id="furnishingStatus">
-              <option value="Sqft">Sqft</option>
-              <option value="Acer">Acer</option>
-              <option value="Sq-M">Sq-M</option>
-            </select>
-          </span>
-        </div>
-        <br>
-        <br>
-        <label for="superBuiltUpArea">Super BuiltUp Area</label>
-        <br>
-        <div class="input-group w-50">
-          <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-            name="superBuiltUpArea"><span>
-            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0" id="builtUpArea">
-              <option value="Sqft">Sqft</option>
-              <option value="Acer">Acer</option>
-              <option value="Sq-M">Sq-M</option>
-            </select>
-          </span>
-        </div>
-
-        <br>
-        <br>
-        <label for="builtUpArea">BuiltUp Area</label>
-        <br>
-        <div class="input-group w-50">
-          <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-            name="builtUpArea"><span>
-            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
-              class="form-control" id="builtUpArea">
-              <option value="Sqft">Sqft</option>
-              <option value="Acer">Acer</option>
-              <option value="Sq-M">Sq-M</option>
-            </select>
-          </span>
-        </div>
-        <br>
-        <br>
         <h3>Furniture</h3>
         <div class="row">
           <div class="form-check col-6">
@@ -249,6 +190,67 @@
             </label>
           </div>
         </div>
+        <br>
+        <br>
+        <label for="bathroom">Bathroom</label>
+        <br>
+        <select class="form-control w-50" name="bathroom" id="bathroom">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="more than 4">more than 4</option>
+        </select>
+        <br>
+        <h3>Area</h3>
+
+        <label for="carpetArea">Carpet Area</label>
+        <br>
+        <div class="input-group w-50">
+          <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
+            name="carpetArea"><span>
+            <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
+              id="furnishingStatus">
+              <option value="Sqft">Sqft</option>
+              <option value="Acer">Acer</option>
+              <option value="Sq-M">Sq-M</option>
+            </select>
+          </span>
+        </div>
+        <br>
+        <br>
+        <label for="superBuiltUpArea">Super BuiltUp Area</label>
+        <br>
+        <div class="input-group w-50">
+          <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+            name="superBuiltUpArea"><span>
+            <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0" id="superBuiltUpArea">
+              <option value="Sqft">Sqft</option>
+              <option value="Acer">Acer</option>
+              <option value="Sq-M">Sq-M</option>
+            </select>
+          </span>
+        </div>
+
+        <br>
+        <br>
+        <label for="builtUpArea">BuiltUp Area</label>
+        <br>
+        <div class="input-group w-50">
+          <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+            name="builtUpArea"><span>
+            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
+              class="form-control" id="builtUpArea">
+              <option value="Sqft">Sqft</option>
+              <option value="Acer">Acer</option>
+              <option value="Sq-M">Sq-M</option>
+            </select>
+          </span>
+        </div>
+        <br>
+        <br>
+        
 
         <h3>Photos</h3>
 
