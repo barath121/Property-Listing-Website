@@ -2,6 +2,10 @@ const Property = require("../Models/Property");
 const express = require('express');
 const PropertyController = require('../Controller/PropertyController');
 const PropertyRoute = express.Router();
+var multer = require('multer');
+var upload = multer({
+    storage : multer.memoryStorage()
+});
 PropertyRoute.route('/test').get(PropertyController.test);
 PropertyRoute.route('/test2').get((req,res)=>{
     res.render('Create_property_2')
@@ -9,4 +13,5 @@ PropertyRoute.route('/test2').get((req,res)=>{
 
 
 
+PropertyRoute.post('/createproperty',upload.any(),PropertyController.createProperty);
 module.exports = PropertyRoute;
