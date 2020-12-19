@@ -10,7 +10,7 @@ propertyFor : {
     enum :['Sale','Rent/Lease','PG/Hostel'],
     required : true
 },
-Locality : {
+locality : {
     type : String,
     enum : ['Roadpali','Kalamboli','Khargahar'],
     required : true
@@ -41,7 +41,7 @@ priceDetails :{
     possessionStatus : {
         type : String,
         enum : ['Under Construction','Ready to Move'],
-        required : function(){return this.propertyFor=='Sale'}
+        required : function(){return this.propertyFor=='Sale' && this.priceDetails.transactionType=='New Property'}
     },
     avaliableFrom :{
         month :{
