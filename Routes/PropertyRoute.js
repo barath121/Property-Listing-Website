@@ -7,5 +7,11 @@ var upload = multer({
     storage : multer.memoryStorage()
 });
 PropertyRoute.route('/test').get(PropertyController.test);
+PropertyRoute.route('/test2').get((req,res)=>{
+    res.render('Create_property_2')
+})
+
+
+
 PropertyRoute.post('/createproperty',upload.any(),PropertyController.createProperty);
 module.exports = PropertyRoute;
