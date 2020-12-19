@@ -15,7 +15,9 @@ const Routesinit = (app) => {
     app.get('/property-detail', (req, res) => {
         res.render('property-detail')
     })
-
+    app.get('/newproperty', (req, res) => {
+        res.render('Create_property')
+    })
     // -----------------------------
 
     app.use('/property', PropertyRoutes);

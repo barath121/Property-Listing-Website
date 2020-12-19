@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 const PropertySchema = mongoose.Schema({
+isAvaliable : {
+type : Boolean,
+required : true,
+default : true
+},
 propertyType : {
     type : String,
     enum : ['Flat/Apartment','Residential House','Villa','Builder Floor Apartment','Penthouse','Studio Apartment','Commercial Shop','Commercial Office Space','Commercial Showroom','Warehouse/Godows','Industrial Shed','Land','Farm House'],
@@ -27,11 +32,11 @@ priceDetails :{
     },
     expectedRent : {
         type : String,
-        required : function(){ return this.propertyFor!='Sale'}
+        required : function(){ return this.propertyFor=='Rent/Lease'}
     },
     securityDeposit : {
         type : String,
-        required : function(){ return this.propertyFor=='Rent'}
+        required : function(){ return this.propertyFor=='Rent/Lease'}
     },
     transactionType : {
         type : String,
@@ -269,6 +274,8 @@ images :{
         required : true
     }]
 } 
+},{
+    timestamps: true,
 });
 
 const Property = mongoose.model('Property',PropertySchema);

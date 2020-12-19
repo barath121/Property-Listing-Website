@@ -6,15 +6,17 @@ module.exports.test = (req,res)=>{
 }
 
 module.exports.createProperty = async (req,res,next) =>{
-  const images  = req.files;
-  let imagesArray = [];
-  await Promise.all(images.map((image) => (firebase.uploadFile(image).then(result => {
-    imagesArray.push(result)
-  }))))   
-  res.status(200) .json({
-    message: "Upload was successful",
-    data: imagesArray
-  })
+//   const images  = req.files;
+//   let imagesArray = [];
+//   await Promise.all(images.map((image) => (firebase.uploadFile(image).then(result => {
+//     imagesArray.push(result)
+//   }))))   
+//   res.status(200) .json({
+//     message: "Upload was successful",
+//     data: imagesArray
+//   })
+const body = req.body;
+console.log(body);
   //reference.put('req.files.propertyimage').then();
 
     // let property = {};
