@@ -1,7 +1,7 @@
 <%- include('./layouts/imports') -%>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="">
+      <form action="/property/createproperty" enctype="multipart/form-data" method="POST">
         <h1 class="font-weight-bold">Property Details</h1>
         <h3>Property For</h3>
         <div class="form-check form-check-inline">
@@ -23,7 +23,7 @@
         <label for="PropertyType">Property type</label>
         <br>
         <br>
-        <select class="form-control w-50" name=" PropertyType" id="PropertyType">
+        <select class="form-control w-50" name="PropertyType" id="PropertyType">
           <option value="">Select</option>
           <optgroup label="Residental">
             <option value="Flat/Apartment"> Flat/Apartment </option>
@@ -128,16 +128,21 @@
             </label>
           </div>
           <div class="form-check col-6">
-            <input class="form-check-input" name="furniture" type="checkbox" value="Fan" id="Fan">
-            <label class="form-check-label" for="Fan">
+            <input class="form-check-input" onchange="fan()" name="furniture" type="checkbox" value="Fan" id="Fan.">
+            <label class="form-check-label" for="Fan.">
               Fan
             </label>
+            <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="fanAmount"
+              name="Quantity">
           </div>
           <div class="form-check col-6">
-            <input class="form-check-input" name="furniture" type="checkbox" value="Light" id="Light">
+            <input class="form-check-input" onchange="light()" name="furniture" type="checkbox" value="Light"
+              id="Light">
             <label class="form-check-label" for="Light">
               Light
             </label>
+            <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="lightAmount"
+              name="Quantity">
           </div>
           <div class="form-check col-6">
             <input class="form-check-input" name="furniture" type="checkbox" value="Modular Kitchen"
@@ -172,22 +177,30 @@
             </label>
           </div>
           <div class="form-check col-6">
-            <input class="form-check-input" name="furniture" type="checkbox" value="Bed" id="Bed">
+            <input class="form-check-input" onchange="bed()" name="furniture" type="checkbox" value="Bed" id="Bed">
             <label class="form-check-label" for="Bed">
               Bed
             </label>
+            <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="bedAmount"
+              name="Quantity">
           </div>
           <div class="form-check col-6">
-            <input class="form-check-input" name="furniture" type="checkbox" value="Wadrobe" id="Wadrobe">
+            <input class="form-check-input" onchange="wadrobe()" name="furniture" type="checkbox" value="Wadrobe"
+              id="Wadrobe">
             <label class="form-check-label" for="Wadrobe">
               Wadrobe
             </label>
+            <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="wadrobeAmount"
+              name="Quantity">
           </div>
           <div class="form-check col-6">
-            <input class="form-check-input" name="furniture" type="checkbox" value="Curtains" id="Curtains">
+            <input class="form-check-input" onchange="curtains()" name="furniture" type="checkbox" value="Curtains"
+              id="Curtains">
             <label class="form-check-label" for="Curtains">
               Curtains
             </label>
+            <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="curtainsAmount"
+              name="Quantity">
           </div>
         </div>
         <br>
@@ -225,7 +238,8 @@
         <div class="input-group w-50">
           <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
             name="superBuiltUpArea"><span>
-            <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0" id="superBuiltUpArea">
+            <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+              id="superBuiltUpArea">
               <option value="Sqft">Sqft</option>
               <option value="Acer">Acer</option>
               <option value="Sq-M">Sq-M</option>
@@ -250,7 +264,7 @@
         </div>
         <br>
         <br>
-        
+
 
         <h3>Photos</h3>
 
@@ -318,12 +332,12 @@
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
                   value="Sale" id="possessionStatusUnder">
-                <label class="form-check-label" for="transactionTypenew">Under Construction</label>
+                <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
               </div>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
                   value="Rent/Lease" id="possessionStatusReady">
-                <label class="form-check-label" for="transactionTypeReSale">Ready to Move</label>
+                <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
               </div>
               <br>
               <br>
@@ -350,28 +364,15 @@
                 <br>
                 <label for="year">Year</label>
                 <br>
-                <select class="form-control w-50" name="year" id="year">
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="September">September</option>
-                  <option value="October">October</option>
-                  <option value="November">november</option>
-                  <option value="Devember">Devember</option>
-                </select>
+                <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year">
               </div>
-
               <br>
               <br>
               <div id="age">
                 <label for="ageOfConstruction">Age Of Construction</label>
                 <br>
                 <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction">
+                  <option value="">select</option>
                   <option value="New Construction">New Construction</option>
                   <option value="Less than 5 years">Less than 5 years</option>
                   <option value="5 to 10 years">5 to 10 years</option>
@@ -423,8 +424,6 @@
               <br>
               <br>
         </div>
-
-
         <label for="priceType">Price Type</label>
         <br>
         <div class="form-check form-check-inline">
@@ -450,12 +449,10 @@
           <label for="maintaninceChargeType">Maintanince Charge Type</label>
           <br>
           <select class="form-control w-50" name="maintaninceChargeType" id="maintaninceChargeType">
-            <option value="New Construction">New Construction</option>
-            <option value="Less than 5 years">Less than 5 years</option>
-            <option value="5 to 10 years">5 to 10 years</option>
-            <option value="10 to 15 years">10 to 15 years</option>
-            <option value="15 to 20 years">15 to 20 years</option>
-            <option value="Above 20 years">Above 20 years</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Quaterly">Quaterly</option>
+            <option value="One Time">One Time</option>
+            <option value="Per sq. Unit Monthly">Per sq. Unit Monthly</option>
           </select>
           <br>
           <br>
@@ -497,6 +494,7 @@
 
   <script>
     var imgArr = [];
+    var status = false;
     function ImgTag(event) {
       var files = event.target.files;
       var imageDiv = document.getElementById('output');
@@ -555,6 +553,21 @@
     function Readyconstruction() {
       document.getElementById("age").classList.remove("d-none");
       document.getElementById("construction").classList.add("d-none");
+    }
+    function fan() {
+      document.getElementById("fanAmount").classList.remove("d-none")
+    }
+    function light() {
+      document.getElementById("lightAmount").classList.remove("d-none")
+    }
+    function bed() {
+      document.getElementById("bedAmount").classList.remove("d-none")
+    }
+    function wadrobe() {
+      document.getElementById("wadrobeAmount").classList.remove("d-none")
+    }
+    function curtains() {
+      document.getElementById("curtainsAmount").classList.remove("d-none")
     }
 
   </script>
