@@ -75,7 +75,7 @@ propertyFeatures : {
     furnitures :[{
         Type : {
         type : String,
-        enum : ['TV','TV unit','Sofa','Dining Table','Fan.','Light.','Modular Kitchen','Chimney','Microwave','Fridge','Washingmachine','Bed.','Wadrobe.','Curtains.',],
+        enum : ['TV','TV unit','Sofa','Dining Table','Fan','Light','Modular Kitchen','Chimney','Microwave','Fridge','Washingmachine','Bed','Wadrobe','Curtains',],
         required : true
         },
         Quantity : {
@@ -191,7 +191,7 @@ carParking : {
     required : true
 },
 liftsInTheTower : {
-    type : Number,
+    type : String,
     enum : ['1','2','3','4','4+'],
     required : true
 },
