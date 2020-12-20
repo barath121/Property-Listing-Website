@@ -12,9 +12,10 @@ const AppError = require('./../Utils/appError');
 const initializePassport = require('./passport');
 const  session  = require('express-session');
 const User = require('../Models/User');
+const flash = require('express-flash');
 dotenv.config({ path: "./.env" });
 
-initializePassport(passport,id=>User.findById(id));
+initializePassport(passport);
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json()); 
@@ -29,6 +30,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.set("views", path.join(__dirname, "../Views"));
 app.set("view engine", "ejs");
+app.use(flash());
 
-  
 module.exports = app
