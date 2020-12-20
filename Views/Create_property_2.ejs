@@ -51,12 +51,31 @@
                 <br>
                 <label for="overlooking">Overlooking</label>
                 <br>
-                <select class="form-control w-50" name="overlooking" id="overlooking">
-                    <option value="Garden/Park">Garden/Park</option>
-                    <option value="Pool">Pool</option>
-                    <option value="Main Road">Main Road</option>
-                    <option value="Not Availiable">Not Availiable</option>
-                </select>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="overlooking" value="Garden/Park"
+                        id="overlookingGarden">
+                    <label class="form-check-label" for="overlookingGarden">Garden/Park</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="overlooking" value="Pool"
+                        id="overlookingPool">
+                    <label class="form-check-label" for="overlookingPool">Pool</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="overlookingMain" name="overlooking"
+                        value="Main Road">
+                    <label class="form-check-label" for="overlookingMain">Main Road</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="overlooking" name="overlooking"
+                        value="Servant Room">
+                    <label class="form-check-label" for="overlooking">Servant Room</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="overlooking" name="overlookingNot"
+                        value="Not Availiable">
+                    <label class="form-check-label" for="overlookingNot">Not Availiable</label>
+                </div>
                 <br>
                 <br>
                 <label for="carParking">Car Parking</label>
@@ -114,6 +133,15 @@
                 <br>
                 <br>
                 <h3>Others</h3>
+                <label for="ownershipStatus">Ownership Status</label>
+                <br>
+                <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus">
+                    <option value="Freehold">Freehold</option>
+                    <option value="Leasehold">Leasehold</option>
+                    <option value="Power Of Attorney">Power Of Attorney</option>
+                    <option value="Co-operative Society">Co-operative Society</option>
+                </select>
+                <br>
                 <label for="flooring">Flooring</label>
                 <br>
                 <select class="form-control w-50" name="flooring" id="flooring">
