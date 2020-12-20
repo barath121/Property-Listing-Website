@@ -8,12 +8,12 @@ module.exports.test = (req, res) => {
 module.exports.createProperty = async (req, res, next) => {
   const images  = req.files;
   const body = req.body;
-  let imagesArray = [];
-  await Promise.all(images.map((image) => (firebase.uploadFile(image).then(result => {
-    imagesArray.push(result)
-  }))))
+  // let imagesArray = [];
+  // await Promise.all(images.map((image) => (firebase.uploadFile(image).then(result => {
+  //   imagesArray.push(result)
+  // }))))
   let property = {};
-  property.images = imagesArray;
+  // property.images = imagesArray;
   property.propertyType = req.body.PropertyType;
   property.propertyFor = req.body.Propertyfor;
   property.locality = req.body.Locality;
