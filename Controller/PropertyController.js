@@ -36,6 +36,7 @@ module.exports.createProperty = async (req, res, next) => {
   property.propertyFeatures.floorNo = req.body.floorNo;
   property.propertyFeatures.totalFloors = req.body.totalFloors;
   property.propertyFeatures.furnishingStatus = req.body.furnishingStatus;
+  property.propertyFeatures.flatsOnFloor = req.body.flatsOnFloor;
   req.body.furniture.forEach((furniture) => {
     if (furniture == "Fan") {
       property.propertyFeatures.furnitures.push({
@@ -133,3 +134,4 @@ module.exports.createProperty = async (req, res, next) => {
   })
 
 };
+

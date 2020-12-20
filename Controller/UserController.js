@@ -1,1 +1,22 @@
-const 
+const User = require('./../Models/User');
+const bcrypt = require('bcrypt');
+
+module.exports.Register = async (req,res,next) =>{
+    let user = {};
+    user.email = req.body.email;
+    user.phone = req.body.phone;
+    user.name = req.body.name;
+    console.log(req.body.password,process.env.Salt)
+    user.password = await bcrypt.hash(req.body.password,parseInt(process.env.Salt));
+    User.create(user).catch(err=>{
+      next(err);
+    }).then(result=>{
+        if(result)
+      res.status(201).json({
+        status : "Sucessful",
+        message: "Account Created Suceessfully",
+        data : result
+      })
+    })
+}
+
