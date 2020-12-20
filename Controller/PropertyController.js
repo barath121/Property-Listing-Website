@@ -8,6 +8,7 @@ module.exports.test = (req, res) => {
 module.exports.createProperty = async (req, res, next) => {
   const images  = req.files;
   const body = req.body;
+  console.log(req.body)
   // let imagesArray = [];
   // await Promise.all(images.map((image) => (firebase.uploadFile(image).then(result => {
   //   imagesArray.push(result)
@@ -19,6 +20,7 @@ module.exports.createProperty = async (req, res, next) => {
   property.locality = req.body.Locality;
   property.propertyFeatures = {};
   property.propertyFeatures.bedrooms = req.body.Bedrooms;
+  if(req.body.bedroomArea)
   req.body.bedroomArea.forEach((room) => {
     property.propertyFeatures.bedroomArea.push({
       lenght: room.lenght,
@@ -37,6 +39,9 @@ module.exports.createProperty = async (req, res, next) => {
   property.propertyFeatures.totalFloors = req.body.totalFloors;
   property.propertyFeatures.furnishingStatus = req.body.furnishingStatus;
   property.propertyFeatures.flatsOnFloor = req.body.flatsOnFloor;
+  console.log(req.body.furniture)
+  property.propertyFeatures.furnitures = []
+  if(req.body.furniture)
   req.body.furniture.forEach((furniture) => {
     if (furniture == "Fan") {
       property.propertyFeatures.furnitures.push({
@@ -79,7 +84,7 @@ module.exports.createProperty = async (req, res, next) => {
     property.priceDetails.transactionType = req.body.transactionType;
     property.priceDetails.saleBrokerage = req.body.saleBrokerage;
   }
-  if (peoperty.propertyFor == "Rent/Lease") {
+  if (property.propertyFor == "Rent/Lease") {
     property.priceDetails.expectedRent = req.body.expectedRent;
     property.priceDetails.securityDeposit = req.body.securityDeposit;
     property.priceDetails.rentBrokerage = req.body.rentBrokerage;
@@ -99,19 +104,20 @@ module.exports.createProperty = async (req, res, next) => {
   property.priceDetails.maintaninceCharge = req.body.maintaninceCharge;
   property.priceDetails.maintaninceChargeType = req.body.maintaninceChargeType;
   property.priceDetails.priceIncludes = req.body.priceIncludes;
+  property.priceDetails.stampDutyCharges = req.body.stampDutyCharges;
   property.priceDetails.tokenAmount = req.body.tokenAmount;
 
-  property.additionalFeaturess = {};
-  prperty.additionalFeatures.additonalRooms = req.body.additonalRooms;
+  property.additionalFeatures = {};
+  property.additionalFeatures.additonalRooms = req.body.additonalRooms;
   property.additionalFeatures.facing = req.body.facing;
   property.additionalFeatures.overlooking = req.body.overlooking;
   property.additionalFeatures.carParking = req.body.carParking;
-  property.addditionalFeatures.liftsInTheTower = req.body.liftsInTheTower;
-  property.additionalFeaturess.multipleUnitsAvaliable = req.body.multipleUnitsAvaliable;
+  property.additionalFeatures.liftsInTheTower = (req.body.liftsInTheTower);
+  property.additionalFeatures.multipleUnitsAvaliable = req.body.multipleUnitsAvaliable;
 
   property.statusOfWaterandElectric = {};
-  property.statusOfWaterandElectric.avaliablityOfWater
-  property.statusOfWaterandElectric.avaliablityOfElectricity
+  property.statusOfWaterandElectric.avaliablityOfWater = req.body.avaliablityOfWater
+  property.statusOfWaterandElectric.avaliablityOfElectricity = req.body.avaliablityOfElectricity
 
   property.ownershipAndApproval = {};
   property.ownershipAndApproval.ownershipStatus = req.body.ownershipStatus;
@@ -121,11 +127,13 @@ module.exports.createProperty = async (req, res, next) => {
   property.amenities = req.body.amenities;
   property.description = req.body.description;
   property.landmarks = req.body.landmarks;
-
+console.log(property)
   //Creating Database Object
-  Property.create.catch(err=>{
+  Property.create(property).catch(err=>{
+    console.log(err)
     next(err);
   }).then(result=>{
+    if(result)
     res.status(201).json({
       status : "Sucessful",
       message : "Property Has Been Created",
