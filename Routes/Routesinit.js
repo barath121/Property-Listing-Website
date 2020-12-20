@@ -3,6 +3,7 @@ const AppError = require('./../Utils/appError');
 const UserRoute = require('./UserRoute');
 const PropertyRoute = require('./PropertyRoute');
 const multer = require('multer');
+const StaticRoutes = require('./StaticRoutes');
 const Routesinit = (app) => {
     app.use((req, res, next) => {
         res.locals.success_msg = req.flash('success_msg')
@@ -13,25 +14,7 @@ const Routesinit = (app) => {
         res.locals.req = req
         next()
     })
-    app.get('/', (req, res) => {
-        res.render('index')
-    })
-
-    app.get('/contact', (req, res) => {
-        res.render('contact')
-    })
-
-    app.get('/property-detail', (req, res) => {
-        res.render('property-detail')
-    })
-    app.get('/newproperty', (req, res) => {
-        res.render('Create_property')
-    })
-    app.get('/newproperty2', (req, res) => {
-        res.render('Create_property_2')
-    })
-    // -----------------------------
-
+    StaticRoutes(app);
     app.use('/property', PropertyRoutes);
     app.use('/user',UserRoute);
     app.use('/search', (req,res)=>{
