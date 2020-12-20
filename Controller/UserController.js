@@ -1,6 +1,9 @@
 const User = require('./../Models/User');
 const bcrypt = require('bcrypt');
-
+module.exports.test = (req,res) =>{
+  console.log(req.isAuthenticated());
+console.log(req.user.name)
+}
 module.exports.Register = async (req,res,next) =>{
     let user = {};
     user.email = req.body.email;

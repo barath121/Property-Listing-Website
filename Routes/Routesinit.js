@@ -4,6 +4,15 @@ const UserRoute = require('./UserRoute');
 const PropertyRoute = require('./PropertyRoute');
 const multer = require('multer');
 const Routesinit = (app) => {
+    app.use((req, res, next) => {
+        res.locals.success_msg = req.flash('success_msg')
+        res.locals.error_msg = req.flash('error_msg')
+        res.locals.error = req.flash('error')
+        res.locals.created_msg = req.flash('created_msg')
+        res.locals.yours_msg = req.flash('yours_msg')
+        res.locals.req = req
+        next()
+    })
     app.get('/', (req, res) => {
         res.render('index')
     })
@@ -35,7 +44,7 @@ const Routesinit = (app) => {
         err.statusCode = 404;
         next(new AppError(`Cannot Find the ${req.originalUrl} on server`, 404));
     });
-
+   
     app.use((err, req, res, next) => {
         err.statusCode = err.statusCode || 500;
         err.status = err.status || 'Internal Server Error';
