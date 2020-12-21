@@ -104,7 +104,7 @@ module.exports.createProperty = async (req, res, next) => {
   property.priceDetails.maintaninceCharge = req.body.maintaninceCharge;
   property.priceDetails.maintaninceChargeType = req.body.maintaninceChargeType;
   property.priceDetails.priceIncludes = req.body.priceIncludes;
-  property.priceDetails.stampDutyCharges = req.body.stampDutyCharges;
+  property.priceDetails.stampDutyCharges = req.body.stampDutyCharges?req.body.stampDutyCharges:false;
   property.priceDetails.tokenAmount = req.body.tokenAmount;
 
   property.additionalFeatures = {};
