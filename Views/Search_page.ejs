@@ -13,7 +13,7 @@
                         </p>
                         <form action="">
                             <label for="Range" class="text-center">Budget</label>
-                            <input type="range"  class="form-control-range" min="0" max="100" value="0" id="Range"
+                            <input type="range" class="form-control-range" min="0" max="100" value="0" id="Range"
                                 name="Range">
                             <output id="amount" name="amount" class="mb-2" for="Range">0</output>
 
@@ -77,10 +77,14 @@
                                         <div class="col-lg-8 col-12 mt-lg-0 mt-4">
                                             <h3 class="mb-4">Ghar Ka Nam</h3>
                                             <div class="row">
-                                                <div class="col-6 text-muted mb-1">Carpet Area<p>39sqm</p></div>
-                                                <div class="col-6 text-muted mb-1">Status<p>Under Construction</p></div>
-                                                <div class="col-6 text-muted mb-1">Transaction<p>New Property</p></div>
-                                                <div class="col-6 text-muted mb-1">Furnishing<p>Unfurnished</p></div>
+                                                <div class="col-6 text-muted mb-1">Carpet Area<p>39sqm</p>
+                                                </div>
+                                                <div class="col-6 text-muted mb-1">Status<p>Under Construction</p>
+                                                </div>
+                                                <div class="col-6 text-muted mb-1">Transaction<p>New Property</p>
+                                                </div>
+                                                <div class="col-6 text-muted mb-1">Furnishing<p>Unfurnished</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -100,10 +104,78 @@
                                         </li>
                                     </ul>
                                 </nav>
+
+                    </div>
+                </div>
+            </div>
+            <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
+                    class="rounded-circle btn btn-lg btn-dark d-lg-none d-block shadow font-weight-bold"
+                    style="position: fixed; bottom: 15px; right: 15px;"><span uk-icon="settings"></span></button></a>
+        </div>
+    </div>
+
+    <div id="modal-full" class="uk-modal-full" uk-modal>
+        <div class="uk-modal-dialog" uk-height-viewport>
+            <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+                <div class="uk-padding-large">
+                    <div class="">
+                        <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
+                        </p>
+                        <form action="">
+                            <label for="Range" class="text-center">Budget</label>
+                            <input type="range" class="form-control-range" min="0" max="100" value="0" id="Range"
+                                name="Range">
+                            <output id="amount" name="amount" class="mb-2" for="Range">0</output>
+    
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="rent">
+                                <label class="form-check-label" for="rent">
+                                    Rent
+                                </label>
+                            </div>
+    
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="buy">
+                                <label class="form-check-label" for="buy">
+                                    Buy
+                                </label>
+                            </div>
+    
+                            <br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="furnished">
+                                <label class="form-check-label" for="furnished">
+                                    Furnished
+                                </label>
+                            </div>
+    
+                            <br>
+                            <label for="builtUpArea">BuiltUp Area</label>
+                            <div class="input-group">
+                                <input type="text" id="builtUpArea"
+                                    class="form-control border-top-0 border-left-0 border-right-0" name="builtUpArea"><span>
+                                    <select name="builtUpArea"
+                                        class="form-control border-top-0 border-left-0 border-right-0" class="form-control"
+                                        id="builtUpArea">
+                                        <option value="Sqft">Sqft</option>
+                                        <option value="Acer">Acer</option>
+                                        <option value="Sq-M">Sq-M</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="d-flex w-100 justify-content-center">
+                                <button class="btn btn-outline-danger" type="submit">Apply</button>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script type="module" src="/js/searchPage.js"></script>
     <%- include('./layouts/Footer') -%>
