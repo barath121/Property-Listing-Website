@@ -1,0 +1,200 @@
+const mongoose = require('mongoose');
+const CommercialSchema = mongoose.Schema({
+isAvaliable : {
+type : Boolean,
+required : true,
+default : true
+},
+name :{
+    type : String,
+    required : true
+},
+address : {
+    type : String,
+    required : true
+},
+propertyType : {
+    type : String,
+    enum : ['Commercial Shop','Commercial Office Space','Commercial Showroom','Warehouse/Godows','Industrial Shed'],
+    required : true,
+},
+locatedInside : {
+ type : String,
+ enum : ['IT Park','Business Park','Other'],
+ required : true
+},
+zoneType : {
+type : String,
+enum : ['Industrial','Commercial','Residential','Transport and Communication','Public Utilities','Public and Semi Public Use','Open Spaces','Agricultural Zone','Special Economic Zone','Natural Conservation Zone','Natural Conservation Zone','Government Use','Other'],
+required : true
+},
+areaDetails : {
+    superBuiltUpArea : {
+        type : String,
+    },
+    builtUpArea : {
+        type : String
+    },
+    carpetArea : {
+        type : String,
+        required : True
+    }
+},
+officeSetup : {
+    minSeats :  {
+        type : Number,
+        required : function(){return this.propertyType=='Commercial Shop'}
+    },
+    maxSeats :  {
+        type : Number,
+        required : function(){return this.propertyType=='Commercial Shop'}
+    },
+    noOfCabins :  {
+        type : Number,
+        required : function(){return this.propertyType=='Commercial Shop'}
+    },
+    noOfMeetingRooms :  {
+        type : Number,
+        required : function(){return this.propertyType=='Commercial Shop'}
+    }
+},
+    washrooms : {
+        isAvaliable :{
+            type : Boolean,
+            required : true
+        },
+        quantity : {
+            type : Number,
+            required : true
+        }
+    },
+    conferenceRoom : {
+        type : Boolean,
+        required : function(){return this.propertyType=='Commercial Shop'}
+    },
+    receptionArea : {
+        type : Boolean,
+        required : function(){return this.propertyType=='Commercial Shop'}
+    },
+    pantryType : {
+        pantryTypes:{
+            type : String,
+            enum : ['Private','Shared','Not Avaliable'],
+            required : function(){return this.propertyType=='Commercial Shop'}
+        },
+        pantrySize :{
+            type : String,
+        }
+    },
+    facilities : {
+        type : [String],
+        enum : ['Furnished','Central Air Condition','Oxygen Duct','UPS']
+    },
+    fireSafetyMeasures : {
+        type : [String],
+        enum : ['Fire Extingusher','Fire Sensors','Sprinklers','Firehouse']
+    },
+    floorDetails : {
+        totalFloors : {
+            type : Number,
+            required : true
+        },
+        yourFloor : {
+            type : String,
+            required : true
+        },
+        noOfStaircases : {
+            type : Number,
+            required : true
+        }
+    },
+    lifts :{
+        isAvaliable : {
+            type : Boolean,
+            required : true
+        },
+        passengerLifts : {
+            type : Number,
+            required : true
+        },
+        serviceLifts : {
+            type : Number,
+            required : true
+        }
+    },
+    transactionType : {
+        type : String,
+        enum : ['New Property','Resale'],
+        required : function(){ return this.propertyFor=='Sale'}
+    },
+    possessionStatus : {
+        type : String,
+        enum : ['Under Construction','Ready to Move'],
+        required : function(){return this.propertyFor=='Sale' && this.priceDetails.transactionType=='New Property'}
+    },
+    avaliableFrom :{
+        month :{
+            type : String,
+            enum : ["January"],
+            required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
+        },
+        year :{
+            type : Number,
+            required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
+        }
+    },
+    ageOfConstruction : {
+        type : String,
+        enum : ['New Construction','Less than 5 years','5 to 10 years','10 to 15 years','15 to 20 years','Above 20 years'],
+        required : function(){return this.priceDetails.possessionStatus=='Ready to Move'}
+    },
+    ownershipStatus : {
+        type : String,
+        enum : ['Freehold','Leasehold','Power Of Attorney','Co-operative Society'],
+        required : true
+    },
+    expectedPrice :{
+        type : String,
+        required : true
+    },
+    priceIncludes :{
+        type :String,
+        enum : ['Tax and Govt Charges','DG and UPS Price Included','Price Negotiable']
+    },
+    brokerage : {
+        brokerageType :{
+            type : String,
+            enum : ['Fixed','Percentage']
+        },
+        percentageBrokerage : {
+        type : String,
+        enum : ['No Brokerage','0.25%','0.5%','0.75%','1%','1.5%','2%','3%','4%'],
+        required :  function(){return this.brokerage.brokerageType=='Percentage'}
+        },
+        fixedBrokerage : {
+            type : String,
+            required :  function(){return this.brokerage.brokerageType=='Fixed'}
+        }
+    },
+    NOCCertified : {
+        type : Boolean,
+        default : false,
+        required : true
+    },
+    OccupanceCertified : {
+        type : Boolean,
+        default : false,
+        required : true
+    },
+    description : {
+        type : String,
+        required : true
+    }
+},{
+    timestamps: true,
+});
+
+const Commercial = mongoose.model('Commercial',CommercialSchema);
+module.exports = Commercial;
+
+//Add map soon

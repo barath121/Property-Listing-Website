@@ -29,6 +29,7 @@ propertyFeatures : {
     },
     carpetArea : {
         type : String,
+        required : true
     },
     bedrooms : {
         type : String,
