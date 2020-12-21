@@ -6,7 +6,7 @@ const UserRoute = express.Router();
 
 UserRoute.route('/login').post(passport.authenticate('local',{
     successRedirect : '/',
-    failureRedirect : "/about",
+    failureRedirect : "/login?failed=true",
     failureFlash : true
 }));
 UserRoute.route('/register').post(UserController.Register);
