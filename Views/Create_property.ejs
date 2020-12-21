@@ -307,7 +307,7 @@
             </div>
           </div>
 
-          <!-- <div>
+          <div>
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner" id="output">
               </div>
@@ -320,7 +320,7 @@
                 <span class="sr-only">Next</span>
               </a>
             </div>
-          </div> -->
+          </div>
 
           <h3>Price Details</h3>
           <div id="sale">
@@ -656,44 +656,44 @@
           <label for="flooring">Flooring</label>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="additonalRooms" value="Ceramic Tiles"
-              id="additonalRoomsPuja">
-            <label class="form-check-label" for="additonalRoomsPuja">Ceramic Tiles</label>
+            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles"
+              id="flooringPuja">
+            <label class="form-check-label" for="flooringPuja">Ceramic Tiles</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="additonalRooms" value="Granite"
-              id="additonalRoomsStudy">
-            <label class="form-check-label" for="additonalRoomsStudy">Granite</label>
+            <input class="form-check-input" type="checkbox" name="flooring" value="Granite"
+              id="flooringStudy">
+            <label class="form-check-label" for="flooringStudy">Granite</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsStore" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" id="flooringStore" name="flooring"
               value="Marble">
-            <label class="form-check-label" for="additonalRoomsStore">Marble</label>
+            <label class="form-check-label" for="flooringStore">Marble</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsServant" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" id="flooringServant" name="flooring"
               value="Marbonite">
-            <label class="form-check-label" for="additonalRoomsServant">Marbonite</label>
+            <label class="form-check-label" for="flooringServant">Marbonite</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsNone" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
               value="Mosaic">
-            <label class="form-check-label" for="additonalRoomsNone">Mosaic</label>
+            <label class="form-check-label" for="flooringNone">Mosaic</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsNone" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
               value="Normal Tiles/Kotha Stone">
-            <label class="form-check-label" for="additonalRoomsNone">Normal Tiles/Kotha Stone</label>
+            <label class="form-check-label" for="flooringNone">Normal Tiles/Kotha Stone</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsNone" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
               value="Vitrified">
-            <label class="form-check-label" for="additonalRoomsNone">Vitrified</label>
+            <label class="form-check-label" for="flooringNone">Vitrified</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsNone" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
               value="Wooden">
-            <label class="form-check-label" for="additonalRoomsNone">Wooden</label>
+            <label class="form-check-label" for="flooringNone">Wooden</label>
           </div>
           <br>
           <h3>Amenities</h3>
@@ -915,46 +915,46 @@
   </div>
 
   <script>
-    // var imgArr = [];
-    // var status = false;
-    // function ImgTag(event) {
-    //   var files = event.target.files;
-    //   var imageDiv = document.getElementById('output');
-    //   console.log(files);
-    //   for (var i = 0; i < files.length; i++) {
-    //     let instance = URL.createObjectURL(files[i])
-    //     var Img = document.createElement("img");
-    //     var ImgContainer = document.createElement("div");
-    //     var RemoveDiv = document.createElement("div");
-    //     var RemoveBtn = document.createElement("button");
+    var imgArr = [];
+    var status = false;
+    function ImgTag(event) {
+      var files = event.target.files;
+      var imageDiv = document.getElementById('output');
+      console.log(files);
+      for (var i = 0; i < files.length; i++) {
+        let instance = URL.createObjectURL(files[i])
+        var Img = document.createElement("img");
+        var ImgContainer = document.createElement("div");
+        var RemoveDiv = document.createElement("div");
+        var RemoveBtn = document.createElement("button");
 
-    //     if (i == 0) {
-    //       ImgContainer.className = "carousel-item active";
-    //     } else {
-    //       ImgContainer.className = "carousel-item"
-    //     }
-    //     imgArr.push(instance);
-    //     Img.className = "d-block w-100"
-    //     RemoveDiv.className = "carousel-caption d-none d-md-block"
-    //     RemoveBtn.className = "btn btn-danger"
-    //     RemoveBtn.innerHTML = "Remove"
-    //     RemoveBtn.type = "button"
+        if (i == 0) {
+          ImgContainer.className = "carousel-item active";
+        } else {
+          ImgContainer.className = "carousel-item"
+        }
+        imgArr.push(instance);
+        Img.className = "d-block w-100"
+        RemoveDiv.className = "carousel-caption d-none d-md-block"
+        RemoveBtn.className = "btn btn-danger"
+        RemoveBtn.innerHTML = "Remove"
+        RemoveBtn.type = "button"
 
-    //     RemoveBtn.onclick = () => {
+        RemoveBtn.onclick = () => {
 
-    //     }
+        }
 
-    //     Img.src = instance;
-    //     Img.height = "300px";
+        Img.src = instance;
+        Img.height = "300px";
 
-    //     ImgContainer.appendChild(Img);
-    //     ImgContainer.appendChild(RemoveDiv);
-    //     RemoveDiv.appendChild(RemoveBtn);
-    //     imageDiv.appendChild(ImgContainer);
-    //   }
+        ImgContainer.appendChild(Img);
+        ImgContainer.appendChild(RemoveDiv);
+        RemoveDiv.appendChild(RemoveBtn);
+        imageDiv.appendChild(ImgContainer);
+      }
 
-    //   console.log(imgArr)
-    // }
+      console.log(imgArr)
+    }
 
     var loadFile = function (event) {
       ImgTag(event);
