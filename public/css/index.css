@@ -5,7 +5,7 @@ body {
 }
 
 .header-bg {
-    height: 90vh;
+    height: 100vh;
     background-image: url("https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     width: 100%;
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@ body {
 }
 
 .content-bg {
-    height: 90vh;
+    height: 100vh;
     width: 100%;
     background-color: rgba(0,0,0,0.5)!important;
     display: flex;
