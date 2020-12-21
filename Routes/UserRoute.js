@@ -5,9 +5,11 @@ const UserRoute = express.Router();
 
 UserRoute.route('/login').post(passport.authenticate('local',{
     successRedirect : '/',
+    failureRedirect : "/about",
+    failureFlash : true
 }));
 UserRoute.route('/register').post(UserController.Register);
-
+UserRoute.route('/test').get(UserController.test);
 
 
 
