@@ -2,13 +2,13 @@
 
 <section class="mt-5 mb-5">
     <div class="container">
-        <p class="h1 text-center text-dark hammersmithOne">Dashboard</p>
-        <hr class="uk-align-center hr-custom">
+        <!-- <p class="h1 text-center text-dark hammersmithOne">Dashboard</p> -->
+        <!-- <hr class="uk-align-center hr-custom"> -->
         <div class="row">
             <div class="col-md-4 col-12">
                 <div class="border rounded-lg shadow-sm uk-padding">
                     <p class="text-center h2 font-weight-bold hammersmithOne">Profile</p>
-                    <hr>
+                    <br>
                     <div class="text-center"> 
                         <span uk-icon="icon: user; ratio: 3"></span>
                     </div> <br><br>
@@ -18,11 +18,39 @@
                         <p>Email: joker@dc</p>
                         <a href="" class="text-light bg-dark p-1 rounded" uk-icon="icon: pencil; ratio: 1.5"></a>
                     </div>
+                </div> <br>
+                <div class="border rounded-lg shadow-sm uk-padding">
+                    <p class="text-center h2 font-weight-bold hammersmithOne">Message US</p> <br>
+                    <form>
+                        <div class="form-group">
+                          <label>Email address</label>
+                          <input type="email" class="form-control form-control-lg" required>
+                        </div>
+        
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="email" class="form-control form-control-lg" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="email" class="form-control form-control-lg" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>Message (if any)</label>
+                            <textarea class="form-control form-control-lg" rows="7"></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-lg btn-danger rounded-pill pl-5 pr-5">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="col-md-8 col-12">
                 <div class="border rounded-lg shadow-sm uk-padding">
-                    <p class="text-center h2 font-weight-bold hammersmithOne">Saved properties</p> <hr>
+                    <p class="text-center h2 font-weight-bold hammersmithOne">Saved properties</p> <br>
                     <div class="row row-cols-1 row-cols-md-2">
                         <% var i = 6 %> 
                           <% while  (i!=0) {%> 
