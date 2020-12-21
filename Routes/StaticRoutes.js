@@ -11,6 +11,9 @@ const StaticRoutes = (app) =>{
     app.get('/newproperty', (req, res) => {
         res.render('Create_property')
     })
+    app.get('/dashboard', (req, res) => {
+        res.render('userDashboard')
+    })
 }
 
 module.exports = StaticRoutes;
