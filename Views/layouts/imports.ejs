@@ -57,80 +57,8 @@
           <ul class="navbar-nav ml-auto">
             
             <li class="nav-item">
-              <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light" href="#modal-login" uk-toggle>Login</a>
-            </li>
-            
-            <div id="modal-login" uk-modal>
-              <div class="uk-modal-dialog uk-width-1-3@m uk-width-1-2@s">
-                <button class="uk-modal-close-default" type="button" uk-close></button>
-                
-                <div class="p-lg-5 p-4 uk-grid-collapse uk-align-center">
-  
-                  <div>
-                    <h2 class="text-center font-weight-bold hammersmithOne">Welcome Back!</h2>
-                    <div class="text-center" >
-                      <span uk-icon="icon: user; ratio: 3"></span>
-                    </div>
-                    <p class="text-center">Login to continue</p><br>
-                    <form method="POST" action="/user/login">
-                        <div class="form-group">
-                          <label>Email address</label>
-                          <input type="email" name ="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                          <label>Password</label>
-                          <input type="password" name="password" class="form-control" required>
-                        </div> <br>
-                        <button type="submit" class="btn btn-primary w-100">Submit</button>
-                    </form>
-                    <a href="" class="form-text small text-muted mt-2">forgot password?</a>  
-                  </div>
-
-                  <hr>
-
-                  <p>Don't have account? <a href="#modal-register" uk-toggle>Register here!</a></p>
-
-                  <div id="modal-register" uk-modal>
-                    <div class="uk-modal-dialog uk-width-1-3@m uk-width-1-2@s">
-                      <button class="uk-modal-close-default" type="button" uk-close></button>
-                      
-                      <div class="p-lg-5 p-4 uk-grid-collapse uk-align-center">
-                        <div>
-                          <h2 class="text-center font-weight-bold hammersmithOne">Register</h2> <br>
-                          <form method="POST" action="/user/register">
-                              <div class="form-group">
-                                <label>Email address</label>
-                                <input type="email" name="email" class="form-control" required>
-                              </div>
-                              <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control" required>
-                              </div>
-                              <div class="form-group">
-                                <label>Number</label>
-                                <input type="text" name="phone" class="form-control" required>
-                              </div>
-                              <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" name="password" class="form-control" required>
-                              </div>
-                              <div class="form-group">
-                                <label>Re-Type Password</label>
-                                <input type="password" class="form-control" required>
-                              </div> <br>
-                              
-                              <button type="submit" class="btn btn-primary w-100">Submit</button>
-                          </form>
-                          <hr>
-                          <p>Already have account? <a href="#modal-login" uk-toggle>Login here!</a></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-  
-                </div>
-              </div>
-            </div>
+              <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light" href="/login" uk-toggle>Login</a>
+            </li>  
 
           </ul>
         </div>

@@ -1,0 +1,37 @@
+<%- include('./layouts/imports') -%>
+
+<section class="mt-5 mb-5 p-3">
+    <div class="uk-width-1-3@m uk-width-1-2@s uk-align-center border rounded-lg shadow-sm">
+        <div class="p-lg-5 p-4 uk-grid-collapse">
+            <h2 class="text-center font-weight-bold hammersmithOne">Register</h2> <br>
+            <form method="POST" action="/user/register">
+                <div class="form-group">
+                  <label>Email address</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Number</label>
+                  <input type="text" name="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Re-Type Password</label>
+                  <input type="password" class="form-control" required>
+                </div> <br>
+                
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+            <hr>
+            <p>Already have account? <a href="/login">Login here!</a></p>
+        </div>
+    </div>
+</section>
+    
+<%- include('./layouts/Footer') -%>
