@@ -4,7 +4,10 @@
         <div class="p-lg-5 p-4 uk-grid-collapse">
             <div>
               <% if (messages.error) { %>
-                <%= messages.error %>
+                <div class="uk-alert-danger uk-width-auto" uk-alert>
+                  <a class="uk-alert-close" uk-close></a>
+                  <p class="text-center"><%= messages.error %></p>
+                </div>
               <% } %>
               <h2 class="text-center font-weight-bold hammersmithOne">Welcome Back!</h2>
               <div class="text-center" >

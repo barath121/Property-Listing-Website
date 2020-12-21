@@ -3,10 +3,6 @@ const StaticRoutes = (app) =>{
         res.render('index')
     })
     app.get('/login', (req, res) => {
-        console.log(req.query);
-        if(req.query.failed){
-            req.flash("error", "Username or password is incorrect.");
-        }
         res.render('login')
     })
     app.get('/register', (req, res) => {

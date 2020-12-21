@@ -6,14 +6,10 @@ const multer = require('multer');
 const StaticRoutes = require('./StaticRoutes');
 const Routesinit = (app) => {
     app.use((req, res, next) => {
-        res.locals.success_msg = req.flash('success_msg')
-        res.locals.error_msg = req.flash('error_msg')
-        res.locals.error = req.flash('error')
-        res.locals.created_msg = req.flash('created_msg')
-        res.locals.yours_msg = req.flash('yours_msg')
         res.locals.req = req
         next()
     })
+    
     StaticRoutes(app);
     app.use('/property', PropertyRoutes);
     app.use('/user',UserRoute);
