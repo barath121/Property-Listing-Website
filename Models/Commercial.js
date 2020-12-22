@@ -18,6 +18,11 @@ propertyType : {
     enum : ['Commercial Shop','Commercial Office Space','Commercial Showroom','Warehouse/Godows','Industrial Shed'],
     required : true,
 },
+propertyFor : {
+    type : String,
+    enum :['Sale','Rent/Lease','PG/Hostel'],
+    required : true
+},
 locatedInside : {
  type : String,
  enum : ['IT Park','Business Park','Other'],
@@ -43,44 +48,49 @@ areaDetails : {
 officeSetup : {
     minSeats :  {
         type : Number,
-        required : function(){return this.propertyType=='Commercial Shop'}
+        required : function(){return this.propertyType=='Commercial Office Space'}
     },
     maxSeats :  {
         type : Number,
-        required : function(){return this.propertyType=='Commercial Shop'}
+        required : function(){return this.propertyType=='Commercial Office Space'}
     },
     noOfCabins :  {
         type : Number,
-        required : function(){return this.propertyType=='Commercial Shop'}
+        required : function(){return this.propertyType=='Commercial Office Space'}
     },
     noOfMeetingRooms :  {
         type : Number,
-        required : function(){return this.propertyType=='Commercial Shop'}
+        required : function(){return this.propertyType=='Commercial Office Space'}
     }
 },
     washrooms : {
         isAvaliable :{
             type : Boolean,
+            default : false,
             required : true
         },
         quantity : {
             type : Number,
-            required : true
+            required : function(){return this.washrooms.isAvaliable}
         }
+    },
+    balconies : {
+        type : String,
+        required : function(){return this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'}
     },
     conferenceRoom : {
         type : Boolean,
-        required : function(){return this.propertyType=='Commercial Shop'}
+        required : function(){return this.propertyType=='Commercial Office Space'}
     },
     receptionArea : {
         type : Boolean,
-        required : function(){return this.propertyType=='Commercial Shop'}
+        required : function(){return this.propertyType=='Commercial Office Space'}
     },
     pantryType : {
         pantryTypes:{
             type : String,
             enum : ['Private','Shared','Not Avaliable'],
-            required : function(){return this.propertyType=='Commercial Shop'}
+            required : function(){return this.propertyType=='Commercial Office Space'}
         },
         pantrySize :{
             type : String,

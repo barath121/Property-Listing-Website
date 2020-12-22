@@ -5,6 +5,14 @@ type : Boolean,
 required : true,
 default : true
 },
+name : {
+type : String,
+required : true
+},
+address : {
+type : String,
+required : true
+},
 propertyType : {
     type : String,
     enum : ['Flat/Apartment','Residential House','Villa','Builder Floor Apartment','Penthouse','Studio Apartment','Commercial Shop','Commercial Office Space','Commercial Showroom','Warehouse/Godows','Industrial Shed','Land','Farm House'],
@@ -218,12 +226,7 @@ ownershipAndApproval : {
         type : String,
         enum : ['Freehold','Leasehold','Power Of Attorney','Co-operative Society'],
         required : true
-    },
-    // approvedBy : {
-    //     type : String,
-    //     enum : ['','','Power Of Attorney','Co-operative Society'],
-    //     required : true
-    // }
+    }
 },
 flooring : [{
 type : String,
