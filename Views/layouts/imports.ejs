@@ -31,51 +31,63 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse w-50" id="navbarNav">
-  
-            <ul class="navbar-nav nav-overlay ml-auto mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link text-light text-center" href="/">Home</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-light text-center" href="#">About</span></a>
-                </li>
-                <li class="nav-item">
+          <ul class="navbar-nav nav-overlay ml-auto mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link text-light text-center" href="/">Home</span></a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link text-light text-center" href="#">About</span></a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link text-light text-center" href="/property/test">Add Property</a>
-                </li>
-                <li class="nav-item">
+              </li>
+              <li class="nav-item">
                 <a class="nav-link text-light text-center" href="/contact">Contact</a>
+              </li>
+              <li class="nav-item d-md-block d-none">
+                <a class="nav-link text-light text-center" href="/search">
+                  <span uk-icon="icon: search"></span>
+                </a>
+              </li>
+              <li class="nav-item d-md-none d-block">
+                <a class="nav-link text-light text-center" href="/search">Search</a>
+              </li>
+              <% if (req.user) { %>
+                <li class="nav-item">
+                  <a class="nav-link text-light text-center d-md-none d-block" href="/contact">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-light text-center" href="/search">
-                    <span uk-icon="icon: search"></span>
-                  </a>
+                  <a class="nav-link text-light text-center btn btn-danger text-white rounded-pill d-md-none d-block" href="/contact">Logout</a>
                 </li>
-            </ul>
-            
+              <%  } else { %> 
+                <li class="nav-item">
+                  <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light d-md-none d-block" href="/login" uk-toggle>Login</a>
+                </li>
+              <% } %>
+          </ul>
         </div>
         <div class="collapse navbar-collapse w-25" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-            
             <% if (req.user) { %>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <span class="text-white h5 text-capitalize hammersmithOne"><%= req.user.name %> </span>
-                </a>
-                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
-                  <div class="dropdown-item text-capitalize"></div>
-                  <a class="dropdown-item" href="#">Dashboard</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#"><span class="btn btn-danger">Logout</span></a>
+              <li class="nav-item">
+                <div class="text-white text-capitalize hammersmithOne h5 mb-0 text-center d-md-block d-none" type="button"><%= req.user.name %> <span uk-icon="triangle-down"></span></div>
+                <div uk-dropdown="mode: click; pos: bottom-justify; offset: 20">
+                  <ul class="uk-nav uk-dropdown-nav">
+                    <li><a class="text-center text-dark" href="/dashboard">Profile</a></li>
+                    <li><a class="text-center text-dark" href="/dashboard">Dashboard</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a class="btn btn-danger rounded-pill text-white" href="#">Logout</a></li>
+                  </ul>
                 </div>
               </li>
             <%  } else { %> 
-            <li class="nav-item">
-              <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light" href="/login" uk-toggle>Login</a>
-            </li>  
+              <li class="nav-item">
+                <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light d-md-block d-none" href="/login" uk-toggle>Login</a>
+              </li>  
             <% } %> 
           </ul>
         </div>
       </div>
     </nav>
-
+      
     
