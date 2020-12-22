@@ -11,5 +11,5 @@ UserRoute.route('/login').post(passport.authenticate('local',{
 }));
 UserRoute.route('/register').post(UserController.Register);
 UserRoute.route('/test').get(UserController.test);
-
+UserRoute.route('/logout').get(UserController.logout);
 module.exports = UserRoute;
