@@ -2,6 +2,9 @@ const StaticRoutes = (app) =>{
     app.get('/', (req, res) => {
         res.render('index')
     })
+    app.get('/adminlogin', (req, res) => {
+        res.render('adminLogin')
+    })
     app.get('/login', (req, res) => {
         res.render('login')
     })
