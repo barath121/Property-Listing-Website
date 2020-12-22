@@ -7,22 +7,8 @@
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
       <form action="/property/createproperty" enctype="multipart/form-data" method="POST">
         <div id="1" class="">
+
           <h1 class="font-weight-bold">Property Details</h1>
-          <h3>Property For</h3>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
-              id="PropertyforSale">
-            <label class="form-check-label" for="PropertyforSale">Sale</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
-              id="PropertyforRent">
-            <label class="form-check-label" for="PropertyforRent">Rent</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
-            <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
-          </div>
           <br>
           <br>
           <label for="PropertyType">Property type</label>
@@ -46,10 +32,26 @@
               <option value="Industrial Shed"> Industrial Shed </option>
             </optgroup>
             <optgroup label="Others">
-              <option value="Land"> Land </option>
+              <option value="Land">Land </option>
               <option value="Farm House"> Farm House </option>
             </optgroup>
           </select>
+
+          <h4>Property For</h4>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
+              id="PropertyforSale">
+            <label class="form-check-label" for="PropertyforSale">Sale</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
+              id="PropertyforRent">
+            <label class="form-check-label" for="PropertyforRent">Rent</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
+            <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
+          </div>
           <br>
           <br>
           <label for="Locality">Locality</label>
@@ -61,8 +63,17 @@
             <option value="Kharghar">Kharghar</option>
           </select>
           <br>
-          <br>
           <h3>Property Features</h3>
+          <label for="name">Name</label>
+          <br>
+          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name">
+          <br>
+          <br>
+          <label for="address">Address</label>
+          <br>
+          <input type="text" placeholder="Enter address" class="form-control w-50" id="address" name="address">
+          <br>
+          <br>
           <div>
             <label for="Bedrooms">Bedrooms</label>
             <br>
@@ -1032,52 +1043,56 @@
       window.location = "#navBody"
 
     }
-    // function dimensions() {
-    //   document.getElementById("tableDivBed").classList.remove("d-none");
-    //   var tables = document.getElementById("Bedrooms").value;
-    //   console.log(tables);
-    //   for(var i=0; i< tables ; i++){
-    //     var lengthVal;
-    //     var breadthVal;
-    //     var tr = document.createElement("tr");
-    //     var td1 =   document.createElement("td");
-    //     var td2 =   document.createElement("td");
-    //     var td3 =   document.createElement("td");
-    //     var td4 =   document.createElement("td") 
-    //     var length = document.createElement("input");
-    //     var breadth = document.createElement("input");
-    //     var equals = document.createElement("input");
+    function dimensions() {
+      document.getElementById("tableDivBed").classList.remove("d-none");
+      var tables = document.getElementById("Bedrooms").value;
+      console.log(tables);
+      for(var i=0; i< tables ; i++){
+        var lengthVal;
+        var breadthVal;
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td") 
+        var length = document.createElement("input");
+        var breadth = document.createElement("input");
+        var equals = document.createElement("p");
 
-    //     length.type= "number";
-    //     breadth.type= "number";
-    //     equals.type= "number";
+        length.type= "number";
+        breadth.type= "number";
+        equals.type= "number";
 
-    //     length.onchange = () =>{
-    //       lengthVal = length.value;
-    //     }
+        length.setAttribute('id',"length"+i);
+        breadth.setAttribute('id',"breadth"+i);
+        equals.setAttribute('id',"equals"+i);
 
-    //     breadth.onchange = () =>{
-    //       breadthVal = breadth.value;
-    //       equals.value = lengthVal * breadthVal;
-    //     }
+        length.onchange = () =>{
+          lengthVal = length.value;
+        }
 
-    //     length.className = "form-control"
-    //     breadth.className = "form-control"
-    //     equals.className = "form-control"
-    //     td4.innerHTML = i+1;
+        breadth.onchange = () =>{
+          breadthVal =breadth.value;
+          equals.innerHTML = lengthVal * breadthVal;
+        }
+        
+        length.className = "form-control"
+        breadth.className = "form-control"
+        equals.className = "form-control"
+        td4.innerHTML = i+1;
 
-    //     td1.appendChild(length)
-    //     td2.appendChild(breadth)
-    //     td3.appendChild(equals)
-    //     tr.appendChild(td4)
-    //     tr.appendChild(td1)
-    //     tr.appendChild(td2)
-    //     tr.appendChild(td3)
-    //     document.getElementById("bedDimensions").appendChild(tr)
+        td1.appendChild(length)
+        td2.appendChild(breadth)
+        td3.appendChild(equals)
+        tr.appendChild(td4)
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        document.getElementById("bedDimensions").appendChild(tr)
 
-    //   }
+      }
 
-    // }
+    }
 
   </script>
   <%- include('./layouts/Footer') -%>
