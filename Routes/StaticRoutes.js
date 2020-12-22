@@ -5,6 +5,9 @@ const StaticRoutes = (app) =>{
     app.get('/adminlogin', (req, res) => {
         res.render('adminLogin')
     })
+    app.get('/admindashboard', (req, res) => {
+        res.render('adminDashboard')
+    })
     app.get('/login', (req, res) => {
         res.render('login')
     })
