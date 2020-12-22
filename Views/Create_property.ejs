@@ -16,25 +16,13 @@
           <br>
           <select class="form-control w-50" name="PropertyType" id="PropertyType">
             <option value="">Select</option>
-            <optgroup label="Residental">
               <option value="Flat/Apartment"> Flat/Apartment </option>
               <option value="Residential House"> Residential House </option>
               <option value="Villa"> Villa </option>
               <option value="Builder Floor Apartment">Builder Floor Apartment </option>
               <option value="Penthouse"> Penthouse </option>
               <option value="Studio Apartment"> Studio Apartment </option>
-            </optgroup>
-            <optgroup label="Commercial">
-              <option value="Commercial Shop"> Commercial Shop </option>
-              <option value="Commercial Office Space"> Commercial Office Space </option>
-              <option value="Commercial Showroom"> Commercial Showroom </option>
-              <option value="Warehouse/Godows">Warehouse/Godows </option>
-              <option value="Industrial Shed"> Industrial Shed </option>
-            </optgroup>
-            <optgroup label="Others">
-              <option value="Land">Land </option>
               <option value="Farm House"> Farm House </option>
-            </optgroup>
           </select>
 
           <h4>Property For</h4>
@@ -101,7 +89,7 @@
             <br>
             <label for="Balconies">Balconies</label>
             <br>
-            <select class="form-control w-50" name="Balconies" id="Balconies">
+            <select class="form-control w-50"  name="Balconies" id="Balconies">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -112,7 +100,7 @@
             <br>
             <label for="bathroom">Bathroom</label>
             <br>
-            <select class="form-control w-50" name="bathroom" id="bathroom">
+            <select class="form-control w-50"  name="bathroom" id="bathroom">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -317,18 +305,18 @@
                 <label>Transaction Type</label>
                 <br>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" onchange="newProperty()" name="transactionType"
+                  <input class="form-check-input" type="radio" name="transactionType"
                     value="New Property" id="transactionTypenew">
                   <label class="form-check-label" for="transactionTypenew">New Property</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" onchange="Resale()" name="transactionType" value="Resale"
+                  <input class="form-check-input" type="radio"  name="transactionType" value="Resale"
                     id="transactionTypeReSale">
                   <label class="form-check-label" for="transactionTypeReSale">Resale</label>
                 </div>
                 <br>
                 <br>
-                <div id="newProperty" class="d-none">
+                <div id="newProperty" >
                   <label>Possession Status </label>
                   <br>
                   <div class="form-check form-check-inline">
@@ -369,6 +357,7 @@
                     <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year">
                   </div>
                   <div id="age">
+                    <br>
                     <label for="ageOfConstruction">Age Of Construction</label>
                     <br>
                     <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction">
@@ -480,7 +469,7 @@
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="stampDutyCharges" value="true"
                 id="stampDutyCharges">
-              <label class="form-check-label" for="stampDutyCharges">Stamp Duty Charges</label>
+              <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="stampDutyCharges">Stamp Duty Charges</label>
             </div>
             <br>
             <br>
@@ -634,28 +623,23 @@
           <label for="flooring">Flooring</label>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles"
-              id="flooringPuja">
+            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles" id="flooringPuja">
             <label class="form-check-label" for="flooringPuja">Ceramic Tiles</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="flooring" value="Granite"
-              id="flooringStudy">
+            <input class="form-check-input" type="checkbox" name="flooring" value="Granite" id="flooringStudy">
             <label class="form-check-label" for="flooringStudy">Granite</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringStore" name="flooring"
-              value="Marble">
+            <input class="form-check-input" type="checkbox" id="flooringStore" name="flooring" value="Marble">
             <label class="form-check-label" for="flooringStore">Marble</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringServant" name="flooring"
-              value="Marbonite">
+            <input class="form-check-input" type="checkbox" id="flooringServant" name="flooring" value="Marbonite">
             <label class="form-check-label" for="flooringServant">Marbonite</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
-              value="Mosaic">
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Mosaic">
             <label class="form-check-label" for="flooringNone">Mosaic</label>
           </div>
           <div class="form-check form-check-inline">
@@ -664,13 +648,11 @@
             <label class="form-check-label" for="flooringNone">Normal Tiles/Kotha Stone</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
-              value="Vitrified">
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Vitrified">
             <label class="form-check-label" for="flooringNone">Vitrified</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
-              value="Wooden">
+            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Wooden">
             <label class="form-check-label" for="flooringNone">Wooden</label>
           </div>
           <br>
@@ -883,28 +865,88 @@
             <br>
             <br>
             <div class="d-flex w-100 justify-content-around">
-              <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
               <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
+              <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
             </div>
         </div>
         <div id="3" class="d-none">
           <h3>Photos</h3>
-
           <!-- <ul uk-tab>
             <li class="uk-active"><a href="#">Kitchen</a></li>
             <li><a href="#">Hall</a></li>
             <li><a href="#">Bathroom</a></li>
             <li><a href="#">Bedroom</a></li>
           </ul> -->
-
-          <div class="mb-3">
-            <div class="custom-file">
-              <input class="custom-file-input" type="file" accept=".jpeg,.png,.jpg" onchange='loadFile(event)'
-                id="images" multiple>
-              <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
+          <h3>Cover</h3>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' accept='' .jpeg,.png,.jpg' id='images'>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
           </div>
+
+          <h5>Bedrooms</h5>
+          <div id="bedroomPics">
+             
+          </div>
+          <h5>Bathrooms</h5>
+          <div id="bathroomPics">
+
+          </div>
+          <h5>Balconies</h5>
+          <div id="balconiePics">
+
+          </div>
+
+          <h3>Additional rooms</h3>
+          <div id="additionalRooms">
+
+          </div>
+
+          <h3>Other Areas</h3>
+          <h5>Kitchen Area</h5>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
+            </div>
+          </div>
+          <h5>Living Area</h5>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
+            </div>
+          </div>
+          <h5>Dining Area</h5>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
+            </div>
+          </div>
+          <h5>Main Enterence</h5>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
+            </div>
+          </div>
+
+          <h3>Others</h3>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
+            </div>
+          </div>
+
           <div class="d-flex w-100 justify-content-around">
             <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
             <button class="btn btn-outline-danger" type="submit">Submit</button>
@@ -918,49 +960,53 @@
   <script>
     var page = 1;
     var imgArr = [];
+    var noBedroom;
+    var noBalconies;
+    var noBathroom;
+
     var status = false;
-    function ImgTag(event) {
-      var files = event.target.files;
-      var imageDiv = document.getElementById('output');
-      console.log(files);
-      for (var i = 0; i < files.length; i++) {
-        let instance = URL.createObjectURL(files[i])
-        var Img = document.createElement("img");
-        var ImgContainer = document.createElement("div");
-        var RemoveDiv = document.createElement("div");
-        var RemoveBtn = document.createElement("button");
+    // function ImgTag(event) {
+    //   var files = event.target.files;
+    //   var imageDiv = document.getElementById('output');
+    //   console.log(files);
+    //   for (var i = 0; i < files.length; i++) {
+    //     let instance = URL.createObjectURL(files[i])
+    //     var Img = document.createElement("img");
+    //     var ImgContainer = document.createElement("div");
+    //     var RemoveDiv = document.createElement("div");
+    //     var RemoveBtn = document.createElement("button");
 
-        if (i == 0) {
-          ImgContainer.className = "carousel-item active";
-        } else {
-          ImgContainer.className = "carousel-item"
-        }
-        imgArr.push(instance);
-        Img.className = "d-block w-100"
-        RemoveDiv.className = "carousel-caption d-none d-md-block"
-        RemoveBtn.className = "btn btn-danger"
-        RemoveBtn.innerHTML = "Remove"
-        RemoveBtn.type = "button"
+    //     if (i == 0) {
+    //       ImgContainer.className = "carousel-item active";
+    //     } else {
+    //       ImgContainer.className = "carousel-item"
+    //     }
+    //     imgArr.push(instance);
+    //     Img.className = "d-block w-100"
+    //     RemoveDiv.className = "carousel-caption d-none d-md-block"
+    //     RemoveBtn.className = "btn btn-danger"
+    //     RemoveBtn.innerHTML = "Remove"
+    //     RemoveBtn.type = "button"
 
-        RemoveBtn.onclick = () => {
+    //     RemoveBtn.onclick = () => {
 
-        }
+    //     }
 
-        Img.src = instance;
-        Img.height = "300px";
+    //     Img.src = instance;
+    //     Img.height = "300px";
 
-        ImgContainer.appendChild(Img);
-        ImgContainer.appendChild(RemoveDiv);
-        RemoveDiv.appendChild(RemoveBtn);
-        imageDiv.appendChild(ImgContainer);
-      }
+    //     ImgContainer.appendChild(Img);
+    //     ImgContainer.appendChild(RemoveDiv);
+    //     RemoveDiv.appendChild(RemoveBtn);
+    //     imageDiv.appendChild(ImgContainer);
+    //   }
 
-      console.log(imgArr)
-    }
+    //   console.log(imgArr)
+    // }
 
-    var loadFile = function (event) {
-      ImgTag(event);
-    };
+    // var loadFile = function (event) {
+    //   ImgTag(event);
+    // };
 
     function RentSelected() {
       document.getElementById("sale").classList.add("d-none");
@@ -1026,8 +1072,15 @@
     }
     function switchUp() {
       document.getElementById(page.toString()).classList.add("d-none");
-      page = page+1;
+      page = page + 1;
       document.getElementById(page.toString()).classList.remove("d-none");
+      if (page == 3) {
+        document.getElementById("bedroomPics").innerHTML = null;
+        document.getElementById("bathroomPics").innerHTML = null;
+        document.getElementById("balconiePics").innerHTML = null;
+        document.getElementById("additionalRooms").innerHTML = null;
+        Photos()
+      }
       // document.getElementById("progress").classList.add("progress-bar-animated");
       // document.getElementById("progress").style.width =  Math.ceil(100/page) + "%";
       // document.getElementById("progress").innerHTML = "step" + page;
@@ -1035,7 +1088,7 @@
     }
     function Previous() {
       document.getElementById(page.toString()).classList.add("d-none")
-      page = page-1;
+      page = page - 1;
       document.getElementById(page.toString()).classList.remove("d-none")
       // document.getElementById("progress").classList.add("progress-bar-animated");
       // document.getElementById("progress").style.width =  Math.ceil(100/page) + "%";
@@ -1044,54 +1097,114 @@
 
     }
     function dimensions() {
-      document.getElementById("tableDivBed").classList.remove("d-none");
-      var tables = document.getElementById("Bedrooms").value;
-      for(var i=0; i< tables ; i++){
-        var lengthVal;
-        var breadthVal;
-        var tr = document.createElement("tr");
-        var td1 = document.createElement("td");
-        var td2 = document.createElement("td");
-        var td3 = document.createElement("td");
-        var td4 = document.createElement("td") 
-        var length = document.createElement("input");
-        var breadth = document.createElement("input");
-        var equals = document.createElement("p");
+        document.getElementById("bedDimensions").innerHTML = null;
+        document.getElementById("tableDivBed").classList.remove("d-none");
+        var tables = document.getElementById("Bedrooms").value;
+        noBedroom = tables;
+        for (var i = 0; i < tables; i++) {
+          var lengthVal;
+          var breadthVal;
+          var tr = document.createElement("tr");
+          var td1 = document.createElement("td");
+          var td2 = document.createElement("td");
+          var td3 = document.createElement("td");
+          var td4 = document.createElement("td")
+          var length = document.createElement("input");
+          var breadth = document.createElement("input");
+          var equals = document.createElement("p");
 
-        // length.type= "number";
-        // breadth.type= "number";
-        // equals.type= "number";
-        length.value = 0;
-        breadth.value = 0;
-        length.setAttribute('id',"length "+i);
-        breadth.setAttribute('id',"breadth "+i);
-        equals.setAttribute('id',"equals "+i);
+          // length.type= "number";
+          // breadth.type= "number";
+          // equals.type= "number";
+          length.value = 0;
+          breadth.value = 0;
+          length.setAttribute('id', "Bedlength " + i);
+          breadth.setAttribute('id', "Bedbreadth " + i);
+          equals.setAttribute('id', "Bedequals " + i);
 
-        length.onchange = () =>{
-          for(j=0;j<tables;j++){
-            document.getElementById('equals '+j).innerHTML = (document.getElementById('length '+j).value * document.getElementById('breadth '+j).value) + " Sq.Ft" 
+          length.onchange = () => {
+            for (j = 0; j < tables; j++) {
+              document.getElementById('Bedequals ' + j).innerHTML = (document.getElementById('Bedlength ' + j).value * document.getElementById('Bedbreadth ' + j).value) + " Sq.Ft"
+            }
           }
+
+          breadth.onchange = () => {
+            for (j = 0; j < tables; j++) {
+              document.getElementById('Bedequals ' + j).innerHTML = (document.getElementById('Bedlength ' + j).value * document.getElementById('Bedbreadth ' + j).value) + " Sq.Ft"
+            }
+          }
+
+          length.className = "form-control"
+          breadth.className = "form-control"
+          equals.className = "form-control"
+          td4.innerHTML = i + 1;
+
+          td1.appendChild(length)
+          td2.appendChild(breadth)
+          td3.appendChild(equals)
+          tr.appendChild(td4)
+          tr.appendChild(td1)
+          tr.appendChild(td2)
+          tr.appendChild(td3)
+          document.getElementById("bedDimensions").appendChild(tr)
         }
 
-        breadth.onchange = () =>{
-          for(j=0;j<tables;j++){
-            document.getElementById('equals '+j).innerHTML = (document.getElementById('length '+j).value * document.getElementById('breadth '+j).value) + " Sq.Ft"
-          }
-        }
-        
-        length.className = "form-control"
-        breadth.className = "form-control"
-        equals.className = "form-control"
-        td4.innerHTML = i+1;
+    }
 
-        td1.appendChild(length)
-        td2.appendChild(breadth)
-        td3.appendChild(equals)
-        tr.appendChild(td4)
-        tr.appendChild(td1)
-        tr.appendChild(td2)
-        tr.appendChild(td3)
-        document.getElementById("bedDimensions").appendChild(tr)
+    function Photos() {
+      var rooms = document.getElementsByName("additonalRooms");
+      var addRooms = [];
+      for (var i = 0; i < rooms.length; i++) {
+        if (rooms[i].checked) {
+          addRooms.push(rooms[i].value)
+        }
+      }
+      console.log("hi", addRooms);
+      console.log(noBedroom)
+      for (var i = 0; i < noBedroom; i++) {
+        img("bedroomPics");
+      }
+      for (var i = 0; i < noBathroom; i++) {
+        img("bathroomPics");
+      }
+      for (var i = 0; i < noBalconies; i++) {
+        img("balconiePics");
+      }
+      for (var i = 0; i < addRooms.length; i++) {
+        img("additionalRooms",addRooms[i]);
+      }
+
+    }
+    function img(parentDivId,rooms) {
+      var parentDiv = document.getElementById(parentDivId),
+        parent = document.createElement("div"),
+        inpDiv = document.createElement("div"),
+        inp = document.createElement("input"),
+        label = document.createElement("label"),
+        h5 = document.createElement("h5");
+
+      parent.className = "mb-3";
+      inpDiv.className = "custom-file";
+      inp.className = "custom-file-input";
+      inp.type = "file"
+      inp.name = "images"
+      inp.accept = ".jpeg,.png,.jpg"
+      label.for = "inputGroupFile02"
+      label.innerHTML = "Choose file"
+      label.className = "custom-file-label"
+
+      inpDiv.appendChild(inp);
+      inpDiv.appendChild(label);
+      parent.appendChild(inpDiv);
+      parentDiv.appendChild(parent)
+
+      if (parentDivId == "additionalRooms") {
+        h5.innerHTML = rooms;
+        inpDiv.appendChild(inp);
+        inpDiv.appendChild(label);
+        parent.appendChild(inpDiv);
+        parentDiv.appendChild(h5);
+        parentDiv.appendChild(parent);
 
       }
 
