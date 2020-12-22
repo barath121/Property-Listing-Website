@@ -21,4 +21,7 @@ module.exports.Register = async (req,res,next) =>{
       })
     })
 }
-
+module.exports.logout = (req,res) =>{
+  req.logOut();
+  res.redirect('/login');
+}
