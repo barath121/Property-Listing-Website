@@ -1046,7 +1046,6 @@
     function dimensions() {
       document.getElementById("tableDivBed").classList.remove("d-none");
       var tables = document.getElementById("Bedrooms").value;
-      console.log(tables);
       for(var i=0; i< tables ; i++){
         var lengthVal;
         var breadthVal;
@@ -1059,21 +1058,25 @@
         var breadth = document.createElement("input");
         var equals = document.createElement("p");
 
-        length.type= "number";
-        breadth.type= "number";
-        equals.type= "number";
-
-        length.setAttribute('id',"length"+i);
-        breadth.setAttribute('id',"breadth"+i);
-        equals.setAttribute('id',"equals"+i);
+        // length.type= "number";
+        // breadth.type= "number";
+        // equals.type= "number";
+        length.value = 0;
+        breadth.value = 0;
+        length.setAttribute('id',"length "+i);
+        breadth.setAttribute('id',"breadth "+i);
+        equals.setAttribute('id',"equals "+i);
 
         length.onchange = () =>{
-          lengthVal = length.value;
+          for(j=0;j<tables;j++){
+            document.getElementById('equals '+j).innerHTML = (document.getElementById('length '+j).value * document.getElementById('breadth '+j).value) + " Sq.Ft" 
+          }
         }
 
         breadth.onchange = () =>{
-          breadthVal =breadth.value;
-          equals.innerHTML = lengthVal * breadthVal;
+          for(j=0;j<tables;j++){
+            document.getElementById('equals '+j).innerHTML = (document.getElementById('length '+j).value * document.getElementById('breadth '+j).value) + " Sq.Ft"
+          }
         }
         
         length.className = "form-control"
