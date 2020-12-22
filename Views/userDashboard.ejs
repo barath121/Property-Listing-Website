@@ -13,9 +13,9 @@
                         <span uk-icon="icon: user; ratio: 3"></span>
                     </div> <br><br>
                     <div class="text-center">
-                        <p>Name: Terry</p>
-                        <p>Phone: 9898989898</p>
-                        <p>Email: joker@dc</p>
+                        <p class="text-capitalize">Name: <%= req.user.name  %> </p>
+                        <p>Phone: <%= req.user.phone %> </p>
+                        <p>Email: <%= req.user.email %> </p>
                         <a href="" class="text-light bg-dark p-1 rounded" uk-icon="icon: pencil; ratio: 1.5"></a>
                     </div>
                 </div> <br>
@@ -47,15 +47,16 @@
                         </div>
                     </form>
                 </div>
+                <br>
             </div>
             <div class="col-md-8 col-12">
-                <div class="border rounded-lg shadow-sm uk-padding">
+                <div class="border rounded-lg shadow-sm uk-padding bg-white">
                     <p class="text-center h2 font-weight-bold hammersmithOne">Saved properties</p> <br>
-                    <div class="row row-cols-1 row-cols-md-2">
+                    <div class="row row-cols-1 row-cols-lg-2">
                         <% var i = 6 %> 
                           <% while  (i!=0) {%> 
                           <div class="col mb-4">
-                            <div class="card h-100 shadow-sm p-2">
+                            <div class="card h-100 p-2">
                               <img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
                               <div class="card-body">
                                 <a href="./property-detail" class="card-title text-danger h4 hammersmithOne">Card title</a>

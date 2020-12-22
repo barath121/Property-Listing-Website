@@ -9,8 +9,7 @@ module.exports.Register = async (req,res,next) =>{
     user.email = req.body.email;
     user.phone = req.body.phone;
     user.name = req.body.name;
-    console.log(req.body.password,process.env.Salt)
-    user.password = await bcrypt.hash(req.body.password,parseInt(process.env.Salt));
+    user.password = await bcrypt.hash(/*req.body.password*/"Hello",parseInt(process.env.Salt));
     User.create(user).catch(err=>{
       next(err);
     }).then(result=>{
