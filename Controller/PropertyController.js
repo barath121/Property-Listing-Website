@@ -1,20 +1,20 @@
 const Property = require("../Models/Property");
 const firebase = require("./../Utils/firebaseAdminInit");
+const { customAlphabet } = require('nanoid');
+const nanoid = customAlphabet('1234567890abcdefghijklmnopqrstuvwxyz', 15);
 
 module.exports.test = (req, res) => {
   res.render("Create_property");
 };
 
 module.exports.createProperty = async (req, res, next) => {
-  const images  = req.files;
+  
   const body = req.body;
   console.log(req.body)
-  // let imagesArray = [];
-  // await Promise.all(images.map((image) => (firebase.uploadFile(image).then(result => {
-  //   imagesArray.push(result)
-  // }))))
+  
   let property = {};
-  // property.images = imagesArray;
+  property.name = req.body.name;
+  property.address = req.body.address;
   property.propertyType = req.body.PropertyType;
   property.propertyFor = req.body.Propertyfor;
   property.locality = req.body.Locality;
@@ -89,7 +89,7 @@ module.exports.createProperty = async (req, res, next) => {
     property.priceDetails.securityDeposit = req.body.securityDeposit;
     property.priceDetails.rentBrokerage = req.body.rentBrokerage;
   }
-  if (property.propertyFor == "Sale" && property.priceDetails.transactionType == "New Property") {
+  if (property.propertyFor == "Sale") {
     property.priceDetails.possessionStatus = req.body.possessionStatus;
     if (property.priceDetails.possessionStatus == "Under Construction") {
       property.priceDetails.avaliableFrom = {};
@@ -127,8 +127,18 @@ module.exports.createProperty = async (req, res, next) => {
   property.amenities = req.body.amenities;
   property.description = req.body.description;
   property.landmarks = req.body.landmarks;
-console.log(property)
-  //Creating Database Object
+  let imagesArray = [];
+  let i=0;
+  const images  = req.files;
+  const imageid = nanoid()
+  console.log(req.files);
+  await Promise.all(images.map((image) => (firebase.uploadFile(image,imageid,i++).then(result => {
+    imagesArray.push(result)
+  }))))
+    property.Images = {};
+    property.Images.images = imagesArray;
+    property.Images.imageid = imageid;
+
   Property.create(property).catch(err=>{
     console.log(err)
     next(err);
@@ -142,4 +152,9 @@ console.log(property)
   })
 
 };
+
+module.exports.CommercialProperty = (req,res) =>{
+  console.log(req.body);
+
+}
 

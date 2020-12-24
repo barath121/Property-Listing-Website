@@ -317,12 +317,12 @@
                   <br>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
-                      value="Sale" id="possessionStatusUnder">
+                      value="Under Construction" id="possessionStatusUnder">
                     <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
-                      value="Rent/Lease" id="possessionStatusReady">
+                      value="Ready to Move" id="possessionStatusReady">
                     <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
                   </div>
                   <br>
@@ -893,7 +893,7 @@
 
           </div>
           <h5>Balconies</h5>
-          <div id="balconiePics">
+          <div id="balconyPics">
 
           </div>
 
@@ -927,7 +927,7 @@
                 file</label>
             </div>
           </div>
-          <h5>Main Enterence</h5>
+          <h5>Main Entrance</h5>
           <div class='mb-3'>
             <div class='custom-file'>
               <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
@@ -1099,7 +1099,7 @@
       if (page == 3) {
         document.getElementById("bedroomPics").innerHTML = null;
         document.getElementById("bathroomPics").innerHTML = null;
-        document.getElementById("balconiePics").innerHTML = null;
+        document.getElementById("balconyPics").innerHTML = null;
         document.getElementById("additionalRooms").innerHTML = null;
         Photos()
       }
@@ -1183,8 +1183,6 @@
           addRooms.push(rooms[i].value)
         }
       }
-      console.log("hi", addRooms);
-      console.log(noBedroom)
       for (var i = 0; i < noBedroom; i++) {
         img("bedroomPics");
       }
@@ -1192,7 +1190,7 @@
         img("bathroomPics");
       }
       for (var i = 0; i < noBalconies; i++) {
-        img("balconiePics");
+        img("balconyPics");
       }
       for (var i = 0; i < addRooms.length; i++) {
         img("additionalRooms",addRooms[i]);
@@ -1206,13 +1204,13 @@
         inp = document.createElement("input"),
         label = document.createElement("label"),
         h5 = document.createElement("h5");
-
+        
       parent.className = "mb-3";
       inpDiv.className = "custom-file";
       inp.className = "custom-file-input";
       inp.type = "file"
-      inp.name = "images"
       inp.accept = ".jpeg,.png,.jpg"
+      inp.name = parentDivId;
       label.for = "inputGroupFile02"
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
@@ -1225,6 +1223,7 @@
 
       if (parentDivId == "additionalRooms") {
         h5.innerHTML = rooms;
+        inp.name = rooms;
         inpDiv.appendChild(inp);
         inpDiv.appendChild(label);
         parent.appendChild(inpDiv);
