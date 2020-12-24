@@ -321,12 +321,12 @@
                   <br>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
-                      value="Sale" id="possessionStatusUnder">
+                      value="Under Construction" id="possessionStatusUnder">
                     <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
-                      value="Rent/Lease" id="possessionStatusReady">
+                      value="Ready to Move" id="possessionStatusReady">
                     <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
                   </div>
                   <br>
@@ -546,10 +546,6 @@
             <label class="form-check-label" for="overlookingMain">Main Road</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="overlooking" name="overlooking" value="Servant Room">
-            <label class="form-check-label" for="overlooking">Servant Room</label>
-          </div>
-          <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="overlooking" name="overlookingNot"
               value="Not Availiable">
             <label class="form-check-label" for="overlookingNot">Not Availiable</label>
@@ -639,20 +635,20 @@
             <label class="form-check-label" for="flooringServant">Marbonite</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Mosaic">
+            <input class="form-check-input" type="checkbox" id="Mosaic" name="flooring" value="Mosaic">
             <label class="form-check-label" for="flooringNone">Mosaic</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
+            <input class="form-check-input" type="checkbox" id="Normal Tiles" name="flooring"
               value="Normal Tiles/Kotha Stone">
             <label class="form-check-label" for="flooringNone">Normal Tiles/Kotha Stone</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Vitrified">
+            <input class="form-check-input" type="checkbox" id="Vitrified" name="flooring" value="Vitrified">
             <label class="form-check-label" for="flooringNone">Vitrified</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Wooden">
+            <input class="form-check-input" type="checkbox" id="Wooden" name="flooring" value="Wooden">
             <label class="form-check-label" for="flooringNone">Wooden</label>
           </div>
           <br>
@@ -880,7 +876,7 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' name="Cover" type='file' accept='' .jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name="Cover" type='file' accept='.jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -895,7 +891,7 @@
 
           </div>
           <h5>Balconies</h5>
-          <div id="balconiePics">
+          <div id="balconyPics">
 
           </div>
 
@@ -1077,7 +1073,7 @@
       if (page == 3) {
         document.getElementById("bedroomPics").innerHTML = null;
         document.getElementById("bathroomPics").innerHTML = null;
-        document.getElementById("balconiePics").innerHTML = null;
+        document.getElementById("balconyPics").innerHTML = null;
         document.getElementById("additionalRooms").innerHTML = null;
         Photos()
       }
@@ -1161,8 +1157,6 @@
           addRooms.push(rooms[i].value)
         }
       }
-      console.log("hi", addRooms);
-      console.log(noBedroom)
       for (var i = 0; i < noBedroom; i++) {
         img("bedroomPics");
       }
@@ -1170,7 +1164,7 @@
         img("bathroomPics");
       }
       for (var i = 0; i < noBalconies; i++) {
-        img("balconiePics");
+        img("balconyPics");
       }
       for (var i = 0; i < addRooms.length; i++) {
         img("additionalRooms",addRooms[i]);
@@ -1189,7 +1183,6 @@
       inpDiv.className = "custom-file";
       inp.className = "custom-file-input";
       inp.type = "file"
-      inp.name = "images"
       inp.accept = ".jpeg,.png,.jpg"
       inp.name = parentDivId;
       label.for = "inputGroupFile02"
@@ -1203,6 +1196,7 @@
 
       if (parentDivId == "additionalRooms") {
         h5.innerHTML = rooms;
+        inp.name = rooms;
         inpDiv.appendChild(inp);
         inpDiv.appendChild(label);
         parent.appendChild(inpDiv);

@@ -84,7 +84,7 @@ propertyFeatures : {
     furnitures :[{
         Type : {
         type : String,
-        enum : ['TV','TV unit','Sofa','Dining Table','Fan','Light','Modular Kitchen','Chimney','Microwave','Fridge','Washingmachine','Bed','Wadrobe','Curtains',],
+        enum : ['TV','TV unit','Sofa','Dining Table','Fan','Light','Modular Kitchen','Chimney','Microwave','Fridge','Washing machine','Bed','Wadrobe','Curtains',],
         required : true
         },
         Quantity : {
