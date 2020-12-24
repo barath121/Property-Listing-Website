@@ -15,7 +15,7 @@ required : true
 },
 propertyType : {
     type : String,
-    enum : ['Flat/Apartment','Residential House','Villa','Builder Floor Apartment','Penthouse','Studio Apartment','Commercial Shop','Commercial Office Space','Commercial Showroom','Warehouse/Godows','Industrial Shed','Land','Farm House'],
+    enum : ['Flat/Apartment','Residential House','Villa','Builder Floor Apartment','Penthouse','Studio Apartment','Farm House'],
     required : true,
 },
 propertyFor : {
@@ -245,44 +245,16 @@ landmarks : {
     type  : String,
     required : true
 },
-// images :{
-//     exteriorView : [{
-//         type : String,
-//         required : true
-//     }],
-//     livingRoom : [{
-//         type : String,
-//         required : true
-//     }],
-//     bedrooms : [{
-//         type : String,
-//         required : true
-//     }],
-//     kitchen : [{
-//         type : String,
-//         required : true
-//     }],
-//     floorPlan : [{
-//         type : String,
-//         required : true
-//     }],
-//     masterPlan : [{
-//         type : String,
-//         required : true
-//     }],
-//     locationMap : [{
-//         type : String,
-//         required : true
-//     }],
-//     other : [{
-//         type : String,
-//         required : true
-//     }]
-// } 
-images  : {
-    type  : [String],
-    required : true
-}
+Images :{
+    imageid : {
+        type : String,
+        unique : true,
+        required :true
+    },
+    images : {
+        type : [String]
+    }
+} 
 },{
     timestamps: true,
 });
