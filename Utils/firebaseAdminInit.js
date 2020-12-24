@@ -15,10 +15,10 @@ const storage = new Storage({
 const gc = storage
 const bucket = gc.bucket(process.env.FBStorageBucket)
 
-module.exports.uploadFile = (file,imageid) => new Promise((resolve, reject) => {
+module.exports.uploadFile = (file,imageid,i) => new Promise((resolve, reject) => {
   const { originalname, buffer ,fieldname} = file
   
-  const blob = bucket.file(imageid+'/'+fieldname+'/'+originalname.replace(/ /g, "_"));
+  const blob = bucket.file(imageid+'/'+fieldname+'/'+i+originalname.replace(/ /g, "_"));
   const blobStream = blob.createWriteStream({
     resumable: false
   })
