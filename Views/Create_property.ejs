@@ -1154,6 +1154,8 @@
     function Photos() {
       var rooms = document.getElementsByName("additonalRooms");
       var addRooms = [];
+      noBalconies = document.getElementById("Balconies").value;
+      noBathroom = document.getElementById("bathroom").value;
       for (var i = 0; i < rooms.length; i++) {
         if (rooms[i].checked) {
           addRooms.push(rooms[i].value)
