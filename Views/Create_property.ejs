@@ -14,7 +14,7 @@
           <label for="PropertyType">Property type</label>
           <br>
           <br>
-          <select class="form-control w-50" name="PropertyType" id="PropertyType">
+          <select class="form-control w-50" name="PropertyType" id="PropertyType" required>
             <option value="">Select</option>
               <option value="Flat/Apartment"> Flat/Apartment </option>
               <option value="Residential House"> Residential House </option>
@@ -28,24 +28,20 @@
           <h4>Property For</h4>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
-              id="PropertyforSale">
+              id="PropertyforSale" required>
             <label class="form-check-label" for="PropertyforSale">Sale</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
-              id="PropertyforRent">
+              id="PropertyforRent" >
             <label class="form-check-label" for="PropertyforRent">Rent</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
-            <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
           </div>
           <br>
           <br>
           <label for="Locality">Locality</label>
           <br>
           <br>
-          <select class="form-control w-50" name="Locality" id="Locality">
+          <select class="form-control w-50" name="Locality" id="Locality" required>
             <option value="Roadpali">Roadpali</option>
             <option value="Kalamboli">Kalamboli</option>
             <option value="Kharghar">Kharghar</option>
@@ -54,18 +50,18 @@
           <h3>Property Features</h3>
           <label for="name">Name</label>
           <br>
-          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name">
+          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name" required>
           <br>
           <br>
           <label for="address">Address</label>
           <br>
-          <input type="text" placeholder="Enter address" class="form-control w-50" id="address" name="address">
+          <input type="text" placeholder="Enter address" class="form-control w-50" id="address" name="address" required>
           <br>
           <br>
           <div>
             <label for="Bedrooms">Bedrooms</label>
             <br>
-            <select class="form-control w-50" onchange="dimensions()" name="Bedrooms" id="Bedrooms">
+            <select class="form-control w-50" onchange="dimensions()" name="Bedrooms" id="Bedrooms" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -89,7 +85,7 @@
             <br>
             <label for="Balconies">Balconies</label>
             <br>
-            <select class="form-control w-50"  name="Balconies" id="Balconies">
+            <select class="form-control w-50"  name="Balconies" id="Balconies" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -100,7 +96,7 @@
             <br>
             <label for="bathroom">Bathroom</label>
             <br>
-            <select class="form-control w-50"  name="bathroom" id="bathroom">
+            <select class="form-control w-50"  name="bathroom" id="bathroom" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -113,22 +109,22 @@
           <br>
           <label for="floorNo">Floor No.</label>
           <br>
-          <input type="text" class="form-control w-50" id="floorNo" name="floorNo">
+          <input type="text" class="form-control w-50" onchange="FloorNo()" placeholder="Enter Floor number" id="floorNo" name="floorNo" required>
           <br>
           <br>
           <label for="totalFloors">Total Floors</label>
           <br>
-          <input type="text" class="form-control w-50" id="totalFloors" name="totalFloors">
+          <input type="text" onchange="totalFloor()" class="form-control w-50" placeholder="Enter Total Floors" id="totalFloors" name="totalFloors" required>
           <br>
           <br>
           <label for="flatsOnFloor">Flats On Floor</label>
           <br>
-          <input type="text" class="form-control w-50" id="flatsOnFloor" name="flatsOnFloor">
+          <input type="text" class="form-control w-50" id="flatsOnFloor" name="flatsOnFloor" required>
           <br>
           <br>
           <label for="furnishingStatus">Furnishing Status</label>
           <br>
-          <select class="form-control w-50" name="furnishingStatus" id="furnishingStatus">
+          <select class="form-control w-50" name="furnishingStatus" id="furnishingStatus" required>
             <option value="">Select</option>
             <option value="Furnished">Furnished</option>
             <option value="Unfurnished">Unfurnished</option>
@@ -244,7 +240,7 @@
           <br>
           <div class="input-group w-50">
             <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
-              name="carpetArea"><span>
+              name="carpetArea" required><span>
               <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
                 id="furnishingStatus">
                 <option value="Sqft">Sqft</option>
@@ -259,7 +255,7 @@
           <br>
           <div class="input-group w-50">
             <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-              name="superBuiltUpArea"><span>
+              name="superBuiltUpArea" ><span>
               <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
                 id="superBuiltUpArea">
                 <option value="Sqft">Sqft</option>
@@ -419,8 +415,8 @@
           <label for="priceType">Price Type</label>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="priceType" value="Fixed" id="priceTypeFixed">
-            <label class="form-check-label" for="priceTypeFixed">Fixed</label>
+            <input class="form-check-input" type="radio" name="priceType" value="Fixed" id="priceTypeFixed" required>
+            <label class="form-check-label" for="priceTypeFixed" >Fixed</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="priceType" value="Negotiable" id="priceTypeNegotiable">
@@ -435,12 +431,12 @@
           <label for="maintaninceCharge">Maintanince Charge</label>
           <br>
           <input type="text" id="maintaninceCharge" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-            name="maintaninceCharge" placeholder="Enter total price"><span>
+            name="maintaninceCharge" placeholder="Enter total price" required><span>
             <br>
             <br>
             <label for="maintaninceChargeType">Maintanince Charge Type</label>
             <br>
-            <select class="form-control w-50" name="maintaninceChargeType" id="maintaninceChargeType">
+            <select class="form-control w-50" name="maintaninceChargeType" id="maintaninceChargeType" required>
               <option value="Monthly">Monthly</option>
               <option value="Quaterly">Quaterly</option>
               <option value="One Time">One Time</option>
@@ -451,8 +447,8 @@
             <label for="priceIncludes">Price Includes</label>
             <br>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL" id="priceIncludesPCL">
-              <label class="form-check-label" for="priceIncludesPCL">PCL</label>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL" id="priceIncludesPCL" required>
+              <label class="form-check-label" for="priceIncludesPCL" >PCL</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="priceIncludes" value="Car Parking"
@@ -468,7 +464,7 @@
             <br>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="stampDutyCharges" value="true"
-                id="stampDutyCharges">
+                id="stampDutyCharges" required>
               <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="stampDutyCharges">Stamp Duty Charges</label>
             </div>
             <br>
@@ -488,7 +484,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="additonalRooms" value="Puja Room"
-              id="additonalRoomsPuja">
+              id="additonalRoomsPuja" required>
             <label class="form-check-label" for="additonalRoomsPuja">Puja Room</label>
           </div>
           <div class="form-check form-check-inline">
@@ -518,7 +514,7 @@
           <br>
           <label for="facing">Facing</label>
           <br>
-          <select class="form-control w-50" name="facing" id="facing">
+          <select class="form-control w-50" name="facing" id="facing" required>
             <option value="North">North</option>
             <option value="East">East</option>
             <option value="West">West</option>
@@ -534,7 +530,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="overlooking" value="Garden/Park"
-              id="overlookingGarden">
+              id="overlookingGarden" required>
             <label class="form-check-label" for="overlookingGarden">Garden/Park</label>
           </div>
           <div class="form-check form-check-inline">
@@ -550,7 +546,7 @@
             <label class="form-check-label" for="overlooking">Servant Room</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="overlooking" name="overlookingNot"
+            <input class="form-check-input" type="checkbox" id="overlookingNot" name="overlooking"
               value="Not Availiable">
             <label class="form-check-label" for="overlookingNot">Not Availiable</label>
           </div>
@@ -558,7 +554,7 @@
           <br>
           <label for="carParking">Car Parking</label>
           <br>
-          <select class="form-control w-50" name="carParking" id="carParking">
+          <select class="form-control w-50" name="carParking" id="carParking" required>
             <option value="Covered">Covered</option>
             <option value="Open">Open</option>
             <option value="None">None</option>
@@ -568,7 +564,7 @@
           <br>
           <label for="liftsInTheTower">Lifts In The Tower</label>
           <br>
-          <select class="form-control w-50" name="liftsInTheTower" id="liftsInTheTower">
+          <select class="form-control w-50" name="liftsInTheTower" id="liftsInTheTower" required>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -578,10 +574,12 @@
           <br>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="multipleUnitsAvaliable" value="true"
-              id="multipleUnitsAvaliable">
+            <input class="form-check-input" type="checkbox" onchange="unit()" name="multipleUnitsAvaliable" value="true"
+              id="multipleUnitsAvaliable" required>
             <label class="form-check-label" for="multipleUnitsAvaliable">Multiple Units Avaliable</label>
           </div>
+          <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="unitAmount"
+                name="unitQuantity">
           <br>
           <br>
           <h3>Status Of Water and Electric</h3>
@@ -589,7 +587,7 @@
 
           <label for="avaliablityOfWater">Avaliablity Of Water</label>
           <br>
-          <select class="form-control w-50" name="avaliablityOfWater" id="avaliablityOfWater">
+          <select class="form-control w-50" name="avaliablityOfWater" id="avaliablityOfWater" required>
             <option value="24 Hours Avaliable">24 Hours Avaliable</option>
             <option value="12 Hours Avaliable">12 Hours Avaliable</option>
             <option value="6 Hours Avaliable">6 Hours Avaliable</option>
@@ -601,7 +599,7 @@
 
           <label for="avaliablityOfElectricity">Avaliablity Of Electricity</label>
           <br>
-          <select class="form-control w-50" name="avaliablityOfElectricity" id="avaliablityOfElectricity">
+          <select class="form-control w-50" name="avaliablityOfElectricity" id="avaliablityOfElectricity" required>
             <option value="24 Hours Avaliable">24 Hours Avaliable</option>
             <option value="12 Hours Avaliable">12 Hours Avaliable</option>
             <option value="6 Hours Avaliable">6 Hours Avaliable</option>
@@ -613,7 +611,7 @@
           <h3>Others</h3>
           <label for="ownershipStatus">Ownership Status</label>
           <br>
-          <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus">
+          <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus" required>
             <option value="Freehold">Freehold</option>
             <option value="Leasehold">Leasehold</option>
             <option value="Power Of Attorney">Power Of Attorney</option>
@@ -623,8 +621,8 @@
           <label for="flooring">Flooring</label>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles" id="flooringPuja">
-            <label class="form-check-label" for="flooringPuja">Ceramic Tiles</label>
+            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles" id="flooringPuja" required>
+            <label class="form-check-label" for="flooringPuja" >Ceramic Tiles</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="flooring" value="Granite" id="flooringStudy">
@@ -639,21 +637,21 @@
             <label class="form-check-label" for="flooringServant">Marbonite</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Mosaic">
-            <label class="form-check-label" for="flooringNone">Mosaic</label>
+            <input class="form-check-input" type="checkbox" id="flooringMosaic" name="flooring" value="Mosaic">
+            <label class="form-check-label" for="flooringMosaic">Mosaic</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring"
+            <input class="form-check-input" type="checkbox" id="flooringNormal" name="flooring"
               value="Normal Tiles/Kotha Stone">
-            <label class="form-check-label" for="flooringNone">Normal Tiles/Kotha Stone</label>
+            <label class="form-check-label" for="flooringNormal">Normal Tiles/Kotha Stone</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Vitrified">
-            <label class="form-check-label" for="flooringNone">Vitrified</label>
+            <input class="form-check-input" type="checkbox" id="flooringVitrified" name="flooring" value="Vitrified">
+            <label class="form-check-label" for="flooringVitrified">Vitrified</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="flooringNone" name="flooring" value="Wooden">
-            <label class="form-check-label" for="flooringNone">Wooden</label>
+            <input class="form-check-input" type="checkbox" id="flooringWooden" name="flooring" value="Wooden">
+            <label class="form-check-label" for="flooringWooden">Wooden</label>
           </div>
           <br>
           <h3>Amenities</h3>
@@ -855,13 +853,13 @@
           <br>
           <label for="description">Description</label>
           <br>
-          <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
+          <textarea class="form-control" name="description" id="description" cols="30" rows="5" required></textarea>
           <br>
           <br>
           <label for="landmarks">Landmarks</label>
           <br>
           <input type="text" id="landmarks" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-            name="landmarks" placeholder="Enter landmark"><span>
+            name="landmarks" placeholder="Enter landmark" required><span>
             <br>
             <br>
             <div class="d-flex w-100 justify-content-around">
@@ -880,7 +878,7 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='' .jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' type='file' accept='' .jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -908,7 +906,7 @@
           <h5>Kitchen Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -916,7 +914,7 @@
           <h5>Living Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -924,7 +922,7 @@
           <h5>Dining Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -932,7 +930,7 @@
           <h5>Main Enterence</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -941,7 +939,7 @@
           <h3>Others</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -1007,7 +1005,23 @@
     // var loadFile = function (event) {
     //   ImgTag(event);
     // };
-
+    
+    function  totalFloor(){
+      var floorNo = document.getElementById("floorNo").value;
+      if(floorNo > document.getElementById("totalFloors").value){
+        document.getElementById("totalFloors").value = ""
+        document.getElementById("totalFloors").setAttribute("placeholder","should be more than floor number"); 
+      }
+    }
+    function  FloorNo(){
+      var floorNo = document.getElementById("floorNo").value;
+      if(document.getElementById("totalFloors").value != ""){
+        if(floorNo > document.getElementById("totalFloors").value){
+        document.getElementById("totalFloors").value = ""
+        document.getElementById("totalFloors").setAttribute("placeholder","should be more than floor number"); 
+      }
+    }  
+    }
     function RentSelected() {
       document.getElementById("sale").classList.add("d-none");
       document.getElementById("rent").classList.remove("d-none");
@@ -1070,6 +1084,14 @@
         document.getElementById("curtainsAmount").value = ""
       }
     }
+    function unit() {
+      if (document.getElementById("unitAmount").classList.contains("d-none")) {
+        document.getElementById("unitAmount").classList.remove("d-none")
+      } else {
+        document.getElementById("unitAmount").classList.add("d-none")
+        document.getElementById("unitAmount").value = ""
+      }
+    }
     function switchUp() {
       document.getElementById(page.toString()).classList.add("d-none");
       page = page + 1;
@@ -1111,11 +1133,11 @@
           var td4 = document.createElement("td")
           var length = document.createElement("input");
           var breadth = document.createElement("input");
-          var equals = document.createElement("p");
+          var equals = document.createElement("span");
 
-          // length.type= "number";
-          // breadth.type= "number";
-          // equals.type= "number";
+          length.name= "lenght"+i;
+          breadth.name= "breadth"+i;
+
           length.value = 0;
           breadth.value = 0;
           length.setAttribute('id', "Bedlength " + i);
@@ -1136,7 +1158,7 @@
 
           length.className = "form-control"
           breadth.className = "form-control"
-          equals.className = "form-control"
+
           td4.innerHTML = i + 1;
 
           td1.appendChild(length)
@@ -1194,6 +1216,7 @@
       label.for = "inputGroupFile02"
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
+      inp.required = true;
 
       inpDiv.appendChild(inp);
       inpDiv.appendChild(label);
