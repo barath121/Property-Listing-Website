@@ -880,7 +880,7 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='' .jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name="Cover" type='file' accept='' .jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -908,7 +908,7 @@
           <h5>Kitchen Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name="Kitchen" type='file' accept='.jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -916,7 +916,7 @@
           <h5>Living Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name="LivingArea" type='file' accept='.jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -924,15 +924,15 @@
           <h5>Dining Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name="DiningArea" type='file' accept='.jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
           </div>
-          <h5>Main Enterence</h5>
+          <h5>Main Entrance</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name="MainEntrance"type='file' accept='.jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -941,7 +941,7 @@
           <h3>Others</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images'>
+              <input class='custom-file-input' name ="Others" type='file' accept='.jpeg,.png,.jpg' id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -1182,13 +1182,14 @@
         inp = document.createElement("input"),
         label = document.createElement("label"),
         h5 = document.createElement("h5");
-
+        
       parent.className = "mb-3";
       inpDiv.className = "custom-file";
       inp.className = "custom-file-input";
       inp.type = "file"
       inp.name = "images"
       inp.accept = ".jpeg,.png,.jpg"
+      inp.name = parentDivId;
       label.for = "inputGroupFile02"
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
