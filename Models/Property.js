@@ -13,6 +13,10 @@ address : {
 type : String,
 required : true
 },
+Type : {
+    type  : String,
+    default : "residential"
+},
 propertyType : {
     type : String,
     enum : ['Flat/Apartment','Residential House','Villa','Builder Floor Apartment','Penthouse','Studio Apartment','Farm House'],

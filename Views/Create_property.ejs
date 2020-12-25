@@ -289,20 +289,20 @@
             <label for="expectedPrice">Expected Price</label>
             <br>
             <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedPrice" placeholder="Enter total price" required><span>
+              name="expectedPrice" placeholder="Enter total price" ><span>
               <br>
               <br>
               <label for="bookingAmount">Booking Amount</label>
               <br>
               <input type="text" id="bookingAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-                name="bookingAmount" placeholder="Enter total price" required><span>
+                name="bookingAmount" placeholder="Enter total price" ><span>
                 <br>
                 <br>
                 <label>Transaction Type</label>
                 <br>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="transactionType"
-                    value="New Property" id="transactionTypenew" required>
+                    value="New Property" id="transactionTypenew" >
                   <label class="form-check-label" for="transactionTypenew">New Property</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -344,7 +344,7 @@
                       <option value="August">August</option>
                       <option value="September">September</option>
                       <option value="October">October</option>
-                      <option value="November">november</option>
+                      <option value="November">November</option>
                       <option value="Devember">Devember</option>
                     </select>
                     <br>
@@ -356,7 +356,7 @@
                     <br>
                     <label for="ageOfConstruction">Age Of Construction</label>
                     <br>
-                    <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction">
+                    <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction" required>
                       <option value="">select</option>
                       <option value="New Construction">New Construction</option>
                       <option value="Less than 5 years">Less than 5 years</option>
@@ -391,19 +391,19 @@
             <label for="expectedRent">Expected Rent</label>
             <br>
             <input type="text" id="expectedRent" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedRent" placeholder="Enter total price" required><span>
+              name="expectedRent" placeholder="Enter total price"><span>
               <br>
               <br>
               <label for="securityDeposit">Security Deposit</label>
               <br>
               <input type="text" id="securityDeposit"
                 class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
-                placeholder="Enter total price" required><span>
+                placeholder="Enter total price"><span>
                 <br>
                 <br>
                 <label for="rentBrokerage">Rent Brokerage</label>
                 <br>
-                <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage" required>
+                <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage">
                   <option value="No Brokerage">No Brokerage</option>
                   <option value="30 Days">30 Days</option>
                   <option value="45 Days">45 Days</option>
@@ -565,6 +565,7 @@
           <label for="liftsInTheTower">Lifts In The Tower</label>
           <br>
           <select class="form-control w-50" name="liftsInTheTower" id="liftsInTheTower" required>
+            <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -575,7 +576,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" onchange="unit()" name="multipleUnitsAvaliable" value="true"
-              id="multipleUnitsAvaliable" required>
+              id="multipleUnitsAvaliable">
             <label class="form-check-label" for="multipleUnitsAvaliable">Multiple Units Avaliable</label>
           </div>
           <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="unitAmount"
@@ -878,7 +879,7 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept=' .jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept=' .jpeg,.png,.jpg' name="CoverImages" id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -906,7 +907,7 @@
           <h5>Kitchen Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="KitchenImage" id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -914,7 +915,7 @@
           <h5>Living Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -922,7 +923,7 @@
           <h5>Dining Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage" required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -930,7 +931,7 @@
           <h5>Main Entrance</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage" required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -939,7 +940,7 @@
           <h3>Others</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -1026,7 +1027,10 @@
       document.getElementById("sale").classList.add("d-none");
       document.getElementById("rent").classList.remove("d-none");
       document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",false);
+        ele.removeAttribute("required");
+      })
+      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",true);
       })
        console.log(document.getElementById("expectedPrice").getAttribute("required"))
     }
@@ -1034,7 +1038,10 @@
       document.getElementById("rent").classList.add("d-none");
       document.getElementById("sale").classList.remove("d-none");
       document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",false);
+        ele.removeAttribute("required");
+      })
+      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",true);
       })
        console.log(document.getElementById("expectedRent").getAttribute("required"))
     }
@@ -1042,14 +1049,20 @@
       document.getElementById("age").classList.add("d-none");
       document.getElementById("construction").classList.remove("d-none");
       document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",false);
+        ele.removeAttribute("required");
+      })
+      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",true);
       })
     }
     function Readyconstruction() {
       document.getElementById("construction").classList.add("d-none");
       document.getElementById("age").classList.remove("d-none");
       document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",false);
+        ele.removeAttribute("required");
+      })
+      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",true);
       })
     }
     function newProperty() {
