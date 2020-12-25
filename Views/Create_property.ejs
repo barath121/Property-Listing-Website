@@ -878,7 +878,7 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='' .jpeg,.png,.jpg' id='images' required>
+              <input class='custom-file-input' type='file' accept=' .jpeg,.png,.jpg' id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -1025,18 +1025,32 @@
     function RentSelected() {
       document.getElementById("sale").classList.add("d-none");
       document.getElementById("rent").classList.remove("d-none");
+      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",false);
+      })
+       console.log(document.getElementById("expectedPrice").getAttribute("required"))
     }
     function saleSelected() {
-      document.getElementById("sale").classList.remove("d-none");
       document.getElementById("rent").classList.add("d-none");
+      document.getElementById("sale").classList.remove("d-none");
+      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",false);
+      })
+       console.log(document.getElementById("expectedRent").getAttribute("required"))
     }
     function Underconstruction() {
       document.getElementById("age").classList.add("d-none");
       document.getElementById("construction").classList.remove("d-none");
+      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",false);
+      })
     }
     function Readyconstruction() {
-      document.getElementById("age").classList.remove("d-none");
       document.getElementById("construction").classList.add("d-none");
+      document.getElementById("age").classList.remove("d-none");
+      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+        ele.setAttribute("required",false);
+      })
     }
     function newProperty() {
       document.getElementById("newProperty").classList.remove("d-none")
