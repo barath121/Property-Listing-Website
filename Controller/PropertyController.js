@@ -93,8 +93,8 @@ module.exports.createProperty = async (req, res, next) => {
     property.priceDetails.possessionStatus = req.body.possessionStatus;
     if (property.priceDetails.possessionStatus == "Under Construction") {
       property.priceDetails.avaliableFrom = {};
-      property.priceDetails.month = req.body.month;
-      property.priceDetails.year = req.body.year;
+      property.priceDetails.avaliableFrom.month = req.body.month;
+      property.priceDetails.avaliableFrom.year = req.body.year;
     }
     else if(property.priceDetails.possessionStatus == "Ready to Move"){
       property.priceDetails.ageOfConstruction = req.body.ageOfConstruction;
@@ -114,7 +114,9 @@ module.exports.createProperty = async (req, res, next) => {
   property.additionalFeatures.carParking = req.body.carParking;
   property.additionalFeatures.liftsInTheTower = (req.body.liftsInTheTower);
   property.additionalFeatures.multipleUnitsAvaliable = req.body.multipleUnitsAvaliable;
-
+  if(property.additionalFeatures.multipleUnitsAvaliable){
+    property.additionalFeatures.unitQuantity = req.body.unitQuantity;
+  }
   property.statusOfWaterandElectric = {};
   property.statusOfWaterandElectric.avaliablityOfWater = req.body.avaliablityOfWater
   property.statusOfWaterandElectric.avaliablityOfElectricity = req.body.avaliablityOfElectricity

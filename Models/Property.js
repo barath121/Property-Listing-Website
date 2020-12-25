@@ -125,7 +125,7 @@ priceDetails :{
     avaliableFrom :{
         month :{
             type : String,
-            enum : ["January"],
+            enum : ["January","February","March","April","May","June","July","August","September","October","November","December"],
             required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
         },
         year :{
@@ -207,6 +207,10 @@ liftsInTheTower : {
 multipleUnitsAvaliable : {
     type : Boolean,
     required  : true
+},
+unitQuantity : {
+    type : Number,
+    required : function(){return this.additionalFeatures.multipleUnitsAvaliable}
 }
 },
 statusOfWaterandElectric : {

@@ -289,20 +289,20 @@
             <label for="expectedPrice">Expected Price</label>
             <br>
             <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedPrice" placeholder="Enter total price"><span>
+              name="expectedPrice" placeholder="Enter total price" required><span>
               <br>
               <br>
               <label for="bookingAmount">Booking Amount</label>
               <br>
               <input type="text" id="bookingAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-                name="bookingAmount" placeholder="Enter total price"><span>
+                name="bookingAmount" placeholder="Enter total price" required><span>
                 <br>
                 <br>
                 <label>Transaction Type</label>
                 <br>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="transactionType"
-                    value="New Property" id="transactionTypenew">
+                    value="New Property" id="transactionTypenew" required>
                   <label class="form-check-label" for="transactionTypenew">New Property</label>
                 </div>
                 <div class="form-check form-check-inline">
@@ -317,7 +317,7 @@
                   <br>
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
-                      value="Under Construction" id="possessionStatusUnder">
+                      value="Under Construction" id="possessionStatusUnder" required>
                     <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -333,7 +333,7 @@
                     <br>
                     <label for="month">Month</label>
                     <br>
-                    <select class="form-control w-50" name="month" id="month">
+                    <select class="form-control w-50" name="month" id="month" required>
                       <option value="January">January</option>
                       <option value="February">February</option>
                       <option value="March">March</option>
@@ -350,7 +350,7 @@
                     <br>
                     <label for="year">Year</label>
                     <br>
-                    <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year">
+                    <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year" required>
                   </div>
                   <div id="age">
                     <br>
@@ -373,7 +373,7 @@
                 <br>
                 <label for="saleBrokerage">Sale Brokerage</label>
                 <br>
-                <select class="form-control w-50" name="saleBrokerage" id="saleBrokerage">
+                <select class="form-control w-50" name="saleBrokerage" id="saleBrokerage" required>
                   <option value="No Brokerage">No Brokerage</option>
                   <option value="0.25%">0.25%</option>
                   <option value="0.5%">0.5%</option>
@@ -391,19 +391,19 @@
             <label for="expectedRent">Expected Rent</label>
             <br>
             <input type="text" id="expectedRent" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedRent" placeholder="Enter total price"><span>
+              name="expectedRent" placeholder="Enter total price" required><span>
               <br>
               <br>
               <label for="securityDeposit">Security Deposit</label>
               <br>
               <input type="text" id="securityDeposit"
                 class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
-                placeholder="Enter total price"><span>
+                placeholder="Enter total price" required><span>
                 <br>
                 <br>
                 <label for="rentBrokerage">Rent Brokerage</label>
                 <br>
-                <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage">
+                <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage" required>
                   <option value="No Brokerage">No Brokerage</option>
                   <option value="30 Days">30 Days</option>
                   <option value="45 Days">45 Days</option>
@@ -416,7 +416,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="priceType" value="Fixed" id="priceTypeFixed" required>
-            <label class="form-check-label" for="priceTypeFixed" >Fixed</label>
+            <label class="form-check-label" for="priceTypeFixed"  required >Fixed</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="priceType" value="Negotiable" id="priceTypeNegotiable">
@@ -447,7 +447,7 @@
             <label for="priceIncludes">Price Includes</label>
             <br>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL" id="priceIncludesPCL" required>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL" id="priceIncludesPCL">
               <label class="form-check-label" for="priceIncludesPCL" >PCL</label>
             </div>
             <div class="form-check form-check-inline">
@@ -464,14 +464,14 @@
             <br>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="stampDutyCharges" value="true"
-                id="stampDutyCharges" required>
+                id="stampDutyCharges">
               <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="stampDutyCharges">Stamp Duty Charges</label>
             </div>
             <br>
             <br>
             <label for="saleBrokerage">Token Amount</label>
             <input type="text" id="tokenAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="tokenAmount" placeholder="Enter total price"><span>
+              name="tokenAmount" placeholder="Enter total price" required><span>
               <br>
               <br>
               <div class="d-flex w-100 justify-content-center">
@@ -484,7 +484,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="additonalRooms" value="Puja Room"
-              id="additonalRoomsPuja" required>
+              id="additonalRoomsPuja">
             <label class="form-check-label" for="additonalRoomsPuja">Puja Room</label>
           </div>
           <div class="form-check form-check-inline">
@@ -530,7 +530,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="overlooking" value="Garden/Park"
-              id="overlookingGarden" required>
+              id="overlookingGarden">
             <label class="form-check-label" for="overlookingGarden">Garden/Park</label>
           </div>
           <div class="form-check form-check-inline">
@@ -555,9 +555,9 @@
           <label for="carParking">Car Parking</label>
           <br>
           <select class="form-control w-50" name="carParking" id="carParking" required>
+            <option value="None">None</option>
             <option value="Covered">Covered</option>
             <option value="Open">Open</option>
-            <option value="None">None</option>
             <option value="Not Availiable">Not Availiable</option>
           </select>
           <br>
@@ -621,7 +621,7 @@
           <label for="flooring">Flooring</label>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles" id="flooringPuja" required>
+            <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles" id="flooringPuja">
             <label class="form-check-label" for="flooringPuja" >Ceramic Tiles</label>
           </div>
           <div class="form-check form-check-inline">
