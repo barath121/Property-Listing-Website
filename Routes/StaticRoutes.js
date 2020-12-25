@@ -1,3 +1,5 @@
+const PropertyController = require("../Controller/PropertyController")
+
 const StaticRoutes = (app) =>{
     app.get('/', (req, res) => {
         res.render('index')
@@ -17,9 +19,7 @@ const StaticRoutes = (app) =>{
     app.get('/contact', (req, res) => {
         res.render('contact')
     })
-    app.get('/property-detail', (req, res) => {
-        res.render('property-detail')
-    })
+    app.get('/property', PropertyController.ViewProperty);
     app.get('/newproperty', (req, res) => {
         res.render('Create_property')
     })

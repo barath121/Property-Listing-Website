@@ -5,6 +5,10 @@ type : Boolean,
 required : true,
 default : true
 },
+Type : {
+    type  : String,
+    default : "Commercial"
+},
 name :{
     type : String,
     required : true
