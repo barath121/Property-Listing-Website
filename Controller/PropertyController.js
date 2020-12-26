@@ -274,7 +274,7 @@ module.exports.Search = async (req, res) => {
     console.log(condition);
     properties = await Property.find(condition);
   }
-  console.log(properties[0]._id);
+ // console.log(properties[0]._id);
   res.render("Search_page");
 };
 module.exports.CommercialProperty = (req, res) => {
