@@ -191,6 +191,12 @@ module.exports.HomePage = async (req, res) => {
   Properties.forEach((element) => {
     property = {};
     console.log(element.locality);
+    element.Images.images.forEach(img=>{
+      console.log(img.includes("CoverImages"))
+      if(img.includes("CoverImages")){
+        property.image = img;
+      }
+    })
     property.title =
       element.propertyType +
       " For " +
