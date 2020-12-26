@@ -34,13 +34,13 @@ locality : {
 },
 propertyFeatures : {
     superBuiltUpArea : {
-        type : String,
+        type : Number,
     },
     builtUpArea : {
-        type : String
+        type : Number
     },
     carpetArea : {
-        type : String,
+        type : Number,
         required : true
     },
     bedrooms : {
@@ -100,20 +100,19 @@ propertyFeatures : {
 
 priceDetails :{
     expectedPrice :{
-        type : String,
+        type : Number,
         required : function(){return this.propertyFor=='Sale'}
     },
-    // Calcualte Price per sq in frontend
     bookingAmount : {
-        type : String,
+        type : Number,
         required : function(){ return this.propertyFor=='Sale'}
     },
     expectedRent : {
-        type : String,
+        type : Number,
         required : function(){ return this.propertyFor=='Rent/Lease'}
     },
     securityDeposit : {
-        type : String,
+        type : Number,
         required : function(){ return this.propertyFor=='Rent/Lease'}
     },
     transactionType : {
@@ -124,7 +123,7 @@ priceDetails :{
     possessionStatus : {
         type : String,
         enum : ['Under Construction','Ready to Move'],
-        required : function(){return this.propertyFor=='Sale' && this.priceDetails.transactionType=='New Property'}
+        required : function(){return this.propertyFor=='Sale'}
     },
     avaliableFrom :{
         month :{
