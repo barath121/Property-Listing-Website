@@ -186,7 +186,7 @@ module.exports.ViewProperty = (req, res) => {
 module.exports.HomePage = async (req, res) => {
   let Properties = await Property.aggregate([
     { $sample: { size: 6 } },
-  ]).catch((Err) => next(err));
+  ]).catch((err) => next(err));
   properties = [];
   Properties.forEach((element) => {
     property = {};
@@ -274,8 +274,8 @@ module.exports.Search = async (req, res) => {
     console.log(condition);
     properties = await Property.find(condition);
   }
- // console.log(properties[0]._id);
-  res.render("Search_page");
+  // console.log(properties[0]._id);
+  res.render("Search_page",{properties : properties});
 };
 module.exports.CommercialProperty = (req, res) => {
   console.log(req.body);
