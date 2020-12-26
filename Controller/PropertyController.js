@@ -3,15 +3,7 @@ const Commercial = require("../Models/Commercial");
 const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
-const converttosq = (area, unit) => {
-  if (unit == "Sqft") {
-    return area;
-  } else if (unit == "Acre") {
-    return area * 43560;
-  } else if (unit == "Sq-M") {
-    return area * 10.7639;
-  } else return area;
-};
+
 module.exports.test = (req, res) => {
   res.render("Create_property");
 };
@@ -28,23 +20,21 @@ module.exports.createProperty = async (req, res, next) => {
   property.propertyFeatures = {};
   property.propertyFeatures.bedrooms = req.body.Bedrooms;
   property.propertyFeatures.bedroomArea = [];
-  for (let i = 0; i < req.body.Bedrooms; i++) {
-    property.propertyFeatures.bedroomArea.push({
-      lenght: req.body["lenght" + i],
-      breadth: req.body["breadth" + i],
-    });
-  }
-
-  if (req.body.superBuiltUpArea[0] != "")
-    property.propertyFeatures.superBuiltUpArea = converttosq(
-      req.body.superBuiltUpArea[0],req.body.superBuiltUpArea[1]
-    );
-  if (req.body.builtUpArea[0] != "")
-    property.propertyFeatures.builtUpArea = converttosq(
-      req.body.builtUpArea[0],req.body.builtUpArea[1]
-    );
-  property.propertyFeatures.carpetArea = converttosq(req.body.carpetArea[0],req.body.carpetArea[1]);
-
+  for(let i = 0;i<req.body.Bedrooms;i++){
+      property.propertyFeatures.bedroomArea.push({
+        lenght: req.body["lenght"+i],
+        breadth:  req.body["breadth"+i],
+      });
+    }
+      
+  if (req.body.superBuiltUpArea[0]!='')
+    property.propertyFeatures.superBuiltUpArea =
+      req.body.superBuiltUpArea[0] + " " + req.body.superBuiltUpArea[1];
+  if (req.body.builtUpArea[0]!='')
+    property.propertyFeatures.builtUpArea =
+      req.body.builtUpArea[0] + " " + req.body.builtUpArea[1];
+    property.propertyFeatures.carpetArea =
+      req.body.carpetArea[0] + " " + req.body.carpetArea[1];
   property.propertyFeatures.balconies = req.body.Balconies;
   property.propertyFeatures.bathroom = req.body.bathroom;
   property.propertyFeatures.floorNo = req.body.floorNo;
@@ -167,121 +157,68 @@ module.exports.createProperty = async (req, res, next) => {
       next(err);
     })
     .then((result) => {
-      if (result) res.redirect("/");
+      if(result)
+      res.redirect("/");
     });
 };
-module.exports.ViewProperty = (req, res) => {
+module.exports.ViewProperty = (req,res) =>{
   let id = req.query.id;
   let type = req.query.type;
-  if (type == "residential") {
-    Property.findById(id)
-      .then((property) => {
-        res.render("property-detail", { property: property });
-      })
-      .catch((err) => {
-        next(err);
-      });
+  if(type == "residential"){
+    Property.findById(id).then(property=>{
+      res.render("property-detail",{property:property});
+    })
+    .catch(err=>{
+      next(err);
+    })
   }
-};
-module.exports.HomePage = async (req, res) => {
-  let Properties = await Property.aggregate([
-    { $sample: { size: 6 } },
-  ]).catch((err) => next(err));
+}
+module.exports.HomePage = async (req,res) =>{
+  let Properties = await Property.aggregate([{ $sample: { size: 6 } }]).catch(Err=>
+    next(err)
+  );
   properties = [];
-  Properties.forEach((element) => {
+  Properties.forEach(element=>{
     property = {};
-    console.log(element.locality);
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name+
-      ", "+
-      element.locality
-      ;
+    property.title = element.propertyType + " For " + element.propertyFor + " at " + element.name;
     property.area = element.propertyFeatures.carpetArea;
     property.furnishing = element.propertyFeatures.furnishingStatus;
-    property.status =
-      element.priceDetails.possessionStatus ||
-      "Possession by " +
-        element.priceDetails.avaliableFrom.month +
-        " " +
-        element.priceDetails.avaliableFrom.year;
-    property.price =
-      element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
+    property.status = element.priceDetails.possessionStatus || "Possession by "+element.priceDetails.avaliableFrom.month+" "+element.priceDetails.avaliableFrom.year;
+    property.price = (element.priceDetails.expectedPrice || element.priceDetails.expectedRent); 
     property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-    property.bathroom = element.propertyFeatures.bathroom + " Bath";
+    property.bathroom = element.propertyFeatures.bathroom + " Bath"
     properties.push(property);
-  });
-  console.log(properties)
-  res.render("index", { property: properties });
-};
-module.exports.Search = async (req, res) => {
+  })
+  res.render('index',{property : properties});
+}
+module.exports.Search = async (req,res) =>{
   let filters = req.query;
-  let conditions = [];
-  if (filters.name) {
-    conditions.push({ name: new RegExp(filters.name, "i") });
+  let conditions = []
+  if(filters.name){
+    conditions.push({ "name" : new RegExp(filters.name, "i")});
   }
-  if (filters.locality) {
-    conditions.push({ locality: filters.locality });
+  if(filters.locality){
+    conditions.push({locality : 'Roadpali'});
   }
-  if (filters.status) {
-    conditions.push({ "priceDetails.possessionStatus": filters.status });
+  if(filters.type){
+    conditions.push({propertyFor : filters.type})
   }
-  if (filters.type) {
-    conditions.push({ propertyFor: filters.type });
+  if(filters.furnishing){
+    conditions.push({"propertyFeatures.furnishingStatus" : filters.furnishing})
   }
-  if (filters.propertytype) {
-    conditions.push({ propertyType: filters.propertytype });
-  }
-  if (filters.furnishing) {
-    conditions.push({
-      "propertyFeatures.furnishingStatus": filters.furnishing,
-    });
-  }
-  if (filters.price) {
-    console.log(filters.price);
-    let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
-    let minprice = 0;
-    if (!minpriceDetails[1]) {
-      minprice = parseInt(minpriceDetails[0]);
-    } else if (minpriceDetails[1] == "Lac") {
-      minprice = 100000 * parseInt(minpriceDetails[0]);
-    } else if (minpriceDetails[1] == "Cr") {
-      minprice = 10000000 * parseInt(minpriceDetails[0]);
-    }
-    let maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
-    let maxprice = 0;
-    console.log(maxpriceDetails);
-    if (!maxpriceDetails[1]) {
-      maxprice = parseInt(maxpriceDetails[0]);
-    } else if (maxpriceDetails[1] == "Lac") {
-      maxprice = 100000 * parseInt(maxpriceDetails[0]);
-    } else if (maxpriceDetails[1] == "Cr") {
-      maxprice = 10000000 * parseInt(maxpriceDetails[0]);
-    }
-    conditions.push({ "priceDetails.expectedPrice": { $gt: minprice } });
-    conditions.push({ "priceDetails.expectedPrice": { $lt: maxprice } });
-  }
-  if (filters.sqmin) {
-    conditions.push({ "propertyFeatures.carpetArea": { $gte: filters.sqmin } });
-  }
-  if (filters.sqmax) {
-    conditions.push({ "propertyFeatures.carpetArea": { $lte: filters.sqmax } });
-  }
-  if (filters.bedrooms) {
-    conditions.push({ "propertyFeatures.bedrooms": filters.bedrooms });
-  }
+  // if(filters.pricemin){
+  //   conditions.push({})
+  // }
   let properties = [];
-  if (conditions.length) {
-    let condition = { $and: conditions };
-    console.log(condition);
+  if(conditions.length)
+  {
+    let condition = {$and : conditions};
+    console.log(condition)
     properties = await Property.find(condition);
   }
-  // console.log(properties[0]._id);
-  res.render("Search_page",{properties : properties});
-};
+  console.log(properties)
+  res.render('Search_page')
+}
 module.exports.CommercialProperty = (req, res) => {
   console.log(req.body);
 };
