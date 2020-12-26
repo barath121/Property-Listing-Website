@@ -13,9 +13,6 @@ const Routesinit = (app) => {
     StaticRoutes(app);
     app.use('/property', PropertyRoutes);
     app.use('/user',UserRoute);
-    app.use('/search', (req,res)=>{
-        res.render('Search_page')
-    });
 
     app.use((req, res, next) => {
         const err = new Error("Hello");

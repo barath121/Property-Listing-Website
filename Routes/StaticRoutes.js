@@ -1,9 +1,7 @@
 const PropertyController = require("../Controller/PropertyController")
 
 const StaticRoutes = (app) =>{
-    app.get('/', (req, res) => {
-        res.render('index')
-    })
+    app.get('/', PropertyController.HomePage);
     app.get('/adminlogin', (req, res) => {
         res.render('adminLogin')
     })
@@ -29,6 +27,7 @@ const StaticRoutes = (app) =>{
     app.get('/commercialproperty', (req, res) => {
         res.render('commercial_property')
     })
+    app.use('/search',PropertyController.Search);
 }
 
 module.exports = StaticRoutes;

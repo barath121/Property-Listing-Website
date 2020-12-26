@@ -1,4 +1,5 @@
 const Property = require("../Models/Property");
+const Commercial = require("../Models/Commercial");
 const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
@@ -6,7 +7,6 @@ const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
 module.exports.test = (req, res) => {
   res.render("Create_property");
 };
-
 module.exports.createProperty = async (req, res, next) => {
   const body = req.body;
   console.log(req.body);
@@ -172,6 +172,52 @@ module.exports.ViewProperty = (req,res) =>{
       next(err);
     })
   }
+}
+module.exports.HomePage = async (req,res) =>{
+  let Properties = await Property.aggregate([{ $sample: { size: 6 } }]).catch(Err=>
+    next(err)
+  );
+  properties = [];
+  Properties.forEach(element=>{
+    property = {};
+    property.title = element.propertyType + " For " + element.propertyFor + " at " + element.name;
+    property.area = element.propertyFeatures.carpetArea;
+    property.furnishing = element.propertyFeatures.furnishingStatus;
+    property.status = element.priceDetails.possessionStatus || "Possession by "+element.priceDetails.avaliableFrom.month+" "+element.priceDetails.avaliableFrom.year;
+    property.price = (element.priceDetails.expectedPrice || element.priceDetails.expectedRent); 
+    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
+    property.bathroom = element.propertyFeatures.bathroom + " Bath"
+    properties.push(property);
+  })
+  res.render('index',{property : properties});
+}
+module.exports.Search = async (req,res) =>{
+  let filters = req.query;
+  let conditions = []
+  if(filters.name){
+    conditions.push({ "name" : new RegExp(filters.name, "i")});
+  }
+  if(filters.locality){
+    conditions.push({locality : 'Roadpali'});
+  }
+  if(filters.type){
+    conditions.push({propertyFor : filters.type})
+  }
+  if(filters.furnishing){
+    conditions.push({"propertyFeatures.furnishingStatus" : filters.furnishing})
+  }
+  // if(filters.pricemin){
+  //   conditions.push({})
+  // }
+  let properties = [];
+  if(conditions.length)
+  {
+    let condition = {$and : conditions};
+    console.log(condition)
+    properties = await Property.find(condition);
+  }
+  console.log(properties)
+  res.render('Search_page')
 }
 module.exports.CommercialProperty = (req, res) => {
   console.log(req.body);

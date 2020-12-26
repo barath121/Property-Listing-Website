@@ -46,7 +46,7 @@ areaDetails : {
     },
     carpetArea : {
         type : String,
-        required : True
+        required : true
     }
 },
 officeSetup : {
