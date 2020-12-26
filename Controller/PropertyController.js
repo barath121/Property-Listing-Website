@@ -37,13 +37,13 @@ module.exports.createProperty = async (req, res, next) => {
 
   if (req.body.superBuiltUpArea[0] != "")
     property.propertyFeatures.superBuiltUpArea = converttosq(
-      req.body.superBuiltUpArea[0]
+      req.body.superBuiltUpArea[0],req.body.superBuiltUpArea[1]
     );
   if (req.body.builtUpArea[0] != "")
     property.propertyFeatures.builtUpArea = converttosq(
-      req.body.builtUpArea[0]
+      req.body.builtUpArea[0],req.body.builtUpArea[1]
     );
-  property.propertyFeatures.carpetArea = converttosq(req.body.carpetArea[0]);
+  property.propertyFeatures.carpetArea = converttosq(req.body.carpetArea[0],req.body.carpetArea[1]);
 
   property.propertyFeatures.balconies = req.body.Balconies;
   property.propertyFeatures.bathroom = req.body.bathroom;
