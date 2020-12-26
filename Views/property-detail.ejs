@@ -1,5 +1,5 @@
 <%- include('./layouts/imports') %> 
-<% console.log(property ) %>
+<% console.log(property) %>
 <section class="bg-dark">
     <div class="container">
         <div class="pt-5 pb-5 d-flex flex-column justify-content-center">
@@ -23,35 +23,35 @@
                 <div class="uk-child-width-1-4@m uk-child-width-1-3 text-center" uk-grid>
                     <div>
                         <div class="text-warning">Bedroom</div>
-                        <div class="text-white">2</div>
+                        <div class="text-white"><%= property.propertyFeatures.bedrooms %></div>
                     </div>
                     <div>
                         <div class="text-warning">Bathroom</div>
-                        <div class="text-white">2</div>
+                        <div class="text-white"><%= property.propertyFeatures.bathroom %></div>
                     </div>
                     <div>
                         <div class="text-warning">Balcony</div>
-                        <div class="text-white">1</div>
+                        <div class="text-white"><%= property.propertyFeatures.balconies %></div>
                     </div>
                     <div>
-                        <div class="text-warning">Super area</div>
-                        <div class="text-white">1050 sqft</div>
+                        <div class="text-warning">Flats on Floor</div>
+                        <div class="text-white"><%= property.propertyFeatures.flatsOnFloor %></div>
                     </div>
                     <div>
                         <div class="text-warning">Furnished</div>
-                        <div class="text-white">Semi-furnished</div>
+                        <div class="text-white"><%= property.propertyFeatures.furnishingStatus %></div>
                     </div>
                     <div>
-                        <div class="text-warning">Floor</div>
-                        <div class="text-white">5th of 7 floor</div>
+                        <div class="text-warning">Floor No</div>
+                        <div class="text-white"><%= property.propertyFeatures.floorNo %> of <%= property.propertyFeatures.totalFloors %></div>
                     </div>
                     <div>
                         <div class="text-warning">Status</div>
-                        <div class="text-white">Ready to move</div>
+                        <div class="text-white"><%= property.priceDetails.possessionStatus %></div>
                     </div>
                     <div>
-                        <div class="text-warning">Facing</div>
-                        <div class="text-white">East</div>
+                        <div class="text-warning">Carpet Area</div>
+                        <div class="text-white"><%= property.propertyFeatures.carpetArea %></div>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <p>This 2 bhk flat for sale in Neelsidhi Amarante. It is well ventilated flat as well as well maintained flat also society.It is very spacious flat. Located at well developed area ,Its best for Investment and personal use also.</p> <hr>
                 <div>
                     <div class="text-danger">Address</div>
-                    <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia laudantium mollitia similique aut</div>
+                    <div><%= property.address %></div>
                 </div>  <hr>
                 <div class="text-danger">Facilities</div>
                 <div>Power Back Up, Lift, Club House, Swimming Pool, Gymnasium, Park, Reserved Parking, Security, Water Storage, Vaastu Compliant, Service/Goods Lift, Visitor Parking, Intercom Facility, Maintenance Staff, Waste Disposal, Internet/Wi-Fi Connectivity, DTH Television Facility, Banquet Hall, Jogging and Strolling Track</div> <hr>
