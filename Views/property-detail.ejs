@@ -1,12 +1,14 @@
 <%- include('./layouts/imports') %> 
-<% console.log(property ) %>
+<% //console.log(property ) %>
 <section class="bg-dark">
     <div class="container">
         <div class="pt-5 pb-5 d-flex flex-column justify-content-center">
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <h2 class="text-warning hammersmithOne">Comfortable Apartment in Palace</h2>
-                    <span class="text-white" uk-icon="icon: location"></span><span class="text-white"> 200/A, Greenland, Texaro, USA</span> <br> <br>
+                    <h3 class="text-warning hammersmithOne"><%= property.name %></h3>
+                    <span class="text-white" uk-icon="icon: location"></span> 
+                    <span class="text-white"><%= property.address %> </span> 
+                    <br> <br>
                     <a href="#">
                         <h4 class="btn btn-danger rounded-pill pl-5 pr-5 font-weight-bold">Contact</h4>
                     </a>
@@ -15,43 +17,43 @@
                     </a>
                 </div>
                 <div class="col-md-6 col-12">
-                    <h2 class="text-warning font-weight-bold uk-hidden@s">₹ 4000</h2>
-                    <h2 class="text-warning text-right font-weight-bold uk-visible@s">₹ 4000</h2>
+                    <h3 class="text-warning font-weight-bold uk-hidden@s">₹ <%= property.priceDetails.expectedPrice %> </h3>
+                    <h3 class="text-warning text-right font-weight-bold uk-visible@s">₹ <%= property.priceDetails.expectedPrice %></h3>
                 </div>
             </div>
-            <div class="p-3 uk-align-center">
+            <div class="p-3 uk-align-center m-0">
                 <div class="uk-child-width-1-4@m uk-child-width-1-3 text-center" uk-grid>
                     <div>
                         <div class="text-warning">Bedroom</div>
-                        <div class="text-white">2</div>
+                        <div class="text-white"><%= property.propertyFeatures.bedrooms %> </div>
                     </div>
                     <div>
                         <div class="text-warning">Bathroom</div>
-                        <div class="text-white">2</div>
+                        <div class="text-white"><%= property.propertyFeatures.bathroom %></div>
                     </div>
                     <div>
                         <div class="text-warning">Balcony</div>
-                        <div class="text-white">1</div>
+                        <div class="text-white"><%= property.propertyFeatures.balconies %></div>
                     </div>
                     <div>
                         <div class="text-warning">Super area</div>
-                        <div class="text-white">1050 sqft</div>
+                        <div class="text-white">sqft</div>
                     </div>
                     <div>
                         <div class="text-warning">Furnished</div>
-                        <div class="text-white">Semi-furnished</div>
+                        <div class="text-white"><%= property.propertyFeatures.furnishingStatus %></div>
                     </div>
                     <div>
                         <div class="text-warning">Floor</div>
-                        <div class="text-white">5th of 7 floor</div>
+                        <div class="text-white"><%= property.propertyFeatures.floorNo %>th of <%= property.propertyFeatures.totalFloors %> floor</div>
                     </div>
                     <div>
                         <div class="text-warning">Status</div>
-                        <div class="text-white">Ready to move</div>
+                        <div class="text-white"><%= property.priceDetails.possessionStatus %></div>
                     </div>
                     <div>
                         <div class="text-warning">Facing</div>
-                        <div class="text-white">East</div>
+                        <div class="text-white"><%= property.additionalFeatures.facing %></div>
                     </div>
                 </div>
             </div>

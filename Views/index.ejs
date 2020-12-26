@@ -198,23 +198,37 @@
     <div class="container">
         <p class="h1 text-center text-dark hammersmithOne">Property Gallery</p>
         <hr class="uk-align-center hr-custom">
-        <div class="row row-cols-1 row-cols-md-4">
-          <% var i = 8 %> 
-            <% while  (i!=0) {%> 
+        <div class="row row-cols-1 row-cols-md-3">
+          <% property.forEach(ele => { %> 
             <div class="col mb-4">
-              <div class="card h-100 shadow p-2">
-                <img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <a href="./property?type=residential&id=5fe5f84de612592fb8a3ba94" class="card-title text-danger h4 hammersmithOne">Card title</a>
-                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+              <div class="card h-100 shadow uk-transition-toggle" tabindex="0">
+                <div class="overflow-hidden">
+                  <img src="<%= ele.image %>" class="card-img-top uk-transition-scale-up uk-transition-opaque" alt="...">
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                <div class="card-body">
+                  <a href="./property?type=residential&id=5fe5f84de612592fb8a3ba94" class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
+                  <p class="card-text">
+                    <div class="small uk-child-width-1-2" uk-grid>
+                      <div>
+                        Status: <%= ele.status %> 
+                      </div>
+                      <div>
+                        Furnishing: <%= ele.furnishing %>
+                      </div>
+                    </div>
+                  </p>
+                  <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                </div>
+                <div class="card-footer bg-white text-center">
+                  <div class="uk-child-width-1-3 small" uk-grid>
+                    <div><%= ele.bedroom %></div>
+                    <div><%= ele.bathroom %></div>
+                    <div><%= ele.area %> Sqft</div>
                   </div>
+                </div>
               </div>
             </div>
-          <% i = i-1 %> 
-          <% } %> 
+          <% }) %> 
         </div>
         <div class="text-center m-5">
           <a href="" class="btn btn-lg btn-outline-danger font-weight-bold rounded-pill">More Properties</a>
