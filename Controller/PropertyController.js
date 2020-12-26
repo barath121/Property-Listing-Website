@@ -190,12 +190,16 @@ module.exports.HomePage = async (req, res) => {
   properties = [];
   Properties.forEach((element) => {
     property = {};
+    console.log(element.locality);
     property.title =
       element.propertyType +
       " For " +
       element.propertyFor +
       " at " +
-      element.name;
+      element.name+
+      ", "+
+      element.locality
+      ;
     property.area = element.propertyFeatures.carpetArea;
     property.furnishing = element.propertyFeatures.furnishingStatus;
     property.status =
@@ -210,6 +214,7 @@ module.exports.HomePage = async (req, res) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     properties.push(property);
   });
+  console.log(properties)
   res.render("index", { property: properties });
 };
 module.exports.Search = async (req, res) => {
