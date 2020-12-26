@@ -109,17 +109,17 @@
           <br>
           <label for="floorNo">Floor No.</label>
           <br>
-          <input type="text" class="form-control w-50" onchange="FloorNo()" placeholder="Enter Floor number" id="floorNo" name="floorNo" required>
+          <input type="text" class="form-control w-50" onchange="FloorNo()" pattern="^[0-9]*$"    title="Please enter a valid number" placeholder="Enter Floor number" id="floorNo" name="floorNo" required>
           <br>
           <br>
           <label for="totalFloors">Total Floors</label>
           <br>
-          <input type="text" onchange="totalFloor()" class="form-control w-50" placeholder="Enter Total Floors" id="totalFloors" name="totalFloors" required>
+          <input type="text" onchange="totalFloor()" class="form-control w-50" pattern="^[0-9]*$"    title="Please enter a valid number" placeholder="Enter Total Floors" id="totalFloors" name="totalFloors" required>
           <br>
           <br>
           <label for="flatsOnFloor">Flats On Floor</label>
           <br>
-          <input type="text" class="form-control w-50" id="flatsOnFloor" name="flatsOnFloor" required>
+          <input type="text" class="form-control w-50" pattern="^[0-9]*$"    title="Please enter a valid number" id="flatsOnFloor" name="flatsOnFloor" required>
           <br>
           <br>
           <label for="furnishingStatus">Furnishing Status</label>
@@ -162,7 +162,7 @@
               <label class="form-check-label" for="Fan.">
                 Fan
               </label>
-              <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="fanAmount"
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="fanAmount"
                 name="Quantity">
             </div>
             <div class="form-check col-6">
@@ -171,7 +171,7 @@
               <label class="form-check-label" for="Light">
                 Light
               </label>
-              <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="lightAmount"
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="lightAmount"
                 name="Quantity">
             </div>
             <div class="form-check col-6">
@@ -211,7 +211,7 @@
               <label class="form-check-label" for="Bed">
                 Bed
               </label>
-              <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="bedAmount"
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="bedAmount"
                 name="Quantity">
             </div>
             <div class="form-check col-6">
@@ -220,7 +220,7 @@
               <label class="form-check-label" for="Wadrobe">
                 Wadrobe
               </label>
-              <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="wadrobeAmount"
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="wadrobeAmount"
                 name="Quantity">
             </div>
             <div class="form-check col-6">
@@ -229,7 +229,7 @@
               <label class="form-check-label" for="Curtains">
                 Curtains
               </label>
-              <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="curtainsAmount"
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="curtainsAmount"
                 name="Quantity">
             </div>
           </div>
@@ -239,7 +239,7 @@
           <label for="carpetArea">Carpet Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
+            <input type="text" id="carpetArea" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0"
               name="carpetArea" required><span>
               <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
                 id="furnishingStatus">
@@ -254,7 +254,7 @@
           <label for="superBuiltUpArea">Super BuiltUp Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+            <input type="text" id="superBuiltUpArea" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0"
               name="superBuiltUpArea" ><span>
               <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
                 id="superBuiltUpArea">
@@ -270,7 +270,7 @@
           <label for="builtUpArea">BuiltUp Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+            <input type="text" id="builtUpArea" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0"
               name="builtUpArea"><span>
               <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
                 class="form-control" id="builtUpArea">
@@ -288,13 +288,13 @@
           <div id="sale">
             <label for="expectedPrice">Expected Price</label>
             <br>
-            <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+            <input type="text" id="expectedPrice" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
               name="expectedPrice" placeholder="Enter total price" ><span>
               <br>
               <br>
               <label for="bookingAmount">Booking Amount</label>
               <br>
-              <input type="text" id="bookingAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+              <input type="text" id="bookingAmount" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
                 name="bookingAmount" placeholder="Enter total price" ><span>
                 <br>
                 <br>
@@ -350,7 +350,7 @@
                     <br>
                     <label for="year">Year</label>
                     <br>
-                    <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year" required>
+                    <input type="text" class="form-control w-50" pattern="^[0-9]*$"    title="Please enter a valid number" id="year" name="year" placeholder="Enter year" required>
                   </div>
                   <div id="age">
                     <br>
@@ -390,13 +390,13 @@
           <div id="rent">
             <label for="expectedRent">Expected Rent</label>
             <br>
-            <input type="text" id="expectedRent" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+            <input type="text" id="expectedRent" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
               name="expectedRent" placeholder="Enter total price"><span>
               <br>
               <br>
               <label for="securityDeposit">Security Deposit</label>
               <br>
-              <input type="text" id="securityDeposit"
+              <input type="text" pattern="^[0-9]*$"    title="Please enter a valid number" id="securityDeposit"
                 class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
                 placeholder="Enter total price"><span>
                 <br>
@@ -430,7 +430,7 @@
           <br>
           <label for="maintaninceCharge">Maintanince Charge</label>
           <br>
-          <input type="text" id="maintaninceCharge" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+          <input type="text" id="maintaninceCharge" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
             name="maintaninceCharge" placeholder="Enter total price" required><span>
             <br>
             <br>
@@ -470,7 +470,7 @@
             <br>
             <br>
             <label for="saleBrokerage">Token Amount</label>
-            <input type="text" id="tokenAmount" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+            <input type="text" id="tokenAmount" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
               name="tokenAmount" placeholder="Enter total price" required><span>
               <br>
               <br>
@@ -579,7 +579,7 @@
               id="multipleUnitsAvaliable">
             <label class="form-check-label" for="multipleUnitsAvaliable">Multiple Units Avaliable</label>
           </div>
-          <input type="text" placeholder="enter quantity" class="form-control w-50 d-none" id="unitAmount"
+          <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"  title="Please enter a valid number" class="form-control w-50 d-none" id="unitAmount"
                 name="unitQuantity">
           <br>
           <br>
@@ -1149,6 +1149,9 @@
         document.getElementById("bedDimensions").innerHTML = null;
         document.getElementById("tableDivBed").classList.remove("d-none");
         var tables = document.getElementById("Bedrooms").value;
+        if(tables = "more than 4"){
+         tables = 4;
+        }
         noBedroom = tables;
         for (var i = 0; i < tables; i++) {
           var lengthVal;
