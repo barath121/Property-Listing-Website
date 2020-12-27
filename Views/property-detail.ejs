@@ -7,7 +7,7 @@
                 <div class="col-md-6 col-12">
                     <h3 class="text-warning hammersmithOne"><%= property.name %></h3>
                     <span class="text-white" uk-icon="icon: location"></span> 
-                    <span class="text-white"><%= property.address %> </span> 
+                    <span class="text-white"><%= property.locality %> </span> 
                     <br> <br>
                     <a href="#">
                         <h4 class="btn btn-danger rounded-pill pl-5 pr-5 font-weight-bold">Contact</h4>
@@ -90,55 +90,124 @@
             <h1 class="hammersmithOne text-center font-weight-bold">About Property</h1>
             <hr class="hr-custom uk-align-center"> 
             <div class="uk-width-4-5@s uk-align-center">
-                <p>This 2 bhk flat for sale in Neelsidhi Amarante. It is well ventilated flat as well as well maintained flat also society.It is very spacious flat. Located at well developed area ,Its best for Investment and personal use also.</p> <hr>
-                <div>
-                    <div class="text-danger">Address</div>
-                    <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia laudantium mollitia similique aut</div>
-                </div>  <hr>
-                <div class="text-danger">Facilities</div>
-                <div>Power Back Up, Lift, Club House, Swimming Pool, Gymnasium, Park, Reserved Parking, Security, Water Storage, Vaastu Compliant, Service/Goods Lift, Visitor Parking, Intercom Facility, Maintenance Staff, Waste Disposal, Internet/Wi-Fi Connectivity, DTH Television Facility, Banquet Hall, Jogging and Strolling Track</div> <hr>
-                <div class="uk-child-width-1-3@s uk-child-width-1-2 text-center" uk-grid>
+                <div class="hammersmithOne">
+                    <!-- <div class="text- mb-4 hammersmithOne h5">Property</div> -->
                     <div>
-                        <div class="text-danger">Price Breakup</div>
-                        <div>₹ 77.0 Lac | ₹ 3,85,000 Approx. | Registration Charges | ₹ 3,000 Monthly</div>
+                        <div class="text-danger">Address</div>
+                        <div><%= property.address %></div>
+                    </div> <br>
+                    <div>
+                        <div class="text-danger">Description</div>
+                        <div><%= property.description %></div>                  
+                    </div> <br>
+                    <div class="uk-child-width-1-4@s uk-child-width-1-2" uk-grid>
+                        <div>
+                            <div class="text-danger">Locality</div>
+                            <div><%= property.locality %></div>
+                        </div>
+                        <div>
+                            <div class="text-danger">Property Type</div>
+                            <div><%= property.propertyType %></div>
+                        </div>
+                        <div>
+                            <div class="text-danger">Landmarks</div>
+                            <div><%= property.landmarks %></div>
+                        </div>
+                        <div>
+                            <div class="text-danger">Flats on floor</div>
+                            <div><%= property.propertyFeatures.flatsOnFloor %></div>
+                        </div>
+                        <div>
+                            <div class="text-danger">Landmarks</div>
+                            <div><%= property.propertyFeatures.carpetArea %></div>
+                        </div>
+                    </div> 
+                    <div> <br>
+                        <div class="text-danger">Flooring</div>
+                        <div><%= property.flooring %></div>                  
                     </div>
+                </div>  
+                <br> <br>
+                <div class="text- mb-4 hammersmithOne h5">Features</div>
+                <div class="uk-child-width-1-4@s uk-child-width-1-2 hammersmithOne" uk-grid>
                     <div>
-                        <div class="text-danger">Booking Amount</div>
-                        <div>₹ 1.0 Lac</div>
-                    </div>
-                    <div>
-                        <div class="text-danger">Landmarks</div>
-                        <div>near by d,mart, market,school,etc</div>
+                        <div class="text-danger">Additional Rooms</div>
+                        <div><%= property.additionalFeatures.additonalRooms %></div>
                     </div>
                     <div>
                         <div class="text-danger">Overlooking</div>
-                        <div>Garden/Park, Pool</div>
+                        <div><%= property.additionalFeatures.overlooking %></div>
                     </div>
                     <div>
-                        <div class="text-danger">Flooring</div>
-                        <div>Vitrified</div>
+                        <div class="text-danger">Unit Quantity</div>
+                        <div><%= property.additionalFeatures.unitQuantity %></div>
                     </div>
                     <div>
-                        <div class="text-danger">Water Availability</div>
-                        <div>24 Hours Available</div>
+                        <div class="text-danger">Car Parking</div>
+                        <div><%= property.additionalFeatures.carParking %></div>
                     </div>
                     <div>
-                        <div class="text-danger">Status of Electricity</div>
-                        <div>No/Rare Powercut</div>
+                        <div class="text-danger">Lifts</div>
+                        <div><%= property.additionalFeatures.liftsInTheTower %></div>
                     </div>
                     <div>
-                        <div class="text-danger">Lift</div>
-                        <div>2</div>
+                        <div class="text-danger">Multiple Units Avaliable</div>
+                        <div><%= property.additionalFeatures.multipleUnitsAvaliable %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Availablity of Water</div>
+                        <div><%= property.statusOfWaterandElectric.avaliablityOfWater %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Availablity of Electricity</div>
+                        <div><%= property.statusOfWaterandElectric.avaliablityOfElectricity %></div>
+                    </div>
+                </div>
+                <br> <br>
+                <div class="text- mb-4 hammersmithOne h5">Price Details</div>
+                <div class="uk-child-width-1-4@s uk-child-width-1-2  hammersmithOne" uk-grid>
+                    <div>
+                        <div class="text-danger">Price Includes</div>
+                        <div>₹ </div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Token Amount</div>
+                        <div>₹ <%= property.priceDetails.tokenAmount %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Expected Price</div>
+                        <div>₹ <%= property.priceDetails.expectedPrice %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Booking Amount</div>
+                        <div>₹ <%= property.priceDetails.bookingAmount %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Transaction Type</div>
+                        <div><%= property.priceDetails.transactionType %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Sales Brokerage</div>
+                        <div><%= property.priceDetails.saleBrokerage %></div>
                     </div>
                     <div>
                         <div class="text-danger">Age of Construction</div>
-                        <div>Less than 5 years</div>
+                        <div><%= property.priceDetails.ageOfConstruction %></div>
                     </div>
                     <div>
-                        <div class="text-danger">Authority Approval</div>
-                        <div>City and Industrial Development Corporation - Navi Mumbai</div>
+                        <div class="text-danger">Maintanince Charge</div>
+                        <div><%= property.priceDetails.maintaninceCharge %></div>
                     </div>
-                </div>
+                    <div>
+                        <div class="text-danger">Maintanince Charge Type</div>
+                        <div><%= property.priceDetails.maintaninceChargeType %></div>
+                    </div>
+                    <div>
+                        <div class="text-danger">Stamp Duty Charges</div>
+                        <div><%= property.priceDetails.stampDutyCharges %></div>
+                    </div>
+                </div> 
+                <br>
             </div>
         </div>
     </div>
