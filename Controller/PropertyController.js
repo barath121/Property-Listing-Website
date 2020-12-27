@@ -282,10 +282,40 @@ module.exports.Search = async (req, res) => {
   let properties = [];
   if (conditions.length) {
     let condition = { $and: conditions };
-    console.log(condition);
-    properties = await Property.find(condition);
+    let conditionedProperties = await Property.find(condition);
+    conditionedProperties.forEach((element) => {
+    property = {};
+    element.Images.images.forEach(img=>{
+      if(img.includes("CoverImages")){
+        property.image = img;
+      }
+    })
+    property.title =
+      element.propertyType +
+      " For " +
+      element.propertyFor +
+      " at " +
+      element.name+
+      ", "+
+      element.locality
+      ;
+    property.area = element.propertyFeatures.carpetArea;
+    property.furnishing = element.propertyFeatures.furnishingStatus;
+    property.status =
+      element.priceDetails.possessionStatus 
+      "Possession by " +
+        element.priceDetails.avaliableFrom.month +
+        " " +
+        element.priceDetails.avaliableFrom.year;
+    property.price =
+      element.priceDetails.expectedPrice;    
+      element.priceDetails.expectedRent;
+    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
+    property.bathroom = element.propertyFeatures.bathroom + " Bath";
+    properties.push(property);
+  });
   }
-  // console.log(properties[0]._id);
+  console.log(properties);
   res.render("Search_page",{properties : properties});
 };
 module.exports.CommercialProperty = (req, res) => {
