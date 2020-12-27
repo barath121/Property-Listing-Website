@@ -8,56 +8,121 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 d-none d-lg-block">
-                    <div class="uk-background-default p-5 shadow rounded" style="top: 100px; position: sticky;">
+                    <div class="uk-background-default p-5 shadow rounded overflow-auto"
+                        style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 600px;">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
-                        <form action="">
-                            <label for="Range" class="text-center">Budget</label>
-                            <input type="range" class="form-control-range" min="0" max="100" value="0" id="Range"
-                                name="Range">
-                            <output id="amount" name="amount" class="mb-2" for="Range">0</output>
-
+                        <form action="/search" method="GET">
+                            <label>Property For</label>
                             <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="rent">
-                                <label class="form-check-label" for="rent">
-                                    Rent
-                                </label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Propertyfor" value="Sale"
+                                    id="PropertyforSale">
+                                <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
-
-                            <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="buy">
-                                <label class="form-check-label" for="buy">
-                                    Buy
-                                </label>
-                            </div>
-
-                            <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="furnished">
-                                <label class="form-check-label" for="furnished">
-                                    Furnished
-                                </label>
-                            </div>
-
-                            <br>
-                            <label for="builtUpArea">BuiltUp Area</label>
-                            <div class="input-group">
-                                <input type="text" id="builtUpArea"
-                                    class="form-control border-top-0 border-left-0 border-right-0"
-                                    name="builtUpArea"><span>
-                                    <select name="builtUpArea"
-                                        class="form-control border-top-0 border-left-0 border-right-0"
-                                        class="form-control" id="builtUpArea">
-                                        <option value="Sqft">Sqft</option>
-                                        <option value="Acre">Acre</option>
-                                        <option value="Sq-M">Sq-M</option>
-                                    </select>
-                                </span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease"
+                                    id="PropertyforRent">
+                                <label class="form-check-label" for="PropertyforRent">Rent</label>
                             </div>
                             <br>
                             <br>
+                            <label for="PropertyType">Property type</label>
+                            <br>
+                            <select class="form-control" name="PropertyType" id="PropertyType" >
+                                <option value="">Select</option>
+                                <option value="Flat/Apartment"> Flat/Apartment </option>
+                                <option value="Residential House"> Residential House </option>
+                                <option value="Villa"> Villa </option>
+                                <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+                                <option value="Penthouse"> Penthouse </option>
+                                <option value="Studio Apartment"> Studio Apartment </option>
+                                <option value="Farm House"> Farm House </option>
+                            </select>
+                            <br>
+                            <label for="exampleFormControlSelect1">Budget</label>
+                            <select class="uk-select bg-transparent text-light" id="form-stacked-select"  name="price">
+                                <option class="text-dark" value=" ">Select</option>
+                                <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                                <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                                <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                                <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                                <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                                <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                                <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                                <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                                <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                                <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                                <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                                <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                                <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                                <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                                <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                                <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
+                            </select>
+                            <br>
+                            <br>
+                            <label for="Locality">Locality</label>
+                            <br>
+                            <select class="form-control " name="Locality" id="Locality">
+                                <option value="Roadpali">Roadpali</option>
+                                <option value="Kalamboli">Kalamboli</option>
+                                <option value="Kharghar">Kharghar</option>
+                            </select>
+                            <br>
+                            <label for="Bedrooms">Bedrooms</label>
+                            <br>
+                            <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms" >
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="more than 4">more than 4</option>
+                            </select>
+                            <br>
+                            <br>
+                            
+                            <label>Possession Status</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="possessionStatus"
+                                    value="Under Construction" id="possessionStatusUnder">
+                                <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="possessionStatus"
+                                    value="Ready to Move" id="possessionStatusReady">
+                                <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                            </div>
+                            <br>
+                            <br>
+                    
+                            <label for="furnishingStatus">Furnishing Status</label>
+                            <br>
+                            <select class="form-control" name="furnishingStatus" id="furnishingStatus" >
+                                <option value="">Select</option>
+                                <option value="Furnished">Furnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
+                                <option value="Semi-Furnished">Semi-Furnished</option>
+                            </select>
+                            <br>
+                            <label for="name">Name</label>
+                            <br>
+                            <input type="text" placeholder="Enter name of property" class="form-control" id="name"
+                                name="name">
+                            <br>
+                            <label for="sqmin">Minimum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Minimum area in Sq.ft" class="form-control" id="sqmin"
+                                name="sqmin">
+                            <br>
+                            <label for="sqmax">Maximum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Maximum area in Sq.ft" class="form-control" id="sqmax"
+                                name="sqmax">
+                            <br>
+                            
                             <div class="d-flex w-100 justify-content-center">
                                 <button class="btn btn-outline-danger" type="submit">Apply</button>
                             </div>
@@ -97,11 +162,14 @@
                                             <a class="page-link" href="#" tabindex="-1">Previous</a>
                                         </li>
                                         <% for(var i=1; i< 5; i++) {%>
-                                        <li class="page-item"><a class="page-link text-danger" href="/search?page=<%= i %>"><%= i %></a></li>
-                                        <% } %>
-                                        <li class="page-item">
-                                            <a class="page-link text-danger" href="#">Next</a>
-                                        </li>
+                                            <li class="page-item"><a class="page-link text-danger"
+                                                    href="/search?page=<%= i %>">
+                                                    <%= i %>
+                                                </a></li>
+                                            <% } %>
+                                                <li class="page-item">
+                                                    <a class="page-link text-danger" href="#">Next</a>
+                                                </li>
                                     </ul>
                                 </nav>
 
@@ -122,55 +190,121 @@
                     <div class="">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
-                        <form action="">
-                            <label for="Range" class="text-center">Budget</label>
-                            <input type="range" class="form-control-range" min="0" max="100" value="0" id="Range"
-                                name="Range">
-                            <output id="amount" name="amount" class="mb-2" for="Range">0</output>
-    
+                        <form action="/search" method="GET">
+                            <label>Property For</label>
                             <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="rent">
-                                <label class="form-check-label" for="rent">
-                                    Rent
-                                </label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Propertyfor" value="Sale"
+                                    id="PropertyforSale">
+                                <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
-    
-                            <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="buy">
-                                <label class="form-check-label" for="buy">
-                                    Buy
-                                </label>
-                            </div>
-    
-                            <br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="furnished">
-                                <label class="form-check-label" for="furnished">
-                                    Furnished
-                                </label>
-                            </div>
-    
-                            <br>
-                            <label for="builtUpArea">BuiltUp Area</label>
-                            <div class="input-group">
-                                <input type="text" id="builtUpArea"
-                                    class="form-control border-top-0 border-left-0 border-right-0" name="builtUpArea"><span>
-                                    <select name="builtUpArea"
-                                        class="form-control border-top-0 border-left-0 border-right-0" class="form-control"
-                                        id="builtUpArea">
-                                        <option value="Sqft">Sqft</option>
-                                        <option value="Acre">Acre</option>
-                                        <option value="Sq-M">Sq-M</option>
-                                    </select>
-                                </span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease"
+                                    id="PropertyforRent">
+                                <label class="form-check-label" for="PropertyforRent">Rent</label>
                             </div>
                             <br>
                             <br>
+                            <label for="PropertyType">Property type</label>
+                            <br>
+                            <select class="form-control" name="PropertyType" id="PropertyType" >
+                                <option value="">Select</option>
+                                <option value="Flat/Apartment"> Flat/Apartment </option>
+                                <option value="Residential House"> Residential House </option>
+                                <option value="Villa"> Villa </option>
+                                <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+                                <option value="Penthouse"> Penthouse </option>
+                                <option value="Studio Apartment"> Studio Apartment </option>
+                                <option value="Farm House"> Farm House </option>
+                            </select>
+                            <br>
+                            <label for="exampleFormControlSelect1">Budget</label>
+                            <select class="uk-select bg-transparent text-light" id="form-stacked-select"  name="price">
+                                <option class="text-dark" value=" ">Select</option>
+                                <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                                <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                                <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                                <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                                <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                                <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                                <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                                <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                                <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                                <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                                <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                                <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                                <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                                <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                                <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                                <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
+                            </select>
+                            <br>
+                            <br>
+                            <label for="Locality">Locality</label>
+                            <br>
+                            <select class="form-control " name="Locality" id="Locality">
+                                <option value="Roadpali">Roadpali</option>
+                                <option value="Kalamboli">Kalamboli</option>
+                                <option value="Kharghar">Kharghar</option>
+                            </select>
+                            <br>
+                            <label for="Bedrooms">Bedrooms</label>
+                            <br>
+                            <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms" >
+                              <option value="0">0</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="more than 4">more than 4</option>
+                            </select>
+                            <br>
+                            <br>
+                            
+                            <label>Possession Status</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="possessionStatus"
+                                    value="Under Construction" id="possessionStatusUnder">
+                                <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="possessionStatus"
+                                    value="Ready to Move" id="possessionStatusReady">
+                                <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                            </div>
+                            <br>
+                            <br>
+                    
+                            <label for="furnishingStatus">Furnishing Status</label>
+                            <br>
+                            <select class="form-control" name="furnishingStatus" id="furnishingStatus" >
+                                <option value="">Select</option>
+                                <option value="Furnished">Furnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
+                                <option value="Semi-Furnished">Semi-Furnished</option>
+                            </select>
+                            <br>
+                            <label for="name">Name</label>
+                            <br>
+                            <input type="text" placeholder="Enter name of property" class="form-control" id="name"
+                                name="name">
+                            <br>
+                            <label for="sqmin">Minimum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Minimum area in Sq.ft" class="form-control" id="sqmin"
+                                name="sqmin">
+                            <br>
+                            <label for="sqmax">Maximum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Maximum area in Sq.ft" class="form-control" id="sqmax"
+                                name="sqmax">
+                            <br>
+                            
                             <div class="d-flex w-100 justify-content-center">
                                 <button class="btn btn-outline-danger" type="submit">Apply</button>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -179,4 +313,4 @@
 
     <script type="module" src="/js/searchPage.js"></script>
 
-<%- include('./layouts/Footer') -%>
+    <%- include('./layouts/Footer') -%>
