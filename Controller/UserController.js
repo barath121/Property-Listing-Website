@@ -4,6 +4,14 @@ module.exports.test = (req,res) =>{
   console.log(req.isAuthenticated());
 console.log(req.user.name)
 }
+module.exports.Redirect = (req,res) =>{
+  if(req.user.isAdmin){
+    res.redirect('/admin/admindashboard');
+  }
+  else{
+    res.redirect('/');
+  }
+}
 module.exports.Register = async (req,res,next) =>{
     let user = {};
     user.email = req.body.email;
@@ -14,11 +22,8 @@ module.exports.Register = async (req,res,next) =>{
       next(err);
     }).then(result=>{
         if(result)
-      res.status(201).json({
-        status : "Sucessful",
-        message: "Account Created Suceessfully",
-        data : result
-      })
+      req.flash("sucess","Account created sucessfully password has been sent to your mobile number");
+      res.redirect("/login");
     })
 }
 module.exports.logout = (req,res) =>{
