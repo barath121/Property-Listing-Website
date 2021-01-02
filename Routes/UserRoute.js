@@ -13,4 +13,5 @@ UserRoute.route("/loginredirect").get(UserController.Redirect);
 UserRoute.route('/register').post(UserController.Register);
 UserRoute.route('/test').get(UserController.test);
 UserRoute.route('/logout').get(UserController.logout);
+UserRoute.route('/addenquiry').post(UserController.AddEnquiry);
 module.exports = UserRoute;
