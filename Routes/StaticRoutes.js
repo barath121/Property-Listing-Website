@@ -2,9 +2,6 @@ const PropertyController = require("../Controller/PropertyController")
 
 const StaticRoutes = (app) =>{
     app.get('/', PropertyController.HomePage);
-    app.get('/adminlogin', (req, res) => {
-        res.render('adminLogin')
-    })
     app.get('/admindashboard', (req, res) => {
         res.render('adminDashboard')
     })
