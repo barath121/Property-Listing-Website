@@ -4,6 +4,7 @@ const UserRoute = require('./UserRoute');
 const PropertyRoute = require('./PropertyRoute');
 const multer = require('multer');
 const StaticRoutes = require('./StaticRoutes');
+const AdminRoute = require('./AdminRoute');
 const Routesinit = (app) => {
     app.use((req, res, next) => {
         res.locals.req = req
@@ -13,7 +14,7 @@ const Routesinit = (app) => {
     StaticRoutes(app);
     app.use('/property', PropertyRoutes);
     app.use('/user',UserRoute);
-
+    app.use('/admin',AdminRoute);
     app.use((req, res, next) => {
         const err = new Error("Hello");
         err.status = 'fail';

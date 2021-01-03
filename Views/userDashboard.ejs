@@ -21,25 +21,32 @@
                 </div> <br>
                 <div class="border rounded-lg shadow-sm uk-padding bg-white">
                     <p class="text-center h2 font-weight-bold hammersmithOne">Message US</p> <br>
-                    <form>
+                    <% if (messages.Success) { %>
+                        <div class="uk-alert-success uk-width-auto" uk-alert>
+                          <a class="uk-alert-close" uk-close></a>
+                          <p class="text-center"><%= messages.Success %></p>
+                        </div>
+                      <% } %>
+                    <form action="/user/addenquiry" method="POST">
                         <div class="form-group">
                           <label>Email address</label>
-                          <input type="email" class="form-control form-control-lg" required>
+                          <input type="email" name="email" class="form-control form-control-lg" required>
                         </div>
-        
+                        <input type="hidden" name="page" value="dashboard">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="email" class="form-control form-control-lg" required>
+                            <input name="name" class="form-control form-control-lg" required>
                         </div>
     
                         <div class="form-group">
                             <label>Contact Number</label>
-                            <input type="email" class="form-control form-control-lg" required>
+                            <input name="contactno" class="form-control form-control-lg" pattern="[7-9]{1}[0-9]{9}" 
+                            title="Enter A Phone Number" required>
                         </div>
     
                         <div class="form-group">
                             <label>Message (if any)</label>
-                            <textarea class="form-control form-control-lg" rows="7"></textarea>
+                            <textarea name="message" class="form-control form-control-lg" rows="7"></textarea>
                         </div>
                         
                         <div class="text-center">

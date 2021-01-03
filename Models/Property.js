@@ -204,7 +204,7 @@ carParking : {
 },
 liftsInTheTower : {
     type : String,
-    enum : ['1','2','3','4','4+'],
+    enum : ['0','1','2','3','4','4+'],
     required : true
 },
 multipleUnitsAvaliable : {
