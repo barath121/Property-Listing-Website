@@ -1,10 +1,8 @@
-const PropertyController = require("../Controller/PropertyController")
-
+const PropertyController = require("../Controller/PropertyController");
+const User = require("../Models/User");
+const UserController = require("./../Controller/UserController");
 const StaticRoutes = (app) =>{
     app.get('/', PropertyController.HomePage);
-    app.get('/adminlogin', (req, res) => {
-        res.render('adminLogin')
-    })
     app.get('/admindashboard', (req, res) => {
         res.render('adminDashboard')
     })
@@ -21,9 +19,7 @@ const StaticRoutes = (app) =>{
     app.get('/newproperty', (req, res) => {
         res.render('Create_property')
     })
-    app.get('/dashboard', (req, res) => {
-        res.render('userDashboard')
-    })
+    app.get('/dashboard', UserController.CheckLogin,UserController.userdashboard);
     app.get('/commercialproperty', (req, res) => {
         res.render('commercial_property')
     })
