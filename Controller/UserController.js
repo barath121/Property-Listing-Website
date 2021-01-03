@@ -1,16 +1,27 @@
 const User = require('./../Models/User');
 const bcrypt = require('bcrypt');
 const Enquiry = require('../Models/Enquiry');
+const Saved = require('../Models/Saved');
 module.exports.test = (req,res) =>{
   console.log(req.isAuthenticated());
 console.log(req.user.name)
 }
 module.exports.Redirect = (req,res) =>{
+  console.log(req.user);
   if(req.user.isAdmin){
     res.redirect('/admin/admindashboard');
   }
   else{
     res.redirect('/');
+  }
+}
+module.exports.CheckLogin = (req,res,next) =>{
+  if(req.isAuthenticated()){
+    next();
+  }
+  else{
+    req.flash("error","Login to Continue");
+    res.redirect("/");
   }
 }
 module.exports.Register = async (req,res,next) =>{
@@ -47,4 +58,39 @@ module.exports.AddEnquiry = (req,res,next) =>{
     req.flash("Success","Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
     res.redirect("/contact");}
   });
+}
+module.exports.AddSaved = (req,res,next) =>{
+  let saved = {}
+  saved.customerID = req.user._id;
+  saved.propertyID = req.query.propertyid;
+  let propertytype  = req.query.propertytype;
+  Saved.create(saved) 
+  .catch(err=>{
+    next(err);
+  })
+  .then(result=>{
+    if(result){
+      res.flash("success","Property Has Been Saved");
+      res.redirect('/type='+propertytype+'&id='+saved.propertyID);
+    }
+  })
+}
+module.exports.RemoveSaved = (req,res,next) =>{
+  let saved = {}
+  saved.customerID = req.user._id;
+  saved.propertyID = req.query.propertyid;
+  let propertytype  = req.query.propertytype;
+  Saved.findOneAndRemove({$and : [
+    {customerID : saved.customerID},
+    {propertyID : saved.propertyID}
+  ]}) 
+  .catch(err=>{
+    next(err);
+  })
+  .then(result=>{
+    if(result){
+      res.flash("success","Property Has Been Removed");
+      res.redirect('/type='+propertytype+'&id='+saved.propertyID);
+    }
+  })
 }
