@@ -55,8 +55,14 @@ module.exports.AddEnquiry = (req,res,next) =>{
   })
   .then(result=>{
     if(result){
+    if(req.body.page=="dashboard"){
+      req.flash("Success","Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
+      res.redirect("/dashboard");
+    }
+    else{
     req.flash("Success","Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
     res.redirect("/contact");}
+  }
   });
 }
 module.exports.AddSaved = (req,res,next) =>{
@@ -92,5 +98,16 @@ module.exports.RemoveSaved = (req,res,next) =>{
       res.flash("success","Property Has Been Removed");
       res.redirect('/type='+propertytype+'&id='+saved.propertyID);
     }
+  })
+}
+module.exports.userdashboard = (req,res,next) =>{
+  Saved.find({ customerID : req.user._id})
+  .catch(err=>{
+    next(err);
+  })
+  .then(result=>{
+    res.render('userDashboard',{
+      savedProperties : result
+    })
   })
 }
