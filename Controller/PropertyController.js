@@ -2,6 +2,8 @@ const Property = require("../Models/Property");
 const Commercial = require("../Models/Commercial");
 const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
+const Saved = require("../Models/Saved");
+const User = require("../Models/User");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
 const converttosq = (area, unit) => {
   if (unit == "Sqft") {
@@ -183,7 +185,18 @@ module.exports.ViewProperty = (req, res,next) => {
           next(err);
         }
         }
-        res.render("property-detail", { property: property,similar : similarproperties,nearby : localityproperties });
+        let saved = {};
+        if(req.isAuthenticated()){
+        saved = await Saved.findOne({$and:[
+          {propertyID :property._id},
+          {customerID : req.user._id}
+        ]});
+        }
+        let issaved = false;
+        if(saved){
+          issaved = true;
+        }
+        res.render("property-detail", { property: property,issaved : saved,similar : similarproperties,nearby : localityproperties });
       }
       else{
         res.flash("Property Not Found");
