@@ -2,6 +2,8 @@ const Property = require("../Models/Property");
 const Commercial = require("../Models/Commercial");
 const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
+const Saved = require("../Models/Saved");
+const User = require("../Models/User");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
 const converttosq = (area, unit) => {
   if (unit == "Sqft") {
@@ -17,8 +19,6 @@ module.exports.test = (req, res) => {
 };
 module.exports.createProperty = async (req, res, next) => {
   const body = req.body;
-  console.log(req.body);
-
   let property = {};
   property.name = req.body.name;
   property.address = req.body.address;
@@ -51,7 +51,6 @@ module.exports.createProperty = async (req, res, next) => {
   property.propertyFeatures.totalFloors = req.body.totalFloors;
   property.propertyFeatures.furnishingStatus = req.body.furnishingStatus;
   property.propertyFeatures.flatsOnFloor = req.body.flatsOnFloor;
-  console.log(req.body.furniture);
   property.propertyFeatures.furnitures = [];
   if (req.body.furniture)
     req.body.furniture.forEach((furniture) => {
@@ -127,7 +126,7 @@ module.exports.createProperty = async (req, res, next) => {
   property.additionalFeatures.carParking = req.body.carParking;
   property.additionalFeatures.liftsInTheTower = req.body.liftsInTheTower;
   property.additionalFeatures.multipleUnitsAvaliable =
-    req.body.multipleUnitsAvaliable;
+    req.body.multipleUnitsAvaliable||false;
   if (property.additionalFeatures.multipleUnitsAvaliable) {
     property.additionalFeatures.unitQuantity = req.body.unitQuantity;
   }
@@ -149,7 +148,6 @@ module.exports.createProperty = async (req, res, next) => {
   let i = 0;
   const images = req.files;
   const imageid = nanoid();
-  console.log(req.files);
   await Promise.all(
     images.map((image) =>
       firebase.uploadFile(image, imageid, i++).then((result) => {
@@ -170,13 +168,40 @@ module.exports.createProperty = async (req, res, next) => {
       if (result) res.redirect("/");
     });
 };
-module.exports.ViewProperty = (req, res) => {
+module.exports.ViewProperty = (req, res,next) => {
   let id = req.query.id;
   let type = req.query.type;
   if (type == "residential") {
     Property.findById(id)
-      .then((property) => {
-        res.render("property-detail", { property: property });
+      .then(async (property) => {
+        if(property){
+        let similarproperties = [];
+        let localityproperties = [];
+        try 
+        {let similarproperties = await Property.find({$or : [{propertyType : property.propertyType},{propertyFor : property.propertyFor},{"propertyFeatures.bedrooms" :property.propertyFeatures.bedrooms }]});
+        let localityproperties = await Property.find({locality : property.locality});
+        }
+        catch{err=>{
+          next(err);
+        }
+        }
+        let saved = {};
+        if(req.isAuthenticated()){
+        saved = await Saved.findOne({$and:[
+          {propertyID :property._id},
+          {customerID : req.user._id}
+        ]});
+        }
+        let issaved = false;
+        if(saved){
+          issaved = true;
+        }
+        res.render("property-detail", { property: property,issaved : saved,similar : similarproperties,nearby : localityproperties });
+      }
+      else{
+        res.flash("Property Not Found");
+        res.redirect("/");
+      }
       })
       .catch((err) => {
         next(err);
@@ -190,9 +215,7 @@ module.exports.HomePage = async (req, res) => {
   properties = [];
   Properties.forEach((element) => {
     property = {};
-    console.log(element.locality);
     element.Images.images.forEach(img=>{
-      console.log(img.includes("CoverImages"))
       if(img.includes("CoverImages")){
         property.image = img;
       }
@@ -220,7 +243,6 @@ module.exports.HomePage = async (req, res) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     properties.push(property);
   });
-  console.log(properties)
   res.render("index", { property: properties });
 };
 module.exports.Search = async (req, res) => {
@@ -247,7 +269,6 @@ module.exports.Search = async (req, res) => {
     });
   }
   if (filters.price) {
-    console.log(filters.price);
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
     if (!minpriceDetails[1]) {
@@ -259,7 +280,6 @@ module.exports.Search = async (req, res) => {
     }
     let maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
     let maxprice = 0;
-    console.log(maxpriceDetails);
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
     } else if (maxpriceDetails[1] == "Lac") {
@@ -315,7 +335,6 @@ module.exports.Search = async (req, res) => {
     properties.push(property);
   });
   }
-  console.log(properties);
   res.render("Search_page",{properties : properties});
 };
 module.exports.CommercialProperty = (req, res) => {

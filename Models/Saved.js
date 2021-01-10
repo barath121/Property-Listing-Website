@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const adminSchema = mongoose.Schema({
-username : {
+const savedSchema = mongoose.Schema({
+propertyID : {
     type : String,
     required : true
 },
-password : {
+customerID : {
     type : String,
     required : true
 }
@@ -12,5 +12,5 @@ password : {
     timestamps: true,
 })
 
-const Admin = mongoose.model('Admin',adminSchema);
-module.exports = Admin;
+const Saved = mongoose.model('Saved',savedSchema);
+module.exports = Saved;
