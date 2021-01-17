@@ -15,6 +15,9 @@ const StaticRoutes = (app) =>{
     app.get('/contact', (req, res) => {
         res.render('contact')
     })
+    app.get('/about', (req, res) => {
+        res.render("about");
+    })
     app.get('/property', PropertyController.ViewProperty);
     app.get('/newproperty', (req, res) => {
         res.render('Create_property')
