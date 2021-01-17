@@ -16,13 +16,13 @@
           <br>
           <select class="form-control w-50" name="PropertyType" id="PropertyType" required>
             <option value="">Select</option>
-              <option value="Flat/Apartment"> Flat/Apartment </option>
-              <option value="Residential House"> Residential House </option>
-              <option value="Villa"> Villa </option>
-              <option value="Builder Floor Apartment">Builder Floor Apartment </option>
-              <option value="Penthouse"> Penthouse </option>
-              <option value="Studio Apartment"> Studio Apartment </option>
-              <option value="Farm House"> Farm House </option>
+            <option value="Flat/Apartment"> Flat/Apartment </option>
+            <option value="Residential House"> Residential House </option>
+            <option value="Villa"> Villa </option>
+            <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+            <option value="Penthouse"> Penthouse </option>
+            <option value="Studio Apartment"> Studio Apartment </option>
+            <option value="Farm House"> Farm House </option>
           </select>
 
           <h4>Property For</h4>
@@ -33,7 +33,7 @@
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
-              id="PropertyforRent" >
+              id="PropertyforRent">
             <label class="form-check-label" for="PropertyforRent">Rent</label>
           </div>
           <br>
@@ -50,7 +50,8 @@
           <h3>Property Features</h3>
           <label for="name">Name</label>
           <br>
-          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name" required>
+          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name"
+            required>
           <br>
           <br>
           <label for="address">Address</label>
@@ -85,7 +86,7 @@
             <br>
             <label for="Balconies">Balconies</label>
             <br>
-            <select class="form-control w-50"  name="Balconies" id="Balconies" required>
+            <select class="form-control w-50" name="Balconies" id="Balconies" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -96,7 +97,7 @@
             <br>
             <label for="bathroom">Bathroom</label>
             <br>
-            <select class="form-control w-50"  name="bathroom" id="bathroom" required>
+            <select class="form-control w-50" name="bathroom" id="bathroom" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -109,17 +110,21 @@
           <br>
           <label for="floorNo">Floor No.</label>
           <br>
-          <input type="text" class="form-control w-50" onchange="FloorNo()" pattern="^[0-9]*$"    title="Please enter a valid number" placeholder="Enter Floor number" id="floorNo" name="floorNo" required>
+          <input type="text" class="form-control w-50" onchange="FloorNo()" pattern="^[0-9]*$"
+            title="Please enter a valid number" placeholder="Enter Floor number" id="floorNo" name="floorNo" required>
           <br>
           <br>
           <label for="totalFloors">Total Floors</label>
           <br>
-          <input type="text" onchange="totalFloor()" class="form-control w-50" pattern="^[0-9]*$"    title="Please enter a valid number" placeholder="Enter Total Floors" id="totalFloors" name="totalFloors" required>
+          <input type="text" onchange="totalFloor()" class="form-control w-50" pattern="^[0-9]*$"
+            title="Please enter a valid number" placeholder="Enter Total Floors" id="totalFloors" name="totalFloors"
+            required>
           <br>
           <br>
           <label for="flatsOnFloor">Flats On Floor</label>
           <br>
-          <input type="text" class="form-control w-50" pattern="^[0-9]*$"    title="Please enter a valid number" id="flatsOnFloor" name="flatsOnFloor" required>
+          <input type="text" class="form-control w-50" pattern="^[0-9]*$" title="Please enter a valid number"
+            id="flatsOnFloor" name="flatsOnFloor" required>
           <br>
           <br>
           <label for="furnishingStatus">Furnishing Status</label>
@@ -162,8 +167,8 @@
               <label class="form-check-label" for="Fan.">
                 Fan
               </label>
-              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="fanAmount"
-                name="Quantity">
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control w-50 d-none" id="fanAmount" name="Quantity">
             </div>
             <div class="form-check col-6">
               <input class="form-check-input" onchange="light()" name="furniture" type="checkbox" value="Light"
@@ -171,8 +176,8 @@
               <label class="form-check-label" for="Light">
                 Light
               </label>
-              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="lightAmount"
-                name="Quantity">
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control w-50 d-none" id="lightAmount" name="Quantity">
             </div>
             <div class="form-check col-6">
               <input class="form-check-input" name="furniture" type="checkbox" value="Modular Kitchen"
@@ -211,8 +216,8 @@
               <label class="form-check-label" for="Bed">
                 Bed
               </label>
-              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="bedAmount"
-                name="Quantity">
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control w-50 d-none" id="bedAmount" name="Quantity">
             </div>
             <div class="form-check col-6">
               <input class="form-check-input" onchange="wadrobe()" name="furniture" type="checkbox" value="Wadrobe"
@@ -220,8 +225,8 @@
               <label class="form-check-label" for="Wadrobe">
                 Wadrobe
               </label>
-              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="wadrobeAmount"
-                name="Quantity">
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control w-50 d-none" id="wadrobeAmount" name="Quantity">
             </div>
             <div class="form-check col-6">
               <input class="form-check-input" onchange="curtains()" name="furniture" type="checkbox" value="Curtains"
@@ -229,8 +234,8 @@
               <label class="form-check-label" for="Curtains">
                 Curtains
               </label>
-              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control w-50 d-none" id="curtainsAmount"
-                name="Quantity">
+              <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control w-50 d-none" id="curtainsAmount" name="Quantity">
             </div>
           </div>
           <br>
@@ -239,8 +244,8 @@
           <label for="carpetArea">Carpet Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="carpetArea" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0"
-              name="carpetArea" required><span>
+            <input type="text" id="carpetArea" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0" name="carpetArea" required><span>
               <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
                 id="furnishingStatus">
                 <option value="Sqft">Sqft</option>
@@ -254,8 +259,8 @@
           <label for="superBuiltUpArea">Super BuiltUp Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="superBuiltUpArea" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0"
-              name="superBuiltUpArea" ><span>
+            <input type="text" id="superBuiltUpArea" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0" name="superBuiltUpArea"><span>
               <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
                 id="superBuiltUpArea">
                 <option value="Sqft">Sqft</option>
@@ -270,8 +275,8 @@
           <label for="builtUpArea">BuiltUp Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="builtUpArea" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0"
-              name="builtUpArea"><span>
+            <input type="text" id="builtUpArea" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0" name="builtUpArea"><span>
               <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
                 class="form-control" id="builtUpArea">
                 <option value="Sqft">Sqft</option>
@@ -288,31 +293,33 @@
           <div id="sale">
             <label for="expectedPrice">Expected Price</label>
             <br>
-            <input type="text" id="expectedPrice" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedPrice" placeholder="Enter total price" ><span>
+            <input type="text" id="expectedPrice" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="expectedPrice"
+              placeholder="Enter total price"><span>
               <br>
               <br>
               <label for="bookingAmount">Booking Amount</label>
               <br>
-              <input type="text" id="bookingAmount" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-                name="bookingAmount" placeholder="Enter total price" ><span>
+              <input type="text" id="bookingAmount" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0 w-50" name="bookingAmount"
+                placeholder="Enter total price"><span>
                 <br>
                 <br>
                 <label>Transaction Type</label>
                 <br>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="transactionType"
-                    value="New Property" id="transactionTypenew" >
+                  <input class="form-check-input" type="radio" name="transactionType" value="New Property"
+                    id="transactionTypenew">
                   <label class="form-check-label" for="transactionTypenew">New Property</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio"  name="transactionType" value="Resale"
+                  <input class="form-check-input" type="radio" name="transactionType" value="Resale"
                     id="transactionTypeReSale">
                   <label class="form-check-label" for="transactionTypeReSale">Resale</label>
                 </div>
                 <br>
                 <br>
-                <div id="newProperty" >
+                <div id="newProperty">
                   <label>Possession Status </label>
                   <br>
                   <div class="form-check form-check-inline">
@@ -350,7 +357,8 @@
                     <br>
                     <label for="year">Year</label>
                     <br>
-                    <input type="text" class="form-control w-50" pattern="^[0-9]*$"    title="Please enter a valid number" id="year" name="year" placeholder="Enter year" required>
+                    <input type="text" class="form-control w-50" pattern="^[0-9]*$" title="Please enter a valid number"
+                      id="year" name="year" placeholder="Enter year" required>
                   </div>
                   <div id="age">
                     <br>
@@ -390,13 +398,14 @@
           <div id="rent">
             <label for="expectedRent">Expected Rent</label>
             <br>
-            <input type="text" id="expectedRent" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedRent" placeholder="Enter total price"><span>
+            <input type="text" id="expectedRent" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="expectedRent"
+              placeholder="Enter total price"><span>
               <br>
               <br>
               <label for="securityDeposit">Security Deposit</label>
               <br>
-              <input type="text" pattern="^[0-9]*$"    title="Please enter a valid number" id="securityDeposit"
+              <input type="text" pattern="^[0-9]*$" title="Please enter a valid number" id="securityDeposit"
                 class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
                 placeholder="Enter total price"><span>
                 <br>
@@ -416,7 +425,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="priceType" value="Fixed" id="priceTypeFixed" required>
-            <label class="form-check-label" for="priceTypeFixed"  required >Fixed</label>
+            <label class="form-check-label" for="priceTypeFixed" required>Fixed</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="priceType" value="Negotiable" id="priceTypeNegotiable">
@@ -430,8 +439,9 @@
           <br>
           <label for="maintaninceCharge">Maintanince Charge</label>
           <br>
-          <input type="text" id="maintaninceCharge" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-            name="maintaninceCharge" placeholder="Enter total price" required><span>
+          <input type="text" id="maintaninceCharge" pattern="^[0-9]*$" title="Please enter a valid number"
+            class="form-control border-top-0 border-left-0 border-right-0 w-50" name="maintaninceCharge"
+            placeholder="Enter total price" required><span>
             <br>
             <br>
             <label for="maintaninceChargeType">Maintanince Charge Type</label>
@@ -448,7 +458,7 @@
             <br>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="priceIncludes" value="PCL" id="priceIncludesPCL">
-              <label class="form-check-label" for="priceIncludesPCL" >PCL</label>
+              <label class="form-check-label" for="priceIncludesPCL">PCL</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="priceIncludes" value="Car Parking"
@@ -465,13 +475,15 @@
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" name="stampDutyCharges" value="true"
                 id="stampDutyCharges">
-              <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="stampDutyCharges">Stamp Duty Charges</label>
+              <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                for="stampDutyCharges">Stamp Duty Charges</label>
             </div>
             <br>
             <br>
             <label for="saleBrokerage">Token Amount</label>
-            <input type="text" id="tokenAmount" pattern="^[0-9]*$"    title="Please enter a valid number" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="tokenAmount" placeholder="Enter total price" required><span>
+            <input type="text" id="tokenAmount" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="tokenAmount"
+              placeholder="Enter total price" required><span>
               <br>
               <br>
               <div class="d-flex w-100 justify-content-center">
@@ -579,8 +591,8 @@
               id="multipleUnitsAvaliable">
             <label class="form-check-label" for="multipleUnitsAvaliable">Multiple Units Avaliable</label>
           </div>
-          <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"  title="Please enter a valid number" class="form-control w-50 d-none" id="unitAmount"
-                name="unitQuantity">
+          <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
+            class="form-control w-50 d-none" id="unitAmount" name="unitQuantity">
           <br>
           <br>
           <h3>Status Of Water and Electric</h3>
@@ -623,7 +635,7 @@
           <br>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="flooring" value="Ceramic Tiles" id="flooringPuja">
-            <label class="form-check-label" for="flooringPuja" >Ceramic Tiles</label>
+            <label class="form-check-label" for="flooringPuja">Ceramic Tiles</label>
           </div>
           <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="flooring" value="Granite" id="flooringStudy">
@@ -879,7 +891,8 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept=' .jpeg,.png,.jpg' name="CoverImages" id='images' required>
+              <input class='custom-file-input' type='file' accept=' .jpeg,.png,.jpg' name="CoverImages" id='images'
+                required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -887,7 +900,7 @@
 
           <h5>Bedrooms</h5>
           <div id="bedroomPics">
-             
+
           </div>
           <h5>Bathrooms</h5>
           <div id="bathroomPics">
@@ -907,15 +920,20 @@
           <h5>Kitchen Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="KitchenImage" id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="KitchenImage" id='images'
+                required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
+            </div>
+            <div >
+              <img src="" alt="">
             </div>
           </div>
           <h5>Living Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images' required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images'
+                required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -923,7 +941,8 @@
           <h5>Dining Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage" required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage"
+                required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -931,7 +950,8 @@
           <h5>Main Entrance</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage" required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage"
+                required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -940,7 +960,8 @@
           <h3>Others</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
+              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="OtherImages"
+                required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -1006,63 +1027,64 @@
     // var loadFile = function (event) {
     //   ImgTag(event);
     // };
-    
-    function  totalFloor(){
+
+    function totalFloor() {
       var floorNo = document.getElementById("floorNo").value;
-      if(floorNo > document.getElementById("totalFloors").value){
-        document.getElementById("totalFloors").value = ""
-        document.getElementById("totalFloors").setAttribute("placeholder","should be more than floor number"); 
+        if (+floorNo > +document.getElementById("totalFloors").value) {
+          document.getElementById("totalFloors").value = ""
+          document.getElementById("totalFloors").setAttribute("placeholder", "should be more than floor number");
       }
+
     }
-    function  FloorNo(){
+    function FloorNo() {
       var floorNo = document.getElementById("floorNo").value;
-      if(document.getElementById("totalFloors").value != ""){
-        if(floorNo > document.getElementById("totalFloors").value){
-        document.getElementById("totalFloors").value = ""
-        document.getElementById("totalFloors").setAttribute("placeholder","should be more than floor number"); 
+      if (document.getElementById("totalFloors").value != "") {
+        if (+floorNo > +document.getElementById("totalFloors").value) {
+          document.getElementById("totalFloors").value = ""
+          document.getElementById("totalFloors").setAttribute("placeholder", "should be more than floor number");
+        }
       }
-    }  
     }
     function RentSelected() {
       document.getElementById("sale").classList.add("d-none");
       document.getElementById("rent").classList.remove("d-none");
-      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
         ele.removeAttribute("required");
       })
-      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",true);
+      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
       })
-       console.log(document.getElementById("expectedPrice").getAttribute("required"))
+      console.log(document.getElementById("expectedPrice").getAttribute("required"))
     }
     function saleSelected() {
       document.getElementById("rent").classList.add("d-none");
       document.getElementById("sale").classList.remove("d-none");
-      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
         ele.removeAttribute("required");
       })
-      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",true);
+      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
       })
-       console.log(document.getElementById("expectedRent").getAttribute("required"))
+      console.log(document.getElementById("expectedRent").getAttribute("required"))
     }
     function Underconstruction() {
       document.getElementById("age").classList.add("d-none");
       document.getElementById("construction").classList.remove("d-none");
-      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
         ele.removeAttribute("required");
       })
-      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",true);
+      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
       })
     }
     function Readyconstruction() {
       document.getElementById("construction").classList.add("d-none");
       document.getElementById("age").classList.remove("d-none");
-      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
+      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
         ele.removeAttribute("required");
       })
-      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele=>{
-        ele.setAttribute("required",true);
+      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
       })
     }
     function newProperty() {
@@ -1146,60 +1168,60 @@
 
     }
     function dimensions() {
-        document.getElementById("bedDimensions").innerHTML = null;
-        document.getElementById("tableDivBed").classList.remove("d-none");
-        var tables = document.getElementById("Bedrooms").value;
-        if(tables = "more than 4"){
-         tables = 4;
-        }
-        noBedroom = tables;
-        for (var i = 0; i < tables; i++) {
-          var lengthVal;
-          var breadthVal;
-          var tr = document.createElement("tr");
-          var td1 = document.createElement("td");
-          var td2 = document.createElement("td");
-          var td3 = document.createElement("td");
-          var td4 = document.createElement("td")
-          var length = document.createElement("input");
-          var breadth = document.createElement("input");
-          var equals = document.createElement("span");
+      document.getElementById("bedDimensions").innerHTML = null;
+      document.getElementById("tableDivBed").classList.remove("d-none");
+      var tables = document.getElementById("Bedrooms").value;
+      if (tables == "more than 4") {
+        tables = 4;
+      }
+      noBedroom = tables;
+      for (var i = 0; i < tables; i++) {
+        var lengthVal;
+        var breadthVal;
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td")
+        var length = document.createElement("input");
+        var breadth = document.createElement("input");
+        var equals = document.createElement("span");
 
-          length.name= "lenght"+i;
-          breadth.name= "breadth"+i;
+        length.name = "lenght" + i;
+        breadth.name = "breadth" + i;
 
-          length.value = 0;
-          breadth.value = 0;
-          length.setAttribute('id', "Bedlength " + i);
-          breadth.setAttribute('id', "Bedbreadth " + i);
-          equals.setAttribute('id', "Bedequals " + i);
+        length.value = 0;
+        breadth.value = 0;
+        length.setAttribute('id', "Bedlength " + i);
+        breadth.setAttribute('id', "Bedbreadth " + i);
+        equals.setAttribute('id', "Bedequals " + i);
 
-          length.onchange = () => {
-            for (j = 0; j < tables; j++) {
-              document.getElementById('Bedequals ' + j).innerHTML = (document.getElementById('Bedlength ' + j).value * document.getElementById('Bedbreadth ' + j).value) + " Sq.Ft"
-            }
+        length.onchange = () => {
+          for (j = 0; j < tables; j++) {
+            document.getElementById('Bedequals ' + j).innerHTML = (document.getElementById('Bedlength ' + j).value * document.getElementById('Bedbreadth ' + j).value) + " Sq.Ft"
           }
-
-          breadth.onchange = () => {
-            for (j = 0; j < tables; j++) {
-              document.getElementById('Bedequals ' + j).innerHTML = (document.getElementById('Bedlength ' + j).value * document.getElementById('Bedbreadth ' + j).value) + " Sq.Ft"
-            }
-          }
-
-          length.className = "form-control"
-          breadth.className = "form-control"
-
-          td4.innerHTML = i + 1;
-
-          td1.appendChild(length)
-          td2.appendChild(breadth)
-          td3.appendChild(equals)
-          tr.appendChild(td4)
-          tr.appendChild(td1)
-          tr.appendChild(td2)
-          tr.appendChild(td3)
-          document.getElementById("bedDimensions").appendChild(tr)
         }
+
+        breadth.onchange = () => {
+          for (j = 0; j < tables; j++) {
+            document.getElementById('Bedequals ' + j).innerHTML = (document.getElementById('Bedlength ' + j).value * document.getElementById('Bedbreadth ' + j).value) + " Sq.Ft"
+          }
+        }
+
+        length.className = "form-control"
+        breadth.className = "form-control"
+
+        td4.innerHTML = i + 1;
+
+        td1.appendChild(length)
+        td2.appendChild(breadth)
+        td3.appendChild(equals)
+        tr.appendChild(td4)
+        tr.appendChild(td1)
+        tr.appendChild(td2)
+        tr.appendChild(td3)
+        document.getElementById("bedDimensions").appendChild(tr)
+      }
 
     }
 
@@ -1223,18 +1245,18 @@
         img("balconyPics");
       }
       for (var i = 0; i < addRooms.length; i++) {
-        img("additionalRooms",addRooms[i]);
+        img("additionalRooms", addRooms[i]);
       }
 
     }
-    function img(parentDivId,rooms) {
+    function img(parentDivId, rooms) {
       var parentDiv = document.getElementById(parentDivId),
         parent = document.createElement("div"),
         inpDiv = document.createElement("div"),
         inp = document.createElement("input"),
         label = document.createElement("label"),
         h5 = document.createElement("h5");
-        
+
       parent.className = "mb-3";
       inpDiv.className = "custom-file";
       inp.className = "custom-file-input";
