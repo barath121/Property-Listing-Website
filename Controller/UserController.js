@@ -78,6 +78,7 @@ module.exports.AddSaved = (req,res,next) =>{
     if(result){
       res.flash("success","Property Has Been Saved");
       res.redirect('/type='+propertytype+'&id='+saved.propertyID);
+      console.log(saved);
     }
   })
 }
