@@ -68,8 +68,8 @@ module.exports.AddEnquiry = (req,res,next) =>{
 module.exports.AddSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
-  saved.propertyID = req.query.propertyid;
-  let propertytype  = req.query.propertytype;
+  saved.propertyID = req.body.propertyid;
+  let propertytype  = req.body.propertytype;
   Saved.create(saved) 
   .catch(err=>{
     next(err);
@@ -85,8 +85,8 @@ module.exports.AddSaved = (req,res,next) =>{
 module.exports.RemoveSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
-  saved.propertyID = req.query.propertyid;
-  let propertytype  = req.query.propertytype;
+  saved.propertyID = req.body.propertyid;
+  let propertytype  = req.body.propertytype;
   Saved.findOneAndRemove({$and : [
     {customerID : saved.customerID},
     {propertyID : saved.propertyID}
