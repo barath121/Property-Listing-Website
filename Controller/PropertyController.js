@@ -199,6 +199,7 @@ module.exports.ViewProperty = (req, res,next) => {
         res.render("property-detail", { property: property,issaved : saved,similar : similarproperties,nearby : localityproperties });
       }
       else{
+        console.log(1);
         res.flash("Property Not Found");
         res.redirect("/");
       }
@@ -220,6 +221,7 @@ module.exports.HomePage = async (req, res) => {
         property.image = img;
       }
     })
+    property.id = element._id;
     property.title =
       element.propertyType +
       " For " +
@@ -247,6 +249,7 @@ module.exports.HomePage = async (req, res) => {
 };
 module.exports.Search = async (req, res) => {
   let filters = req.query;
+  console.log(filters);
   let conditions = [];
   if (filters.name) {
     conditions.push({ name: new RegExp(filters.name, "i") });
@@ -278,7 +281,9 @@ module.exports.Search = async (req, res) => {
     } else if (minpriceDetails[1] == "Cr") {
       minprice = 10000000 * parseInt(minpriceDetails[0]);
     }
-    let maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
+    let maxpriceDetails = null;
+    if(filters.price)
+    maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
     let maxprice = 0;
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
