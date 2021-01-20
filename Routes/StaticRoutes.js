@@ -15,6 +15,9 @@ const StaticRoutes = (app) =>{
     app.get('/contact', (req, res) => {
         res.render('contact')
     })
+    app.get('/about', (req, res) => {
+        res.render("about");
+    })
     app.get('/property', PropertyController.ViewProperty);
     app.get('/newproperty', (req, res) => {
         res.render('Create_property')
@@ -24,6 +27,9 @@ const StaticRoutes = (app) =>{
         res.render('commercial_property')
     })
     app.use('/search',PropertyController.Search);
+    app.get('/404', (req, res) => {
+        res.render('404');
+    })
 }
 
 module.exports = StaticRoutes;
