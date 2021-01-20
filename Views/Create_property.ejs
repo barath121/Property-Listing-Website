@@ -86,7 +86,7 @@
             <br>
             <label for="Balconies">Balconies</label>
             <br>
-            <select class="form-control w-50" name="Balconies" id="Balconies" required>
+            <select class="form-control w-50" onchange="balconies()" name="Balconies" id="Balconies" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -97,7 +97,7 @@
             <br>
             <label for="bathroom">Bathroom</label>
             <br>
-            <select class="form-control w-50" name="bathroom" id="bathroom" required>
+            <select class="form-control w-50" onchange="bathrooms()" name="bathroom" id="bathroom" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -881,7 +881,7 @@
             </div>
         </div>
         <div id="3" class="d-none">
-          <h3>Photos</h3>
+          <h1>Photos</h1>
           <!-- <ul uk-tab>
             <li class="uk-active"><a href="#">Kitchen</a></li>
             <li><a href="#">Hall</a></li>
@@ -891,10 +891,18 @@
           <h3>Cover</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept=' .jpeg,.png,.jpg' name="CoverImages" id='images'
-                required>
+              <input class='custom-file-input' onchange="loadFile(event,'PreviewImg')" type='file'
+                accept=' .jpeg,.png,.jpg' name="CoverImages" id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
+            </div>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('PreviewImg')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="PreviewImg" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
             </div>
           </div>
 
@@ -920,50 +928,94 @@
           <h5>Kitchen Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="KitchenImage" id='images'
-                required>
+              <input class='custom-file-input' type='file' onchange="loadFile(event,'kitchenPreview')"
+                accept='.jpeg,.png,.jpg' name="KitchenImage" id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
-            <div >
-              <img src="" alt="">
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('kitchenPreview')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="kitchenPreview" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
             </div>
           </div>
           <h5>Living Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images'
-                required>
+              <input class='custom-file-input' type='file' onchange="loadFile(event,'livingPreview')"
+                accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images' required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
+            </div>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('livingPreview')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="livingPreview" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
             </div>
           </div>
           <h5>Dining Area</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage"
-                required>
+              <input class='custom-file-input' type='file' onchange="loadFile(event,'diningPreview')"
+                accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage" required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
+            </div>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('diningPreview')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="diningPreview" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
             </div>
           </div>
           <h5>Main Entrance</h5>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage"
-                required>
+              <input class='custom-file-input' type='file' onchange="loadFile(event,'mainPreview')"
+                accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage" required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
+            </div>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('mainPreview')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="mainPreview" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
             </div>
           </div>
 
           <h3>Others</h3>
           <div class='mb-3'>
             <div class='custom-file'>
-              <input class='custom-file-input' type='file' accept='.jpeg,.png,.jpg' id='images' name="OtherImages"
-                required>
+              <input class='custom-file-input' type='file' onchange="loadFile(event,'otherPreview')"
+                accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
+            </div>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('otherPreview')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="otherPreview" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="modal-close-outside" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+              <button class="uk-modal-close-outside" type="button" uk-close></button>
+              <img id="PreviewImgModal" class="" src="" alt="" width="100%">
             </div>
           </div>
 
@@ -983,56 +1035,32 @@
     var noBedroom;
     var noBalconies;
     var noBathroom;
+    var pageReached = false;
 
     var status = false;
-    // function ImgTag(event) {
-    //   var files = event.target.files;
-    //   var imageDiv = document.getElementById('output');
-    //   console.log(files);
-    //   for (var i = 0; i < files.length; i++) {
-    //     let instance = URL.createObjectURL(files[i])
-    //     var Img = document.createElement("img");
-    //     var ImgContainer = document.createElement("div");
-    //     var RemoveDiv = document.createElement("div");
-    //     var RemoveBtn = document.createElement("button");
 
-    //     if (i == 0) {
-    //       ImgContainer.className = "carousel-item active";
-    //     } else {
-    //       ImgContainer.className = "carousel-item"
-    //     }
-    //     imgArr.push(instance);
-    //     Img.className = "d-block w-100"
-    //     RemoveDiv.className = "carousel-caption d-none d-md-block"
-    //     RemoveBtn.className = "btn btn-danger"
-    //     RemoveBtn.innerHTML = "Remove"
-    //     RemoveBtn.type = "button"
+    function Preview(id) {
+      var Modal = document.getElementById("PreviewImgModal");
+      var img = document.getElementById(id);
+      Modal.src = img.src
+    }
 
-    //     RemoveBtn.onclick = () => {
+    function ImgTag(event, id) {
+      var Img = document.getElementById(id)
+      //var Modal = document.getElementById("PreviewImgModal")
+      Img.src = URL.createObjectURL(event.target.files[0]);
+      // Modal.src = Img.src
+    }
 
-    //     }
-
-    //     Img.src = instance;
-    //     Img.height = "300px";
-
-    //     ImgContainer.appendChild(Img);
-    //     ImgContainer.appendChild(RemoveDiv);
-    //     RemoveDiv.appendChild(RemoveBtn);
-    //     imageDiv.appendChild(ImgContainer);
-    //   }
-
-    //   console.log(imgArr)
-    // }
-
-    // var loadFile = function (event) {
-    //   ImgTag(event);
-    // };
+    var loadFile = function (event, id) {
+      ImgTag(event, id);
+    };
 
     function totalFloor() {
       var floorNo = document.getElementById("floorNo").value;
-        if (+floorNo > +document.getElementById("totalFloors").value) {
-          document.getElementById("totalFloors").value = ""
-          document.getElementById("totalFloors").setAttribute("placeholder", "should be more than floor number");
+      if (+floorNo > +document.getElementById("totalFloors").value) {
+        document.getElementById("totalFloors").value = ""
+        document.getElementById("totalFloors").setAttribute("placeholder", "should be more than floor number");
       }
 
     }
@@ -1145,28 +1173,27 @@
       document.getElementById(page.toString()).classList.add("d-none");
       page = page + 1;
       document.getElementById(page.toString()).classList.remove("d-none");
-      if (page == 3) {
-        document.getElementById("bedroomPics").innerHTML = null;
-        document.getElementById("bathroomPics").innerHTML = null;
-        document.getElementById("balconyPics").innerHTML = null;
-        document.getElementById("additionalRooms").innerHTML = null;
-        Photos()
-      }
-      // document.getElementById("progress").classList.add("progress-bar-animated");
-      // document.getElementById("progress").style.width =  Math.ceil(100/page) + "%";
-      // document.getElementById("progress").innerHTML = "step" + page;
+      // if (page == 3 && pageReached == false) {
+      //     document.getElementById("bedroomPics").innerHTML = null;
+      //     document.getElementById("bathroomPics").innerHTML = null;
+      //     document.getElementById("balconyPics").innerHTML = null;
+      //     document.getElementById("additionalRooms").innerHTML = null;
+      //     Photos()
+      //     pageReached = true;
+      // }
       window.location = "#navBody"
     }
     function Previous() {
+      // if(page == 3){
+      //   pageReached = false;
+      // }
       document.getElementById(page.toString()).classList.add("d-none")
       page = page - 1;
       document.getElementById(page.toString()).classList.remove("d-none")
-      // document.getElementById("progress").classList.add("progress-bar-animated");
-      // document.getElementById("progress").style.width =  Math.ceil(100/page) + "%";
-      // document.getElementById("progress").innerHTML = "step" + page;
       window.location = "#navBody"
 
     }
+
     function dimensions() {
       document.getElementById("bedDimensions").innerHTML = null;
       document.getElementById("tableDivBed").classList.remove("d-none");
@@ -1175,6 +1202,12 @@
         tables = 4;
       }
       noBedroom = tables;
+
+      document.getElementById("bedroomPics").innerHTML = null;
+      for (var i = 0; i < noBedroom; i++) {
+        img("bedroomPics", i);
+      }
+
       for (var i = 0; i < tables; i++) {
         var lengthVal;
         var breadthVal;
@@ -1225,37 +1258,57 @@
 
     }
 
-    function Photos() {
-      var rooms = document.getElementsByName("additonalRooms");
-      var addRooms = [];
-      noBalconies = document.getElementById("Balconies").value;
-      noBathroom = document.getElementById("bathroom").value;
-      for (var i = 0; i < rooms.length; i++) {
-        if (rooms[i].checked) {
-          addRooms.push(rooms[i].value)
-        }
+    function balconies() {
+      console.log("*")
+      document.getElementById("balconyPics").innerHTML = null;
+      for (var i = 0; i <  document.getElementById("Balconies").value; i++) {
+        img("balconyPics", i);
       }
-      for (var i = 0; i < noBedroom; i++) {
-        img("bedroomPics");
-      }
-      for (var i = 0; i < noBathroom; i++) {
-        img("bathroomPics");
-      }
-      for (var i = 0; i < noBalconies; i++) {
-        img("balconyPics");
-      }
-      for (var i = 0; i < addRooms.length; i++) {
-        img("additionalRooms", addRooms[i]);
-      }
-
     }
-    function img(parentDivId, rooms) {
+
+    function bathrooms() {
+      document.getElementById("bathroomPics").innerHTML = null;
+      for (var i = 0; i <  document.getElementById("bathroom").value; i++) {
+        img("bathroomPics", i);
+      }
+    }
+
+    // function Photos() {
+    //   var rooms = document.getElementsByName("additonalRooms");
+    //   var addRooms = [];
+    //   noBalconies = document.getElementById("Balconies").value;
+    //   noBathroom = document.getElementById("bathroom").value;
+    //   for (var i = 0; i < rooms.length; i++) {
+    //     if (rooms[i].checked) {
+    //       addRooms.push(rooms[i].value)
+    //     }
+    //   }
+    //   for (var i = 0; i < noBedroom; i++) {
+    //     img("bedroomPics", i);
+    //   }
+    //   for (var i = 0; i < noBathroom; i++) {
+    //     img("bathroomPics", i);
+    //   }
+    //   for (var i = 0; i < noBalconies; i++) {
+    //     img("balconyPics", i);
+    //   }
+    //   for (var i = 0; i < addRooms.length; i++) {
+    //     img("additionalRooms", i, addRooms[i]);
+    //   }
+
+    // }
+
+    function img(parentDivId, callVal, rooms) {
       var parentDiv = document.getElementById(parentDivId),
         parent = document.createElement("div"),
         inpDiv = document.createElement("div"),
         inp = document.createElement("input"),
         label = document.createElement("label"),
-        h5 = document.createElement("h5");
+        h5 = document.createElement("h5"),
+        previewDiv = document.createElement("div"),
+        childPreviewDiv = document.createElement("div"),
+        previewButton = document.createElement("button"),
+        previewImage = document.createElement("img");
 
       parent.className = "mb-3";
       inpDiv.className = "custom-file";
@@ -1267,10 +1320,29 @@
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
       inp.required = true;
+      previewDiv.className = "d-flex w-100 justify-content-end mt-2"
+      previewButton.className = "bg-transparent border-0"
+      previewButton.type = "button"
+      previewButton.setAttribute("uk-toggle", "target: #modal-close-outside")
+      previewImage.className = "p-2"
+      previewImage.style.width = "100px"
+      previewImage.setAttribute("id", parentDivId + callVal + "Preview")
+
+      previewButton.onclick = () => {
+        Preview(parentDivId + callVal + "Preview")
+      }
+
+      inp.onchange = () => {
+        loadFile(event, parentDivId + callVal + "Preview")
+      }
 
       inpDiv.appendChild(inp);
       inpDiv.appendChild(label);
+      previewDiv.appendChild(childPreviewDiv);
+      childPreviewDiv.appendChild(previewButton);
+      previewButton.appendChild(previewImage);
       parent.appendChild(inpDiv);
+      parent.appendChild(previewDiv)
       parentDiv.appendChild(parent)
 
       if (parentDivId == "additionalRooms") {
@@ -1278,7 +1350,11 @@
         inp.name = rooms;
         inpDiv.appendChild(inp);
         inpDiv.appendChild(label);
+        previewDiv.appendChild(childPreviewDiv);
+        childPreviewDiv.appendChild(previewButton);
+        previewButton.appendChild(previewImage);
         parent.appendChild(inpDiv);
+        parent.appendChild(previewDiv);
         parentDiv.appendChild(h5);
         parentDiv.appendChild(parent);
 
