@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-4 d-none d-lg-block">
                     <div class="uk-background-default p-5 shadow rounded overflow-auto"
-                        style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 600px;">
+                        style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 550px;">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
                         <form action="/search" method="GET">
@@ -41,8 +41,7 @@
                             </select>
                             <br>
                             <label for="exampleFormControlSelect1">Budget</label>
-                            <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="price">
-                                <option class="text-dark" value=" ">Select</option>
+                            <select class="uk-select text-dark" id="form-stacked-select" name="price">
                                 <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
                                 <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
                                 <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
@@ -169,7 +168,7 @@
                                 <% } %>
                                     <% } else { %>
                                         <div style="display: flex;flex-direction: column; align-items: center;">
-                                            <img src="/undraw_Building_vpxo.svg"  alt="Img" width="500px">
+                                            <img src="/undraw_Building_vpxo.svg"  alt="Img" width="250px">
                                             <br>    
                                             <p style="font-size: x-large; font-weight: 600;">Error No Properties match the given filters</p>
                                         </div>
@@ -196,9 +195,11 @@
                     </div>
                 </div>
             </div>
-            <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
-                    class="rounded-circle btn btn-lg btn-dark d-lg-none d-block shadow font-weight-bold"
+            <div class="d-lg-none d-block">
+                <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
+                    class="rounded-circle btn btn-lg btn-dark  shadow font-weight-bold"
                     style="position: fixed; bottom: 15px; right: 15px;"><span uk-icon="settings"></span></button></a>
+            </div>
         </div>
     </div>
 
@@ -238,9 +239,8 @@
                                 <option value="Farm House"> Farm House </option>
                             </select>
                             <br>
-                            <label for="exampleFormControlSelect1">Budget</label>
-                            <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="price">
-                                <option class="text-dark" value=" ">Select</option>
+                            <label for="form-stacked-select">Budget</label>
+                            <select class="uk-select text-dark" id="form-stacked-select" name="price">
                                 <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
                                 <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
                                 <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
