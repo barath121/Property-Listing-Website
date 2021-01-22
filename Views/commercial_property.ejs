@@ -6,436 +6,558 @@
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
       <form action="/property/createproperty" enctype="multipart/form-data" method="POST">
-
-        <h1 class="font-weight-bold">Property Details</h1>
-        <br>
-        <br>
-        <label for="PropertyType">Property type</label>
-        <br>
-        <br>
-        <select class="form-control w-50" onchange="select()" name="PropertyType" id="PropertyType">
-          <option value="">Select</option>
-          <option value="Commercial Shop"> Commercial Shop </option>
-          <option value="Commercial Office Space"> Commercial Office Space </option>
-          <option value="Commercial Showroom"> Commercial Showroom </option>
-          <option value="Warehouse/Godows">Warehouse/Godows </option>
-          <option value="Industrial Shed"> Industrial Shed </option>
-        </select>
-
-        <h4>Property For</h4>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
-            id="PropertyforSale">
-          <label class="form-check-label" for="PropertyforSale">Sale</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
-            id="PropertyforRent">
-          <label class="form-check-label" for="PropertyforRent">Rent</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
-          <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
-        </div>
-        <br>
-        <br>
-        <h3>Property Features</h3>
-        <label for="name">Name</label>
-        <br>
-        <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name">
-        <br>
-        <br>
-        <label for="address">Address</label>
-        <br>
-        <input type="text" placeholder="Enter address" class="form-control w-50" id="address" name="address">
-        <br>
-        <br>
-        <label for="locatedInside">Located Inside</label>
-        <br>
-        <select class="form-control w-50" name="locatedInside" id="locatedInside">
-          <option value="">Select</option>
-          <option value="IT Park"> IT Park </option>
-          <option value="Business Park"> Business Park </option>
-          <option value="Other"> Other </option>
-        </select>
-        <br>
-        <br>
-        <label for="zoneType">Zone Type</label>
-        <br>
-        <select class="form-control w-50" name="zoneType" id="zoneType">
-          <option value="">Select</option>
-          <option value="Industrial"> Industrial </option>
-          <option value="Residential"> Residential </option>
-          <option value="Transport and Communication"> Transport and Communication </option>
-          <option value="Public Utilities"> Public Utilities </option>
-          <option value="Public and Semi Public Use"> Public and Semi Public Use </option>
-          <option value="Open Spaces"> Open Spaces </option>
-          <option value="Agricultural Zone"> Agricultural Zone </option>
-          <option value="Special Economic Zone"> Special Economic Zone </option>
-          <option value="Natural Conservation Zone"> Natural Conservation Zone </option>
-          <option value="Government Use"> Government Use </option>
-          <option value="Other"> Other </option>
-        </select>
-        <br>
-        <br>
-        <div id="Office" class="d-none">
-          <label for="minSeats">Minimum Seats</label>
-          <br>
-          <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats">
+        <div id="1" class="">
+          <h1 class="font-weight-bold">Property Details</h1>
           <br>
           <br>
-          <label for="maxSeats">Maximum Seats</label>
-          <br>
-          <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats">
+          <label for="PropertyType">Property type</label>
           <br>
           <br>
-          <label for="noOfCabins">Number Of Cabins</label>
-          <br>
-          <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
-            name="noOfCabins">
-          <br>
-          <br>
-          <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
-          <br>
-          <input type="text" placeholder="Enter number Of Meeting Rooms" class="form-control w-50" id="noOfMeetingRooms"
-            name="noOfMeetingRooms">
-          <br>
-          <br>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="conferenceRoom" value="true" id="conferenceRoom">
-            <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
-              for="conferenceRoom">Conference Room</label>
-          </div>
-          <br>
-          <br>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="receptionArea" value="true" id="receptionArea">
-            <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
-              for="receptionArea">Reception Area</label>
-          </div>
-          <br>
-          <br>
-          <label for="pantryTypes">Pantry Types</label>
-          <br>
-          <select class="form-control w-50" name="pantryTypes" id="pantryTypes">
+          <select class="form-control w-50" onchange="select()" name="PropertyType" id="PropertyType">
             <option value="">Select</option>
-            <option value="Private"> Private </option>
-            <option value="Shared"> Shared </option>
-            <option value="Not Avaliable"> Not Avaliable </option>
+            <option value="Commercial Shop"> Commercial Shop </option>
+            <option value="Commercial Office Space"> Commercial Office Space </option>
+            <option value="Commercial Showroom"> Commercial Showroom </option>
+            <option value="Warehouse/Godows">Warehouse/Godows </option>
+            <option value="Industrial Shed"> Industrial Shed </option>
+          </select>
+
+          <h4>Property For</h4>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
+              id="PropertyforSale">
+            <label class="form-check-label" for="PropertyforSale">Sale</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
+              id="PropertyforRent">
+            <label class="form-check-label" for="PropertyforRent">Rent</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="PropertyforPG" name="Propertyfor" value="PG/Hostel">
+            <label class="form-check-label" for="PropertyforPG">PG/Hostel</label>
+          </div>
+          <br>
+          <br>
+          <h3>Property Features</h3>
+          <label for="name">Name</label>
+          <br>
+          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name">
+          <br>
+          <br>
+          <label for="address">Address</label>
+          <br>
+          <textarea class="form-control w-50" name="address" placeholder="Enter Address" id="address" cols="30" rows="3"></textarea>
+          <br>
+          <br>
+          <label for="locatedInside">Located Inside</label>
+          <br>
+          <select class="form-control w-50" name="locatedInside" id="locatedInside">
+            <option value="">Select</option>
+            <option value="IT Park"> IT Park </option>
+            <option value="Business Park"> Business Park </option>
+            <option value="Other"> Other </option>
           </select>
           <br>
           <br>
-          <label for="pantrySize">Pantry Size</label>
+          <label for="zoneType">Zone Type</label>
           <br>
-          <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize">
-        </div>
-
-        <div id="showroom" class="d-none">
-          <label for="balconies">Balconies</label>
-          <br>
-          <input type="text" placeholder="Enter number of balconies" class="form-control w-50" id="balconies"
-            name="balconies">
-        </div>
-
-        <h3>Area</h3>
-
-        <label for="carpetArea">Carpet Area</label>
-        <br>
-        <div class="input-group w-50">
-          <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
-            name="carpetArea"><span>
-            <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
-              id="furnishingStatus">
-              <option value="Sqft">Sqft</option>
-              <option value="Acre">Acre</option>
-              <option value="Sq-M">Sq-M</option>
-            </select>
-          </span>
-        </div>
-        <br>
-        <br>
-        <label for="superBuiltUpArea">Super BuiltUp Area</label>
-        <br>
-        <div class="input-group w-50">
-          <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-            name="superBuiltUpArea"><span>
-            <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-              id="superBuiltUpArea">
-              <option value="Sqft">Sqft</option>
-              <option value="Acre">Acre</option>
-              <option value="Sq-M">Sq-M</option>
-            </select>
-          </span>
-        </div>
-
-        <br>
-        <br>
-        <label for="builtUpArea">BuiltUp Area</label>
-        <br>
-        <div class="input-group w-50">
-          <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-            name="builtUpArea"><span>
-            <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
-              class="form-control" id="builtUpArea">
-              <option value="Sqft">Sqft</option>
-              <option value="Acre">Acre</option>
-              <option value="Sq-M">Sq-M</option>
-            </select>
-          </span>
-        </div>
-        <br>
-        <div id="extras" class="">
-          <h3>Washrooms</h3>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
-              value="true" id="WashroomisAvaliable">
-            <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
-          </div>
-          <br>
-          <br>
-          <div id="washroomQuantity" class="d-none">
-            <label for="quantity">quantity</label>
-            <br>
-            <input type="text" placeholder="Enter number of quantity" class="form-control w-50" id="quantity"
-              name="quantity">
-            <br>
-          </div>
-          <h3>facilities</h3>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
-            <label class="form-check-label" for="Furnished">Furnished</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
-              id="centralAirCondition">
-            <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
-            <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
-            <label class="form-check-label" for="UPS">UPS</label>
-          </div>
-          <h3>Fire Safety Measures</h3>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
-              id="fireExtingusher">
-            <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
-              id="fireSensors">
-            <label class="form-check-label" for="fireSensors">Fire Sensors</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
-              id="Sprinklers">
-            <label class="form-check-label" for="Sprinklers">Sprinklers</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse" id="Firehouse">
-            <label class="form-check-label" for="Firehouse">Firehouse</label>
-          </div>
-
-          <h3>Floor Details</h3>
-          <label for="totalFloors">Total Floors</label>
-          <br>
-          <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="totalFloors"
-            name="totalFloors">
-          <br>
-          <br>
-          <label for="yourFloor">Your Floor</label>
-          <br>
-          <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="yourFloor"
-            name="yourFloor">
-          <br>
-          <br>
-          <label for="noOfStaircases">No Of Staircases</label>
-          <br>
-          <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="noOfStaircases"
-            name="noOfStaircases">
-
-
-          <h3>lifts</h3>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
-              value="true" id="liftisAvaliable">
-            <label class="form-check-label " for="liftisAvaliable">Lifts</label>
-          </div>
-          <br>
-          <br>
-          <div id="liftQuantity" class="d-none">
-            <label for="passengerLifts">Passenger Lifts</label>
-            <br>
-            <input type="text" placeholder="Enter number of passengerLifts" class="form-control w-50"
-              id="passengerLifts" name="passengerLifts">
-            <br>
-            <label for="serviceLifts">service Lifts</label>
-            <br>
-            <input type="text" placeholder="Enter number of serviceLifts" class="form-control w-50" id="serviceLifts"
-              name="serviceLifts">
-            <br>
-          </div>
-        </div>
-        <br>
-        <br>
-        <label>Transaction Type</label>
-        <br>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="transactionType" value="New Property"
-            id="transactionTypenew">
-          <label class="form-check-label" for="transactionTypenew">New Property</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="transactionType" value="Resale" id="transactionTypeReSale">
-          <label class="form-check-label" for="transactionTypeReSale">Resale</label>
-        </div>
-        <br>
-        <br>
-        <div id="newProperty">
-          <label>Possession Status </label>
-          <br>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
-              value="Sale" id="possessionStatusUnder">
-            <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
-              value="Rent/Lease" id="possessionStatusReady">
-            <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
-          </div>
-          <br>
-          <br>
-          <div id="construction">
-            <label>Available From</label>
-            <br>
-            <br>
-            <label for="month">Month</label>
-            <br>
-            <select class="form-control w-50" name="month" id="month">
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">november</option>
-              <option value="Devember">Devember</option>
-            </select>
-            <br>
-            <label for="year">Year</label>
-            <br>
-            <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year">
-          </div>
-          <div id="age">
-            <br>
-            <label for="ageOfConstruction">Age Of Construction</label>
-            <br>
-            <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction">
-              <option value="">select</option>
-              <option value="New Construction">New Construction</option>
-              <option value="Less than 5 years">Less than 5 years</option>
-              <option value="5 to 10 years">5 to 10 years</option>
-              <option value="10 to 15 years">10 to 15 years</option>
-              <option value="15 to 20 years">15 to 20 years</option>
-              <option value="Above 20 years">Above 20 years</option>
-            </select>
-          </div>
-          <br>
-          <br>
-          <label for="ownershipStatus">Ownership Status</label>
-          <br>
-          <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus">
-            <option value="Freehold">Freehold</option>
-            <option value="Leasehold">Leasehold</option>
-            <option value="Power Of Attorney">Power Of Attorney</option>
-            <option value="Co-operative Society">Co-operative Society</option>
+          <select class="form-control w-50" name="zoneType" id="zoneType">
+            <option value="">Select</option>
+            <option value="Industrial"> Industrial </option>
+            <option value="Residential"> Residential </option>
+            <option value="Transport and Communication"> Transport and Communication </option>
+            <option value="Public Utilities"> Public Utilities </option>
+            <option value="Public and Semi Public Use"> Public and Semi Public Use </option>
+            <option value="Open Spaces"> Open Spaces </option>
+            <option value="Agricultural Zone"> Agricultural Zone </option>
+            <option value="Special Economic Zone"> Special Economic Zone </option>
+            <option value="Natural Conservation Zone"> Natural Conservation Zone </option>
+            <option value="Government Use"> Government Use </option>
+            <option value="Other"> Other </option>
           </select>
           <br>
-          <label for="expectedPrice">Expected Price</label>
           <br>
-          <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-            name="expectedPrice" placeholder="Enter total price"><span>
-
+          <div id="Office" class="d-none">
+            <label for="minSeats">Minimum Seats</label>
+            <br>
+            <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats"
+              name="minSeats">
             <br>
             <br>
-            <label for="priceIncludes">Price Includes</label>
+            <label for="maxSeats">Maximum Seats</label>
             <br>
-            <select class="form-control w-50" name="priceIncludes" id="priceIncludes">
+            <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats"
+              name="maxSeats">
+            <br>
+            <br>
+            <label for="noOfCabins">Number Of Cabins</label>
+            <br>
+            <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
+              name="noOfCabins">
+            <br>
+            <br>
+            <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
+            <br>
+            <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
+              class="form-control w-50" id="noOfMeetingRooms" name="noOfMeetingRooms">
+            <br>
+            <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
+                value="true" id="conferenceRoom">
+              <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                for="conferenceRoom">Conference Room</label>
+            </div>
+            <br>
+            <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
+                value="true" id="receptionArea">
+              <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                for="receptionArea">Reception Area</label>
+            </div>
+            <br>
+            <br>
+            <label for="pantryTypes">Pantry Types</label>
+            <br>
+            <select class="form-control w-50" name="pantryTypes" id="pantryTypes">
               <option value="">Select</option>
-              <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
-              <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
-              <option value="Price Negotiable"> Price Negotiable </option>
+              <option value="Private"> Private </option>
+              <option value="Shared"> Shared </option>
+              <option value="Not Avaliable"> Not Avaliable </option>
             </select>
-            <h3>brokerage</h3>
+            <br>
+            <br>
+            <label for="pantrySize">Pantry Size</label>
+            <br>
+            <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize">
+          </div>
+
+          <div id="showroom" class="d-none">
+            <label for="balconies">Balconies</label>
+            <br>
+            <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
+              id="balconies" name="balconies">
+          </div>
+
+          <div id="Shop" class="d-none">
+            <label for="shopbalconies">Balconies</label>
+            <br>
+            <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
+              class="form-control w-50" id="shopbalconies" name="shopbalconies">
+          </div>
+
+          <h3>Area</h3>
+
+          <label for="carpetArea">Carpet Area</label>
+          <br>
+          <div class="input-group w-50">
+            <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
+              name="carpetArea"><span>
+              <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
+                id="furnishingStatus">
+                <option value="Sqft">Sqft</option>
+                <option value="Acre">Acre</option>
+                <option value="Sq-M">Sq-M</option>
+              </select>
+            </span>
+          </div>
+          <br>
+          <br>
+          <label for="superBuiltUpArea">Super BuiltUp Area</label>
+          <br>
+          <div class="input-group w-50">
+            <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+              name="superBuiltUpArea"><span>
+              <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+                id="superBuiltUpArea">
+                <option value="Sqft">Sqft</option>
+                <option value="Acre">Acre</option>
+                <option value="Sq-M">Sq-M</option>
+              </select>
+            </span>
+          </div>
+
+          <br>
+          <br>
+          <label for="builtUpArea">BuiltUp Area</label>
+          <br>
+          <div class="input-group w-50">
+            <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
+              name="builtUpArea"><span>
+              <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
+                class="form-control" id="builtUpArea">
+                <option value="Sqft">Sqft</option>
+                <option value="Acre">Acre</option>
+                <option value="Sq-M">Sq-M</option>
+              </select>
+            </span>
+          </div>
+          <br>
+          <div id="extras" class="">
+            <h3>Washrooms</h3>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="brokerageTypeFixed" onchange="fixed()"
-                name="brokerageType" value="Fixed">
-              <label class="form-check-label" for="brokerageTypeFixed">Fixed</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" id="brokerageTypePercentage" onchange="percent()"
-                name="brokerageType" value="Percentage">
-              <label class="form-check-label" for="brokerageTypePercentage">Percentage</label>
+              <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                value="true" id="WashroomisAvaliable">
+              <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
             </div>
             <br>
             <br>
-            <div id="percentage" class="d-none">
-              <label for="percentageBrokerage">Brokerage</label>
+            <div id="washroomQuantity" class="d-none">
+              <label for="quantity">quantity</label>
               <br>
-              <select class="form-control w-50" name="percentageBrokerage" id="percentageBrokerage">
-                <option value="No Brokerage">No Brokerage</option>
-                <option value="0.25%">0.25%</option>
-                <option value="0.5%">0.5%</option>
-                <option value="0.75%">0.75%</option>
-                <option value="1%">1%</option>
-                <option value="1.5%">1.5%</option>
-                <option value="2%">2%</option>
-                <option value="3%">3%</option>
-                <option value="4%">4%</option>
+              <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                class="form-control w-50" id="quantity" name="quantity">
+              <br>
+            </div>
+            <h3>facilities</h3>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
+              <label class="form-check-label" for="Furnished">Furnished</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                id="centralAirCondition">
+              <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
+              <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
+              <label class="form-check-label" for="UPS">UPS</label>
+            </div>
+            <h3>Fire Safety Measures</h3>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                id="fireExtingusher">
+              <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                id="fireSensors">
+              <label class="form-check-label" for="fireSensors">Fire Sensors</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                id="Sprinklers">
+              <label class="form-check-label" for="Sprinklers">Sprinklers</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                id="Firehouse">
+              <label class="form-check-label" for="Firehouse">Firehouse</label>
+            </div>
+
+            <h3>Floor Details</h3>
+            <label for="totalFloors">Total Floors</label>
+            <br>
+            <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="totalFloors"
+              name="totalFloors">
+            <br>
+            <br>
+            <label for="yourFloor">Your Floor</label>
+            <br>
+            <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="yourFloor"
+              name="yourFloor">
+            <br>
+            <br>
+            <label for="noOfStaircases">No Of Staircases</label>
+            <br>
+            <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="noOfStaircases"
+              name="noOfStaircases">
+
+
+            <h3>lifts</h3>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                value="true" id="liftisAvaliable">
+              <label class="form-check-label " for="liftisAvaliable">Lifts</label>
+            </div>
+            <br>
+            <br>
+            <div id="liftQuantity" class="d-none">
+              <label for="passengerLifts">Passenger Lifts</label>
+              <br>
+              <input type="text" placeholder="Enter number of passengerLifts" class="form-control w-50"
+                id="passengerLifts" name="passengerLifts">
+              <br>
+              <label for="serviceLifts">service Lifts</label>
+              <br>
+              <input type="text" placeholder="Enter number of serviceLifts" class="form-control w-50" id="serviceLifts"
+                name="serviceLifts">
+              <br>
+            </div>
+          </div>
+          <br>
+          <br>
+          <label>Transaction Type</label>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="transactionType" value="New Property"
+              id="transactionTypenew">
+            <label class="form-check-label" for="transactionTypenew">New Property</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="transactionType" value="Resale"
+              id="transactionTypeReSale">
+            <label class="form-check-label" for="transactionTypeReSale">Resale</label>
+          </div>
+          <br>
+          <br>
+          <div id="newProperty">
+            <label>Possession Status </label>
+            <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
+                value="Sale" id="possessionStatusUnder">
+              <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
+                value="Rent/Lease" id="possessionStatusReady">
+              <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+            </div>
+            <br>
+            <br>
+            <div id="construction">
+              <label>Available From</label>
+              <br>
+              <br>
+              <label for="month">Month</label>
+              <br>
+              <select class="form-control w-50" name="month" id="month">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">november</option>
+                <option value="Devember">Devember</option>
+              </select>
+              <br>
+              <label for="year">Year</label>
+              <br>
+              <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year">
+            </div>
+            <div id="age">
+              <br>
+              <label for="ageOfConstruction">Age Of Construction</label>
+              <br>
+              <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction">
+                <option value="">select</option>
+                <option value="New Construction">New Construction</option>
+                <option value="Less than 5 years">Less than 5 years</option>
+                <option value="5 to 10 years">5 to 10 years</option>
+                <option value="10 to 15 years">10 to 15 years</option>
+                <option value="15 to 20 years">15 to 20 years</option>
+                <option value="Above 20 years">Above 20 years</option>
               </select>
             </div>
-            <div id="fixed" class="d-none">
-              <label for="fixedBrokerage">Fixed Brokerage</label>
+            <br>
+            <br>
+            <label for="ownershipStatus">Ownership Status</label>
+            <br>
+            <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus">
+              <option value="Freehold">Freehold</option>
+              <option value="Leasehold">Leasehold</option>
+              <option value="Power Of Attorney">Power Of Attorney</option>
+              <option value="Co-operative Society">Co-operative Society</option>
+            </select>
+            <br>
+            <label for="expectedPrice">Expected Price</label>
+            <br>
+            <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+              name="expectedPrice" placeholder="Enter total price"><span>
+
               <br>
-              <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-                name="fixedBrokerage" placeholder="Enter Fixed Brokerage"><span>
+              <br>
+              <label for="priceIncludes">Price Includes</label>
+              <br>
+              <select class="form-control w-50" name="priceIncludes" id="priceIncludes">
+                <option value="">Select</option>
+                <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
+                <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
+                <option value="Price Negotiable"> Price Negotiable </option>
+              </select>
+              <h3>brokerage</h3>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="brokerageTypeFixed" onchange="fixed()"
+                  name="brokerageType" value="Fixed">
+                <label class="form-check-label" for="brokerageTypeFixed">Fixed</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="brokerageTypePercentage" onchange="percent()"
+                  name="brokerageType" value="Percentage">
+                <label class="form-check-label" for="brokerageTypePercentage">Percentage</label>
+              </div>
+              <br>
+              <br>
+              <div id="percentage" class="d-none">
+                <label for="percentageBrokerage">Brokerage</label>
+                <br>
+                <select class="form-control w-50" name="percentageBrokerage" id="percentageBrokerage">
+                  <option value="No Brokerage">No Brokerage</option>
+                  <option value="0.25%">0.25%</option>
+                  <option value="0.5%">0.5%</option>
+                  <option value="0.75%">0.75%</option>
+                  <option value="1%">1%</option>
+                  <option value="1.5%">1.5%</option>
+                  <option value="2%">2%</option>
+                  <option value="3%">3%</option>
+                  <option value="4%">4%</option>
+                </select>
+              </div>
+              <div id="fixed" class="d-none">
+                <label for="fixedBrokerage">Fixed Brokerage</label>
+                <br>
+                <input type="text" id="expectedPrice"
+                  class="form-control border-top-0 border-left-0 border-right-0 w-50" name="fixedBrokerage"
+                  placeholder="Enter Fixed Brokerage"><span>
+              </div>
+              <br>
+              <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified">
+                <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                  for="NOCCertified">NOC Certified</label>
+              </div>
+              <br>
+              <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
+                  id="OccupanceCertified">
+                <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                  for="OccupanceCertified">Occupance Certified</label>
+              </div>
+              <br>
+              <br>
+              <label for="description">Description</label>
+              <br>
+              <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
+              <br>
+              <div class="d-flex w-100 justify-content-around">
+                <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
+                <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
+              </div>
+          </div>
+        </div>
+        <div id="2" class="d-none">
+          <h1>Photos</h1>
+          <h3>Cover</h3>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' onchange="loadFile(event,'PreviewImg')" type='file'
+                accept=' .jpeg,.png,.jpg' name="CoverImages" id='images' required>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
             </div>
-            <br>
-            <br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified">
-              <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
-                for="NOCCertified">NOC Certified</label>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('PreviewImg')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="PreviewImg" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
             </div>
-            <br>
-            <br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-                id="OccupanceCertified">
-              <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
-                for="OccupanceCertified">Occupance Certified</label>
+          </div>
+
+
+          <div id="commercialShop" class="d-none">
+            <h3>Commercial Shop</h3>
+            <div id="commercialShopfeatures">
+              <h5>Balconies</h5>
+              <div id="shopbalconyPics">
+
+              </div>
             </div>
-            <br>
-            <br>
-            <label for="description">Description</label>
-            <br>
-            <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
-            <br>
-            <div class="d-flex w-100 justify-content-center">
-              <button class="btn btn-outline-danger" type="submit">Submit</button>
+
+          </div>
+          <div id="CommercialOfficeSpace" class="d-none">
+            <h3>Commercial Office Space</h3>
+            <div id="CommercialOfficeSpacefeatures">
+              <h5>Meeting Rooms</h5>
+              <div id="meetingRoomsDiv">
+
+              </div>
             </div>
+          </div>
+          <div id="CommercialShowroom" class="d-none">
+            <h3>Commercial Showroom</h3>
+            <div id="CommercialShowroomfeatures">
+              <h5>Balconies</h5>
+              <div id="balconyPics">
+
+              </div>
+            </div>
+          </div>
+
+          <h3>Washrooms</h3>
+          <div id="washroomPics">
+
+          </div>
+
+          <h3>Others</h3>
+          <div class='mb-3'>
+            <div class='custom-file'>
+              <input class='custom-file-input' type='file' onchange="loadFile(event,'otherPreview')"
+                accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
+              <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
+                file</label>
+            </div>
+            <div class="d-flex w-100 justify-content-end mt-2">
+              <div>
+                <button class="bg-transparent border-0" type="button" onclick="Preview('otherPreview')"
+                  uk-toggle="target: #modal-close-outside">
+                  <img id="otherPreview" class="p-2" src="" alt="" width="100px">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="modal-close-outside" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+              <button class="uk-modal-close-outside" type="button" uk-close></button>
+              <img id="comPreviewImgModal" class="" src="" alt="" width="100%">
+            </div>
+          </div>
+
+          <div class="d-flex w-100 justify-content-around">
+            <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
+            <button class="btn btn-outline-danger" type="submit">Submit</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
   <script>
+
+    var page = 1;
+
+    function Preview(id) {
+      var Modal = document.getElementById("comPreviewImgModal");
+      var img = document.getElementById(id);
+      Modal.src = img.src
+    }
+
+    function ImgTag(event, id) {
+      var Img = document.getElementById(id)
+      //var Modal = document.getElementById("PreviewImgModal")
+      Img.src = URL.createObjectURL(event.target.files[0]);
+      // Modal.src = Img.src
+    }
+
+    var loadFile = function (event, id) {
+      ImgTag(event, id);
+    };
+
     function select() {
       var inp = document.getElementById("PropertyType").value;
       console.log(inp)
@@ -443,32 +565,92 @@
         if (!document.getElementById("showroom").classList.contains("d-none")) {
           document.getElementById("showroom").classList.add("d-none")
         }
+        if (!document.getElementById("Shop").classList.contains("d-none")) {
+          document.getElementById("Shop").classList.add("d-none")
+        }
         if (document.getElementById("extras").classList.contains("d-none")) {
           document.getElementById("extras").classList.remove("d-none")
+        }
+        if (document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+          document.getElementById("CommercialOfficeSpace").classList.remove("d-none")
+        }
+        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+          document.getElementById("CommercialShowroom").classList.add("d-none")
+        }
+        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+          document.getElementById("commercialShop").classList.add("d-none")
         }
         document.getElementById("Office").classList.remove("d-none")
       }
-      if (inp == "Commercial Showroom" || inp == "Commercial Shop") {
+
+      if (inp == "Commercial Showroom") {
         if (!document.getElementById("Office").classList.contains("d-none")) {
           document.getElementById("Office").classList.add("d-none")
+        }
+        if (!document.getElementById("Shop").classList.contains("d-none")) {
+          document.getElementById("Shop").classList.add("d-none")
         }
         if (document.getElementById("extras").classList.contains("d-none")) {
           document.getElementById("extras").classList.remove("d-none")
         }
+        if (document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+          document.getElementById("CommercialShowroom").classList.remove("d-none")
+        }
+        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+          document.getElementById("commercialShop").classList.add("d-none")
+        }
+        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
+        }
         document.getElementById("showroom").classList.remove("d-none")
       }
+
+      if (inp == "Commercial Shop") {
+        if (!document.getElementById("Office").classList.contains("d-none")) {
+          document.getElementById("Office").classList.add("d-none")
+        }
+        if (!document.getElementById("showroom").classList.contains("d-none")) {
+          document.getElementById("showroom").classList.add("d-none")
+        }
+        if (document.getElementById("extras").classList.contains("d-none")) {
+          document.getElementById("extras").classList.remove("d-none")
+        }
+        if (document.getElementById("commercialShop").classList.contains("d-none")) {
+          document.getElementById("commercialShop").classList.remove("d-none")
+        }
+        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+          document.getElementById("CommercialShowroom").classList.add("d-none")
+        }
+        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
+        }
+        document.getElementById("Shop").classList.remove("d-none")
+      }
+
       if (inp == "Warehouse/Godows" || inp == "Industrial Shed") {
         if (!document.getElementById("extras").classList.contains("d-none")) {
           document.getElementById("extras").classList.add("d-none")
         }
+        if (!document.getElementById("Office").classList.contains("d-none")) {
+          document.getElementById("Office").classList.add("d-none")
+        }
+        if (!document.getElementById("showroom").classList.contains("d-none")) {
+          document.getElementById("showroom").classList.add("d-none")
+        }
+        if (!document.getElementById("Shop").classList.contains("d-none")) {
+          document.getElementById("Shop").classList.add("d-none")
+        }
       }
     }
+
     function washroomAvailible() {
       if (document.getElementById("WashroomisAvaliable").checked == true && document.getElementById("washroomQuantity").classList.contains("d-none")) {
         document.getElementById("washroomQuantity").classList.remove("d-none")
       }
       else {
         document.getElementById("washroomQuantity").classList.add("d-none")
+        document.getElementById("quantity").value = null;
+        document.getElementById("washroomPics").innerHTML = null;
       }
     }
     function liftAvailible() {
@@ -499,5 +681,151 @@
         document.getElementById("fixed").classList.add("d-none")
       }
     }
+    function switchUp() {
+      document.getElementById(page.toString()).classList.add("d-none");
+      page = page + 1;
+      document.getElementById(page.toString()).classList.remove("d-none");
+      // if (page == 3 && pageReached == false) {
+      //     document.getElementById("bedroomPics").innerHTML = null;
+      //     document.getElementById("bathroomPics").innerHTML = null;
+      //     document.getElementById("balconyPics").innerHTML = null;
+      //     document.getElementById("additionalRooms").innerHTML = null;
+      //     Photos()
+      //     pageReached = true;
+      // }
+      window.location = "#navBody"
+    }
+    function Previous() {
+      // if(page == 3){
+      //   pageReached = false;
+      // }
+      document.getElementById(page.toString()).classList.add("d-none")
+      page = page - 1;
+      document.getElementById(page.toString()).classList.remove("d-none")
+      window.location = "#navBody"
+
+    }
+
+    function img(parentDivId, callVal, rooms) {
+      var parentDiv = document.getElementById(parentDivId),
+        parent = document.createElement("div"),
+        inpDiv = document.createElement("div"),
+        inp = document.createElement("input"),
+        label = document.createElement("label"),
+        h5 = document.createElement("h5"),
+        previewDiv = document.createElement("div"),
+        childPreviewDiv = document.createElement("div"),
+        previewButton = document.createElement("button"),
+        previewImage = document.createElement("img");
+
+      parent.className = "mb-2";
+      inpDiv.className = "custom-file";
+      inp.className = "custom-file-input";
+      inp.type = "file"
+      inp.accept = ".jpeg,.png,.jpg"
+      inp.name = parentDivId;
+      label.for = "inputGroupFile02"
+      label.innerHTML = "Choose file"
+      label.className = "custom-file-label"
+      inp.required = true;
+      previewDiv.className = "d-flex w-100 justify-content-end mt-2"
+      previewButton.className = "bg-transparent border-0"
+      previewButton.type = "button"
+      previewButton.setAttribute("uk-toggle", "target: #modal-close-outside")
+      previewImage.className = "p-2"
+      previewImage.style.width = "100px"
+      previewImage.setAttribute("id", parentDivId + callVal + "Preview")
+
+      previewButton.onclick = () => {
+        Preview(parentDivId + callVal + "Preview")
+      }
+
+      inp.onchange = () => {
+        loadFile(event, parentDivId + callVal + "Preview")
+      }
+
+      inpDiv.appendChild(inp);
+      inpDiv.appendChild(label);
+      previewDiv.appendChild(childPreviewDiv);
+      childPreviewDiv.appendChild(previewButton);
+      previewButton.appendChild(previewImage);
+      parent.appendChild(inpDiv);
+      parent.appendChild(previewDiv)
+      parentDiv.appendChild(parent)
+
+      if (parentDivId == "CommercialOfficeSpacefeatures") {
+        var roomId = rooms.split(" ").join("");
+        h5.innerHTML = rooms;
+        inp.name = rooms;
+        inpDiv.appendChild(inp);
+        inpDiv.appendChild(label);
+        previewDiv.appendChild(childPreviewDiv);
+        childPreviewDiv.appendChild(previewButton);
+        previewButton.appendChild(previewImage);
+        parent.setAttribute("id",roomId);
+        parent.appendChild(inpDiv);
+        parent.appendChild(previewDiv);
+        parentDiv.appendChild(h5);
+        parentDiv.appendChild(parent);
+
+      }
+    }
+
+    function balcony() {
+      document.getElementById("balconyPics").innerHTML = null;
+      for (var i = 0; i < document.getElementById("balconies").value; i++) {
+        img("balconyPics", i);
+      }
+    }
+    function shopbalcony() {
+      document.getElementById("shopbalconyPics").innerHTML = null;
+      for (var i = 0; i < document.getElementById("shopbalconies").value; i++) {
+        img("shopbalconyPics", i);
+      }
+    }
+    function washroomQuantity() {
+      document.getElementById("washroomPics").innerHTML = null;
+      for (var i = 0; i < document.getElementById("quantity").value; i++) {
+        img("washroomPics", i);
+      }
+    }
+
+    function meetingRooms() {
+      document.getElementById("meetingRoomsDiv").innerHTML = null;
+      for (var i = 1; i <= document.getElementById("noOfMeetingRooms").value; i++) {
+        img("meetingRoomsDiv", i, "Meeting Room");
+      }
+    }
+
+    function conferenceRooms(check) {
+      if (check.checked) {
+        img("CommercialOfficeSpacefeatures", 0, "Conference Room");
+      }
+      if (!check.checked) {
+        document.getElementById("CommercialOfficeSpacefeatures").childNodes.forEach(ele => {
+          if (ele.innerText == "Conference Room") {
+            // console.log(ele.)
+            document.getElementById("CommercialOfficeSpacefeatures").removeChild(ele)
+            document.getElementById("ConferenceRoom").innerHTML = null;
+          }
+        })
+      }
+    }
+
+    function receptionAreas(check) {
+      if (check.checked) {
+        img("CommercialOfficeSpacefeatures", 1, "Reception Area");
+      }
+      if (!check.checked) {
+        document.getElementById("CommercialOfficeSpacefeatures").childNodes.forEach(ele => {
+          if (ele.innerText == "Reception Area") {
+            // console.log(ele.)
+            document.getElementById("CommercialOfficeSpacefeatures").removeChild(ele)
+            document.getElementById("ReceptionArea").innerHTML = null;
+          }
+        })
+      }
+    }
+
   </script>
   <%- include('./layouts/Footer') -%>
