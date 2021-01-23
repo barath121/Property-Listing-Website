@@ -205,7 +205,7 @@
             <br>
             <br>
             <div id="washroomQuantity" class="d-none">
-              <label for="quantity">quantity</label>
+              <label for="quantity">Quantity</label>
               <br>
               <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
                 class="form-control w-50" id="quantity" name="quantity">
@@ -254,23 +254,21 @@
             <h3>Floor Details</h3>
             <label for="totalFloors">Total Floors</label>
             <br>
-            <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="totalFloors"
+            <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors" class="form-control w-50" id="totalFloors"
               name="totalFloors">
             <br>
             <br>
             <label for="yourFloor">Your Floor</label>
             <br>
-            <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="yourFloor"
+            <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50" id="yourFloor"
               name="yourFloor">
             <br>
             <br>
             <label for="noOfStaircases">No Of Staircases</label>
             <br>
-            <input type="text" placeholder="Enter total number of Floors" class="form-control w-50" id="noOfStaircases"
+            <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50" id="noOfStaircases"
               name="noOfStaircases">
-
-
-            <h3>lifts</h3>
+            <h3>Lifts</h3>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
                 value="true" id="liftisAvaliable">
@@ -281,12 +279,12 @@
             <div id="liftQuantity" class="d-none">
               <label for="passengerLifts">Passenger Lifts</label>
               <br>
-              <input type="text" placeholder="Enter number of passengerLifts" class="form-control w-50"
+              <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
                 id="passengerLifts" name="passengerLifts">
               <br>
-              <label for="serviceLifts">service Lifts</label>
+              <label for="serviceLifts">Service Lifts</label>
               <br>
-              <input type="text" placeholder="Enter number of serviceLifts" class="form-control w-50" id="serviceLifts"
+              <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
                 name="serviceLifts">
               <br>
             </div>
@@ -387,7 +385,7 @@
                 <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
                 <option value="Price Negotiable"> Price Negotiable </option>
               </select>
-              <h3>brokerage</h3>
+              <h3>Brokerage</h3>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="brokerageTypeFixed" onchange="fixed()"
                   name="brokerageType" value="Fixed">
@@ -826,6 +824,22 @@
         })
       }
     }
+    function totalFloor() {
+      var floorNo = document.getElementById("yourFloor").value;
+      if (+floorNo > +document.getElementById("totalFloors").value) {
+        document.getElementById("totalFloors").value = ""
+        document.getElementById("totalFloors").setAttribute("placeholder", "should be more than floor number");
+      }
 
+    }
+    function FloorNo() {
+      var floorNo = document.getElementById("yourFloor").value;
+      if (document.getElementById("totalFloors").value != "") {
+        if (+floorNo > +document.getElementById("totalFloors").value) {
+          document.getElementById("totalFloors").value = ""
+          document.getElementById("totalFloors").setAttribute("placeholder", "should be more than floor number");
+        }
+      }
+    }
   </script>
   <%- include('./layouts/Footer') -%>
