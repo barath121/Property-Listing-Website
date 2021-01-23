@@ -123,7 +123,7 @@
           <br>
           <label for="flatsOnFloor">Flats On Floor</label>
           <br>
-          <input type="text" class="form-control w-50" pattern="^[0-9]*$" title="Please enter a valid number"
+          <input type="text" class="form-control w-50" placeholder="Enter The Number of Flats on the floor" pattern="^[0-9]*$" title="Please enter a valid number"
             id="flatsOnFloor" name="flatsOnFloor" required>
           <br>
           <br>
@@ -495,27 +495,27 @@
           <label>Additonal Rooms</label>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="additonalRooms" value="Puja Room"
+            <input class="form-check-input" type="checkbox" onchange="addRoom(this)" name="additonalRooms" value="Puja Room"
               id="additonalRoomsPuja">
             <label class="form-check-label" for="additonalRoomsPuja">Puja Room</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="additonalRooms" value="Study Room"
+            <input class="form-check-input" type="checkbox" onchange="addRoom(this)"  name="additonalRooms" value="Study Room"
               id="additonalRoomsStudy">
             <label class="form-check-label" for="additonalRoomsStudy">Study Room</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsStore" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsStore" name="additonalRooms"
               value="Store Room">
             <label class="form-check-label" for="additonalRoomsStore">Store Room</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsServant" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsServant" name="additonalRooms"
               value="Servant Room">
             <label class="form-check-label" for="additonalRoomsServant">Servant Room</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="additonalRoomsNone" name="additonalRooms"
+            <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsNone" name="additonalRooms"
               value="None of these">
             <label class="form-check-label" for="additonalRoomsNone">None of these</label>
 
@@ -1261,15 +1261,38 @@
     function balconies() {
       console.log("*")
       document.getElementById("balconyPics").innerHTML = null;
-      for (var i = 0; i <  document.getElementById("Balconies").value; i++) {
+      for (var i = 0; i < document.getElementById("Balconies").value; i++) {
         img("balconyPics", i);
       }
     }
 
     function bathrooms() {
       document.getElementById("bathroomPics").innerHTML = null;
-      for (var i = 0; i <  document.getElementById("bathroom").value; i++) {
+      for (var i = 0; i < document.getElementById("bathroom").value; i++) {
         img("bathroomPics", i);
+      }
+    }
+    var indexID = 0;
+    // document.getElementsByName("additonalRooms").forEach(ele => {
+    //   ele.addEventListener("change", function () {
+    //     document.getElementById("additionalRooms").innerHTML == null;
+    //     if (ele.checked) {
+    //       img("additionalRooms", ++indexID, ele.value);
+    //     }
+    //   });
+    // })
+    function addRoom(room){
+      if(room.checked){
+        img("additionalRooms", ++indexID , room.value);
+      }
+      if(!room.checked){
+        document.getElementById("additionalRooms").childNodes.forEach(ele =>{
+          if(ele.innerText == room.value){
+            // console.log(ele.)
+            document.getElementById("additionalRooms").removeChild(ele)
+            document.getElementById(room.value.split(" ").join("")).innerHTML = null;
+          }
+        })
       }
     }
 
@@ -1346,6 +1369,7 @@
       parentDiv.appendChild(parent)
 
       if (parentDivId == "additionalRooms") {
+        var roomId = rooms.split(" ").join("");
         h5.innerHTML = rooms;
         inp.name = rooms;
         inpDiv.appendChild(inp);
@@ -1353,11 +1377,11 @@
         previewDiv.appendChild(childPreviewDiv);
         childPreviewDiv.appendChild(previewButton);
         previewButton.appendChild(previewImage);
+        parent.setAttribute("id",roomId);
         parent.appendChild(inpDiv);
         parent.appendChild(previewDiv);
         parentDiv.appendChild(h5);
         parentDiv.appendChild(parent);
-
       }
 
     }

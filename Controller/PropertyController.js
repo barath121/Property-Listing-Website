@@ -178,8 +178,8 @@ module.exports.ViewProperty = (req, res,next) => {
         let similarproperties = [];
         let localityproperties = [];
         try 
-        {let similarproperties = await Property.find({$or : [{propertyType : property.propertyType},{propertyFor : property.propertyFor},{"propertyFeatures.bedrooms" :property.propertyFeatures.bedrooms }]});
-        let localityproperties = await Property.find({locality : property.locality});
+        {let similarproperties = await Property.find({$or : [{propertyType : property.propertyType},{propertyFor : property.propertyFor},{"propertyFeatures.bedrooms" :property.propertyFeatures.bedrooms }]}).limit(10);
+        let localityproperties = await Property.find({locality : property.locality}).limit(10);
         }
         catch{err=>{
           next(err);
@@ -199,9 +199,7 @@ module.exports.ViewProperty = (req, res,next) => {
         res.render("property-detail", { property: property,issaved : saved,similar : similarproperties,nearby : localityproperties });
       }
       else{
-        console.log(1);
-        res.flash("Property Not Found");
-        res.redirect("/");
+        res.redirect("/404");
       }
       })
       .catch((err) => {
