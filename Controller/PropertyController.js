@@ -195,6 +195,7 @@ module.exports.ViewProperty = (req, res,next) => {
         let issaved = false;
         if(saved){
           issaved = true;
+          console.log(saved);
         }
         res.render("property-detail", { property: property,issaved : saved,similar : similarproperties,nearby : localityproperties });
       }
