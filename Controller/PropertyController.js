@@ -237,12 +237,23 @@ module.exports.HomePage = async (req, res) => {
       ;
     property.area = element.propertyFeatures.carpetArea;
     property.furnishing = element.propertyFeatures.furnishingStatus;
-    property.status =
-      element.priceDetails.possessionStatus ||
-      "Possession by " +
-        element.priceDetails.avaliableFrom.month +
-        " " +
-        element.priceDetails.avaliableFrom.year;
+    if(element.priceDetails.possessionStatus =="Under Construction" &&element.propertyFor=="Sale"){
+      property.status =
+        element.priceDetails.possessionStatus 
+        "Possession by " +
+          element.priceDetails.avaliableFrom.month +
+          " " +
+          element.priceDetails.avaliableFrom.year;
+      }
+       else if(element.propertyFor=="Sale"){
+        property.status =
+        element.priceDetails.possessionStatus +", "+
+        element.priceDetails.ageOfConstruction 
+  
+       }
+       else{
+         property.status = "Ready to Move"
+       }
     property.price =
       element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
     property.bedroom = element.propertyFeatures.bedrooms + " Bed";
@@ -330,12 +341,23 @@ module.exports.Search = async (req, res) => {
       ;
     property.area = element.propertyFeatures.carpetArea;
     property.furnishing = element.propertyFeatures.furnishingStatus;
+    if(element.priceDetails.possessionStatus =="Under Construction" &&element.propertyFor=="Sale"){
     property.status =
       element.priceDetails.possessionStatus 
       "Possession by " +
         element.priceDetails.avaliableFrom.month +
         " " +
         element.priceDetails.avaliableFrom.year;
+    }
+     else if(element.propertyFor=="Sale"){
+      property.status =
+      element.priceDetails.possessionStatus +", "+
+      element.priceDetails.ageOfConstruction 
+
+     }
+     else{
+      property.status = "Ready to Move"
+    }
     property.price =
       element.priceDetails.expectedPrice;    
       element.priceDetails.expectedRent;
