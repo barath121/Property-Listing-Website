@@ -198,7 +198,6 @@ module.exports.ViewProperty = (req, res,next) => {
         let issaved = false;
         if(saved){
           issaved = true;
-          console.log(saved);
         }
         console.log(saved)
         console.log(issaved);
