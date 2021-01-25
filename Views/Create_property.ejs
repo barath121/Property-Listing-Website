@@ -3,11 +3,13 @@
     <div class="progress-bar progress-bar-striped  bg-danger font-weight-bold" role="progressbar" id="progress"
       style="width: 33%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">step 1</div>
   </div> -->
+  <div class="customLoader d-none" id="loader" >
+    <span uk-spinner="ratio: 4.5"></span>
+  </div>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="/property/createproperty" enctype="multipart/form-data" method="POST">
+      <form action="/property/createproperty"  enctype="multipart/form-data" method="POST">
         <div id="1" class="">
-
           <h1 class="font-weight-bold">Property Details</h1>
           <br>
           <br>
@@ -50,7 +52,7 @@
           <h3>Property Features</h3>
           <label for="name">Name</label>
           <br>
-          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name"
+          <input type="text" placeholder="Enter name of property"  class="form-control w-50" id="name" name="name"
             required>
           <br>
           <br>
@@ -1021,7 +1023,7 @@
 
           <div class="d-flex w-100 justify-content-around">
             <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
-            <button class="btn btn-outline-danger" type="submit">Submit</button>
+            <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
           </div>
         </div>
       </form>
@@ -1385,6 +1387,14 @@
       }
 
     }
-
+   function Loader(){
+     if(document.getElementById("loader").classList.contains("d-none")){
+       document.getElementById("loader").classList.remove("d-none")
+       document.getElementById("loader").classList.add("d-flex")
+     }else{
+      document.getElementById("loader").classList.remove("d-flex")
+      document.getElementById("loader").classList.add("d-none")
+     }
+   }
   </script>
   <%- include('./layouts/Footer') -%>
