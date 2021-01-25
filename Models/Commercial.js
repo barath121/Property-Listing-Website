@@ -183,20 +183,15 @@ receptionArea : {
         type :[String],
         enum : ['Tax and Govt Charges','DG and UPS Price Included','Price Negotiable']
     },
-    brokerage : {
-        brokerageType :{
-            type : String,
-            enum : ['Fixed','Percentage']
-        },
-        percentageBrokerage : {
+    saleBrokerage : {
         type : String,
         enum : ['No Brokerage','0.25%','0.5%','0.75%','1%','1.5%','2%','3%','4%'],
-        required :  function(){return this.brokerage.brokerageType=='Percentage'}
-        },
-        fixedBrokerage : {
-            type : String,
-            required :  function(){return this.brokerage.brokerageType=='Fixed'}
-        }
+        required :  function(){return this.propertyFor=='Sale'}
+    },
+    rentBrokerage : {
+        type : String,
+        enum : ['No Brokerage','30 Days','45 Days','60 Days'],
+        required : function(){return this.propertyFor=='Rent'}
     },
     NOCCertified : {
         type : Boolean,

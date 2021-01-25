@@ -366,9 +366,10 @@ module.exports.Search = async (req, res) => {
     properties.push(property);
   });
   }
+  console.log(properties)
   res.render("Search_page",{properties : properties});
 };
-module.exports.CommercialProperty = async(req, res) => {
+module.exports.CommercialProperty = async(req, res, next) => {
   console.log(req.body)
   let commercial = {};
   commercial.name = req.body.name;
@@ -427,22 +428,22 @@ module.exports.CommercialProperty = async(req, res) => {
     else
     commercial.brokerage.fixedBrokerage = req.body.fixedBrokerage;
     if (commercial.propertyFor == "Sale") {
-      commercial.priceDetails.expectedPrice = req.body.expectedPrice;
+      commercial.expectedPrice = req.body.expectedPrice;
       //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
-      commercial.priceDetails.transactionType = req.body.transactionType;
+      commercial.transactionType = req.body.transactionType;
     }
     // if (commercial.propertyFor == "Rent/Lease") {
     //   commercial.priceDetails.expectedRent = req.body.expectedRent;
     //   commercial.priceDetails.securityDeposit = req.body.securityDeposit;
     // }
     if (commercial.propertyFor == "Sale") {
-      commercial.priceDetails.possessionStatus = req.body.possessionStatus;
-      if (commercial.priceDetails.possessionStatus == "Under Construction") {
-        commercial.priceDetails.avaliableFrom = {};
-        commercial.priceDetails.avaliableFrom.month = req.body.month;
-        commercial.priceDetails.avaliableFrom.year = req.body.year;
-      } else if (commercial.priceDetails.possessionStatus == "Ready to Move") {
-        commercial.priceDetails.ageOfConstruction = req.body.ageOfConstruction;
+      commercial.possessionStatus = req.body.possessionStatus;
+      if (commercial.possessionStatus == "Under Construction") {
+        commercial.avaliableFrom = {};
+        commercial.avaliableFrom.month = req.body.month;
+        commercial.avaliableFrom.year = req.body.year;
+      } else if (commercial.possessionStatus == "Ready to Move") {
+        commercial.ageOfConstruction = req.body.ageOfConstruction;
       }
     }
     commercial.NOCCertified  = req.body.NOCCertified;
