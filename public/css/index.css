@@ -53,3 +53,25 @@ body {
 .ubuntu {
     font-family: 'Ubuntu', sans-serif; 
 }
+
+.customLoader i {
+    -webkit-animation: spin 1s linear infinite;
+    -moz-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+  }
+
+  .customLoader {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.39);
+    color: #fff;
+    display: flex;
+    font-size: 5rem;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+    z-index: 10000;
+  }
