@@ -55,9 +55,16 @@
                 <a class="nav-link text-light text-center" href="/search">Search</a>
               </li>
               <% if (req.user) { %>
+                <% if (req.user.isAdmin) { %>
                 <li class="nav-item">
-                  <a class="nav-link text-light text-center d-md-none d-block" href="/contact">Dashboard</a>
+                  <a class="nav-link text-light text-center d-md-none d-block" href="/admin/admindashboard">Dashboard</a>
                 </li>
+                <%}%>
+                <% if (!req.user.isAdmin) { %>
+                  <li class="nav-item">
+                    <a class="nav-link text-light text-center d-md-none d-block" href="/dashboard">Dashboard</a>
+                  </li>
+                  <% }%>
                 <li class="nav-item">
                   <a class="nav-link text-light text-center btn btn-danger text-white rounded-pill d-md-none d-block" href="/user/logout">Logout</a>
                 </li>
@@ -75,7 +82,12 @@
                 <div class="text-white text-capitalize hammersmithOne h5 mb-0 text-center d-md-block d-none" type="button"><%= req.user.name %> <span uk-icon="triangle-down"></span></div>
                 <div uk-dropdown="mode: click; pos: bottom-justify; offset: 20">
                   <ul class="uk-nav uk-dropdown-nav">
-                    <li><a class="text-center text-dark" href="/dashboard">Dashboard</a></li>
+                    <%if(req.user.isAdmin){%>
+                    <li><a class="text-center text-dark" href="/admin/admindashboard">Dashboard</a></li>
+                    <%}%>
+                    <%if(!req.user.isAdmin){%>
+                      <li><a class="text-center text-dark" href="/dashboard">Dashboard</a></li>
+                      <%}%>
                     <li class="uk-nav-divider"></li>
                     <li><a class="btn btn-danger rounded-pill text-white" href="/user/logout">Logout</a></li>
                   </ul>

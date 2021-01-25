@@ -68,16 +68,16 @@ module.exports.AddEnquiry = (req,res,next) =>{
 module.exports.AddSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
-  saved.propertyID = req.body.propertyid;
-  let propertytype  = req.body.propertytype;
+  saved.propertyID = req.query.propertyid;
+  let propertytype  = req.query.propertytype;
   Saved.create(saved) 
   .catch(err=>{
     next(err);
   })
   .then(result=>{
     if(result){
-      res.flash("success","Property Has Been Saved");
-      res.redirect('/type='+propertytype+'&id='+saved.propertyID);
+      req.flash("success","Property Has Been Saved");
+      res.redirect('/property?type='+propertytype+'&id='+saved.propertyID);
       console.log(saved);
     }
   })
@@ -85,8 +85,8 @@ module.exports.AddSaved = (req,res,next) =>{
 module.exports.RemoveSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
-  saved.propertyID = req.body.propertyid;
-  let propertytype  = req.body.propertytype;
+  saved.propertyID = req.query.propertyid;
+  let propertytype  = req.query.propertytype;
   Saved.findOneAndRemove({$and : [
     {customerID : saved.customerID},
     {propertyID : saved.propertyID}
@@ -96,17 +96,24 @@ module.exports.RemoveSaved = (req,res,next) =>{
   })
   .then(result=>{
     if(result){
-      res.flash("success","Property Has Been Removed");
-      res.redirect('/type='+propertytype+'&id='+saved.propertyID);
+      req.flash("success","Property Has Been Removed");
+      res.redirect('/property?type='+propertytype+'&id='+saved.propertyID);
     }
   })
 }
 module.exports.userdashboard = (req,res,next) =>{
-  Saved.find({ customerID : req.user._id})
+//  Saved.find({customerID:req.user._id}).populate('propertyID')
+Saved.aggregate(
+  {$match : {customerID : req.user._id}},
+  {$lookup : {from: 'Property', localField: 'propertyID', foreignField: '_id', as: 'property'},
+
+  }
+  )
   .catch(err=>{
     next(err);
   })
   .then(result=>{
+    console.log(result);
     res.render('userDashboard',{
       savedProperties : result
     })
