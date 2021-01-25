@@ -7,7 +7,7 @@ default : true
 },
 Type : {
     type  : String,
-    default : "Commercial"
+    default : "commercial"
 },
 name :{
     type : String,
@@ -67,6 +67,14 @@ officeSetup : {
         required : function(){return this.propertyType=='Commercial Office Space'}
     }
 },
+conferenceRoom : {
+    type : Boolean,
+    required : function(){return this.propertyType=='Commercial Office Space'}
+},
+receptionArea : {
+    type : Boolean,
+    required : function(){return this.propertyType=='Commercial Office Space'}
+},
     washrooms : {
         isAvaliable :{
             type : Boolean,
@@ -81,14 +89,6 @@ officeSetup : {
     balconies : {
         type : String,
         required : function(){return this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'}
-    },
-    conferenceRoom : {
-        type : Boolean,
-        required : function(){return this.propertyType=='Commercial Office Space'}
-    },
-    receptionArea : {
-        type : Boolean,
-        required : function(){return this.propertyType=='Commercial Office Space'}
     },
     pantryType : {
         pantryTypes:{
@@ -114,7 +114,7 @@ officeSetup : {
             required : true
         },
         yourFloor : {
-            type : String,
+            type : Number,
             required : true
         },
         noOfStaircases : {
@@ -150,17 +150,17 @@ officeSetup : {
         month :{
             type : String,
             enum : ["January"],
-            required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
+            required : function(){return this.possessionStatus=='Under Construction'}
         },
         year :{
             type : Number,
-            required : function(){return this.priceDetails.possessionStatus=='Under Construction'}
+            required : function(){return this.possessionStatus=='Under Construction'}
         }
     },
     ageOfConstruction : {
         type : String,
         enum : ['New Construction','Less than 5 years','5 to 10 years','10 to 15 years','15 to 20 years','Above 20 years'],
-        required : function(){return this.priceDetails.possessionStatus=='Ready to Move'}
+        required : function(){return this.possessionStatus=='Ready to Move'}
     },
     ownershipStatus : {
         type : String,
@@ -169,10 +169,18 @@ officeSetup : {
     },
     expectedPrice :{
         type : String,
-        required : true
+        required : function(){ return this.propertyFor=='Sale'}
+    },
+    expectedRent :{
+        type : String,
+        required : function(){ return this.propertyFor=='Rent'}
+    },
+    securityDeposit :{
+        type : String,
+        required : function(){ return this.propertyFor=='Rent'}
     },
     priceIncludes :{
-        type :String,
+        type :[String],
         enum : ['Tax and Govt Charges','DG and UPS Price Included','Price Negotiable']
     },
     brokerage : {

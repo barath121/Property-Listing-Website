@@ -172,9 +172,12 @@ module.exports.ViewProperty = (req, res,next) => {
   let id = req.query.id;
   let type = req.query.type;
   if (type == "residential") {
+    let savedetails = {};
     Property.findById(id)
       .then(async (property) => {
         if(property){
+          savedetails.propertytype = "residential";
+          savedetails.propertyid = property._id;
         let similarproperties = [];
         let localityproperties = [];
         try 
@@ -185,7 +188,7 @@ module.exports.ViewProperty = (req, res,next) => {
           next(err);
         }
         }
-        let saved = {};
+        let saved = null;
         if(req.isAuthenticated()){
         saved = await Saved.findOne({$and:[
           {propertyID :property._id},
@@ -196,7 +199,9 @@ module.exports.ViewProperty = (req, res,next) => {
         if(saved){
           issaved = true;
         }
-        res.render("property-detail", { property: property,issaved : saved,similar : similarproperties,nearby : localityproperties });
+        console.log(saved)
+        console.log(issaved);
+        res.render("property-detail", { savedetails:savedetails,property: property,issaved : issaved,similar : similarproperties,nearby : localityproperties });
       }
       else{
         res.redirect("/404");
@@ -340,6 +345,107 @@ module.exports.Search = async (req, res) => {
   }
   res.render("Search_page",{properties : properties});
 };
-module.exports.CommercialProperty = (req, res) => {
-  console.log(req.body);
+module.exports.CommercialProperty = async(req, res) => {
+  console.log(req.body)
+  let commercial = {};
+  commercial.name = req.body.name;
+  commercial.address = req.body.address;
+  commercial.propertyType = req.body.propertyType;
+  commercial.propertyFor = req.body.Propertyfor;
+  commercial.locatedInside = req.body.locatedInside;
+  commercial.zoneType = req.body.zoneType;
+  commercial.areaDetails = {};
+  if (req.body.superBuiltUpArea[0] != "")
+    commercial.areaDetails.superBuiltUpArea = converttosq(
+      req.body.superBuiltUpArea[0],req.body.superBuiltUpArea[1]
+    );
+  if (req.body.builtUpArea[0] != "")
+  commercial.areaDetails.builtUpArea = converttosq(
+      req.body.builtUpArea[0],req.body.builtUpArea[1]
+    );
+    commercial.areaDetails.carpetArea = converttosq(req.body.carpetArea[0],req.body.carpetArea[1]);
+    if(req.body.propertyType = "Commercial Office Space"){
+    commercial.officeSetup = {}
+    commercial.officeSetup.minSeats  = req.body.minSeats
+    commercial.officeSetup.maxSeats = req.body.maxSeats
+    commercial.officeSetup.noOfCabins  = req.body.noOfCabins
+    commercial.officeSetup.noOfMeetingRooms = req.body.noOfMeetingRooms
+    commercial.officeSetup.conferenceRoom = req.body.conferenceRoom
+    commercial.officeSetup.receptionArea = req.body.receptionArea
+    commercial.pantryType={};
+    commercial.pantryType.pantryTypes = req.body.pantryTypes
+    commercial.pantryType.pantrySize = req.body.pantrySize
+  }
+  if(req.body.WashroomisAvaliable){
+    commercial.washrooms = {};
+    commercial.washrooms.isAvaliable = req.body.WashroomisAvaliable;
+    commercial.washrooms.quantity = req.body.quantity;
+  }
+    if(req.body.propertyType == "Commercial Shop"||req.body.propertyType == "Commercial Showroom"){
+      commercial.balconies = req.body.balconies
+    }
+    commercial.facilities = req.body.facilities
+    commercial.fireSafetyMeasures = req.body.fireSafetyMeasures
+    commercial.floorDetails = {}
+    commercial.floorDetails.totalFloors = req.body.totalFloors
+    commercial.floorDetails.yourFloor = req.body.yourFloor
+    commercial.floorDetails.noOfStaircases = req.body.noOfStaircases
+    
+    if(req.body.liftisAvaliable){
+    commercial.lifts={}
+    commercial.lifts.isAvaliable = req.body.liftisAvaliable;
+    commercial.lifts.passengerLifts = req.body.passengerLifts;
+    commercial.lifts.serviceLifts = req.body.serviceLifts;
+  }
+    commercial.brokerage = {}
+    commercial.brokerage.brokerageType = req.body.brokerageType;
+    if(commercial.brokerage.brokerageType=="Percentage")
+    commercial.brokerage.percentageBrokerage = req.body.percentageBrokerage;
+    else
+    commercial.brokerage.fixedBrokerage = req.body.fixedBrokerage;
+    if (commercial.propertyFor == "Sale") {
+      commercial.priceDetails.expectedPrice = req.body.expectedPrice;
+      //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
+      commercial.priceDetails.transactionType = req.body.transactionType;
+    }
+    // if (commercial.propertyFor == "Rent/Lease") {
+    //   commercial.priceDetails.expectedRent = req.body.expectedRent;
+    //   commercial.priceDetails.securityDeposit = req.body.securityDeposit;
+    // }
+    if (commercial.propertyFor == "Sale") {
+      commercial.priceDetails.possessionStatus = req.body.possessionStatus;
+      if (commercial.priceDetails.possessionStatus == "Under Construction") {
+        commercial.priceDetails.avaliableFrom = {};
+        commercial.priceDetails.avaliableFrom.month = req.body.month;
+        commercial.priceDetails.avaliableFrom.year = req.body.year;
+      } else if (commercial.priceDetails.possessionStatus == "Ready to Move") {
+        commercial.priceDetails.ageOfConstruction = req.body.ageOfConstruction;
+      }
+    }
+    commercial.NOCCertified  = req.body.NOCCertified;
+    commercial.OccupanceCertified  = req.body.OccupanceCertified;
+    commercial.description = req.body.description;
+    let imagesArray = [];
+  let i = 0;
+  const images = req.files;
+  const imageid = nanoid();
+  await Promise.all(
+    images.map((image) =>
+      firebase.uploadFile(image, imageid, i++).then((result) => {
+        imagesArray.push(result);
+      })
+    )
+  );
+  commercial.Images = {};
+  commercial.Images.images = imagesArray;
+  commercial.Images.imageid = imageid;
+
+  Commercial.create(commercial)
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    })
+    .then((result) => {
+      if (result) res.redirect("/");
+    });
 };

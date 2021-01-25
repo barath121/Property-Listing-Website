@@ -12,9 +12,17 @@
                     <a href="#">
                         <h4 class="btn btn-danger rounded-pill pl-5 pr-5 font-weight-bold">Contact</h4>
                     </a>
-                    <a href="#">
+                    <% if(req.isAuthenticated()){ %>
+                    <% if(!issaved){ %>
+                    <a href="/user/addsaved?propertyid=<%= savedetails.propertyid %>&propertytype=<%= savedetails.propertytype %>">
                         <h4 class="btn btn-outline-danger rounded-pill pl-5 pr-5 font-weight-bold">Save</h4>
                     </a>
+                    <%}%>
+                    <% if(issaved){ %>
+                        <a href="/user/removesaved?propertyid=<%= savedetails.propertyid %>&propertytype=<%= savedetails.propertytype %>">
+                            <h4 class="btn btn-outline-danger rounded-pill pl-5 pr-5 font-weight-bold">Remove</h4>
+                        </a>
+                    <%}}%>
                 </div>
                 <div class="col-md-6 col-12">
                     <h3 class="text-warning font-weight-bold uk-hidden@s">₹ <%= property.priceDetails.expectedPrice %> </h3>
