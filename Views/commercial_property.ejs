@@ -3,6 +3,12 @@
     <div class="progress-bar progress-bar-striped  bg-danger font-weight-bold" role="progressbar" id="progress"
       style="width: 33%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">step 1</div>
   </div> -->
+
+  
+  <div class="uk-background-muted p-4">
+    <div class="customLoader d-none" id="loader">
+      <span uk-spinner="ratio: 4.5"></span>
+    </div>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
       <form action="/property/commercialproperty" enctype="multipart/form-data" method="POST">
@@ -38,12 +44,14 @@
           <h3>Property Features</h3>
           <label for="name">Name</label>
           <br>
-          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name" required>
+          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name"
+            required>
           <br>
           <br>
           <label for="address">Address</label>
           <br>
-          <textarea class="form-control w-50" name="address" placeholder="Enter Address" id="address" cols="30" rows="3" required></textarea>
+          <textarea class="form-control w-50" name="address" placeholder="Enter Address" id="address" cols="30" rows="3"
+            required></textarea>
           <br>
           <br>
           <label for="locatedInside">Located Inside</label>
@@ -77,14 +85,14 @@
           <div id="Office" class="d-none">
             <label for="minSeats">Minimum Seats</label>
             <br>
-            <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats"
-              name="minSeats" required>
+            <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+              required>
             <br>
             <br>
             <label for="maxSeats">Maximum Seats</label>
             <br>
-            <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats"
-              name="maxSeats" required>
+            <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+              required>
             <br>
             <br>
             <label for="noOfCabins">Number Of Cabins</label>
@@ -127,7 +135,8 @@
             <br>
             <label for="pantrySize">Pantry Size</label>
             <br>
-            <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize" required>
+            <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
+              required>
           </div>
 
           <div id="showroom" class="d-none">
@@ -195,7 +204,7 @@
             <h3>Washrooms</h3>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
-                value="true" id="WashroomisAvaliable" required>
+                value="true" id="WashroomisAvaliable" >
               <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
             </div>
             <br>
@@ -209,7 +218,7 @@
             </div>
             <h3>facilities</h3>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished" >
+              <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
               <label class="form-check-label" for="Furnished">Furnished</label>
             </div>
             <div class="form-check form-check-inline">
@@ -250,24 +259,24 @@
             <h3>Floor Details</h3>
             <label for="totalFloors">Total Floors</label>
             <br>
-            <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors" class="form-control w-50" id="totalFloors"
-              name="totalFloors" required>
+            <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+              class="form-control w-50" id="totalFloors" name="totalFloors" required>
             <br>
             <br>
             <label for="yourFloor">Your Floor</label>
             <br>
-            <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50" id="yourFloor"
-              name="yourFloor" required>
+            <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+              id="yourFloor" name="yourFloor" required>
             <br>
             <br>
             <label for="noOfStaircases">No Of Staircases</label>
             <br>
-            <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50" id="noOfStaircases"
-              name="noOfStaircases" required>
+            <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+              id="noOfStaircases" name="noOfStaircases" required>
             <h3>Lifts</h3>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
-                value="true" id="liftisAvaliable" required>
+                value="true" id="liftisAvaliable">
               <label class="form-check-label " for="liftisAvaliable">Lifts</label>
             </div>
             <br>
@@ -282,122 +291,101 @@
               <br>
               <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
                 name="serviceLifts">
-              <br>
             </div>
           </div>
-          <br>
-          <br>
-          <label>Transaction Type</label>
-          <br>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="transactionType" value="New Property"
-              id="transactionTypenew">
-            <label class="form-check-label" for="transactionTypenew">New Property</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="transactionType" value="Resale"
-              id="transactionTypeReSale">
-            <label class="form-check-label" for="transactionTypeReSale">Resale</label>
-          </div>
-          <br>
-          <br>
-          <div id="newProperty">
-            <label>Possession Status </label>
-            <br>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
-                value="Sale" id="possessionStatusUnder">
-              <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
-                value="Rent/Lease" id="possessionStatusReady">
-              <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
-            </div>
-            <br>
-            <br>
-            <div id="construction">
-              <label>Available From</label>
-              <br>
-              <br>
-              <label for="month">Month</label>
-              <br>
-              <select class="form-control w-50" name="month" id="month" required>
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">november</option>
-                <option value="Devember">Devember</option>
-              </select>
-              <br>
-              <label for="year">Year</label>
-              <br>
-              <input type="text" class="form-control w-50" id="year" name="year" placeholder="Enter year" required>
-            </div>
-            <div id="age">
-              <br>
-              <label for="ageOfConstruction">Age Of Construction</label>
-              <br>
-              <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction" required>
-                <option value="">select</option>
-                <option value="New Construction">New Construction</option>
-                <option value="Less than 5 years">Less than 5 years</option>
-                <option value="5 to 10 years">5 to 10 years</option>
-                <option value="10 to 15 years">10 to 15 years</option>
-                <option value="15 to 20 years">15 to 20 years</option>
-                <option value="Above 20 years">Above 20 years</option>
-              </select>
-            </div>
-            <br>
-            <br>
-            <label for="ownershipStatus">Ownership Status</label>
-            <br>
-            <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus" required>
-              <option value="Freehold">Freehold</option>
-              <option value="Leasehold">Leasehold</option>
-              <option value="Power Of Attorney">Power Of Attorney</option>
-              <option value="Co-operative Society">Co-operative Society</option>
-            </select>
-            <br>
+          <h3>Price Details</h3>
+          <div id="sale">
             <label for="expectedPrice">Expected Price</label>
             <br>
-            <input type="text" id="expectedPrice" class="form-control border-top-0 border-left-0 border-right-0 w-50"
-              name="expectedPrice" placeholder="Enter total price" required><span>
-
+            <input type="text" id="expectedPrice" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="expectedPrice"
+              placeholder="Enter total price"><span>
               <br>
               <br>
-              <label for="priceIncludes">Price Includes</label>
+              <label for="bookingAmount">Booking Amount</label>
               <br>
-              <select class="form-control w-50" name="priceIncludes" id="priceIncludes" required>
-                <option value="">Select</option>
-                <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
-                <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
-                <option value="Price Negotiable"> Price Negotiable </option>
-              </select>
-              <h3>Brokerage</h3>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="brokerageTypeFixed" onchange="fixed()"
-                  name="brokerageType" value="Fixed" >
-                <label class="form-check-label" for="brokerageTypeFixed">Fixed</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="brokerageTypePercentage" onchange="percent()"
-                  name="brokerageType" value="Percentage">
-                <label class="form-check-label" for="brokerageTypePercentage">Percentage</label>
-              </div>
-              <br>
-              <br>
-              <div id="percentage" class="d-none">
-                <label for="percentageBrokerage">Brokerage</label>
+              <input type="text" id="bookingAmount" pattern="^[0-9]*$" title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0 w-50" name="bookingAmount"
+                placeholder="Enter total price"><span>
                 <br>
-                <select class="form-control w-50" name="percentageBrokerage" id="percentageBrokerage">
+                <br>
+                <label>Transaction Type</label>
+                <br>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="transactionType" value="New Property"
+                    id="transactionTypenew">
+                  <label class="form-check-label" for="transactionTypenew">New Property</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="transactionType" value="Resale"
+                    id="transactionTypeReSale">
+                  <label class="form-check-label" for="transactionTypeReSale">Resale</label>
+                </div>
+                <br>
+                <br>
+                <div id="newProperty">
+                  <label>Possession Status </label>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
+                      value="Under Construction" id="possessionStatusUnder" required>
+                    <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
+                      value="Ready to Move" id="possessionStatusReady">
+                    <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                  </div>
+                  <br>
+                  <br>
+                  <div id="construction">
+                    <label>Available From</label>
+                    <br>
+                    <br>
+                    <label for="month">Month</label>
+                    <br>
+                    <select class="form-control w-50" name="month" id="month" required>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="Devember">Devember</option>
+                    </select>
+                    <br>
+                    <label for="year">Year</label>
+                    <br>
+                    <input type="text" class="form-control w-50" pattern="^[0-9]*$" title="Please enter a valid number"
+                      id="year" name="year" placeholder="Enter year" required>
+                  </div>
+                  <div id="age">
+                    <br>
+                    <label for="ageOfConstruction">Age Of Construction</label>
+                    <br>
+                    <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction" required>
+                      <option value="">select</option>
+                      <option value="New Construction">New Construction</option>
+                      <option value="Less than 5 years">Less than 5 years</option>
+                      <option value="5 to 10 years">5 to 10 years</option>
+                      <option value="10 to 15 years">10 to 15 years</option>
+                      <option value="15 to 20 years">15 to 20 years</option>
+                      <option value="Above 20 years">Above 20 years</option>
+                    </select>
+                  </div>
+
+                </div>
+
+                <br>
+                <br>
+                <label for="saleBrokerage">Sale Brokerage</label>
+                <br>
+                <select class="form-control w-50" name="saleBrokerage" id="saleBrokerage" required>
                   <option value="No Brokerage">No Brokerage</option>
                   <option value="0.25%">0.25%</option>
                   <option value="0.5%">0.5%</option>
@@ -408,39 +396,67 @@
                   <option value="3%">3%</option>
                   <option value="4%">4%</option>
                 </select>
-              </div>
-              <div id="fixed" class="d-none">
-                <label for="fixedBrokerage">Fixed Brokerage</label>
                 <br>
-                <input type="text" id="expectedPrice"
-                  class="form-control border-top-0 border-left-0 border-right-0 w-50" name="fixedBrokerage"
-                  placeholder="Enter Fixed Brokerage"><span>
-              </div>
+                <br>
+          </div>
+          <div id="rent">
+            <label for="expectedRent">Expected Rent</label>
+            <br>
+            <input type="text" id="expectedRent" pattern="^[0-9]*$" title="Please enter a valid number"
+              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="expectedRent"
+              placeholder="Enter total price"><span>
               <br>
               <br>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required>
-                <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
-                  for="NOCCertified">NOC Certified</label>
-              </div>
+              <label for="securityDeposit">Security Deposit</label>
               <br>
-              <br>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-                  id="OccupanceCertified" required>
-                <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
-                  for="OccupanceCertified">Occupance Certified</label>
-              </div>
-              <br>
-              <br>
-              <label for="description">Description</label>
-              <br>
-              <textarea class="form-control" name="description" id="description" cols="30" rows="5" required></textarea>
-              <br>
-              <div class="d-flex w-100 justify-content-around">
-                <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
-                <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
-              </div>
+              <input type="text" pattern="^[0-9]*$" title="Please enter a valid number" id="securityDeposit"
+                class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
+                placeholder="Enter total price"><span>
+                <br>
+                <br>
+                <label for="rentBrokerage">Rent Brokerage</label>
+                <br>
+                <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage">
+                  <option value="No Brokerage">No Brokerage</option>
+                  <option value="30 Days">30 Days</option>
+                  <option value="45 Days">45 Days</option>
+                  <option value="60 Days">60 Days</option>
+                </select>
+                <br>
+                <br>
+          </div>
+          <label for="priceIncludes">Price Includes</label>
+          <br>
+          <select class="form-control w-50" name="priceIncludes" id="priceIncludes" required>
+            <option value="">Select</option>
+            <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
+            <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
+            <option value="Price Negotiable"> Price Negotiable </option>
+          </select>
+          <br>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required>
+            <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="NOCCertified">NOC
+              Certified</label>
+          </div>
+          <br>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
+              id="OccupanceCertified" required>
+            <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+              for="OccupanceCertified">Occupance Certified</label>
+          </div>
+          <br>
+          <br>
+          <label for="description">Description</label>
+          <br>
+          <textarea class="form-control" name="description" id="description" cols="30" rows="5" required></textarea>
+          <br>
+          <div class="d-flex w-100 justify-content-around">
+            <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
+            <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
           </div>
         </div>
         <div id="2" class="d-none">
@@ -525,7 +541,7 @@
 
           <div class="d-flex w-100 justify-content-around">
             <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
-            <button class="btn btn-outline-danger" type="submit">Submit</button>
+            <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
           </div>
         </div>
       </form>
@@ -552,6 +568,29 @@
       ImgTag(event, id);
     };
 
+    function RentSelected() {
+      document.getElementById("sale").classList.add("d-none");
+      document.getElementById("rent").classList.remove("d-none");
+      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.removeAttribute("required");
+      })
+      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
+      })
+      console.log(document.getElementById("expectedPrice").getAttribute("required"))
+    }
+    function saleSelected() {
+      document.getElementById("rent").classList.add("d-none");
+      document.getElementById("sale").classList.remove("d-none");
+      document.getElementById("rent").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.removeAttribute("required");
+      })
+      document.getElementById("sale").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
+      })
+      console.log(document.getElementById("expectedRent").getAttribute("required"))
+    }
+
     function select() {
       var inp = document.getElementById("PropertyType").value;
       console.log(inp)
@@ -575,6 +614,18 @@
           document.getElementById("commercialShop").classList.add("d-none")
         }
         document.getElementById("Office").classList.remove("d-none")
+
+        document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.setAttribute("required", true);
+        })
+
+        document.getElementById("showroom").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        document.getElementById("Shop").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        console.log(document.getElementById("expectedRent").getAttribute("required"))
       }
 
       if (inp == "Commercial Showroom") {
@@ -597,6 +648,18 @@
           document.getElementById("CommercialOfficeSpace").classList.add("d-none")
         }
         document.getElementById("showroom").classList.remove("d-none")
+
+        document.getElementById("showroom").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.setAttribute("required", true);
+        })
+
+        document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        document.getElementById("Shop").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+
       }
 
       if (inp == "Commercial Shop") {
@@ -619,6 +682,17 @@
           document.getElementById("CommercialOfficeSpace").classList.add("d-none")
         }
         document.getElementById("Shop").classList.remove("d-none")
+
+        document.getElementById("Shop").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.setAttribute("required", true);
+        })
+
+        document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        document.getElementById("showroom").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
       }
 
       if (inp == "Warehouse/Godows" || inp == "Industrial Shed") {
@@ -640,28 +714,53 @@
     function washroomAvailible() {
       if (document.getElementById("WashroomisAvaliable").checked == true && document.getElementById("washroomQuantity").classList.contains("d-none")) {
         document.getElementById("washroomQuantity").classList.remove("d-none")
+        document.getElementById("washroomQuantity").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.setAttribute("required", true);
+        })
       }
       else {
         document.getElementById("washroomQuantity").classList.add("d-none")
         document.getElementById("quantity").value = null;
         document.getElementById("washroomPics").innerHTML = null;
+        document.getElementById("washroomQuantity").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
       }
     }
     function liftAvailible() {
       if (document.getElementById("liftisAvaliable").checked == true && document.getElementById("liftQuantity").classList.contains("d-none")) {
         document.getElementById("liftQuantity").classList.remove("d-none")
+        document.getElementById("liftQuantity").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.setAttribute("required", true);
+        })
       }
       else {
         document.getElementById("liftQuantity").classList.add("d-none")
+        document.getElementById("liftQuantity").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
       }
     }
     function Underconstruction() {
       document.getElementById("age").classList.add("d-none");
       document.getElementById("construction").classList.remove("d-none");
+      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.removeAttribute("required");
+      })
+      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
+      })
     }
     function Readyconstruction() {
       document.getElementById("age").classList.remove("d-none");
       document.getElementById("construction").classList.add("d-none");
+      document.getElementById("construction").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.removeAttribute("required");
+      })
+      document.getElementById("age").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+        ele.setAttribute("required", true);
+      })
+
     }
     function fixed() {
       document.getElementById("fixed").classList.remove("d-none")
@@ -756,7 +855,7 @@
         previewDiv.appendChild(childPreviewDiv);
         childPreviewDiv.appendChild(previewButton);
         previewButton.appendChild(previewImage);
-        parent.setAttribute("id",roomId);
+        parent.setAttribute("id", roomId);
         parent.appendChild(inpDiv);
         parent.appendChild(previewDiv);
         parentDiv.appendChild(h5);
@@ -837,5 +936,14 @@
         }
       }
     }
+    function Loader(){
+     if(document.getElementById("loader").classList.contains("d-none")){
+       document.getElementById("loader").classList.remove("d-none")
+       document.getElementById("loader").classList.add("d-flex")
+     }else{
+      document.getElementById("loader").classList.remove("d-flex")
+      document.getElementById("loader").classList.add("d-none")
+     }
+   }
   </script>
   <%- include('./layouts/Footer') -%>
