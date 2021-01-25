@@ -1,5 +1,7 @@
 <%- include('./layouts/imports') -%>
 
+<% console.log(enquiries) %> 
+
 <section class="mt-5 mb-5">
     <div class="container">
         <ul class="justify-content-center" uk-tab>
@@ -77,29 +79,22 @@
                 </div>
             </li>
             <li>
-                <div class="uk-child-width-1-4@s" uk-grid>
-                    <div>
-                        <div class="text-center"><span class="h1 hammersmithOne">150</span><br>Total</div>
-                    </div>
+                <div class="uk-child-width-1-2@s" uk-grid>
                     <div>
                         <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Solved</div>
                     </div>
                     <div>
                         <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
                     </div>
-                    <div>
-                        <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Remaining</div>
-                    </div>
                 </div>
                 <div class="uk-child-width-1-2@s" uk-grid>
-                <% var i = 8 %>
-                    <% while  (i!=0) { %>  
+                <% enquiries.forEach(ele => { %> 
                     <div>
                         <div class="bg-white uk-card uk-card-hover p-3 rounded-lg h-100">
                             <div class="uk-child-width-1-2" uk-grid>
                                 <div>
-                                    <p class="h4 hammersmithOne">Terry</p>
-                                    <div class="small">Posted on: <span class="hammersmithOne">25/01/2021</span></div>
+                                    <p class="h4 hammersmithOne"><%= ele.name %></p>
+                                    <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
                                 </div>
                                 <div>
                                     <p class="text-right">
@@ -107,12 +102,11 @@
                                     </p>
                                 </div>
                             </div>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam illum reiciendis beatae quam incidunt harum at nostrum dicta placeat deserunt autem repudiandae quos quisquam sint, nobis commodi eius dolor?</p>
-                            <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 1749139111</span></p>
+                            <p class=""><%= ele.message %> </p>
+                            <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.contactno %></span></p>
                         </div>
                     </div>
-                    <% i = i-1 %> 
-                <% } %>   
+                <% }) %>   
                 </div>
             </li>
         </ul>
