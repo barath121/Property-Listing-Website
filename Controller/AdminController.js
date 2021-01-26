@@ -123,16 +123,42 @@ module.exports.AdminDashboard = async (req,res) =>{
     })
 }
 
-module.exports.TogglePropertyAvaliablity = (req,res) =>{
-  Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status});
+module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
+  Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
+    if(req.body.status==true){
+      req.flash("success","Property has ben Activated");
+    }
+    else{
+      req.flash("success","Property has been deactived");
+    }
+    res.redirect('/admin/admindashboard')
+  }).catch(err=>{next(err)});
+}
+
+module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
+  Property.findById(req.body.id).then(result=>{
+    firebase.deleteFile(result.Images.imageid);
+    Property.findByIdAndDelete(req.body.id).then(deleted=>{
+      req.flash("success","Property Has Been Removed");
+      res.redirect('/admin/admindashboard')
+    });
+  }).catch(err=>{next(err)})
+  
   res.redirect('/admin/admindashboard')
 }
 
-module.exports.DeletePropertyAvaliablity = (req,res) =>{
-  Property.findById(req.body.id).then(result=>{
-    firebase.deleteFile(result.Images.imageid);
-  })
-  Property.findByIdAndDelete(req.body.id);
-  firebase.deleteFile()
-  res.redirect('/admin/admindashboard')
+module.exports.GetCustomerSaved = (req,res,next) =>{
+  let phonenumber = req.query.number;
+  User.find({phone : phonenumber}).then(user=>{
+    Saved.find({customerID : user._id}).then(saved=>{
+      res.render("/admin/admindashboard",saved);
+    })
+  }).catch(err=>next(err));
+}
+
+module.exports.MarkQuerySolved = (res,req) =>{
+  Enquiry.findByIdAndUpdate(req.body.id,{contacted : true}).then(saved=>{
+    req.flash("success","Enquiry Has Been Solved");
+    res.render("/admin/admindashboard");
+  });
 }
