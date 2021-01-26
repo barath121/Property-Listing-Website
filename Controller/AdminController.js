@@ -52,7 +52,7 @@ module.exports.AdminDashboard = async (req,res) =>{
     const skip = (Page - 1) * limit;
     let saved = {};
     if(req.query.number){
-     await User.find({phone : phonenumber}).then(async user=>{
+     await User.find({phone : req.query.number}).then(async user=>{
         saved = await Saved.find({customerID : user._id});
       }).catch(err=>next(err));
     }
