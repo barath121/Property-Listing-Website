@@ -1,15 +1,15 @@
 <%- include('./layouts/imports') -%>
     <div class="uk-background-muted p-lg-4 p-2 ">
-        <div class="container mt-4 ">
-            <div class="d-flex w-100 justify-content-center mb-4">
+        <div class="container mt-4 mb-4">
+            <!-- <div class="d-flex w-100 justify-content-center mb-4">
                 <h3>
                     <%= properties.length %> Properties matching your preference
                 </h3>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-lg-4 d-none d-lg-block">
-                    <div class="uk-background-default p-5 shadow rounded overflow-auto"
-                        style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 550px;">
+                    <div class="uk-background-default p-5 shadow-sm rounded overflow-auto"
+                        style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 650px;">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
                         <form action="/search" method="GET">
@@ -129,6 +129,11 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-12">
+                    <div class="w-100 text-center mb-4">
+                        <h3>
+                            <%= properties.length %> Properties matching your preference
+                        </h3>
+                    </div>
                     <div class="">
                         <% if(properties.length !=0) { %>
                             <% for(var i=0; i< properties.length ; i++) {%>
@@ -197,7 +202,7 @@
             </div>
             <div class="d-lg-none d-block">
                 <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
-                    class="rounded-circle btn btn-lg btn-dark  shadow font-weight-bold"
+                    class="rounded-lg btn btn-dark  shadow font-weight-bold"
                     style="position: fixed; bottom: 15px; right: 15px;"><span uk-icon="settings"></span></button></a>
             </div>
         </div>
