@@ -37,11 +37,12 @@
                                     Address: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].address %> </span>
                                 </p>
                                 <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                                <form action="/admin/propertyavaliablity/<%= ele.AllProperty[a]._id %>?isAvaliable=" method="POST" class="uk-inline">
+                                <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                    <input type="hidden" name="id" value="">
                                     <button type="submit" class="btn btn-sm"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
                                 </form>
                                 <form action="/admin/deleteproperty" method="POST" class="uk-inline">
-                                    <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %> ">
+                                    <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
                                     <button type="submit" class="btn btm-sm"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
                                 </form>
                             </div>
@@ -56,7 +57,7 @@
                         <% for (var a in ele.ActivatedProperty) { %> 
                         <div>
                             <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                                <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %> </p> 
+                                <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %></p> 
                                 <hr>
                                 <p>
                                     Price: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
@@ -76,7 +77,11 @@
                                     Address: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].address %> </span>
                                 </p>
                                 <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                                <a href=""><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></a>
+                                <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                    <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
+                                    <input type="hidden" name="status" value="false">
+                                    <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+                                </form>
                                 <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
                             </div>
                         </div>
@@ -93,11 +98,11 @@
                                 <p class="h5 text-danger hammersmithOne"><%= ele.DisabledProperty[a].title %> </p> 
                                 <hr>
                                 <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledPropertyy[a].propertyFeatures.carpetArea %></span>
+                                    Price: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].propertyFeatures.carpetArea %></span>
                                 </p>
                                 <p>
                                     Status: 
-                                    <span class="text-success font-weight-bold hammersmithOne">
+                                    <span class="text-danger font-weight-bold hammersmithOne">
                                         <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
                                         Active
                                         <% } else { %> 
