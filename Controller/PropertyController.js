@@ -296,6 +296,7 @@ module.exports.HomePage = async (req, res) => {
   res.render("index", { property: properties });
 };
 module.exports.Search = async (req, res) => {
+  let countofpage  =0;
   let filters = req.query;
   console.log(filters);
   let conditions = [];
@@ -367,7 +368,7 @@ module.exports.Search = async (req, res) => {
     .skip(skip)
     .limit(limit)
     ;
-    let countofpage  = await Property.countDocuments(condition);
+    countofpage  = await Property.countDocuments(condition);
     countofpage = parseInt(countofpage/10);
     conditionedProperties.forEach((element) => {
       property = {};
@@ -410,7 +411,7 @@ module.exports.Search = async (req, res) => {
       properties.push(property);
     });
   }
-  console.log(properties);
+  console.log(countofpage);
   res.render("Search_page", { properties: properties,page:countofpage });
 };
 module.exports.CommercialProperty = async (req, res, next) => {
