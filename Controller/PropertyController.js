@@ -37,13 +37,18 @@ module.exports.createProperty = async (req, res, next) => {
 
   if (req.body.superBuiltUpArea[0] != "")
     property.propertyFeatures.superBuiltUpArea = converttosq(
-      req.body.superBuiltUpArea[0],req.body.superBuiltUpArea[1]
+      req.body.superBuiltUpArea[0],
+      req.body.superBuiltUpArea[1]
     );
   if (req.body.builtUpArea[0] != "")
     property.propertyFeatures.builtUpArea = converttosq(
-      req.body.builtUpArea[0],req.body.builtUpArea[1]
+      req.body.builtUpArea[0],
+      req.body.builtUpArea[1]
     );
-  property.propertyFeatures.carpetArea = converttosq(req.body.carpetArea[0],req.body.carpetArea[1]);
+  property.propertyFeatures.carpetArea = converttosq(
+    req.body.carpetArea[0],
+    req.body.carpetArea[1]
+  );
 
   property.propertyFeatures.balconies = req.body.Balconies;
   property.propertyFeatures.bathroom = req.body.bathroom;
@@ -126,7 +131,7 @@ module.exports.createProperty = async (req, res, next) => {
   property.additionalFeatures.carParking = req.body.carParking;
   property.additionalFeatures.liftsInTheTower = req.body.liftsInTheTower;
   property.additionalFeatures.multipleUnitsAvaliable =
-    req.body.multipleUnitsAvaliable||false;
+    req.body.multipleUnitsAvaliable || false;
   if (property.additionalFeatures.multipleUnitsAvaliable) {
     property.additionalFeatures.unitQuantity = req.body.unitQuantity;
   }
@@ -168,44 +173,62 @@ module.exports.createProperty = async (req, res, next) => {
       if (result) res.redirect("/");
     });
 };
-module.exports.ViewProperty = (req, res,next) => {
+module.exports.ViewProperty = (req, res, next) => {
   let id = req.query.id;
   let type = req.query.type;
   if (type == "residential") {
     let savedetails = {};
     Property.findById(id)
       .then(async (property) => {
-        if(property){
+        if (property) {
           savedetails.propertytype = "residential";
           savedetails.propertyid = property._id;
-        let similarproperties = [];
-        let localityproperties = [];
-        try 
-        {let similarproperties = await Property.find({$or : [{propertyType : property.propertyType},{propertyFor : property.propertyFor},{"propertyFeatures.bedrooms" :property.propertyFeatures.bedrooms }]}).limit(10);
-        let localityproperties = await Property.find({locality : property.locality}).limit(10);
+          let similarproperties = [];
+          let localityproperties = [];
+          try {
+            let similarproperties = await Property.find({
+              $or: [
+                { propertyType: property.propertyType },
+                { propertyFor: property.propertyFor },
+                {
+                  "propertyFeatures.bedrooms":
+                    property.propertyFeatures.bedrooms,
+                },
+              ],
+            }).limit(10);
+            let localityproperties = await Property.find({
+              locality: property.locality,
+            }).limit(10);
+          } catch {
+            (err) => {
+              next(err);
+            };
+          }
+          let saved = null;
+          if (req.isAuthenticated()) {
+            saved = await Saved.findOne({
+              $and: [
+                { propertyID: property._id },
+                { customerID: req.user._id },
+              ],
+            });
+          }
+          let issaved = false;
+          if (saved) {
+            issaved = true;
+          }
+          console.log(saved);
+          console.log(issaved);
+          res.render("property-detail", {
+            savedetails: savedetails,
+            property: property,
+            issaved: issaved,
+            similar: similarproperties,
+            nearby: localityproperties,
+          });
+        } else {
+          res.redirect("/404");
         }
-        catch{err=>{
-          next(err);
-        }
-        }
-        let saved = null;
-        if(req.isAuthenticated()){
-        saved = await Saved.findOne({$and:[
-          {propertyID :property._id},
-          {customerID : req.user._id}
-        ]});
-        }
-        let issaved = false;
-        if(saved){
-          issaved = true;
-        }
-        console.log(saved)
-        console.log(issaved);
-        res.render("property-detail", { savedetails:savedetails,property: property,issaved : issaved,similar : similarproperties,nearby : localityproperties });
-      }
-      else{
-        res.redirect("/404");
-      }
       })
       .catch((err) => {
         next(err);
@@ -219,40 +242,39 @@ module.exports.HomePage = async (req, res) => {
   properties = [];
   Properties.forEach((element) => {
     property = {};
-    element.Images.images.forEach(img=>{
-      if(img.includes("CoverImages")){
+    element.Images.images.forEach((img) => {
+      if (img.includes("CoverImages")) {
         property.image = img;
       }
-    })
+    });
     property.id = element._id;
     property.title =
       element.propertyType +
       " For " +
       element.propertyFor +
       " at " +
-      element.name+
-      ", "+
-      element.locality
-      ;
+      element.name +
+      ", " +
+      element.locality;
     property.area = element.propertyFeatures.carpetArea;
     property.furnishing = element.propertyFeatures.furnishingStatus;
-    if(element.priceDetails.possessionStatus =="Under Construction" &&element.propertyFor=="Sale"){
+    if (
+      element.priceDetails.possessionStatus == "Under Construction" &&
+      element.propertyFor == "Sale"
+    ) {
+      property.status = element.priceDetails.possessionStatus;
+      "Possession by " +
+        element.priceDetails.avaliableFrom.month +
+        " " +
+        element.priceDetails.avaliableFrom.year;
+    } else if (element.propertyFor == "Sale") {
       property.status =
-        element.priceDetails.possessionStatus 
-        "Possession by " +
-          element.priceDetails.avaliableFrom.month +
-          " " +
-          element.priceDetails.avaliableFrom.year;
-      }
-       else if(element.propertyFor=="Sale"){
-        property.status =
-        element.priceDetails.possessionStatus +", "+
-        element.priceDetails.ageOfConstruction 
-  
-       }
-       else{
-         property.status = "Ready to Move"
-       }
+        element.priceDetails.possessionStatus +
+        ", " +
+        element.priceDetails.ageOfConstruction;
+    } else {
+      property.status = "Ready to Move";
+    }
     property.price =
       element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
     property.bedroom = element.propertyFeatures.bedrooms + " Bed";
@@ -274,8 +296,8 @@ module.exports.Search = async (req, res) => {
   if (filters.status) {
     conditions.push({ "priceDetails.possessionStatus": filters.status });
   }
-  if (filters.type) {
-    conditions.push({ propertyFor: filters.type });
+  if (filters.propertyfor) {
+    conditions.push({ propertyFor: filters.propertyfor });
   }
   if (filters.propertytype) {
     conditions.push({ propertyType: filters.propertytype });
@@ -296,8 +318,8 @@ module.exports.Search = async (req, res) => {
       minprice = 10000000 * parseInt(minpriceDetails[0]);
     }
     let maxpriceDetails = null;
-    if(filters.price)
-    maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
+    if (filters.price)
+      maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
     let maxprice = 0;
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
@@ -306,8 +328,8 @@ module.exports.Search = async (req, res) => {
     } else if (maxpriceDetails[1] == "Cr") {
       maxprice = 10000000 * parseInt(maxpriceDetails[0]);
     }
-    conditions.push({ "priceDetails.expectedPrice": { $gt: minprice } });
-    conditions.push({ "priceDetails.expectedPrice": { $lt: maxprice } });
+    conditions.push({ "priceDetails.expectedPrice": { $gte: minprice } });
+    conditions.push({ "priceDetails.expectedPrice": { $lte: maxprice } });
   }
   if (filters.sqmin) {
     conditions.push({ "propertyFeatures.carpetArea": { $gte: filters.sqmin } });
@@ -321,55 +343,64 @@ module.exports.Search = async (req, res) => {
   let properties = [];
   if (conditions.length) {
     let condition = { $and: conditions };
-    let conditionedProperties = await Property.find(condition);
+    console.log(conditions);
+    let page = req.query.page || 1;
+    let limit = 10;
+    let skip = (page-1) * limit;
+    console.log(skip,limit)
+    let conditionedProperties = 
+    await Property
+    .find(condition)
+    .sort({ _id: -1 })
+    .skip(skip)
+    .limit(limit)
+    ;
     conditionedProperties.forEach((element) => {
-    property = {};
-    element.Images.images.forEach(img=>{
-      if(img.includes("CoverImages")){
-        property.image = img;
+      property = {};
+      element.Images.images.forEach((img) => {
+        if (img.includes("CoverImages")) {
+          property.image = img;
+        }
+      });
+      property.title =
+        element.propertyType +
+        " For " +
+        element.propertyFor +
+        " at " +
+        element.name +
+        ", " +
+        element.locality;
+      property.area = element.propertyFeatures.carpetArea;
+      property.furnishing = element.propertyFeatures.furnishingStatus;
+      if (
+        element.priceDetails.possessionStatus == "Under Construction" &&
+        element.propertyFor == "Sale"
+      ) {
+        property.status = element.priceDetails.possessionStatus;
+        "Possession by " +
+          element.priceDetails.avaliableFrom.month +
+          " " +
+          element.priceDetails.avaliableFrom.year;
+      } else if (element.propertyFor == "Sale") {
+        property.status =
+          element.priceDetails.possessionStatus +
+          ", " +
+          element.priceDetails.ageOfConstruction;
+      } else {
+        property.status = "Ready to Move";
       }
-    })
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name+
-      ", "+
-      element.locality
-      ;
-    property.area = element.propertyFeatures.carpetArea;
-    property.furnishing = element.propertyFeatures.furnishingStatus;
-    if(element.priceDetails.possessionStatus =="Under Construction" &&element.propertyFor=="Sale"){
-    property.status =
-      element.priceDetails.possessionStatus 
-      "Possession by " +
-        element.priceDetails.avaliableFrom.month +
-        " " +
-        element.priceDetails.avaliableFrom.year;
-    }
-     else if(element.propertyFor=="Sale"){
-      property.status =
-      element.priceDetails.possessionStatus +", "+
-      element.priceDetails.ageOfConstruction 
-
-     }
-     else{
-      property.status = "Ready to Move"
-    }
-    property.price =
-      element.priceDetails.expectedPrice;    
-      element.priceDetails.expectedRent;
-    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-    property.bathroom = element.propertyFeatures.bathroom + " Bath";
-    properties.push(property);
-  });
+      property.price = element.priceDetails.expectedPrice||element.priceDetails.expectedRent;
+      
+      property.bedroom = element.propertyFeatures.bedrooms + " Bed";
+      property.bathroom = element.propertyFeatures.bathroom + " Bath";
+      properties.push(property);
+    });
   }
-  console.log(properties)
-  res.render("Search_page",{properties : properties});
+  console.log(properties);
+  res.render("Search_page", { properties: properties });
 };
-module.exports.CommercialProperty = async(req, res, next) => {
-  console.log(req.body)
+module.exports.CommercialProperty = async (req, res, next) => {
+  console.log(req.body);
   let commercial = {};
   commercial.name = req.body.name;
   commercial.address = req.body.address;
@@ -380,75 +411,82 @@ module.exports.CommercialProperty = async(req, res, next) => {
   commercial.areaDetails = {};
   if (req.body.superBuiltUpArea[0] != "")
     commercial.areaDetails.superBuiltUpArea = converttosq(
-      req.body.superBuiltUpArea[0],req.body.superBuiltUpArea[1]
+      req.body.superBuiltUpArea[0],
+      req.body.superBuiltUpArea[1]
     );
   if (req.body.builtUpArea[0] != "")
-  commercial.areaDetails.builtUpArea = converttosq(
-      req.body.builtUpArea[0],req.body.builtUpArea[1]
+    commercial.areaDetails.builtUpArea = converttosq(
+      req.body.builtUpArea[0],
+      req.body.builtUpArea[1]
     );
-    commercial.areaDetails.carpetArea = converttosq(req.body.carpetArea[0],req.body.carpetArea[1]);
-    if(req.body.propertyType = "Commercial Office Space"){
-    commercial.officeSetup = {}
-    commercial.officeSetup.minSeats  = req.body.minSeats
-    commercial.officeSetup.maxSeats = req.body.maxSeats
-    commercial.officeSetup.noOfCabins  = req.body.noOfCabins
-    commercial.officeSetup.noOfMeetingRooms = req.body.noOfMeetingRooms
-    commercial.officeSetup.conferenceRoom = req.body.conferenceRoom
-    commercial.officeSetup.receptionArea = req.body.receptionArea
-    commercial.pantryType={};
-    commercial.pantryType.pantryTypes = req.body.pantryTypes
-    commercial.pantryType.pantrySize = req.body.pantrySize
+  commercial.areaDetails.carpetArea = converttosq(
+    req.body.carpetArea[0],
+    req.body.carpetArea[1]
+  );
+  if ((req.body.propertyType = "Commercial Office Space")) {
+    commercial.officeSetup = {};
+    commercial.officeSetup.minSeats = req.body.minSeats;
+    commercial.officeSetup.maxSeats = req.body.maxSeats;
+    commercial.officeSetup.noOfCabins = req.body.noOfCabins;
+    commercial.officeSetup.noOfMeetingRooms = req.body.noOfMeetingRooms;
+    commercial.officeSetup.conferenceRoom = req.body.conferenceRoom;
+    commercial.officeSetup.receptionArea = req.body.receptionArea;
+    commercial.pantryType = {};
+    commercial.pantryType.pantryTypes = req.body.pantryTypes;
+    commercial.pantryType.pantrySize = req.body.pantrySize;
   }
-  if(req.body.WashroomisAvaliable){
+  if (req.body.WashroomisAvaliable) {
     commercial.washrooms = {};
     commercial.washrooms.isAvaliable = req.body.WashroomisAvaliable;
     commercial.washrooms.quantity = req.body.quantity;
   }
-    if(req.body.propertyType == "Commercial Shop"||req.body.propertyType == "Commercial Showroom"){
-      commercial.balconies = req.body.balconies
-    }
-    commercial.facilities = req.body.facilities
-    commercial.fireSafetyMeasures = req.body.fireSafetyMeasures
-    commercial.floorDetails = {}
-    commercial.floorDetails.totalFloors = req.body.totalFloors
-    commercial.floorDetails.yourFloor = req.body.yourFloor
-    commercial.floorDetails.noOfStaircases = req.body.noOfStaircases
-    
-    if(req.body.liftisAvaliable){
-    commercial.lifts={}
+  if (
+    req.body.propertyType == "Commercial Shop" ||
+    req.body.propertyType == "Commercial Showroom"
+  ) {
+    commercial.balconies = req.body.balconies;
+  }
+  commercial.facilities = req.body.facilities;
+  commercial.fireSafetyMeasures = req.body.fireSafetyMeasures;
+  commercial.floorDetails = {};
+  commercial.floorDetails.totalFloors = req.body.totalFloors;
+  commercial.floorDetails.yourFloor = req.body.yourFloor;
+  commercial.floorDetails.noOfStaircases = req.body.noOfStaircases;
+
+  if (req.body.liftisAvaliable) {
+    commercial.lifts = {};
     commercial.lifts.isAvaliable = req.body.liftisAvaliable;
     commercial.lifts.passengerLifts = req.body.passengerLifts;
     commercial.lifts.serviceLifts = req.body.serviceLifts;
   }
-    commercial.brokerage = {}
-    commercial.brokerage.brokerageType = req.body.brokerageType;
-    if(commercial.brokerage.brokerageType=="Percentage")
+  commercial.brokerage = {};
+  commercial.brokerage.brokerageType = req.body.brokerageType;
+  if (commercial.brokerage.brokerageType == "Percentage")
     commercial.brokerage.percentageBrokerage = req.body.percentageBrokerage;
-    else
-    commercial.brokerage.fixedBrokerage = req.body.fixedBrokerage;
-    if (commercial.propertyFor == "Sale") {
-      commercial.expectedPrice = req.body.expectedPrice;
-      //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
-      commercial.transactionType = req.body.transactionType;
+  else commercial.brokerage.fixedBrokerage = req.body.fixedBrokerage;
+  if (commercial.propertyFor == "Sale") {
+    commercial.expectedPrice = req.body.expectedPrice;
+    //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
+    commercial.transactionType = req.body.transactionType;
+  }
+  // if (commercial.propertyFor == "Rent/Lease") {
+  //   commercial.priceDetails.expectedRent = req.body.expectedRent;
+  //   commercial.priceDetails.securityDeposit = req.body.securityDeposit;
+  // }
+  if (commercial.propertyFor == "Sale") {
+    commercial.possessionStatus = req.body.possessionStatus;
+    if (commercial.possessionStatus == "Under Construction") {
+      commercial.avaliableFrom = {};
+      commercial.avaliableFrom.month = req.body.month;
+      commercial.avaliableFrom.year = req.body.year;
+    } else if (commercial.possessionStatus == "Ready to Move") {
+      commercial.ageOfConstruction = req.body.ageOfConstruction;
     }
-    // if (commercial.propertyFor == "Rent/Lease") {
-    //   commercial.priceDetails.expectedRent = req.body.expectedRent;
-    //   commercial.priceDetails.securityDeposit = req.body.securityDeposit;
-    // }
-    if (commercial.propertyFor == "Sale") {
-      commercial.possessionStatus = req.body.possessionStatus;
-      if (commercial.possessionStatus == "Under Construction") {
-        commercial.avaliableFrom = {};
-        commercial.avaliableFrom.month = req.body.month;
-        commercial.avaliableFrom.year = req.body.year;
-      } else if (commercial.possessionStatus == "Ready to Move") {
-        commercial.ageOfConstruction = req.body.ageOfConstruction;
-      }
-    }
-    commercial.NOCCertified  = req.body.NOCCertified;
-    commercial.OccupanceCertified  = req.body.OccupanceCertified;
-    commercial.description = req.body.description;
-    let imagesArray = [];
+  }
+  commercial.NOCCertified = req.body.NOCCertified;
+  commercial.OccupanceCertified = req.body.OccupanceCertified;
+  commercial.description = req.body.description;
+  let imagesArray = [];
   let i = 0;
   const images = req.files;
   const imageid = nanoid();

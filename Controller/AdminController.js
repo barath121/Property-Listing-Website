@@ -112,7 +112,8 @@ module.exports.AdminDashboard = async (req,res) =>{
     }]).catch(err=>{
       console.log(err)
     }).then(async result=>{
-      let enquiries = await Enquiry.find();
+      let enquiries = await Enquiry.find({contacted : false});
+      console.log(enquiries);
       res.render("adminDashboard",{
         properties : result,
         enquiries : enquiries
