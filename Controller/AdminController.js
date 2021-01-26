@@ -136,10 +136,12 @@ module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
 }
 
 module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
+  console.log(req.body.id)
   Property.findById(req.body.id).then(result=>{
     firebase.deleteFile(result.Images.imageid);
     Property.findByIdAndDelete(req.body.id).then(deleted=>{
       req.flash("success","Property Has Been Removed");
+      console.log("random")
       res.redirect('/admin/admindashboard')
     });
   }).catch(err=>{next(err)})
