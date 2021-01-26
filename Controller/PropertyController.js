@@ -4,6 +4,7 @@ const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
 const Saved = require("../Models/Saved");
 const User = require("../Models/User");
+const { count } = require("../Models/Property");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
 const converttosq = (area, unit) => {
   if (unit == "Sqft") {
@@ -366,6 +367,8 @@ module.exports.Search = async (req, res) => {
     .skip(skip)
     .limit(limit)
     ;
+    let countofpage  = await Property.countDocuments(condition);
+    countofpage = parseInt(countofpage/10);
     conditionedProperties.forEach((element) => {
       property = {};
       element.Images.images.forEach((img) => {
@@ -408,7 +411,7 @@ module.exports.Search = async (req, res) => {
     });
   }
   console.log(properties);
-  res.render("Search_page", { properties: properties });
+  res.render("Search_page", { properties: properties,page:countofpage });
 };
 module.exports.CommercialProperty = async (req, res, next) => {
   console.log(req.body);
