@@ -16,12 +16,12 @@
                             <label>Property For</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" onchange="sale()" name="Propertyfor"
+                                <input class="form-check-input" type="radio" onchange="sale()" name="propertyfor"
                                     value="Sale" id="PropertyforSale">
                                 <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" onchange="rent()" name="Propertyfor"
+                                <input class="form-check-input" type="radio" onchange="rent()" name="propertyfor"
                                     value="Rent/Lease" id="PropertyforRent">
                                 <label class="form-check-label" for="PropertyforRent">Rent</label>
                             </div>
@@ -29,7 +29,7 @@
                             <br>
                             <label for="PropertyType">Property type</label>
                             <br>
-                            <select class="form-control" name="PropertyType" id="PropertyType">
+                            <select class="form-control" name="propertytype" id="PropertyType">
                                 <option value="">Select</option>
                                 <option value="Flat/Apartment"> Flat/Apartment </option>
                                 <option value="Residential House"> Residential House </option>
@@ -64,7 +64,7 @@
                             <br>
                             <label for="Locality">Locality</label>
                             <br>
-                            <select class="form-control " name="Locality" id="Locality">
+                            <select class="form-control " name="locality" id="Locality">
                                 <option value="">Select</option>
                                 <option value="Roadpali">Roadpali</option>
                                 <option value="Kalamboli">Kalamboli</option>
@@ -88,14 +88,14 @@
                                 <label>Possession Status</label>
                                 <br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="possessionStatus"
+                                    <input class="form-check-input" type="radio" name="status"
                                         value="Under Construction" id="possessionStatusUnder">
                                     <label class="form-check-label" for="possessionStatusUnder">Under
                                         Construction</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="possessionStatus"
-                                        value="Ready to Move" id="possessionStatusReady">
+                                    <input class="form-check-input" type="radio" name="status" value="Ready to Move"
+                                        id="possessionStatusReady">
                                     <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
                                 </div>
                                 <br>
@@ -103,7 +103,7 @@
                             </div>
                             <label for="furnishingStatus">Furnishing Status</label>
                             <br>
-                            <select class="form-control" name="furnishingStatus" id="furnishingStatus">
+                            <select class="form-control" name="furnishing" id="furnishingStatus">
                                 <option value="">Select</option>
                                 <option value="Furnished">Furnished</option>
                                 <option value="Unfurnished">Unfurnished</option>
@@ -165,13 +165,13 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="row justify-content-start">
-                                                    <p class="m-2">
-                                                        <span
-                                                            class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹
-                                                            <%= properties[i].price %>
-                                                        </span>
-                                                    </p>
+                                                <div class="row justify-content-start"> 
+                                                        <p class="m-2">
+                                                            <span
+                                                                class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹
+                                                                <%= properties[i].price %>
+                                                            </span>
+                                                        </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,25 +186,24 @@
                                                 the given filters</p>
                                         </div>
                                         <% } %>
-                                            <% if(properties.length !=0 && page != 0) { %>
+                                            <% if(properties.length !=0 && page !=0) { %>
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination justify-content-end">
                                                         <li class="page-item disabled">
                                                             <a class="page-link" href="#" tabindex="-1">Previous</a>
                                                         </li>
-                                                            <% for(var i=1; i<= page; i++) {%>
+                                                        <% for(var i=1; i<=page; i++) {%>
+                                                            <li class="page-item">
+                                                                <a class="page-link text-danger"
+                                                                    onclick="pages('<%= i %>')">
+                                                                    <%= i %>
+                                                                </a>
+                                                            </li>
+                                                            <% } %>
                                                                 <li class="page-item">
-                                                                    <a class="page-link text-danger"
-                                                                        onclick="pages('<%= i %>')">
-                                                                        <%= i %>
-                                                                    </a>
+                                                                    <a class="page-link text-danger" href="#">Next</a>
                                                                 </li>
-                                                                <% } %>
-                                                                    <li class="page-item">
-                                                                        <a class="page-link text-danger"
-                                                                            href="#">Next</a>
-                                                                    </li>
-                                                                
+
                                                     </ul>
                                                 </nav>
                                                 <% } %>
@@ -233,20 +232,20 @@
                             <label>Property For</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Propertyfor" value="Sale"
-                                    id="PropertyforSale">
+                                <input class="form-check-input" type="radio" onchange="mobsale()" name="propertyfor"
+                                    value="Sale" id="PropertyforSale">
                                 <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease"
+                                <input class="form-check-input" type="radio" name="propertyfor" value="Rent/Lease"
                                     id="PropertyforRent">
-                                <label class="form-check-label" for="PropertyforRent">Rent</label>
+                                <label class="form-check-label" onchange="mobrent()" for="PropertyforRent">Rent</label>
                             </div>
                             <br>
                             <br>
                             <label for="PropertyType">Property type</label>
                             <br>
-                            <select class="form-control" name="PropertyType" id="PropertyType">
+                            <select class="form-control" name="propertytype" id="propertytype">
                                 <option value="">Select</option>
                                 <option value="Flat/Apartment"> Flat/Apartment </option>
                                 <option value="Residential House"> Residential House </option>
@@ -259,6 +258,7 @@
                             <br>
                             <label for="form-stacked-select">Budget</label>
                             <select class="uk-select text-dark" id="form-stacked-select" name="price">
+                                <option value="">Select</option>
                                 <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
                                 <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
                                 <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
@@ -280,7 +280,8 @@
                             <br>
                             <label for="Locality">Locality</label>
                             <br>
-                            <select class="form-control " name="Locality" id="Locality">
+                            <select class="form-control " name="locality" id="locality">
+                                <option value="">Select</option>
                                 <option value="Roadpali">Roadpali</option>
                                 <option value="Kalamboli">Kalamboli</option>
                                 <option value="Kharghar">Kharghar</option>
@@ -289,6 +290,7 @@
                             <label for="Bedrooms">Bedrooms</label>
                             <br>
                             <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms">
+                                <option value="">Select</option>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -298,25 +300,28 @@
                             </select>
                             <br>
                             <br>
+                            <div id="mobsale" class="d-none">
+                                <label>Possession Status</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status"
+                                        value="Under Construction" id="possessionStatusUnder">
+                                    <label class="form-check-label" for="possessionStatusUnder">Under
+                                        Construction</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status"
+                                        value="Ready to Move" id="possessionStatusReady">
+                                    <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                                </div>
+                                <br>
+                                <br>
 
-                            <label>Possession Status</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="possessionStatus"
-                                    value="Under Construction" id="possessionStatusUnder">
-                                <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="possessionStatus"
-                                    value="Ready to Move" id="possessionStatusReady">
-                                <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
-                            </div>
-                            <br>
-                            <br>
 
                             <label for="furnishingStatus">Furnishing Status</label>
                             <br>
-                            <select class="form-control" name="furnishingStatus" id="furnishingStatus">
+                            <select class="form-control" name="furnishing" id="furnishing">
                                 <option value="">Select</option>
                                 <option value="Furnished">Furnished</option>
                                 <option value="Unfurnished">Unfurnished</option>
