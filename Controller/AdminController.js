@@ -119,5 +119,5 @@ module.exports.AdminDashboard = async (req,res) =>{
         enquiries : enquiries
       })
     })
-    
 }
+
