@@ -100,13 +100,15 @@
                                 </p>
                                 <p>
                                     Status: 
-                                    <span class="text-success font-weight-bold hammersmithOne">
-                                        <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                    <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                        <span class="text-success font-weight-bold hammersmithOne">
                                         Active
+                                        </span> 
                                         <% } else { %> 
+                                        <span class="text-danger font-weight-bold hammersmithOne">
                                         InActive
+                                        </span>
                                         <% } %> 
-                                    </span> 
                                     | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
                                 </p>
                                 <p>
@@ -134,9 +136,9 @@
             </li>
             <li>
                 <div class="uk-margin">
-                    <form class="uk-search uk-search-default w-75 uk-align-center">
+                    <form action="/admin/customersaved" method="GET" class="uk-search uk-search-default w-75 uk-align-center">
                         <span uk-search-icon></span>
-                        <input class="uk-search-input" type="search" placeholder="Search...">
+                        <input class="uk-search-input" name="number" type="search" placeholder="Search...">
                     </form>
                 </div>
             </li>

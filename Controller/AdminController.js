@@ -153,7 +153,7 @@ module.exports.GetCustomerSaved = (req,res,next) =>{
   let phonenumber = req.query.number;
   User.find({phone : phonenumber}).then(user=>{
     Saved.find({customerID : user._id}).then(saved=>{
-      res.render("/admin/admindashboard",saved);
+      res.redirect("/admin/admindashboard", saved);
     })
   }).catch(err=>next(err));
 }
