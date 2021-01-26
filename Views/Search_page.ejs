@@ -7,12 +7,12 @@
                         style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 650px;">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
-                        <form action="/search" method="GET">
+                        <form action="/search?propertyfor=Rent/Lease" method="GET">
                             <label>Property For</label>
                             <br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" onchange="sale()" name="propertyfor"
-                                    value="Sale" id="PropertyforSale">
+                                    value="Sale" id="PropertyforSale" checked>
                                 <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
                             <div class="form-check form-check-inline">
@@ -35,26 +35,48 @@
                                 <option value="Farm House"> Farm House </option>
                             </select>
                             <br>
-                            <label for="exampleFormControlSelect1">Budget</label>
-                            <select class="uk-select text-dark" id="form-stacked-select" name="price">
-                                <option class="text-dark" value="">Select</option>
-                                <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
-                                <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
-                                <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
-                                <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
-                                <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
-                                <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
-                                <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
-                                <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
-                                <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
-                                <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
-                                <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
-                                <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
-                                <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
-                                <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
-                                <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
-                                <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
-                            </select>
+                            <div id="saleBudget">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select text-dark" id="form-stacked-select" name="price">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                                    <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                                    <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                                    <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                                    <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                                    <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                                    <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                                    <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                                    <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                                    <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                                    <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                                    <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                                    <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                                    <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                                    <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                                    <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
+                                </select>
+                            </div>
+
+                            <div id="rentBudget" class="d-none">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select  text-dark" name="price"
+                                    id="form-stacked-select">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="1000 - 5000">1000 - 5000</option>
+                                    <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
+                                    <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
+                                    <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
+                                    <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
+                                    <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
+                                    <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
+                                    <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
+                                    <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
+                                    <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
+                                    <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
+                                    <option class="text-dark" value="8000 +">8000 +</option>
+                                </select>
+                            </div>
                             <br>
                             <br>
                             <label for="Locality">Locality</label>
@@ -79,7 +101,7 @@
                             </select>
                             <br>
                             <br>
-                            <div id="sale" class="d-none">
+                            <div id="sale" class="">
                                 <label>Possession Status</label>
                                 <br>
                                 <div class="form-check form-check-inline">
@@ -165,13 +187,13 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="row justify-content-start"> 
-                                                        <p class="m-2">
-                                                            <span
-                                                                class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹
-                                                                <%= properties[i].price %>
-                                                            </span>
-                                                        </p>
+                                                <div class="row justify-content-start">
+                                                    <p class="m-2">
+                                                        <span
+                                                            class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹
+                                                            <%= properties[i].price %>
+                                                        </span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,8 +235,9 @@
             </div>
             <div class="d-lg-none d-block">
                 <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
-                    class="rounded-lg btn btn-dark  shadow font-weight-bold"
-                    style="position: fixed; bottom: 15px; right: 15px;"><span uk-icon="settings"></span></button></a>
+                        class="rounded-lg btn btn-dark  shadow font-weight-bold"
+                        style="position: fixed; bottom: 15px; right: 15px;"><span
+                            uk-icon="settings"></span></button></a>
             </div>
         </div>
     </div>
@@ -227,18 +250,18 @@
                     <div class="hammersmithOne">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
-                        <form action="/search" method="GET">
+                        <form action="/search?propertyfor=rent" method="GET">
                             <label>Property For</label>
                             <br>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" onchange="mobsale()" name="propertyfor"
-                                    value="Sale" id="PropertyforSale">
+                                    value="Sale" id="PropertyforSale" checked>
                                 <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="propertyfor" value="Rent/Lease"
+                                <input class="form-check-input" type="radio" onchange="mobrent()" name="propertyfor" value="Rent/Lease"
                                     id="PropertyforRent">
-                                <label class="form-check-label" onchange="mobrent()" for="PropertyforRent">Rent</label>
+                                <label class="form-check-label"  for="PropertyforRent">Rent</label>
                             </div>
                             <br>
                             <br>
@@ -255,26 +278,47 @@
                                 <option value="Farm House"> Farm House </option>
                             </select>
                             <br>
-                            <label for="form-stacked-select">Budget</label>
-                            <select class="uk-select text-dark" id="form-stacked-select" name="price">
-                                <option value="">Select</option>
-                                <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
-                                <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
-                                <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
-                                <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
-                                <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
-                                <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
-                                <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
-                                <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
-                                <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
-                                <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
-                                <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
-                                <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
-                                <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
-                                <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
-                                <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
-                                <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
-                            </select>
+                            <div id="mobSaleBudget">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select text-dark" id="form-stacked-select" name="price">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                                    <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                                    <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                                    <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                                    <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                                    <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                                    <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                                    <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                                    <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                                    <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                                    <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                                    <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                                    <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                                    <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                                    <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                                    <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
+                                </select>
+                            </div>
+                            <div id="mobRentBudget" class="d-none">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select text-dark" name="price"
+                                    id="form-stacked-select">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="1000 - 5000">1000 - 5000</option>
+                                    <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
+                                    <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
+                                    <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
+                                    <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
+                                    <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
+                                    <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
+                                    <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
+                                    <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
+                                    <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
+                                    <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
+                                    <option class="text-dark" value="8000 +">8000 +</option>
+                                </select>
+                            </div>
                             <br>
                             <br>
                             <label for="Locality">Locality</label>
@@ -299,7 +343,7 @@
                             </select>
                             <br>
                             <br>
-                            <div id="mobsale" class="d-none">
+                            <div id="mobsale" class="">
                                 <label>Possession Status</label>
                                 <br>
                                 <div class="form-check form-check-inline">
@@ -309,13 +353,12 @@
                                         Construction</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status"
-                                        value="Ready to Move" id="possessionStatusReady">
+                                    <input class="form-check-input" type="radio" name="status" value="Ready to Move"
+                                        id="possessionStatusReady">
                                     <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
                                 </div>
                                 <br>
                                 <br>
-
                             </div>
 
                             <label for="furnishingStatus">Furnishing Status</label>
