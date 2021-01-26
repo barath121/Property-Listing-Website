@@ -13,59 +13,104 @@
         <ul class="uk-switcher uk-margin">
             <li>
                 <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% var i = 8 %>
-                    <% while  (i!=0) {%> 
+                    <% properties.map(ele => { %>  
+                        <% for (var a in ele.AllProperty) { %> 
                         <div>
                             <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                                <p class="h5 text-danger hammersmithOne">2 BHK Apartment for Sale in Mahavir Heights, Roadpali, Navi Mumbai</p> <hr>
-                                <p>Price: <span class="text-dark hammersmithOne">Rs 81 Lac</span> | Super built-up Area: <span class="text-dark hammersmithOne">1018 sq. ft</span></p>
-                                <p>Status: <span class="text-success font-weight-bold hammersmithOne">Active</span> | Posted on: <span class="text-dark hammersmithOne">02-12-2020</span></p>
-                                <p>Address: <span class="text-dark hammersmithOne">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam consectetur vero, unde fugiat molestias repellat distinctio exercitationem.</span></p>
+                                <p class="h5 text-danger hammersmithOne"><%= ele.AllProperty[a].title %> </p> 
+                                <hr>
+                                <p>
+                                    Price: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %></span>
+                                </p>
+                                <p>
+                                    Status: 
+                                    <span class="text-success font-weight-bold hammersmithOne">
+                                        <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                        Active
+                                        <% } else { %> 
+                                        InActive
+                                        <% } %> 
+                                    </span> 
+                                    | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
+                                </p>
+                                <p>
+                                    Address: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].address %> </span>
+                                </p>
                                 <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
                                 <a href=""><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></a>
                                 <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
                             </div>
                         </div>
-                        <% i = i-1 %> 
-                    <% } %> 
+                        <% } %> 
+                    <% }) %>     
                 </div>
             </li>
             <li>
                 <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% var i = 8 %>
-                        <% while  (i!=0) {%> 
-                    <div>
-                        <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                            <p class="h5 text-danger hammersmithOne">2 BHK Apartment for Sale in Mahavir Heights, Roadpali, Navi Mumbai</p> <hr>
-                            <p>Price: <span class="text-dark hammersmithOne">Rs 81 Lac</span> | Super built-up Area: <span class="text-dark hammersmithOne">1018 sq. ft</span></p>
-                            <p>Status: <span class="text-success font-weight-bold hammersmithOne">Active</span> | Posted on: <span class="text-dark hammersmithOne">02-12-2020</span></p>
-                            <p>Address: <span class="text-dark hammersmithOne">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam consectetur vero, unde fugiat molestias repellat distinctio exercitationem.</span></p>
-                            <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                            <a href=""><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></a>
-                            <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                    <% properties.map(ele => { %>  
+                        <% for (var a in ele.ActivatedProperty) { %> 
+                        <div>
+                            <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %> </p> 
+                                <hr>
+                                <p>
+                                    Price: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
+                                </p>
+                                <p>
+                                    Status: 
+                                    <span class="text-success font-weight-bold hammersmithOne">
+                                        <% if (ele.ActivatedProperty[a].isAvaliable == true) { %> 
+                                        Active
+                                        <% } else { %> 
+                                        InActive
+                                        <% } %> 
+                                    </span> 
+                                    | Posted on: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].createdAt %></span>
+                                </p>
+                                <p>
+                                    Address: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].address %> </span>
+                                </p>
+                                <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                <a href=""><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></a>
+                                <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                            </div>
                         </div>
-                    </div>
-                        <% i = i-1 %> 
-                    <% } %> 
+                        <% } %> 
+                    <% }) %> 
                 </div>
             </li>
             <li>
                 <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% var i = 8 %>
-                        <% while  (i!=0) {%> 
-                    <div>
-                        <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                            <p class="h5 text-danger hammersmithOne">2 BHK Apartment for Sale in Mahavir Heights, Roadpali, Navi Mumbai</p> <hr>
-                            <p>Price: <span class="text-dark hammersmithOne">Rs 81 Lac</span> | Super built-up Area: <span class="text-dark hammersmithOne">1018 sq. ft</span></p>
-                            <p>Status: <span class="text-muted font-weight-bold hammersmithOne">Disabled</span> | Posted on: <span class="text-dark hammersmithOne">02-12-2020</span></p>
-                            <p>Address: <span class="text-dark hammersmithOne">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam consectetur vero, unde fugiat molestias repellat distinctio exercitationem.</span></p>
-                            <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                            <a href=""><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></a>
-                            <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                    <% properties.map(ele => { %>  
+                        <% for (var a in ele.DisabledProperty) { %> 
+                        <div>
+                            <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                <p class="h5 text-danger hammersmithOne"><%= ele.DisabledProperty[a].title %> </p> 
+                                <hr>
+                                <p>
+                                    Price: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledPropertyy[a].propertyFeatures.carpetArea %></span>
+                                </p>
+                                <p>
+                                    Status: 
+                                    <span class="text-success font-weight-bold hammersmithOne">
+                                        <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
+                                        Active
+                                        <% } else { %> 
+                                        InActive
+                                        <% } %> 
+                                    </span> 
+                                    | Posted on: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].createdAt %></span>
+                                </p>
+                                <p>
+                                    Address: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].address %> </span>
+                                </p>
+                                <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                <a href=""><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></a>
+                                <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                            </div>
                         </div>
-                    </div>
-                        <% i = i-1 %> 
-                    <% } %> 
+                        <% } %> 
+                    <% }) %> 
                 </div>
             </li>
             <li>
@@ -77,39 +122,34 @@
                 </div>
             </li>
             <li>
-                <div class="uk-child-width-1-3@s" uk-grid>
-                    <div>
-                        <div class="text-center"><span class="h1 hammersmithOne">150</span><br>Total</div>
-                    </div>
+                <div class="uk-child-width-1-2@s" uk-grid>
                     <div>
                         <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Solved</div>
                     </div>
                     <div>
-                        <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Remaining</div>
+                        <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
                     </div>
                 </div>
                 <div class="uk-child-width-1-2@s" uk-grid>
-                <% var i = 8 %>
-                    <% while  (i!=0) { %>  
+                <% enquiries.forEach(ele => { %> 
                     <div>
                         <div class="bg-white uk-card uk-card-hover p-3 rounded-lg h-100">
                             <div class="uk-child-width-1-2" uk-grid>
                                 <div>
-                                    <p class="h4 hammersmithOne">Terry</p>
-                                    <div class="small">Posted on: <span class="hammersmithOne">25/01/2021</span></div>
+                                    <p class="h4 hammersmithOne"><%= ele.name %></p>
+                                    <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
                                 </div>
                                 <div>
                                     <p class="text-right">
-                                        <a href="" class="bg-success p-1 text-white text-decoration-none rounded-lg">Solved</a>
+                                        <a href="" class="bg-success p-1 text-white text-decoration-none rounded-lg"><span uk-icon="icon: check"></span></a>
                                     </p>
                                 </div>
                             </div>
-                            <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laboriosam illum reiciendis beatae quam incidunt harum at nostrum dicta placeat deserunt autem repudiandae quos quisquam sint, nobis commodi eius dolor?</p>
-                            <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 1749139111</span></p>
+                            <p class=""><%= ele.message %> </p>
+                            <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.contactno %></span></p>
                         </div>
                     </div>
-                    <% i = i-1 %> 
-                <% } %>   
+                <% }) %>   
                 </div>
             </li>
         </ul>
