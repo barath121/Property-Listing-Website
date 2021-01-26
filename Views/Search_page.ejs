@@ -1,12 +1,12 @@
 <%- include('./layouts/imports') -%>
     <div class="uk-background-muted p-lg-4 p-2 ">
         <div class="container mt-4 ">
-            <div class="d-flex w-100 justify-content-center mb-4">
-                <h3>
+            <div class="d-flex w-100 justify-content-center mb-4 ">
+                <h4 class="hammersmithOne">
                     <%= properties.length %> Properties matching your preference
-                </h3>
+                </h4>
             </div>
-            <div class="row">
+            <div class="row hammersmithOne">
                 <div class="col-lg-4 d-none d-lg-block">
                     <div class="uk-background-default p-5 shadow rounded overflow-auto"
                         style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 550px;">
@@ -16,13 +16,13 @@
                             <label>Property For</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Propertyfor" value="Sale"
-                                    id="PropertyforSale">
+                                <input class="form-check-input" type="radio" onchange="sale()" name="Propertyfor"
+                                    value="Sale" id="PropertyforSale">
                                 <label class="form-check-label" for="PropertyforSale">Sale</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="Propertyfor" value="Rent/Lease"
-                                    id="PropertyforRent">
+                                <input class="form-check-input" type="radio" onchange="rent()" name="Propertyfor"
+                                    value="Rent/Lease" id="PropertyforRent">
                                 <label class="form-check-label" for="PropertyforRent">Rent</label>
                             </div>
                             <br>
@@ -42,6 +42,7 @@
                             <br>
                             <label for="exampleFormControlSelect1">Budget</label>
                             <select class="uk-select text-dark" id="form-stacked-select" name="price">
+                                <option class="text-dark" value="">Select</option>
                                 <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
                                 <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
                                 <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
@@ -64,6 +65,7 @@
                             <label for="Locality">Locality</label>
                             <br>
                             <select class="form-control " name="Locality" id="Locality">
+                                <option value="">Select</option>
                                 <option value="Roadpali">Roadpali</option>
                                 <option value="Kalamboli">Kalamboli</option>
                                 <option value="Kharghar">Kharghar</option>
@@ -72,6 +74,7 @@
                             <label for="Bedrooms">Bedrooms</label>
                             <br>
                             <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms">
+                                <option value="">Select</option>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -81,22 +84,23 @@
                             </select>
                             <br>
                             <br>
-
-                            <label>Possession Status</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="possessionStatus"
-                                    value="Under Construction" id="possessionStatusUnder">
-                                <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
+                            <div id="sale" class="d-none">
+                                <label>Possession Status</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="possessionStatus"
+                                        value="Under Construction" id="possessionStatusUnder">
+                                    <label class="form-check-label" for="possessionStatusUnder">Under
+                                        Construction</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="possessionStatus"
+                                        value="Ready to Move" id="possessionStatusReady">
+                                    <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                                </div>
+                                <br>
+                                <br>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="possessionStatus"
-                                    value="Ready to Move" id="possessionStatusReady">
-                                <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
-                            </div>
-                            <br>
-                            <br>
-
                             <label for="furnishingStatus">Furnishing Status</label>
                             <br>
                             <select class="form-control" name="furnishingStatus" id="furnishingStatus">
@@ -140,26 +144,32 @@
                                                 <img src="<%= properties[i].image %>" alt="Img" height="500px">
                                             </div>
                                             <div class="col-lg-8 col-12 mt-lg-0 mt-4">
-                                                <h3 class="mb-4">
-                                                    <%= properties.title %>
+                                                <h3 class="mb-4 text-danger hammersmithOne">
+                                                    <%= properties[i].title %>
                                                 </h3>
                                                 <div class="row">
-                                                    <div class="col-6 text-muted mb-1">Carpet Area<p>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Carpet Area<p>
                                                             <%= properties[i].area %>SqFt
                                                         </p>
                                                     </div>
-                                                    <div class="col-6 text-muted mb-1">Status<p>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Status<p>
                                                             <%= properties[i].status %>
                                                         </p>
                                                     </div>
-                                                    <div class="col-6 text-muted mb-1">Bedroom<p>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Bedroom<p>
                                                             <%= properties[i].bedroom %>
                                                         </p>
                                                     </div>
-                                                    <div class="col-6 text-muted mb-1">Furnishing<p>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Furnishing<p>
                                                             <%= properties[i].furnishing %>
                                                         </p>
                                                     </div>
+                                                </div>
+                                                <div class="row justify-content-start">
+                                                    <p class="m-2">
+                                                        <span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹<%= properties[i].price %>
+                                                        </span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -168,11 +178,12 @@
                                 <% } %>
                                     <% } else { %>
                                         <div style="display: flex;flex-direction: column; align-items: center;">
-                                            <img src="/undraw_Building_vpxo.svg"  alt="Img" width="250px">
-                                            <br>    
-                                            <p style="font-size: x-large; font-weight: 600;">Error No Properties match the given filters</p>
+                                            <img src="/undraw_Building_vpxo.svg" alt="Img" width="250px">
+                                            <br>
+                                            <p style="font-size: x-large; font-weight: 600;">Error No Properties match
+                                                the given filters</p>
                                         </div>
-                                    <% } %>
+                                        <% } %>
                                             <% if(properties.length !=0) { %>
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination justify-content-end">
@@ -180,25 +191,28 @@
                                                             <a class="page-link" href="#" tabindex="-1">Previous</a>
                                                         </li>
                                                         <% for(var i=1; i< 5; i++) {%>
-                                                            <li class="page-item"><a class="page-link text-danger"
-                                                                    href="/search?page=<%= i %>">
+                                                            <li class="page-item">
+                                                                <a class="page-link text-danger"
+                                                                    onclick="pages('<%= i %>')">
                                                                     <%= i %>
-                                                                </a></li>
+                                                                </a>
+                                                            </li>
                                                             <% } %>
                                                                 <li class="page-item">
                                                                     <a class="page-link text-danger" href="#">Next</a>
                                                                 </li>
                                                     </ul>
                                                 </nav>
-                                            <% } %>
+                                                <% } %>
 
                     </div>
                 </div>
             </div>
             <div class="d-lg-none d-block">
                 <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
-                    class="rounded-circle btn btn-lg btn-dark  shadow font-weight-bold"
-                    style="position: fixed; bottom: 15px; right: 15px;"><span uk-icon="settings"></span></button></a>
+                        class="rounded-circle btn btn-lg btn-dark  shadow font-weight-bold"
+                        style="position: fixed; bottom: 15px; right: 15px;"><span
+                            uk-icon="settings"></span></button></a>
             </div>
         </div>
     </div>
@@ -208,7 +222,7 @@
             <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
             <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
                 <div class="uk-padding-large">
-                    <div class="">
+                    <div class="hammersmithOne">
                         <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
                         </p>
                         <form action="/search" method="GET">
@@ -331,6 +345,6 @@
         </div>
     </div>
 
-    <script type="module" src="/js/searchPage.js"></script>
+    <script type="text/javascript" src="/js/searchPage.js"></script>
 
     <%- include('./layouts/Footer') -%>
