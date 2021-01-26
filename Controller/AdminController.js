@@ -2,6 +2,8 @@ const Enquiry = require('../Models/Enquiry');
 const Property = require('../Models/Property');
 const Saved = require('../Models/Saved');
 const User = require('./../Models/User');
+const firebase = require("./../Utils/firebaseAdminInit");
+
 const converttocardData = (Data) =>{
     Data.forEach((element) => {
         property = {};
@@ -121,3 +123,16 @@ module.exports.AdminDashboard = async (req,res) =>{
     })
 }
 
+module.exports.TogglePropertyAvaliablity = (req,res) =>{
+  Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status});
+  res.redirect('/admin/admindashboard')
+}
+
+module.exports.DeletePropertyAvaliablity = (req,res) =>{
+  Property.findById(req.body.id).then(result=>{
+    firebase.deleteFile(result.Images.imageid);
+  })
+  Property.findByIdAndDelete(req.body.id);
+  firebase.deleteFile()
+  res.redirect('/admin/admindashboard')
+}
