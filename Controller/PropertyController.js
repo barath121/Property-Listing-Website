@@ -377,6 +377,12 @@ module.exports.Search = async (req, res) => {
           property.image = img;
         }
       });
+      property.id = 
+         element.id;
+      
+      property.type = 
+         element.propertyType;
+         
       property.title =
         element.propertyType +
         " For " +
@@ -411,7 +417,7 @@ module.exports.Search = async (req, res) => {
       properties.push(property);
     });
   }
-  console.log(countofpage);
+  console.log(properties);
   res.render("Search_page", { properties: properties,page:countofpage });
 };
 module.exports.CommercialProperty = async (req, res, next) => {
