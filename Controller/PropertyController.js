@@ -354,9 +354,10 @@ module.exports.Search = async (req, res) => {
     conditions.push({ "propertyFeatures.bedrooms": filters.bedrooms });
   }
   let properties = [];
-  if (conditions.length) {
-    let condition = { $and: conditions };
-    console.log(conditions);
+  {
+    let condition = {}
+    if(conditions.length)
+    condition = { $and: conditions };
     let page = req.query.page || 1;
     let limit = 10;
     let skip = (page-1) * limit;
