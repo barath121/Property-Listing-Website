@@ -1,6 +1,8 @@
 <%- include('./layouts/imports') -%>
 
-<% console.log(enquiries) %> 
+<% console.log(properties.map(ele => 
+    ele
+)) %> 
 
 <section class="mt-5 mb-5">
     <div class="container">
@@ -15,8 +17,7 @@
         <ul class="uk-switcher uk-margin">
             <li>
                 <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% var i = 8 %>
-                    <% while  (i!=0) {%> 
+                     
                         <div>
                             <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
                                 <p class="h5 text-danger hammersmithOne">2 BHK Apartment for Sale in Mahavir Heights, Roadpali, Navi Mumbai</p> <hr>
@@ -28,8 +29,7 @@
                                 <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
                             </div>
                         </div>
-                        <% i = i-1 %> 
-                    <% } %> 
+                        
                 </div>
             </li>
             <li>
