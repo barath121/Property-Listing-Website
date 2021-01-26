@@ -320,7 +320,15 @@ module.exports.Search = async (req, res) => {
       "propertyFeatures.furnishingStatus": filters.furnishing,
     });
   }
-  if (filters.price) {
+  if (filters.price&&(filters.price[0]||filters.price[1])) {
+    if(filters.price[0]!=0){
+      filters.price = filters.price[0];
+    }
+    console.log(filters.price[1])
+    if(filters.price[1]!=0){
+      filters.price = filters.price[1];
+    }
+    console.log(filters.price)
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
     if (!minpriceDetails[1]) {
