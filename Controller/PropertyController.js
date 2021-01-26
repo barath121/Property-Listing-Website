@@ -320,7 +320,15 @@ module.exports.Search = async (req, res) => {
       "propertyFeatures.furnishingStatus": filters.furnishing,
     });
   }
-  if (filters.price) {
+  if (filters.price&&(filters.price[0]||filters.price[1])) {
+    if(filters.price[0]!=0){
+      filters.price = filters.price[0];
+    }
+    console.log(filters.price[1])
+    if(filters.price[1]!=0){
+      filters.price = filters.price[1];
+    }
+    console.log(filters.price)
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
     if (!minpriceDetails[1]) {
@@ -341,8 +349,13 @@ module.exports.Search = async (req, res) => {
     } else if (maxpriceDetails[1] == "Cr") {
       maxprice = 10000000 * parseInt(maxpriceDetails[0]);
     }
+    if(filters.propertyfor=="Sale"){
     conditions.push({ "priceDetails.expectedPrice": { $gte: minprice } });
-    conditions.push({ "priceDetails.expectedPrice": { $lte: maxprice } });
+    conditions.push({ "priceDetails.expectedPrice": { $lte: maxprice } });}
+    else{
+      conditions.push({ "priceDetails.expectedRent": { $gte: minprice } });
+    conditions.push({ "priceDetails.expectedRent": { $lte: maxprice } });
+    }
   }
   if (filters.sqmin) {
     conditions.push({ "propertyFeatures.carpetArea": { $gte: filters.sqmin } });
@@ -358,6 +371,7 @@ module.exports.Search = async (req, res) => {
     let condition = {}
     if(conditions.length)
     condition = { $and: conditions };
+    console.log(conditions)
     let page = req.query.page || 1;
     let limit = 10;
     let skip = (page-1) * limit;
