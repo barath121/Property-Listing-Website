@@ -36,3 +36,6 @@ module.exports.uploadFile = (file,imageid,i) => new Promise((resolve, reject) =>
 
 })
 
+module.exports.deleteFile = (foldername) =>{
+  bucket.file(foldername).delete();
+}
