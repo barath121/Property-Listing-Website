@@ -163,15 +163,26 @@ module.exports.createProperty = async (req, res, next) => {
   property.Images = {};
   property.Images.images = imagesArray;
   property.Images.imageid = imageid;
-
+if(req.body._id){
+  Property.findByIdAndUpdate(req.body._id,property) .catch((err) => {
+    console.log(err);
+    next(err);
+  })
+  .then((result) => {
+    
+    if (result) res.redirect("/admin/admindashboard");
+  });;
+}
+else{
   Property.create(property)
     .catch((err) => {
       console.log(err);
       next(err);
     })
     .then((result) => {
-      if (result) res.redirect("/");
+      if (result) res.redirect("/admin/admindashboard");
     });
+  }
 };
 module.exports.ViewProperty = (req, res, next) => {
   let id = req.query.id;
@@ -510,3 +521,22 @@ module.exports.CommercialProperty = async (req, res, next) => {
       if (result) res.redirect("/");
     });
 };
+
+module.exports.EditProperty = (req,res,next) =>{
+  if(req.body.type="residential"){
+    Property.findById(req.body._id).then(property=>{
+      if(property){
+        res.render('/Create_property',property);
+      }
+     res.redirect('/404');
+    });
+
+  }else{
+    Commercial.findById(req.body._id).then(property=>{
+      if(property){
+        res.render('/commercial_property',property);
+      }
+     res.redirect('/404');
+    });
+  }
+}
