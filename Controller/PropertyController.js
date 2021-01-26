@@ -247,7 +247,7 @@ module.exports.ViewProperty = (req, res, next) => {
       });
   }
 };
-module.exports.HomePage = async (req, res) => {
+module.exports.HomePage = async (req, res,next) => {
   let Properties = await Property.aggregate([
     { $sample: { size: 6 } },
   ]).catch((err) => next(err));
