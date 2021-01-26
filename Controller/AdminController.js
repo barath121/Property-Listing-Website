@@ -67,6 +67,7 @@ module.exports.AdminDashboard = async (req,res) =>{
                 address : 1,
                 createdAt : 1,
                 "priceDetails.expectedPrice" : 1,
+                "priceDetails.expectedRent" : 1,
                 "propertyFeatures.carpetArea" : 1
               }
             }
@@ -86,6 +87,7 @@ module.exports.AdminDashboard = async (req,res) =>{
               address : 1,
               createdAt : 1,
               "priceDetails.expectedPrice" : 1,
+              "priceDetails.expectedRent" : 1,
               "propertyFeatures.carpetArea" : 1
             }
           }
@@ -106,6 +108,7 @@ module.exports.AdminDashboard = async (req,res) =>{
                 address : 1,
                 createdAt : 1,
                 "priceDetails.expectedPrice" : 1,
+                "priceDetails.expectedRent" : 1,
                 "propertyFeatures.carpetArea" : 1
               }
             }
@@ -161,6 +164,6 @@ module.exports.GetCustomerSaved = (req,res,next) =>{
 module.exports.MarkQuerySolved = (res,req) =>{
   Enquiry.findByIdAndUpdate(req.body.id,{contacted : true}).then(saved=>{
     req.flash("success","Enquiry Has Been Solved");
-    res.render("/admin/admindashboard");
+    res.redirect("/admin/admindashboard");
   });
 }
