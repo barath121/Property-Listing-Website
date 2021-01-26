@@ -156,7 +156,7 @@ module.exports.GetCustomerSaved = (req,res,next) =>{
   let phonenumber = req.query.number;
   User.find({phone : phonenumber}).then(user=>{
     Saved.find({customerID : user._id}).then(saved=>{
-      res.render("/admin/admindashboard",saved);
+      res.redirect("/admin/admindashboard",saved);
     })
   }).catch(err=>next(err));
 }
@@ -164,6 +164,6 @@ module.exports.GetCustomerSaved = (req,res,next) =>{
 module.exports.MarkQuerySolved = (res,req) =>{
   Enquiry.findByIdAndUpdate(req.body.id,{contacted : true}).then(saved=>{
     req.flash("success","Enquiry Has Been Solved");
-    res.render("/admin/admindashboard");
+    res.redirect("/admin/admindashboard");
   });
 }
