@@ -321,6 +321,11 @@ module.exports.Search = async (req, res) => {
     });
   }
   if (filters.price) {
+    console.log()
+   if(Array.isArray(filters.price)){
+    filters.price = filters.price[0]||filters.price[1]
+    }
+    console.log(filters.price)
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
     if (!minpriceDetails[1]) {
