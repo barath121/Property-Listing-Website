@@ -115,7 +115,6 @@ module.exports.AdminDashboard = async (req,res) =>{
       console.log(err)
     }).then(async result=>{
       let enquiries = await Enquiry.find({contacted : false});
-      console.log(enquiries);
       res.render("adminDashboard",{
         properties : result,
         enquiries : enquiries
@@ -138,15 +137,16 @@ module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
 module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
   console.log(req.body.id)
   Property.findById(req.body.id).then(result=>{
-    firebase.deleteFile(result.Images.imageid);
+    firebase.deleteFile(result.Images.images);
     Property.findByIdAndDelete(req.body.id).then(deleted=>{
       req.flash("success","Property Has Been Removed");
-      console.log("random")
       res.redirect('/admin/admindashboard')
     });
-  }).catch(err=>{next(err)})
+  }).catch(err=>{
+    console.log(err)
+    next(err)})
   
-  res.redirect('/admin/admindashboard')
+  // res.redirect('/admin/admindashboard')
 }
 
 module.exports.GetCustomerSaved = (req,res,next) =>{
