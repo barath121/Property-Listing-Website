@@ -526,7 +526,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.name = req.body.name;
   commercial.address = req.body.address;
   commercial.propertyType = req.body.PropertyType;
-  commercial.locality = req.body.locality;
+  commercial.locality = req.body.Locality;
   commercial.propertyFor = req.body.Propertyfor;
   commercial.locatedInside = req.body.locatedInside;
   commercial.zoneType = req.body.zoneType;
