@@ -27,6 +27,7 @@ const StaticRoutes = (app) =>{
         res.render('commercial_property')
     })
     app.use('/search',PropertyController.Search);
+    app.use('/searchcommercial',PropertyController.SearchCommercial);
     app.get('/404', (req, res) => {
         res.render('404');
     })
