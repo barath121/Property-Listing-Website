@@ -1,3 +1,4 @@
+const Commercial = require('../Models/Commercial');
 const Enquiry = require('../Models/Enquiry');
 const Property = require('../Models/Property');
 const Saved = require('../Models/Saved');
@@ -59,7 +60,7 @@ module.exports.AdminDashboard = async (req,res,next) =>{
    }).catch(err=>next(err));
     }
     
-    Property.aggregate([{
+    Commercial.aggregate([{
       $facet : {
         "ActivatedProperty" : [
           {
@@ -75,9 +76,9 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 isAvaliable : 1,
                 address : 1,
                 createdAt : 1,
-                "priceDetails.expectedPrice" : 1,
-                "priceDetails.expectedRent" : 1,
-                "propertyFeatures.carpetArea" : 1
+                "expectedPrice" : 1,
+                "expectedRent" : 1,
+                "areaDetails.carpetArea" : 1
               }
             }
         ],
@@ -95,9 +96,9 @@ module.exports.AdminDashboard = async (req,res,next) =>{
               isAvaliable : 1,
               address : 1,
               createdAt : 1,
-              "priceDetails.expectedPrice" : 1,
-              "priceDetails.expectedRent" : 1,
-              "propertyFeatures.carpetArea" : 1
+              "expectedPrice" : 1,
+              "expectedRent" : 1,
+              "areaDetails.carpetArea" : 1
             }
           }
         ],
@@ -116,21 +117,91 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 isAvaliable : 1,
                 address : 1,
                 createdAt : 1,
-                "priceDetails.expectedPrice" : 1,
-                "priceDetails.expectedRent" : 1,
-                "propertyFeatures.carpetArea" : 1
+                "expectedPrice" : 1,
+                "expectedRent" : 1,
+                "areaDetails.carpetArea" : 1
               }
             }
         ]
       }
     }]).catch(err=>{
       console.log(err)
-    }).then(async result=>{
-      let enquiries = await Enquiry.find({contacted : false});
-      res.render("adminDashboard",{
-        properties : result,
-        enquiries : enquiries,
-        saved : saved
+    }).then(async commercialresult=>{
+      Property.aggregate([{
+        $facet : {
+          "ActivatedProperty" : [
+            {
+              $match : {
+                isAvaliable : true
+              },
+            },
+              {
+                $project:{
+                  title:{
+                    $concat : ["$propertyType"," For ","$propertyFor"," at ","$name",",",'$locality']
+                  },
+                  isAvaliable : 1,
+                  address : 1,
+                  createdAt : 1,
+                  "priceDetails.expectedPrice" : 1,
+                  "priceDetails.expectedRent" : 1,
+                  "propertyFeatures.carpetArea" : 1
+                }
+              }
+          ],
+          "DisabledProperty" : [
+            {
+              $match : {
+                isAvaliable : false
+              }
+            },
+            {
+              $project:{
+                title:{
+                  $concat : ["$propertyType"," For ","$propertyFor"," at ","$name",",",'$locality']
+                },
+                isAvaliable : 1,
+                address : 1,
+                createdAt : 1,
+                "priceDetails.expectedPrice" : 1,
+                "priceDetails.expectedRent" : 1,
+                "propertyFeatures.carpetArea" : 1
+              }
+            }
+          ],
+          "AllProperty" : [
+            {
+              $match : {$or : [
+                {isAvaliable : true},
+                {isAvaliable : false}
+              ]}
+            },
+              {
+                $project:{
+                  title:{
+                    $concat : ["$propertyType"," For ","$propertyFor"," at ","$name",",",'$locality']
+                  },
+                  isAvaliable : 1,
+                  address : 1,
+                  createdAt : 1,
+                  "priceDetails.expectedPrice" : 1,
+                  "priceDetails.expectedRent" : 1,
+                  "propertyFeatures.carpetArea" : 1
+                }
+              }
+          ]
+        }
+      }]).catch(err=>{
+        console.log(err)
+      }).then(async result=>{
+        console.log(result);
+        let enquiries = await Enquiry.find({contacted : false});
+        res.render("adminDashboard",{
+          commercial : commercialresult,
+          properties : result,
+          enquiries : enquiries,
+          saved : saved
+        })
       })
     })
 }
@@ -166,6 +237,6 @@ module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
 module.exports.MarkQuerySolved = (res,req) =>{
   Enquiry.findByIdAndUpdate(req.body.id,{contacted : true}).then(saved=>{
     req.flash("success","Enquiry Has Been Solved");
-    res.redirect("/admin/admindashboard");
+    res.redirect("/admin/admindashboard?value=customer");
   });
 }
