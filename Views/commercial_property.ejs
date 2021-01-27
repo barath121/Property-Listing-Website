@@ -717,6 +717,18 @@
         if (!document.getElementById("Shop").classList.contains("d-none")) {
           document.getElementById("Shop").classList.add("d-none")
         }
+        document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        document.getElementById("showroom").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        document.getElementById("Shop").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
+        document.getElementById("extras").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
+          ele.removeAttribute("required");
+        })
       }
     }
 

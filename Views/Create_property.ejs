@@ -605,6 +605,7 @@
                                                     </div>
                                                     <br>
                                                     <br>
+                                                    <% if(property.priceDetails.possessionStatus=="Under Construction" ){ %>
                                                     <div id="construction">
                                                       <label>Available From</label>
                                                       <br>
@@ -673,6 +674,7 @@
                                                                                                     <%} else {%>
                                                                                                       <option value="December">December</option>
                                                                                                       <%}%>
+                                                      </select>
                                                                                                                                                  
                                                       <br>
                                                       <label for="year">Year</label>
@@ -687,7 +689,7 @@
                                                         placeholder="Enter year"   required>
                                                           <%}%>
                                                     </div>
-                                                    <div id="age">
+                                                    <div id="age" class="d-none">
                                                       <br>
                                                       <label for="ageOfConstruction">Age Of Construction</label>
                                                       <br>
@@ -730,7 +732,133 @@
                                                           <%}%>
                                                       </select>
                                                     </div>
-
+                                                    <%} else if(property.priceDetails.possessionStatus=="Ready to Move" ){%>
+                                                      <div id="construction" class="d-none">
+                                                        <label>Available From</label>
+                                                        <br>
+                                                        <br>
+                                                        <label for="month">Month</label>
+                                                        <br>
+                                                        <select class="form-control w-50" name="month" id="month"
+                                                          required>
+                                                          <% if(property.priceDetails.month=="January" ){ %>
+                                                          <option value="January" selected>January</option>
+                                                          <%} else {%>
+                                                            <option value="January">January</option>
+                                                            <%}%>
+                                                            <% if(property.priceDetails.month=="February" ){ %>
+                                                              <option value="February" selected>February</option>
+                                                              <%} else {%>
+                                                                <option value="February">February</option>
+                                                                <%}%>
+                                                                <% if(property.priceDetails.month=="March" ){ %>
+                                                                  <option value="March" selected>March</option>
+                                                                  <%} else {%>
+                                                                    <option value="March">March</option>
+                                                                    <%}%>
+                                                                    <% if(property.priceDetails.month=="April" ){ %>
+                                                                      <option value="April" selected>April</option>
+                                                                      <%} else {%>
+                                                                        <option value="April">April</option>
+                                                                        <%}%>
+                                                                        <% if(property.priceDetails.month=="May" ){ %>
+                                                                          <option value="May" selected>May</option>
+                                                                          <%} else {%>
+                                                                            <option value="May">May</option>
+                                                                            <%}%>                                                       
+                                                                            <% if(property.priceDetails.month=="June" ){ %>
+                                                                              <option value="June" selected>June</option>
+                                                                              <%} else {%>
+                                                                                <option value="June">June</option>
+                                                                                <%}%>                                                      
+                                                                                <% if(property.priceDetails.month=="July" ){ %>
+                                                                                  <option value="July" selected>July</option>
+                                                                                  <%} else {%>
+                                                                                    <option value="July">July</option>
+                                                                                    <%}%>                                                        
+                                                                                    <% if(property.priceDetails.month=="August" ){ %>
+                                                                                      <option value="August" selected>August</option>
+                                                                                      <%} else {%>
+                                                                                        <option value="August">August</option>
+                                                                                        <%}%>
+                                                                                        <% if(property.priceDetails.month=="September" ){ %>
+                                                                                          <option value="September" selected>September</option>
+                                                                                          <%} else {%>
+                                                                                            <option value="September">September</option>
+                                                                                            <%}%>
+                                                                                            <% if(property.priceDetails.month=="October" ){ %>
+                                                                                              <option value="October" selected>October</option>
+                                                                                              <%} else {%>
+                                                                                                <option value="October">October</option>
+                                                                                                <%}%>
+                                                                                                <% if(property.priceDetails.month=="November" ){ %>
+                                                                                                  <option value="November" selected>November</option>
+                                                                                                  <%} else {%>
+                                                                                                    <option value="November">November</option>
+                                                                                                    <%}%>
+                                                                                                    <% if(property.priceDetails.month=="December" ){ %>
+                                                                                                      <option value="December" selected>December</option>
+                                                                                                      <%} else {%>
+                                                                                                        <option value="December">December</option>
+                                                                                                        <%}%>
+                                                        </select>                                                                                          
+                                                        <br>
+                                                        <label for="year">Year</label>
+                                                        <br>
+                                                        <% if(property.priceDetails.year){ %>
+                                                        <input type="text" class="form-control w-50" pattern="^[0-9]*$"
+                                                          title="Please enter a valid number" id="year" name="year"
+                                                          placeholder="Enter year" value="<%= property.priceDetails.year %>" required>
+                                                          <%} else {%>
+                                                            <input type="text" class="form-control w-50" pattern="^[0-9]*$"
+                                                          title="Please enter a valid number" id="year" name="year"
+                                                          placeholder="Enter year"   required>
+                                                            <%}%>
+                                                      </div>
+                                                      <div id="age">
+                                                        <br>
+                                                        <label for="ageOfConstruction">Age Of Construction</label>
+                                                        <br>
+                                                        <select class="form-control w-50" name="ageOfConstruction"
+                                                          id="ageOfConstruction" required>
+                                                          <% if(property.priceDetails.ageOfConstruction=="" ){ %>
+                                                          <option value="" selected>select</option>
+                                                          <%} else {%>
+                                                            <option value="">select</option>
+                                                            <%}%>
+                                                            <% if(property.priceDetails.ageOfConstruction=="New Construction" ){ %>
+                                                          <option value="New Construction" selected>New Construction</option>
+                                                          <%} else {%>
+                                                            <option value="New Construction">New Construction</option>
+                                                            <%}%>
+                                                          <% if(property.priceDetails.ageOfConstruction=="Less than 5 years" ){ %>
+                                                          <option value="Less than 5 years" selected>Less than 5 years</option>
+                                                          <%} else {%>
+                                                            <option value="Less than 5 years">Less than 5 years</option>
+                                                            <%}%>
+                                                          <% if(property.priceDetails.ageOfConstruction=="5 to 10 years" ){ %>
+                                                          <option value="5 to 10 years" selected>5 to 10 years</option>
+                                                          <%} else {%>
+                                                            <option value="5 to 10 years">5 to 10 years</option>
+                                                            <%}%>
+                                                          <% if(property.priceDetails.ageOfConstruction=="10 to 15 years" ){ %>
+                                                          <option value="10 to 15 years" selected>10 to 15 years</option>
+                                                          <%} else {%>
+                                                            <option value="10 to 15 years">10 to 15 years</option>
+                                                            <%}%>
+                                                          <% if(property.priceDetails.ageOfConstruction=="15 to 20 years" ){ %>
+                                                          <option value="15 to 20 years" selected>15 to 20 years</option>
+                                                          <%} else {%>
+                                                            <option value="15 to 20 years">15 to 20 years</option>
+                                                            <%}%>
+                                                          <% if(property.priceDetails.ageOfConstruction=="Above 20 years" ){ %>
+                                                          <option value="Above 20 years" selected>Above 20 years</option>
+                                                          <%} else {%>
+                                                            <option value="Above 20 years">Above 20 years</option>
+                                                            <%}%>
+                                                        </select>
+                                                      </div>
+                                                      <%}%>
                                                   </div>
 
                                                   <br>
@@ -1146,8 +1274,13 @@
                                             <label for="priceType">Price Type</label>
                                             <br>
                                             <div class="form-check form-check-inline">
+                                              <% if(property && property.priceDetails.priceType == "Fixed"){ %>
                                               <input class="form-check-input" type="radio" name="priceType"
-                                                value="Fixed" id="priceTypeFixed" required>
+                                                value="Fixed" id="priceTypeFixed" checked required>
+                                                <%} else {%>
+                                                  <input class="form-check-input" type="radio" name="priceType"
+                                                    value="Fixed" id="priceTypeFixed" required>
+                                                  <%}%>
                                               <label class="form-check-label" for="priceTypeFixed"
                                                 required>Fixed</label>
                                             </div>
