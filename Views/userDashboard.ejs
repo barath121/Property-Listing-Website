@@ -76,27 +76,33 @@
                 <br>
             </div>
             <div class="col-md-8 col-12">
-                <%console.log(savedProperties)%>
+                <%//console.log(savedProperties)%>
                 <div class="border rounded-lg shadow-sm uk-padding bg-white">
-                    <p class="text-center h2 font-weight-bold hammersmithOne">Saved properties</p> <br>
-                    <div class="row row-cols-1 row-cols-lg-2">
-                        <% var i = 6 %> 
-                          <% while  (i!=0) {%> 
-                          <div class="col mb-4">
-                            <div class="card h-100 p-2">
-                              <img src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                              <div class="card-body">
-                                <a href="./property-detail" class="card-title text-danger h4 hammersmithOne">Card title</a>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                              </div>
-                              <div class="card-footer">
-                                  <small class="text-muted">Last updated 3 mins ago</small>
+                    <p class="text-center h2 font-weight-bold hammersmithOne">Saved properties</p> <hr>
+                    <% if (savedProperties == 0) { %> 
+                        <div class="text-center">
+                            <img src="/undraw_Building_vpxo.svg" alt="Img" width="250px">
+                            <h4 class="hammersmithOne">No Saved Properties</h4>
+                        </div>
+                    <% } else { %> 
+                        <div class="row row-cols-1 row-cols-lg-2">
+                            <% for (var a in savedProperties) { %> 
+                            <div class="col mb-4">
+                                <div class="card h-100 p-2">
+                                    <a href="./property-detail" class="text-danger h4 hammersmithOne"><%= savedProperties[a].propertyID.name %> </a> <hr class="mt-0">
+                                    <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].propertyID.propertyType %></div>
+                                    <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].propertyID.propertyFor %></div>
+                                    <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].propertyID.locality %></div>
+                                    <br>
+                                    <div class=""><%= savedProperties[a].propertyID.description %></div>
+                                    <form action="" class="text-center">
+                                        <button type="submit" class="btn btn-sm p-0 shadow-sm"><span class="bg-danger rounded-lg shadow-sm p-1" uk-icon="icon: trash; ratio: 1.3;"></span></button>
+                                    </form>
                                 </div>
                             </div>
-                          </div>
-                        <% i = i-1 %> 
-                        <% } %> 
-                      </div>
+                            <% } %> 
+                        </div>
+                    <% } %> 
                 </div>
             </div>
         </div>
