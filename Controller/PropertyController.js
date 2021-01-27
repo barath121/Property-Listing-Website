@@ -16,7 +16,7 @@ const converttosq = (area, unit) => {
   } else return area;
 };
 module.exports.test = (req, res) => {
-  res.render("Create_property");
+  res.render("Create_property", {property : false});
 };
 module.exports.createProperty = async (req, res, next) => {
   const body = req.body;
@@ -643,9 +643,10 @@ module.exports.EditProperty = (req,res,next) =>{
   if(req.query.type="residential"){
     Property.findById(req.query._id).then(property=>{
       if(property){
-        res.render('Create_property',property);
+        console.log(property)
+        res.render('Create_property',{property : property});
       }
-     res.redirect('/404');
+        res.redirect('/404');
     });
 
   }else{
