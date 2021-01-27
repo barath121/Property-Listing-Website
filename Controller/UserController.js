@@ -2,6 +2,8 @@ const User = require('./../Models/User');
 const bcrypt = require('bcrypt');
 const Enquiry = require('../Models/Enquiry');
 const Saved = require('../Models/Saved');
+const mongoose = require('mongoose');
+const Property = require('../Models/Property');
 module.exports.test = (req,res) =>{
   console.log(req.isAuthenticated());
 console.log(req.user.name)
@@ -101,21 +103,25 @@ module.exports.RemoveSaved = (req,res,next) =>{
     }
   })
 }
-module.exports.userdashboard = (req,res,next) =>{
-//  Saved.find({customerID:req.user._id}).populate('propertyID')
-Saved.aggregate(
-  {$match : {customerID : req.user._id}},
-  {$lookup : {from: 'Property', localField: 'propertyID', foreignField: '_id', as: 'property'},
+module.exports.userdashboard =(req,res,next) =>{
+Saved.find({customerID:req.user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
+ .then(result=>{
+  res.render('userDashboard',{
+    savedProperties : result
+  })
+})
+//  console.log(saveddata);
+// console.log(req.user._id);
+// let saveddata =Saved.find({customerID: req.user._id})
 
-  }
-  )
-  .catch(err=>{
-    next(err);
-  })
-  .then(result=>{
-    console.log(result);
-    res.render('userDashboard',{
-      savedProperties : result
-    })
-  })
+// console.log(saveddata);
+// Saved.aggregate([
+//   {$match : {"customerID":req.user._id}},
+ 
+//   ])
+//   .catch(err=>{
+//     next(err);
+//   }).then(dat=>{
+//     console.log(dat);
+//   })
 }
