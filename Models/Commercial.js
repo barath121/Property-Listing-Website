@@ -129,11 +129,11 @@ receptionArea : {
         },
         passengerLifts : {
             type : Number,
-            required : true
+            required : function(){return this.lifts.isAvaliable==true}
         },
         serviceLifts : {
             type : Number,
-            required : true
+            required : function(){return this.lifts.isAvaliable==true}
         }
     },
     transactionType : {
@@ -144,12 +144,12 @@ receptionArea : {
     possessionStatus : {
         type : String,
         enum : ['Under Construction','Ready to Move'],
-        required : function(){return this.propertyFor=='Sale' && this.priceDetails.transactionType=='New Property'}
+        required : function(){return this.propertyFor=='Sale' && this.transactionType=='New Property'}
     },
     avaliableFrom :{
         month :{
             type : String,
-            enum : ["January"],
+            enum : ["January","February","March","April","May","June","July","August","September","October","November","December"],
             required : function(){return this.possessionStatus=='Under Construction'}
         },
         year :{
@@ -162,11 +162,11 @@ receptionArea : {
         enum : ['New Construction','Less than 5 years','5 to 10 years','10 to 15 years','15 to 20 years','Above 20 years'],
         required : function(){return this.possessionStatus=='Ready to Move'}
     },
-    ownershipStatus : {
-        type : String,
-        enum : ['Freehold','Leasehold','Power Of Attorney','Co-operative Society'],
-        required : true
-    },
+    // ownershipStatus : {
+    //     type : String,
+    //     enum : ['Freehold','Leasehold','Power Of Attorney','Co-operative Society'],
+    //     required : true
+    // },
     expectedPrice :{
         type : String,
         required : function(){ return this.propertyFor=='Sale'}

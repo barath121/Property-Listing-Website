@@ -14,5 +14,5 @@ PropertyRoute.route('/test2').get((req,res)=>{
 
 PropertyRoute.post('/createproperty',upload.any(),PropertyController.createProperty);
 PropertyRoute.post('/commercialproperty',upload.any(),PropertyController.CommercialProperty);
-
+PropertyRoute.get('/editproperty',PropertyController.EditProperty);
 module.exports = PropertyRoute;
