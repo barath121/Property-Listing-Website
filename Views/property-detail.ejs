@@ -25,8 +25,13 @@
                     <%}}%>
                 </div>
                 <div class="col-md-6 col-12">
-                    <h3 class="text-warning font-weight-bold uk-hidden@s">₹ <%= property.priceDetails.expectedPrice %> </h3>
+                    <% if (property.priceDetails.expectedPrice) { %> 
+                    <h3 class="text-warning txt-center font-weight-bold uk-hidden@s">₹ <%= property.priceDetails.expectedPrice %></h3>
                     <h3 class="text-warning text-right font-weight-bold uk-visible@s">₹ <%= property.priceDetails.expectedPrice %></h3>
+                    <% } else if (property.priceDetails.expectedRent) { %>
+                        <div class="text-warning text-center font-weight-bold uk-hidden@s"><span class="h3 hammersmithOne">₹ <%= property.priceDetails.expectedRent %></span><br><span class="small text-white">per month</span></div>
+                        <div class="text-warning text-right font-weight-bold uk-visible@s"><span class="h3 hammersmithOne">₹ <%= property.priceDetails.expectedRent %></span><br><span class="small text-white">per month</span></div>
+                    <% } %> 
                 </div>
             </div>
             <div class="p-3 uk-align-center m-0">
@@ -237,31 +242,53 @@
                     <div class="uk-child-width-1-4@s uk-child-width-1-2  hammersmithOne" uk-grid>
                         <div>
                             <div class="text-danger">Price Includes</div>
-                            <div><%= property.priceDetails.priceIncludes %> </div>
+                            <div><%= property.priceDetails.priceIncludes %></div>
                         </div>
                         <div>
                             <div class="text-danger">Token Amount</div>
                             <div>₹ <%= property.priceDetails.tokenAmount %></div>
                         </div>
                         <div>
-                            <div class="text-danger">Expected Price</div>
-                            <div>₹ <%= property.priceDetails.expectedPrice %></div>
+                            <% if (property.priceDetails.expectedPrice) { %>
+                                <div class="text-danger">Expected Price</div>
+                                <div>₹ <%= property.priceDetails.expectedPrice %></div>
+                            <% } else if (property.priceDetails.expectedRent) { %>
+                                <div class="text-danger">Expected Rent</div>
+                                <div>₹ <%= property.priceDetails.expectedRent %></div>
+                            <% } %>
                         </div>
                         <div>
+                            <% if (property.priceDetails.bookingAmount) { %>
                             <div class="text-danger">Booking Amount</div>
                             <div>₹ <%= property.priceDetails.bookingAmount %></div>
+                            <% } else if (property.priceDetails.securityDeposit) { %>
+                            <div class="text-danger">Security Deposit</div>
+                            <div>₹ <%= property.priceDetails.securityDeposit %></div>
+                            <% } %>
+                        </div>
+                        <div> 
+                            <% if (property.priceDetails.transactionType) { %>
+                                <div class="text-danger">Transaction Type</div>
+                                <div><%= property.priceDetails.transactionType %></div>
+                            <% } else { %>
+                                
+                            <% } %>
                         </div>
                         <div>
-                            <div class="text-danger">Transaction Type</div>
-                            <div><%= property.priceDetails.transactionType %></div>
+                            <% if (property.priceDetails.saleBrokerage) { %>
+                                <div class="text-danger">Sales Brokerage</div>
+                                <div><%= property.priceDetails.saleBrokerage %></div>
+                            <% } else if (property.priceDetails.rentBrokerage) { %>
+                                <div class="text-danger">Rent Brokage</div>
+                                <div>₹ <%= property.priceDetails.rentBrokerage %></div>
+                            <% } %>
                         </div>
                         <div>
-                            <div class="text-danger">Sales Brokerage</div>
-                            <div><%= property.priceDetails.saleBrokerage %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Age of Construction</div>
-                            <div><%= property.priceDetails.ageOfConstruction %></div>
+                            <% if (property.priceDetails.ageOfConstruction) { %>
+                                <div class="text-danger">Age of Construction</div>
+                                <div><%= property.priceDetails.ageOfConstruction %></div>
+                            <% } else if (property.priceDetails.rentBrokerage) { %>
+                            <% } %>
                         </div>
                         <div>
                             <div class="text-danger">Maintanince Charge</div>

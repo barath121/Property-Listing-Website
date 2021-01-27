@@ -1,182 +1,232 @@
 <%- include('./layouts/imports') -%>
 
+<% 
+    //properties.forEach(ele => {console.log(ele.ActivatedProperty);})
+%> 
+
 <section class="mt-5 mb-5">
     <div class="container">
-        <ul class="justify-content-center" uk-tab>
-            <li><a class="hammersmithOne" href="#">Active Properties</a></li>
-            <li><a class="hammersmithOne" href="#">Disabled Properties</a></li>
-            <li><a class="hammersmithOne" href="#">All properties</a></li>
-            <li><a class="hammersmithOne" href="#">Customer Saved</a></li>
-            <li><a class="hammersmithOne" href="#">Queries</a></li>
-        </ul>
-        
-        <ul class="uk-switcher uk-margin">
-            <li>
-                <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% properties.map(ele => { %>  
-                        <% for (var a in ele.ActivatedProperty) { %> 
-                        <div>
-                            <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                                <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %></p> 
-                                <hr>
-                                <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
-                                </p>
-                                <p>
-                                    Status: 
-                                    <span class="text-success font-weight-bold hammersmithOne">
-                                        <% if (ele.ActivatedProperty[a].isAvaliable == true) { %> 
-                                        Active
-                                        <% } else { %> 
-                                        InActive
-                                        <% } %> 
-                                    </span> 
-                                    | Posted on: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].createdAt %></span>
-                                </p>
-                                <p>
-                                    Address: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].address %> </span>
-                                </p>
-                                <a href="/property/editproperty?type=residential&_id=<%= ele.ActivatedProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                                <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
-                                    <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
-                                    <input type="hidden" name="status" value="false">
-                                    <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
-                                </form>
-                                <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
-                            </div>
-                        </div>
-                        <% } %> 
-                    <% }) %> 
-                </div>
+        <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active h4" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Sales/Rent</a>
             </li>
-            <li>
-                <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% properties.map(ele => { %>  
-                        <% for (var a in ele.DisabledProperty) { %> 
-                        <div>
-                            <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                                <p class="h5 text-danger hammersmithOne"><%= ele.DisabledProperty[a].title %> </p> 
-                                <hr>
-                                <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].propertyFeatures.carpetArea %></span>
-                                </p>
-                                <p>
-                                    Status: 
-                                    <span class="text-danger font-weight-bold hammersmithOne">
-                                        <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
-                                        Active
-                                        <% } else { %> 
-                                        InActive
-                                        <% } %> 
-                                    </span> 
-                                    | Posted on: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].createdAt %></span>
-                                </p>
-                                <p>
-                                    Address: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].address %> </span>
-                                </p>
-                                <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                                <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
-                                    <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
-                                    <input type="hidden" name="status" value="true">
-                                    <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
-                                </form>
-                                <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
-                            </div>
-                        </div>
-                        <% } %> 
-                    <% }) %> 
-                </div>
-            </li>
-            <li>
-                <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
-                    <% properties.map(ele => { %>  
-                        <% for (var a in ele.AllProperty) { %> 
-                        <div>
-                            <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                                <p class="h5 text-danger hammersmithOne"><%= ele.AllProperty[a].title %> </p> 
-                                <hr>
-                                <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %></span>
-                                </p>
-                                <p>
-                                    Status: 
-                                    <% if (ele.AllProperty[a].isAvaliable == true) { %> 
-                                        <span class="text-success font-weight-bold hammersmithOne">
-                                        Active
-                                        </span> 
-                                        <% } else { %> 
-                                        <span class="text-danger font-weight-bold hammersmithOne">
-                                        InActive
-                                        </span>
-                                        <% } %> 
-                                    | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
-                                </p>
-                                <p>
-                                    Address: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].address %> </span>
-                                </p>
-                                <a href="/property/editproperty?type=residential&_id=<%= ele.AllProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
-                                <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
-                                    <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
-                                    <% if (ele.AllProperty[a].isAvaliable == true) { %> 
-                                        <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
-                                        <input type="hidden" name="status" value="false">
-                                    <% } %> 
-                                    <% if (ele.AllProperty[a].isAvaliable == false) { %>
-                                        <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
-                                        <input type="hidden" name="status" value="true">
-                                    <% } %> 
-                                </form>
-                                <form action="/admin/deleteproperty" method="POST" class="uk-inline">
-                                    <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
-                                    <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
-                                </form>
-                            </div>
-                        </div>
-                        <% } %> 
-                    <% }) %>     
-                </div>
-            </li>
-            <li>
-                <div class="uk-margin">
-                    <% console.log(saved)%>
-                    <form action="/admin/admindashboard" method="GET" class="uk-search uk-search-default w-75 uk-align-center">
-                        <span uk-search-icon></span>
-                        <input class="uk-search-input" name="number" type="search" placeholder="Search...">
-                    </form>
-                </div>
-            </li>
-            <li>
-                <div class="uk-child-width-1-2" uk-grid>
-                    <div>
-                        <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Solved</div>
-                    </div>
-                    <div>
-                        <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
-                    </div>
-                </div>
-                <div class="uk-child-width-1-2@s" uk-grid>
-                <% enquiries.forEach(ele => { %> 
-                    <div>
-                        <div class="bg-white uk-card uk-card-hover p-3 rounded-lg h-100">
-                            <div class="uk-child-width-1-2" uk-grid>
-                                <div>
-                                    <p class="h4 hammersmithOne"><%= ele.name %></p>
-                                    <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
-                                </div>
-                                <div>
-                                    <p class="text-right">
-                                        <a href="" class="bg-success p-1 text-white text-decoration-none rounded-lg"><span uk-icon="icon: check"></span></a>
-                                    </p>
-                                </div>
-                            </div>
-                            <p class=""><%= ele.message %> </p>
-                            <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.contactno %></span></p>
-                        </div>
-                    </div>
-                <% }) %>   
-                </div>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link h4" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Commercial</a>
             </li>
         </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <ul class="justify-content-center" uk-tab>
+                    <li><a class="hammersmithOne" href="#">Active Properties</a></li>
+                    <li><a class="hammersmithOne" href="#">Disabled Properties</a></li>
+                    <li><a class="hammersmithOne" href="#">All properties</a></li>
+                    <li><a class="hammersmithOne" href="#">Customer Saved</a></li>
+                    <li><a class="hammersmithOne" href="#">Queries</a></li>
+                </ul>
+                
+                <ul class="uk-switcher uk-margin">
+                    <li>
+                        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                            <% properties.map(ele => { %>  
+                                <% for (var a in ele.ActivatedProperty) { %> 
+                                <div>
+                                    <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                        <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %></p> 
+                                        <hr>
+                                        <p>
+                                            Price: 
+                                            <span class="text-dark hammersmithOne">
+                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                                    <%= ele.ActivatedProperty[a].priceDetails.expectedPrice %>
+                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                                    <%= ele.ActivatedProperty[a].priceDetails.expectedRent %> per month
+                                                <% } %>
+                                            </span> | 
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
+                                        </p>
+                                        <p>
+                                            Status: 
+                                            <span class="text-success font-weight-bold hammersmithOne">
+                                                <% if (ele.ActivatedProperty[a].isAvaliable == true) { %> 
+                                                Active
+                                                <% } else { %> 
+                                                InActive
+                                                <% } %> 
+                                            </span> 
+                                            | Posted on: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].createdAt %></span>
+                                        </p>
+                                        <p>
+                                            Address: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].address %> </span>
+                                        </p>
+                                        <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
+                                            <input type="hidden" name="status" value="false">
+                                            <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+                                        </form>
+                                        <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                                    </div>
+                                </div>
+                                <% } %> 
+                            <% }) %> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                            <% properties.map(ele => { %>  
+                                <% for (var a in ele.DisabledProperty) { %> 
+                                <div>
+                                    <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                        <p class="h5 text-danger hammersmithOne"><%= ele.DisabledProperty[a].title %> </p> 
+                                        <hr>
+                                        <p>
+                                            Price: 
+                                            <span class="text-dark hammersmithOne">
+                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                                    <%= ele.DisabledProperty[a].priceDetails.expectedPrice %>
+                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                                    <%= ele.DisabledProperty[a].priceDetails.expectedRent %> per month
+                                                <% } %>
+                                            </span> | 
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].propertyFeatures.carpetArea %></span>
+                                        </p>
+                                        <p>
+                                            Status: 
+                                            <span class="text-danger font-weight-bold hammersmithOne">
+                                                <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
+                                                Active
+                                                <% } else { %> 
+                                                InActive
+                                                <% } %> 
+                                            </span> 
+                                            | Posted on: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].createdAt %></span>
+                                        </p>
+                                        <p>
+                                            Address: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].address %> </span>
+                                        </p>
+                                        <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
+                                            <input type="hidden" name="status" value="true">
+                                            <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
+                                        </form>
+                                        <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                                    </div>
+                                </div>
+                                <% } %> 
+                            <% }) %> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                            <% properties.map(ele => { %>  
+                                <% for (var a in ele.AllProperty) { %> 
+                                <div>
+                                    <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                        <p class="h5 text-danger hammersmithOne"><%= ele.AllProperty[a].title %> </p> 
+                                        <hr>
+                                        <p>
+                                            Price: 
+                                            <span class="text-dark hammersmithOne"> 
+                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                                    <%= ele.AllProperty[a].priceDetails.expectedPrice %>
+                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                                    <%= ele.AllProperty[a].priceDetails.expectedRent %> per month
+                                                <% } %> 
+                                            </span> | 
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %></span>
+                                        </p>
+                                        <p>
+                                            Status: 
+                                            <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                                <span class="text-success font-weight-bold hammersmithOne">
+                                                Active
+                                                </span> 
+                                                <% } else { %> 
+                                                <span class="text-danger font-weight-bold hammersmithOne">
+                                                InActive
+                                                </span>
+                                                <% } %> 
+                                            | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
+                                        </p>
+                                        <p>
+                                            Address: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].address %> </span>
+                                        </p>
+                                        <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+                                                <input type="hidden" name="status" value="false">
+                                            <% } %> 
+                                            <% if (ele.AllProperty[a].isAvaliable == false) { %>
+                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
+                                                <input type="hidden" name="status" value="true">
+                                            <% } %> 
+                                        </form>
+                                        <form action="/admin/deleteproperty" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% } %> 
+                            <% }) %>     
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-margin">
+                            <form action="/admin/admindashboard" method="GET" class="uk-search uk-search-default w-75 uk-align-center">
+                                <span uk-search-icon></span>
+                                <input class="uk-search-input" name="number" type="search" placeholder="Search...">
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-child-width-1-2" uk-grid>
+                            <div>
+                                <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Solved</div>
+                            </div>
+                            <div>
+                                <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
+                            </div>
+                        </div>
+                        <div class="uk-child-width-1-2@s" uk-grid>
+                        <% enquiries.forEach(ele => { %> 
+                            <div>
+                                <div class="bg-white uk-card uk-card-hover p-3 rounded-lg h-100">
+                                    <div class="uk-child-width-1-2" uk-grid>
+                                        <div>
+                                            <p class="h4 hammersmithOne"><%= ele.name %></p>
+                                            <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
+                                        </div>
+                                        <div>
+                                            <p class="text-right">
+                                                <a href="" class="bg-success p-1 text-white text-decoration-none rounded-lg"><span uk-icon="icon: check"></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class=""><%= ele.message %> </p>
+                                    <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.contactno %></span></p>
+                                </div>
+                            </div>
+                        <% }) %>   
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <ul class="justify-content-center" uk-tab>
+                    <li><a class="hammersmithOne" href="#">Active Properties</a></li>
+                    <li><a class="hammersmithOne" href="#">Disabled Properties</a></li>
+                    <li><a class="hammersmithOne" href="#">All properties</a></li>
+                    <li><a class="hammersmithOne" href="#">Customer Saved</a></li>
+                    <li><a class="hammersmithOne" href="#">Queries</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -404,12 +404,12 @@ module.exports.Search = async (req, res) => {
       "propertyFeatures.furnishingStatus": filters.furnishing,
     });
   }
-  if (filters.price) {
-    console.log()
-   if(Array.isArray(filters.price)){
+   
+  if(Array.isArray(filters.price)){
     filters.price = filters.price[0]||filters.price[1]
     }
-    console.log(filters.price)
+  if (filters.price) {
+   
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
     if (!minpriceDetails[1]||minpriceDetails[1].includes("+")) {
@@ -420,10 +420,12 @@ module.exports.Search = async (req, res) => {
       minprice = 10000000 * parseInt(minpriceDetails[0]);
     }
     let maxpriceDetails = null;
-    if (filters.price&&!minpriceDetails[1].includes("+"))
-      maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
-    let maxprice = 0;
-    if(!minpriceDetails[1].includes("+")){
+    if (minpriceDetails[1].includes("+")) {
+      maxprice = 9990000000;
+    }
+    else{
+    maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
+     let maxprice = 0;
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
     } else if (maxpriceDetails[1] == "Lac") {
@@ -431,9 +433,7 @@ module.exports.Search = async (req, res) => {
     } else if (maxpriceDetails[1] == "Cr") {
       maxprice = 10000000 * parseInt(maxpriceDetails[0]);
     }}
-    else{
-      maxprice = 9999999999;
-    }
+    
     if(filters.propertyfor=="Sale"){
     conditions.push({ "priceDetails.expectedPrice": { $gte: minprice } });
     conditions.push({ "priceDetails.expectedPrice": { $lte: maxprice } });}
