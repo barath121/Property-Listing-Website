@@ -4,7 +4,18 @@
     //properties.forEach(ele => {console.log(ele.ActivatedProperty);})
 %> 
 
-<section class="mt-5 mb-5">
+<section class="mt-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="navbar-nav">
+              <a class="nav-link" href="#">Properties</a>
+              <a class="nav-link" href="#">Customer</a>
+            </div>
+        </div>
+      </nav>
+</section>
+
+<section class="mt-3 mb-5">
     <div class="container">
         <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -32,7 +43,11 @@
                                 <% for (var a in ele.ActivatedProperty) { %> 
                                 <div>
                                     <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
-                                        <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %></p> 
+                                        <p class="h5 hammersmithOne">
+                                            <a class="text-danger" href="/property?type=residential&id=<%= ele.ActivatedProperty[a]._id %> ">
+                                                <%= ele.ActivatedProperty[a].title %>
+                                            </a>
+                                        </p> 
                                         <hr>
                                         <p>
                                             Price: 
