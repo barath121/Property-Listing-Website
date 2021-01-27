@@ -88,18 +88,6 @@
                                 <option value="Kharghar">Kharghar</option>
                             </select>
                             <br>
-                            <label for="Bedrooms">Bedrooms</label>
-                            <br>
-                            <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms">
-                                <option value="">Select</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="more than 4">more than 4</option>
-                            </select>
-                            <br>
                             <br>
                             <div id="sale" class="">
                                 <label>Possession Status</label>
@@ -118,14 +106,6 @@
                                 <br>
                                 <br>
                             </div>
-                            <label for="furnishingStatus">Furnishing Status</label>
-                            <br>
-                            <select class="form-control" name="furnishing" id="furnishingStatus">
-                                <option value="">Select</option>
-                                <option value="Furnished">Furnished</option>
-                                <option value="Unfurnished">Unfurnished</option>
-                                <option value="Semi-Furnished">Semi-Furnished</option>
-                            </select>
                             <br>
                             <label for="name">Name</label>
                             <br>
@@ -158,7 +138,7 @@
                     <div class="">
                         <% if(properties.length !=0) { %>
                             <% for(var i=0; i< properties.length ; i++) {%>
-                                <a href="/property?type=residential&id=<%= properties[i].id %>"
+                                <a href="/property?type=commercial&id=<%= properties[i].id %>"
                                     style="text-decoration: none;">
                                     <div class="card mb-4 rounded uk-card uk-card-hover" style="cursor: pointer;">
                                         <div class="row card-body">
@@ -176,14 +156,6 @@
                                                     </div>
                                                     <div class="col-6 text-muted mb-1 hammersmithOne">Status<p>
                                                             <%= properties[i].status %>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Bedroom<p>
-                                                            <%= properties[i].bedroom %>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Furnishing<p>
-                                                            <%= properties[i].furnishing %>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -330,19 +302,6 @@
                                 <option value="Kharghar">Kharghar</option>
                             </select>
                             <br>
-                            <label for="Bedrooms">Bedrooms</label>
-                            <br>
-                            <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms">
-                                <option value="">Select</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="more than 4">more than 4</option>
-                            </select>
-                            <br>
-                            <br>
                             <div id="mobsale" class="">
                                 <label>Possession Status</label>
                                 <br>
@@ -360,15 +319,6 @@
                                 <br>
                                 <br>
                             </div>
-
-                            <label for="furnishingStatus">Furnishing Status</label>
-                            <br>
-                            <select class="form-control" name="furnishing" id="furnishing">
-                                <option value="">Select</option>
-                                <option value="Furnished">Furnished</option>
-                                <option value="Unfurnished">Unfurnished</option>
-                                <option value="Semi-Furnished">Semi-Furnished</option>
-                            </select>
                             <br>
                             <label for="name">Name</label>
                             <br>
@@ -396,6 +346,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="/js/searchPage.js"></script>
+    <script type="text/javascript" src="/js/commercialSearchPage.js"></script>
 
     <%- include('./layouts/Footer') -%>
