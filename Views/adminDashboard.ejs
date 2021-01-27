@@ -149,9 +149,11 @@
                                     <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
                                     <% if (ele.AllProperty[a].isAvaliable == true) { %> 
                                         <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+                                        <input type="hidden" name="status" value="false">
                                     <% } %> 
                                     <% if (ele.AllProperty[a].isAvaliable == false) { %>
                                         <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
+                                        <input type="hidden" name="status" value="true">
                                     <% } %> 
                                 </form>
                                 <form action="/admin/deleteproperty" method="POST" class="uk-inline">
