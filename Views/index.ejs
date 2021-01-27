@@ -103,13 +103,6 @@
                           <option value="Penthouse"> Penthouse </option>
                           <option value="Studio Apartment"> Studio Apartment </option>
                         </optgroup>
-                        <!-- <optgroup class="text-dark" label="Commercial">
-                          <option value="Commercial Shop"> Commercial Shop </option>
-                          <option value="Commercial Office Space"> Commercial Office Space </option>
-                          <option value="Commercial Showroom"> Commercial Showroom </option>
-                          <option value="Warehouse/Godows">Warehouse/Godows </option>
-                          <option value="Industrial Shed"> Industrial Shed </option>
-                        </optgroup> -->
                         <optgroup class="text-dark" label="Others">
                           <option value="Land"> Land </option>
                           <option value="Farm House"> Farm House </option>
@@ -152,10 +145,10 @@
                 <div class="uk-align-center rounded-lg p-4 " style="background-color: rgba(0,0,0,0.6);">
                   <form action="/search" method="GET">
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
-                      <label class="text-warning">Buy / Lease</label>
+                      <label class="text-warning">Buy / Rent</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select">
                         <option class="text-dark" value="buy">Buy</option>
-                        <option class="text-dark" value="lease">Lease</option>
+                        <option class="text-dark" value="lease">Rent</option>
                       </select>
                     </div>
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
@@ -343,6 +336,7 @@
       
               <ul class="uk-slider-items uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1 uk-grid text-dark">
                   <% salecommercial.forEach(ele => { %> 
+                  <% //console.log(salecommercial) %>  
                   <li>
                       <div class="card h-100 shadow uk-transition-toggle" tabindex="0">
                         <div class="overflow-hidden h-50">
@@ -357,18 +351,11 @@
                                   Status: <%= ele.status %> 
                                 </div>
                                 <div>
-                                  Furnishing: <%= ele.furnishing %>
+                                  <div class="hammersmithOne"><%= ele.area %> Sqft</div>
                                 </div>
                               </div>
                             </p>
                             <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
-                          </div>
-                          <div class="card-footer bg-white text-center">
-                            <div class="uk-child-width-1-3 small" uk-grid>
-                              <div class="hammersmithOne"><%= ele.bedroom %></div>
-                              <div class="hammersmithOne"><%= ele.bathroom %></div>
-                              <div class="hammersmithOne"><%= ele.area %> Sqft</div>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -417,19 +404,12 @@
                                 <div>
                                   Status: <%= ele.status %> 
                                 </div>
-                                <div>
-                                  Furnishing: <%= ele.furnishing %>
+                                <div> 
+                                  <div class="hammersmithOne"><%= ele.area %> Sqft</div>
                                 </div>
                               </div>
                             </p>
                             <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
-                          </div>
-                          <div class="card-footer bg-white text-center">
-                            <div class="uk-child-width-1-3 small" uk-grid>
-                              <div class="hammersmithOne"><%= ele.bedroom %></div>
-                              <div class="hammersmithOne"><%= ele.bathroom %></div>
-                              <div class="hammersmithOne"><%= ele.area %> Sqft</div>
-                            </div>
                           </div>
                         </div>
                       </div>
