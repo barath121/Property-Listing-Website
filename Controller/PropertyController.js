@@ -248,6 +248,58 @@ module.exports.ViewProperty = (req, res, next) => {
         next(err);
       });
   }
+  if (type == "commercial") {
+    let savedetails = {};
+    Commercial.findById(id)
+      .then(async (property) => {
+        if (property) {
+          savedetails.propertytype = "commercial";
+          savedetails.propertyid = property._id;
+          let similarproperties = [];
+          let localityproperties = [];
+          try {
+            let similarproperties = await Commercial.find({
+              $or: [
+                { propertyType: property.propertyType },
+                { propertyFor: property.propertyFor }
+              ],
+            }).limit(10);
+            let localityproperties = await Commercial.find({
+              locality: property.locality,
+            }).limit(10);
+          } catch {
+            (err) => {
+              next(err);
+            };
+          }
+          let saved = null;
+          if (req.isAuthenticated()) {
+            saved = await Saved.findOne({
+              $and: [
+                { commercialID: property._id },
+                { customerID: req.user._id },
+              ],
+            });
+          }
+          let issaved = false;
+          if (saved) {
+            issaved = true;
+          }
+          res.render("property-detail", {
+            savedetails: savedetails,
+            property: property,
+            issaved: issaved,
+            similar: similarproperties,
+            nearby: localityproperties,
+          });
+        } else {
+          res.redirect("/404");
+        }
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 };
 module.exports.HomePage = async (req, res,next) => {
   let Properties = await Property.aggregate([
@@ -331,7 +383,6 @@ module.exports.HomePage = async (req, res,next) => {
 module.exports.Search = async (req, res) => {
   let countofpage  =0;
   let filters = req.query;
-  console.log(filters);
   let conditions = [];
   if (filters.name) {
     conditions.push({ name: new RegExp(filters.name, "i") });
@@ -361,7 +412,7 @@ module.exports.Search = async (req, res) => {
     console.log(filters.price)
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
-    if (!minpriceDetails[1]) {
+    if (!minpriceDetails[1]||minpriceDetails[1].includes("+")) {
       minprice = parseInt(minpriceDetails[0]);
     } else if (minpriceDetails[1] == "Lac") {
       minprice = 100000 * parseInt(minpriceDetails[0]);
@@ -369,15 +420,19 @@ module.exports.Search = async (req, res) => {
       minprice = 10000000 * parseInt(minpriceDetails[0]);
     }
     let maxpriceDetails = null;
-    if (filters.price)
+    if (filters.price&&!minpriceDetails[1].includes("+"))
       maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
     let maxprice = 0;
+    if(!minpriceDetails[1].includes("+")){
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
     } else if (maxpriceDetails[1] == "Lac") {
       maxprice = 100000 * parseInt(maxpriceDetails[0]);
     } else if (maxpriceDetails[1] == "Cr") {
       maxprice = 10000000 * parseInt(maxpriceDetails[0]);
+    }}
+    else{
+      maxprice = 9999999999;
     }
     if(filters.propertyfor=="Sale"){
     conditions.push({ "priceDetails.expectedPrice": { $gte: minprice } });
@@ -581,7 +636,6 @@ module.exports.CommercialProperty = async (req, res, next) => {
       if (result) res.redirect("/");
     });
 };
-
 module.exports.EditProperty = (req,res,next) =>{
   if(req.query.type="residential"){
     Property.findById(req.query._id).then(property=>{
@@ -599,4 +653,135 @@ module.exports.EditProperty = (req,res,next) =>{
      res.redirect('/404');
     });
   }
+}
+module.exports.SearchCommercial = async (req,res,next) =>{
+  let filters = req.query;
+  let conditions = [];
+  if (filters.name) {
+    conditions.push({ name: new RegExp(filters.name, "i") });
+  }
+  if (filters.locality) {
+    conditions.push({ locality: filters.locality });
+  }
+  if (filters.status) {
+    conditions.push({ "possessionStatus": filters.status });
+  }
+  if (filters.propertyfor) {
+    conditions.push({ propertyFor: filters.propertyfor });
+  }
+  if (filters.propertytype) {
+    conditions.push({ propertyType: filters.propertytype });
+  }
+  if (filters.price) {
+    console.log()
+   if(Array.isArray(filters.price)){
+    filters.price = filters.price[0]||filters.price[1]
+    }
+    console.log(filters.price)
+    let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
+    let minprice = 0;
+    if (!minpriceDetails[1]||minpriceDetails[1].includes("+")) {
+      minprice = parseInt(minpriceDetails[0]);
+    } else if (minpriceDetails[1] == "Lac") {
+      minprice = 100000 * parseInt(minpriceDetails[0]);
+    } else if (minpriceDetails[1] == "Cr") {
+      minprice = 10000000 * parseInt(minpriceDetails[0]);
+    }
+    let maxpriceDetails = null;
+    if (filters.price&&!minpriceDetails[1].includes("+"))
+      maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
+    let maxprice = 0;
+    if(!minpriceDetails[1].includes("+")){
+    if (!maxpriceDetails[1]) {
+      maxprice = parseInt(maxpriceDetails[0]);
+    } else if (maxpriceDetails[1] == "Lac") {
+      maxprice = 100000 * parseInt(maxpriceDetails[0]);
+    } else if (maxpriceDetails[1] == "Cr") {
+      maxprice = 10000000 * parseInt(maxpriceDetails[0]);
+    }}
+    else{
+      maxprice = 9999999999;
+    }
+    if(filters.propertyfor=="Sale"){
+    conditions.push({ "expectedPrice": { $gte: minprice } });
+    conditions.push({ "expectedPrice": { $lte: maxprice } });}
+    else{
+      conditions.push({ "expectedRent": { $gte: minprice } });
+    conditions.push({ "expectedRent": { $lte: maxprice } });
+    }
+  }
+  if (filters.sqmin) {
+    conditions.push({ "areaDetails.carpetArea": { $gte: filters.sqmin } });
+  }
+  if (filters.sqmax) {
+    conditions.push({ "areaDetails.carpetArea": { $lte: filters.sqmax } });
+  }
+  let properties = [];
+  {
+    let condition = {}
+    if(conditions.length)
+    condition = { $and: conditions };
+    console.log(conditions)
+    let page = req.query.page || 1;
+    let limit = 10;
+    let skip = (page-1) * limit;
+    console.log(skip,limit)
+    let conditionedProperties = 
+    await Property
+    .find(condition)
+    .sort({ _id: -1 })
+    .skip(skip)
+    .limit(limit)
+    ;
+    countofpage  = await Property.countDocuments(condition);
+    countofpage = parseInt(countofpage/10);
+    conditionedProperties.forEach((element) => {
+      property = {};
+      element.Images.images.forEach((img) => {
+        if (img.includes("CoverImages")) {
+          property.image = img;
+        }
+      });
+      property.id = 
+         element.id;
+      
+      property.type = 
+         element.propertyType;
+         
+      property.title =
+        element.propertyType +
+        " For " +
+        element.propertyFor +
+        " at " +
+        element.name +
+        ", " +
+        element.locality;
+      property.area = element.propertyFeatures.carpetArea;
+      property.furnishing = element.propertyFeatures.furnishingStatus;
+      if (
+        element.priceDetails.possessionStatus == "Under Construction" &&
+        element.propertyFor == "Sale"
+      ) {
+        property.status = element.priceDetails.possessionStatus;
+        "Possession by " +
+          element.priceDetails.avaliableFrom.month +
+          " " +
+          element.priceDetails.avaliableFrom.year;
+      } else if (element.propertyFor == "Sale") {
+        property.status =
+          element.priceDetails.possessionStatus +
+          ", " +
+          element.priceDetails.ageOfConstruction;
+      } else {
+        property.status = "Ready to Move";
+      }
+      property.price = element.priceDetails.expectedPrice||element.priceDetails.expectedRent;
+      
+      property.bedroom = element.propertyFeatures.bedrooms + " Bed";
+      property.bathroom = element.propertyFeatures.bathroom + " Bath";
+      properties.push(property);
+    });
+  }
+  console.log(properties);
+  res.render("Search_page", { properties: properties,page:countofpage });
 }
