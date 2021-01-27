@@ -46,16 +46,17 @@ module.exports.isAdmin = (req,res,next) =>{
     }
 }
 
-module.exports.AdminDashboard = async (req,res) =>{
+module.exports.AdminDashboard = async (req,res,next) =>{
     const Page = req.query.page||1;
     const limit = req.query.limit * 1||14;
     const skip = (Page - 1) * limit;
     let saved = {};
     if(req.query.number){
-     await User.find({phone : req.query.number}).then(async user=>{
-        saved = await Saved.find({customerID : user._id});
-      }).catch(err=>next(err));
+     await User.findOne({phone : req.query.number}).then(async user=>{
+      saved = await Saved.find({customerID:req.user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
+   }).catch(err=>next(err));
     }
+    
     Property.aggregate([{
       $facet : {
         "ActivatedProperty" : [
