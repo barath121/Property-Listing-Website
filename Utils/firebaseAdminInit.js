@@ -36,6 +36,9 @@ module.exports.uploadFile = (file,imageid,i) => new Promise((resolve, reject) =>
 
 })
 
-module.exports.deleteFile = (foldername) =>{
-  bucket.file(foldername).delete();
+module.exports.deleteFile = async(images) =>{
+  images.forEach(image=>{
+    console.log(image.split("https://storage.googleapis.com/santoshproperty-4b66f.appspot.com/").pop())
+    bucket.file(image.split("https://storage.googleapis.com/santoshproperty-4b66f.appspot.com/").pop()).delete();
+  })
 }

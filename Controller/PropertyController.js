@@ -170,7 +170,7 @@ if(req.body._id){
     next(err);
   })
   .then((result) => {
-    
+    req.flash("success","Property has been Edited");
     if (result) res.redirect("/admin/admindashboard");
   });;
 }
@@ -181,6 +181,7 @@ else{
       next(err);
     })
     .then((result) => {
+      req.flash("success","Property has been Added");
       if (result) res.redirect("/admin/admindashboard");
     });
   }
