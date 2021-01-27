@@ -53,7 +53,9 @@ module.exports.AdminDashboard = async (req,res,next) =>{
     let saved = {};
     if(req.query.number){
      await User.findOne({phone : req.query.number}).then(async user=>{
-      saved = await Saved.find({customerID:req.user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
+       console.log(user)
+      saved = await Saved.find({customerID:user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
+      console.log(saved);
    }).catch(err=>next(err));
     }
     
