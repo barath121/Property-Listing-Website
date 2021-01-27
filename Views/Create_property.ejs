@@ -552,8 +552,7 @@
                                                     title="Please enter a valid number"
                                                     class="form-control border-top-0 border-left-0 border-right-0 w-50"
                                                     name="bookingAmount"
-                                                    value="<%= property.priceDetails.bookingAmount %> placeholder="
-                                                    Enter total price"><span>
+                                                    value="<%= property.priceDetails.bookingAmount %>" placeholder="Enter total price"><span>
                                                     <br>
                                                     <br>
                                                     <label>Transaction Type</label>
@@ -1718,53 +1717,53 @@
               <label>Additonal Rooms</label>
               <br>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.additonalRooms.includes("Puja Room") ){ %>
+                <% if(property && property.additionalFeatures.additonalRooms.includes("Puja Room") ){ %>
                 <input class="form-check-input" type="checkbox" onchange="addRoom(this)" name="additonalRooms"
                   value="Puja Room" id="additonalRoomsPuja" checked>
-                  <%}else{%> -->
+                  <%}else{%>
                     <input class="form-check-input" type="checkbox" onchange="addRoom(this)" name="additonalRooms"
                   value="Puja Room" id="additonalRoomsPuja">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="additonalRoomsPuja">Puja Room</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.additonalRooms.includes("Study Room") ){ %>
+                <% if(property && property.additionalFeatures.additonalRooms.includes("Study Room") ){ %>
                   <input class="form-check-input" type="checkbox" onchange="addRoom(this)" name="additonalRooms"
                     value="Study Room" id="additonalRoomsStudy" checked>
-                    <%}else{%> -->
+                    <%}else{%>
                       <input class="form-check-input" type="checkbox" onchange="addRoom(this)" name="additonalRooms"
                         value="Study Room" id="additonalRoomsStudy">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="additonalRoomsStudy">Study Room</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.additonalRooms.includes("Store Room") ){ %>
+                <% if(property && property.additionalFeatures.additonalRooms.includes("Store Room") ){ %>
                 <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsStore"
                   name="additonalRooms" value="Store Room" checked>
-                  <%}else{%> -->
+                  <%}else{%>
                     <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsStore"
                   name="additonalRooms" value="Store Room">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="additonalRoomsStore">Store Room</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.additonalRooms.includes("Servant Room") ){ %>
+                <% if(property && property.additionalFeatures.additonalRooms.includes("Servant Room") ){ %>
                 <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsServant"
                   name="additonalRooms" value="Servant Room" checked>
-                  <%}else{%> -->
+                  <%}else{%>
                     <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsServant"
                       name="additonalRooms" value="Servant Room">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="additonalRoomsServant">Servant Room</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.additonalRooms.includes("None of these") ){ %>
+                <% if(property && property.additionalFeatures.additonalRooms.includes("None of these") ){ %>
                 <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsNone"
                   name="additonalRooms" value="None of these" checked>
-                  <%}else{%> -->
+                  <%}else{%>
                     <input class="form-check-input" type="checkbox" onchange="addRoom(this)" id="additonalRoomsNone"
                   name="additonalRooms" value="None of these">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="additonalRoomsNone">None of these</label>
 
                 <br>
@@ -1775,88 +1774,97 @@
               <label for="facing">Facing</label>
               <br>
               <select class="form-control w-50" name="facing" id="facing" required>
-                <!-- <% if(property && property.additionalFeatures.facing == "North" ){ %>
+                <% if(property && property.additionalFeatures.facing == "North" ){ %>
                 <option value="North" selected>North</option>
-                <%}else{%> -->
+                <%}else{%>
                 <option value="North">North</option>
-                  <!-- <%}%>
+                  <%}%>
                   <% if(property && property.additionalFeatures.facing == "East" ){ %>
                 <option value="East" selected>East</option>
-                <%}else{%> -->
+                <%}else{%>
                   <option value="East">East</option>
-                  <!-- <%}%>
+                  <%}%>
                   <% if(property && property.additionalFeatures.facing == "West" ){ %>
                 <option value="West" selected>West</option>
-                <%}else{%> -->
+                <%}else{%>
                   <option value="West">West</option>
-                  <!-- <%}%>
+                  <%}%>
                   <% if(property && property.additionalFeatures.facing == "South" ){ %>
                 <option value="South" selected>South</option>
-                <%}else{%> -->
+                <%}else{%>
                   <option value="South">South</option>
-                  <!-- <%}%>
+                  <%}%>
                 <% if(property && property.additionalFeatures.facing == "North-West" ){ %>
                 <option value="North-West" selected>North-West</option>
-                <%}else{%> -->
+                <%}else{%>
                 <option value="North-West">North-West</option>
-                  <!-- <%}%>
+                  <%}%>
                 <% if(property && property.additionalFeatures.facing == "North-East" ){ %>
                 <option value="North-East" selected>North-East</option>
-                <%}else{%> -->
+                <%}else{%>
                   <option value="North-East">North-East</option>
-                  <!-- <%}%>
+                  <%}%>
                 <% if(property && property.additionalFeatures.facing == "South-West" ){ %>
                 <option value="South-West" selected>South-West</option>
-                <%}else{%> -->
+                <%}else{%>
                   <option value="South-West">South-West</option>
-                <!-- <%}%>
+                <%}%>
                 <% if(property && property.additionalFeatures.facing == "South-East"){ %>
                 <option value="South-East" selected>South-East</option>
-                <%}else{%> -->
+                <%}else{%>
                   <option value="South-East">South-East</option>
-                <!-- <%}%> -->
+                <%}%>
               </select>
               <br>
               <br>
               <label for="overlooking">Overlooking</label>
               <br>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.overlooking.includes("Garden/Park")){ %> -->
-                <!-- <input class="form-check-input" type="checkbox" name="overlooking" value="Garden/Park"
-                  id="overlookingGarden" checked> -->
-                  <!-- <%}else{%> -->
+                <% if(property && property.additionalFeatures.overlooking.includes("Garden/Park")) { %> 
+                <input class="form-check-input" type="checkbox" name="overlooking" value="Garden/Park"
+                  id="overlookingGarden" checked>
+                  <%}else {%>
                     <input class="form-check-input" type="checkbox" name="overlooking" value="Garden/Park"
                       id="overlookingGarden">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="overlookingGarden">Garden/Park</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.overlooking.includes("Pool")){ %> -->
-                <!-- <input class="form-check-input" type="checkbox" name="overlooking" value="Pool" id="overlookingPool" checked> -->
-                <!-- <%}else{%> -->
+                <% if(property && property.additionalFeatures.overlooking.includes("Pool")){ %> -->
+                <input class="form-check-input" type="checkbox" name="overlooking" value="Pool" id="overlookingPool" checked>
+                <%}else{%>
                   <input class="form-check-input" type="checkbox" name="overlooking" value="Pool" id="overlookingPool">
-                <!-- <%}%> -->
+                <%}%>
                 <label class="form-check-label" for="overlookingPool">Pool</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.overlooking.includes("Main Road")){ %> -->
-                <!-- <input class="form-check-input" type="checkbox" id="overlookingMain" name="overlooking"
-                  value="Main Road" checked> -->
-                  <!-- <%}else{%> -->
+                <% if(property && property.additionalFeatures.overlooking.includes("Main Road")){ %> 
+                <input class="form-check-input" type="checkbox" id="overlookingMain" name="overlooking"
+                  value="Main Road" checked>
+                  <%}else{%>
                     <input class="form-check-input" type="checkbox" id="overlookingMain" name="overlooking"
                       value="Main Road">
-                    <!-- <%}%> -->
+                    <%}%>
                 <label class="form-check-label" for="overlookingMain">Main Road</label>
               </div>
               <div class="form-check form-check-inline">
-                <!-- <% if(property && property.additionalFeatures.overlooking.includes("Main Road")){ %> -->
+                <% if(property && property.additionalFeatures.overlooking.includes("Servant Room")){ %> 
                 <input class="form-check-input" type="checkbox" id="overlooking" name="overlooking"
-                  value="Servant Room">
+                  value="Servant Room" checked>
+                  <%}else{%>
+                    <input class="form-check-input" type="checkbox" id="overlooking" name="overlooking"
+                      value="Servant Room">
+                    <%}%>
                 <label class="form-check-label" for="overlooking">Servant Room</label>
               </div>
               <div class="form-check form-check-inline">
+                <% if(property && property.additionalFeatures.overlooking.includes("Not Availiable")){ %> 
                 <input class="form-check-input" type="checkbox" id="overlookingNot" name="overlooking"
-                  value="Not Availiable">
+                  value="Not Availiable" checked>
+                  <%}else{%>
+                    <input class="form-check-input" type="checkbox" id="overlookingNot" name="overlooking"
+                      value="Not Availiable">
+                    <%}%>
                 <label class="form-check-label" for="overlookingNot">Not Availiable</label>
               </div>
               <br>
@@ -1864,22 +1872,62 @@
               <label for="carParking">Car Parking</label>
               <br>
               <select class="form-control w-50" name="carParking" id="carParking" required>
-                <option value="None">None</option>
-                <option value="Covered">Covered</option>
-                <option value="Open">Open</option>
-                <option value="Not Availiable">Not Availiable</option>
+                <% if(property && property.additionalFeatures.carParking == "None"){ %> 
+                <option value="None" selected>None</option>
+                <%}else{%>
+                  <option value="None">None</option>
+                  <%}%>
+                <% if(property && property.additionalFeatures.carParking == "Covered"){ %> 
+                <option value="Covered" selected>Covered</option>
+                <%}else{%>
+                  <option value="Covered">Covered</option>
+                  <%}%>
+                <% if(property && property.additionalFeatures.carParking == "Open"){ %> 
+                <option value="Open" selected>Open</option>
+                <%}else{%>
+                  <option value="Open">Open</option>
+                  <%}%>
+                  <% if(property && property.additionalFeatures.carParking == "Not Availiable"){ %> 
+                <option value="Not Availiable" selected>Not Availiable</option>
+                <%}else{%>
+                  <option value="Not Availiable">Not Availiable</option>
+                  <%}%>
               </select>
               <br>
               <br>
               <label for="liftsInTheTower">Lifts In The Tower</label>
               <br>
               <select class="form-control w-50" name="liftsInTheTower" id="liftsInTheTower" required>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="4+">4+</option>
+                <% if(property && property.additionalFeatures.liftsInTheTower == "0"){ %> 
+                <option value="0" selected>0</option>
+                <%}else{%>
+                  <option value="0">0</option>
+                  <%}%>
+                  <% if(property && property.additionalFeatures.liftsInTheTower == "1"){ %> 
+                <option value="1" selected>1</option>
+                <%}else{%>
+                  <option value="1">1</option>
+                  <%}%>
+                <% if(property && property.additionalFeatures.liftsInTheTower == "2"){ %> 
+                <option value="2" selected>2</option>
+                <%}else{%>
+                  <option value="2">2</option>
+                  <%}%>
+                  <% if(property && property.additionalFeatures.liftsInTheTower == "3"){ %> 
+                <option value="3" selected>3</option>
+                <%}else{%>
+                  <option value="3">3</option>
+                  <%}%>
+                  <% if(property && property.additionalFeatures.liftsInTheTower == "4"){ %> 
+                <option value="4" selected>4</option>
+                <%}else{%>
+                  <option value="4">4</option>
+                  <%}%>
+                  <% if(property && property.additionalFeatures.liftsInTheTower == "4+"){ %> 
+                <option value="4+" selected>4+</option>
+                <%}else{%>
+                  <option value="4+">4+</option>
+                  <%}%>
               </select>
               <br>
               <br>
