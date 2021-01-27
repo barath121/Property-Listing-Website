@@ -89,7 +89,8 @@
                             <% for (var a in savedProperties) { %> 
                             <div class="col mb-4">
                                 <div class="card h-100 p-2">
-                                    <a href="./property-detail" class="text-danger h4 hammersmithOne"><%= savedProperties[a].propertyID.name %> </a> <hr class="mt-0">
+                                    <a href="/property?type=residential&id=<%= savedProperties[a].propertyID._id %>" class="text-danger h4 hammersmithOne"><%= savedProperties[a].propertyID.name %></a>
+                                    <hr class="mt-0">
                                     <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].propertyID.propertyType %></div>
                                     <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].propertyID.propertyFor %></div>
                                     <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].propertyID.locality %></div>
