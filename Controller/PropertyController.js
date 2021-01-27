@@ -378,7 +378,7 @@ module.exports.HomePage = async (req, res,next) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     rentproperties.push(property);
   });
-  res.render("index", { property: rentproperties ,rentproperties:rentproperties});
+  res.render("index", { property: properties ,rentproperties:rentproperties});
 };
 module.exports.Search = async (req, res) => {
   let countofpage  =0;
@@ -526,7 +526,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.name = req.body.name;
   commercial.address = req.body.address;
   commercial.propertyType = req.body.PropertyType;
-  
+  commercial.locality = req.body.locality;
   commercial.propertyFor = req.body.Propertyfor;
   commercial.locatedInside = req.body.locatedInside;
   commercial.zoneType = req.body.zoneType;
@@ -545,14 +545,17 @@ module.exports.CommercialProperty = async (req, res, next) => {
     req.body.carpetArea[0],
     req.body.carpetArea[1]
   );
-  if ((req.body.propertyType == "Commercial Office Space")) {
+  console.log(req.body.propertyType == "Commercial Office Space")
+  console.log("Hello");
+  if ((req.body.PropertyType == "Commercial Office Space")) {
     commercial.officeSetup = {};
     commercial.officeSetup.minSeats = req.body.minSeats;
     commercial.officeSetup.maxSeats = req.body.maxSeats;
     commercial.officeSetup.noOfCabins = req.body.noOfCabins;
     commercial.officeSetup.noOfMeetingRooms = req.body.noOfMeetingRooms;
-    commercial.officeSetup.conferenceRoom = req.body.conferenceRoom;
-    commercial.officeSetup.receptionArea = req.body.receptionArea;
+    commercial.conferenceRoom = req.body.conferenceRoom||false;
+    console.log(req.body.conferenceRoom + "Helloooooooo");
+    commercial.receptionArea = req.body.receptionArea||false;
     commercial.pantryType = {};
     commercial.pantryType.pantryTypes = req.body.pantryTypes;
     commercial.pantryType.pantrySize = req.body.pantrySize;
@@ -727,7 +730,7 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     let skip = (page-1) * limit;
     console.log(skip,limit)
     let conditionedProperties = 
-    await Property
+    await Commercial
     .find(condition)
     .sort({ _id: -1 })
     .skip(skip)
@@ -736,6 +739,7 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     countofpage  = await Property.countDocuments(condition);
     countofpage = parseInt(countofpage/10);
     conditionedProperties.forEach((element) => {
+      console.log(element)
       property = {};
       element.Images.images.forEach((img) => {
         if (img.includes("CoverImages")) {
@@ -756,29 +760,26 @@ module.exports.SearchCommercial = async (req,res,next) =>{
         element.name +
         ", " +
         element.locality;
-      property.area = element.propertyFeatures.carpetArea;
-      property.furnishing = element.propertyFeatures.furnishingStatus;
+        console.log(element)
+      property.area = element.areaDetails.carpetArea;
       if (
-        element.priceDetails.possessionStatus == "Under Construction" &&
+        element.possessionStatus == "Under Construction" &&
         element.propertyFor == "Sale"
       ) {
-        property.status = element.priceDetails.possessionStatus;
+        property.status = element.possessionStatus;
         "Possession by " +
-          element.priceDetails.avaliableFrom.month +
+          element.avaliableFrom.month +
           " " +
-          element.priceDetails.avaliableFrom.year;
+          element.avaliableFrom.year;
       } else if (element.propertyFor == "Sale") {
         property.status =
-          element.priceDetails.possessionStatus +
+          element.possessionStatus +
           ", " +
-          element.priceDetails.ageOfConstruction;
+          element.ageOfConstruction;
       } else {
         property.status = "Ready to Move";
       }
-      property.price = element.priceDetails.expectedPrice||element.priceDetails.expectedRent;
-      
-      property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-      property.bathroom = element.propertyFeatures.bathroom + " Bath";
+      property.price = element.expectedPrice||element.expectedRent;
       properties.push(property);
     });
   }
