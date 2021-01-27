@@ -420,12 +420,12 @@ module.exports.Search = async (req, res) => {
       minprice = 10000000 * parseInt(minpriceDetails[0]);
     }
     let maxpriceDetails = null;
+    let maxprice = 0;
     if (minpriceDetails[1].includes("+")) {
       maxprice = 9990000000;
     }
     else{
     maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
-     let maxprice = 0;
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
     } else if (maxpriceDetails[1] == "Lac") {
@@ -526,7 +526,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.name = req.body.name;
   commercial.address = req.body.address;
   commercial.propertyType = req.body.PropertyType;
-  commercial.locality = req.body.locality;
+  commercial.locality = req.body.Locality;
   commercial.propertyFor = req.body.Propertyfor;
   commercial.locatedInside = req.body.locatedInside;
   commercial.zoneType = req.body.zoneType;
@@ -646,6 +646,7 @@ module.exports.EditProperty = (req,res,next) =>{
         console.log(property)
         res.render('Create_property',{property : property});
       }
+      else
         res.redirect('/404');
     });
 
@@ -654,6 +655,7 @@ module.exports.EditProperty = (req,res,next) =>{
       if(property){
         res.render('commercial_property',property);
       }
+      else
      res.redirect('/404');
     });
   }
@@ -676,12 +678,11 @@ module.exports.SearchCommercial = async (req,res,next) =>{
   if (filters.propertytype) {
     conditions.push({ propertyType: filters.propertytype });
   }
-  if (filters.price) {
-    console.log()
-   if(Array.isArray(filters.price)){
+  if(Array.isArray(filters.price)){
     filters.price = filters.price[0]||filters.price[1]
     }
-    console.log(filters.price)
+  if (filters.price) {
+   
     let minpriceDetails = filters.price.split("-")[0].trim().split(" ");
     let minprice = 0;
     if (!minpriceDetails[1]||minpriceDetails[1].includes("+")) {
@@ -692,10 +693,12 @@ module.exports.SearchCommercial = async (req,res,next) =>{
       minprice = 10000000 * parseInt(minpriceDetails[0]);
     }
     let maxpriceDetails = null;
-    if (filters.price&&!minpriceDetails[1].includes("+"))
-      maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
     let maxprice = 0;
-    if(!minpriceDetails[1].includes("+")){
+    if (minpriceDetails[1].includes("+")) {
+      maxprice = 9990000000;
+    }
+    else{
+    maxpriceDetails = filters.price.split("-")[1].trim().split(" ");
     if (!maxpriceDetails[1]) {
       maxprice = parseInt(maxpriceDetails[0]);
     } else if (maxpriceDetails[1] == "Lac") {
@@ -703,9 +706,7 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     } else if (maxpriceDetails[1] == "Cr") {
       maxprice = 10000000 * parseInt(maxpriceDetails[0]);
     }}
-    else{
-      maxprice = 9999999999;
-    }
+    
     if(filters.propertyfor=="Sale"){
     conditions.push({ "expectedPrice": { $gte: minprice } });
     conditions.push({ "expectedPrice": { $lte: maxprice } });}
