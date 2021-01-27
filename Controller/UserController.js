@@ -104,7 +104,7 @@ module.exports.RemoveSaved = (req,res,next) =>{
   })
 }
 module.exports.userdashboard =(req,res,next) =>{
-Saved.find({customerID:req.user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
+Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',select:'propertyType propertyFor name locality furnishing description'})
  .then(result=>{
   res.render('userDashboard',{
     savedProperties : result

@@ -9,6 +9,11 @@ Type : {
     type  : String,
     default : "commercial"
 },
+locality : {
+    type : String,
+    enum : ['Roadpali','Kalamboli','Khargahar'],
+    required : true
+},
 name :{
     type : String,
     required : true
@@ -206,7 +211,17 @@ receptionArea : {
     description : {
         type : String,
         required : true
+    },
+Images :{
+    imageid : {
+        type : String,
+        unique : true,
+        required :true
+    },
+    images : {
+        type : [String]
     }
+} 
 },{
     timestamps: true,
 });
