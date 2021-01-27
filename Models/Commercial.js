@@ -116,15 +116,15 @@ receptionArea : {
     floorDetails : {
         totalFloors : {
             type : Number,
-            required : true
+            required : function(){return this.propertyType=='Commercial Office Space'||this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'}
         },
         yourFloor : {
             type : Number,
-            required : true
+            required : function(){return this.propertyType=='Commercial Office Space'||this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'}
         },
         noOfStaircases : {
             type : Number,
-            required : true
+            required : function(){return this.propertyType=='Commercial Office Space'||this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'}
         }
     },
     lifts :{
