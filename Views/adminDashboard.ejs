@@ -1,5 +1,11 @@
 <%- include('./layouts/imports') -%>
 
+<% 
+    properties.forEach(ele => {
+        console.log(ele.ActivatedProperty);
+    })
+%> 
+
 <section class="mt-5 mb-5">
     <div class="container">
         <ul class="justify-content-center" uk-tab>
@@ -20,7 +26,15 @@
                                 <p class="h5 text-danger hammersmithOne"><%= ele.ActivatedProperty[a].title %></p> 
                                 <hr>
                                 <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
+                                    Price: 
+                                    <span class="text-dark hammersmithOne">
+                                        <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                            <%= ele.ActivatedProperty[a].priceDetails.expectedPrice %>
+                                        <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                            <%= ele.ActivatedProperty[a].priceDetails.expectedRent %> per month
+                                        <% } %>
+                                    </span> | 
+                                    Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
                                 </p>
                                 <p>
                                     Status: 
@@ -58,7 +72,15 @@
                                 <p class="h5 text-danger hammersmithOne"><%= ele.DisabledProperty[a].title %> </p> 
                                 <hr>
                                 <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].propertyFeatures.carpetArea %></span>
+                                    Price: 
+                                    <span class="text-dark hammersmithOne">
+                                        <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                            <%= ele.DisabledProperty[a].priceDetails.expectedPrice %>
+                                        <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                            <%= ele.DisabledProperty[a].priceDetails.expectedRent %> per month
+                                        <% } %>
+                                    </span> | 
+                                    Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].propertyFeatures.carpetArea %></span>
                                 </p>
                                 <p>
                                     Status: 
@@ -96,7 +118,15 @@
                                 <p class="h5 text-danger hammersmithOne"><%= ele.AllProperty[a].title %> </p> 
                                 <hr>
                                 <p>
-                                    Price: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].priceDetails.expectedPrice %></span> | Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %></span>
+                                    Price: 
+                                    <span class="text-dark hammersmithOne"> 
+                                        <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                            <%= ele.AllProperty[a].priceDetails.expectedPrice %>
+                                        <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                            <%= ele.AllProperty[a].priceDetails.expectedRent %> per month
+                                        <% } %> 
+                                    </span> | 
+                                    Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %></span>
                                 </p>
                                 <p>
                                     Status: 
@@ -136,7 +166,6 @@
             </li>
             <li>
                 <div class="uk-margin">
-                    <% console.log(saved)%>
                     <form action="/admin/admindashboard" method="GET" class="uk-search uk-search-default w-75 uk-align-center">
                         <span uk-search-icon></span>
                         <input class="uk-search-input" name="number" type="search" placeholder="Search...">
