@@ -348,6 +348,93 @@ module.exports.HomePage = async (req, res,next) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     properties.push(property);
   });
+  let commercialsale = [];
+  let commercialrent = [];
+  let CommercialSale = await Commercial.aggregate([
+    {$match : {$and: [{isAvaliable : true},{propertyFor : "Sale"}]}},
+    { $sample: { size: 6 } },
+  ]).catch((err) => next(err));
+  CommercialSale.forEach((element) => {
+    property = {};
+    element.Images.images.forEach((img) => {
+      if (img.includes("CoverImages")) {
+        property.image = img;
+      }
+    });
+    property.id = element._id;
+    property.title =
+      element.propertyType +
+      " For " +
+      element.propertyFor +
+      " at " +
+      element.name +
+      ", " +
+      element.locality;
+    property.area = element.areaDetails.carpetArea;
+    if (
+      element.possessionStatus == "Under Construction" &&
+      element.propertyFor == "Sale"
+    ) {
+      property.status = element.possessionStatus;
+      "Possession by " +
+        element.avaliableFrom.month +
+        " " +
+        element.avaliableFrom.year;
+    } else if (element.propertyFor == "Sale") {
+      property.status =
+        element.possessionStatus +
+        ", " +
+        element.ageOfConstruction;
+    } else {
+      property.status = "Ready to Move";
+    }
+    property.price =
+      element.expectedPrice || element.expectedRent;
+      commercialsale.push(property);
+  });
+  let CommercialRent = await Commercial.aggregate([
+    {$match : {$and: [{isAvaliable : true},{propertyFor : "Rent/Lease"}]}},
+    { $sample: { size: 6 } },
+  ]).catch((err) => next(err));
+  CommercialRent.forEach((element) => {
+    property = {};
+    element.Images.images.forEach((img) => {
+      if (img.includes("CoverImages")) {
+        property.image = img;
+      }
+    });
+    property.id = element._id;
+    property.title =
+      element.propertyType +
+      " For " +
+      element.propertyFor +
+      " at " +
+      element.name +
+      ", " +
+      element.locality;
+    property.area = element.areaDetails.carpetArea;
+    if (
+      element.possessionStatus == "Under Construction" &&
+      element.propertyFor == "Sale"
+    ) {
+      property.status = element.possessionStatus;
+      "Possession by " +
+        element.avaliableFrom.month +
+        " " +
+        element.avaliableFrom.year;
+    } else if (element.propertyFor == "Sale") {
+      property.status =
+        element.possessionStatus +
+        ", " +
+        element.ageOfConstruction;
+    } else {
+      property.status = "Ready to Move";
+    }
+    property.price =
+      element.expectedPrice || element.expectedRent;
+      commercialrent.push(property);
+  });
+  
   let RentProperties = await Property.aggregate([
     {$match : {$and : [{isAvaliable : true},{propertyFor : "Rent/Lease"}]}},
     { $sample: { size: 6 } },
@@ -378,7 +465,7 @@ module.exports.HomePage = async (req, res,next) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     rentproperties.push(property);
   });
-  res.render("index", { saleproperties: properties , rentproperties:rentproperties});
+  res.render("index", { saleproperties: properties , rentproperties:rentproperties,salecommercial:commercialsale,rentcommercial:commercialrent});
 };
 module.exports.Search = async (req, res) => {
   let countofpage  =0;
