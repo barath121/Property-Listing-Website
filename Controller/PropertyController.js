@@ -150,7 +150,8 @@ module.exports.createProperty = async (req, res, next) => {
   property.amenities = req.body.amenities;
   property.description = req.body.description;
   property.landmarks = req.body.landmarks;
-  let imagesArray = [];
+  if(!req.body._id)
+  {let imagesArray = [];
   let i = 0;
   const images = req.files;
   const imageid = nanoid();
@@ -163,7 +164,7 @@ module.exports.createProperty = async (req, res, next) => {
   );
   property.Images = {};
   property.Images.images = imagesArray;
-  property.Images.imageid = imageid;
+  property.Images.imageid = imageid;}
 if(req.body._id){
   Property.findByIdAndUpdate(req.body._id,property) .catch((err) => {
     console.log(err);
@@ -555,7 +556,8 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.NOCCertified = req.body.NOCCertified;
   commercial.OccupanceCertified = req.body.OccupanceCertified;
   commercial.description = req.body.description;
-  let imagesArray = [];
+  if(!req.body._id)
+  {let imagesArray = [];
   let i = 0;
   const images = req.files;
   const imageid = nanoid();
@@ -569,7 +571,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.Images = {};
   commercial.Images.images = imagesArray;
   commercial.Images.imageid = imageid;
-
+}
   Commercial.create(commercial)
     .catch((err) => {
       console.log(err);
