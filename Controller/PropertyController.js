@@ -581,18 +581,18 @@ module.exports.CommercialProperty = async (req, res, next) => {
 };
 
 module.exports.EditProperty = (req,res,next) =>{
-  if(req.body.type="residential"){
-    Property.findById(req.body._id).then(property=>{
+  if(req.query.type="residential"){
+    Property.findById(req.query._id).then(property=>{
       if(property){
-        res.render('/Create_property',property);
+        res.render('Create_property',property);
       }
      res.redirect('/404');
     });
 
   }else{
-    Commercial.findById(req.body._id).then(property=>{
+    Commercial.findById(req.query._id).then(property=>{
       if(property){
-        res.render('/commercial_property',property);
+        res.render('commercial_property',property);
       }
      res.redirect('/404');
     });
