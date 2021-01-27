@@ -210,49 +210,130 @@
 </header>
 
 <!-- Property gallery -->
-<section class="pt-5 pb-5 bg-light">
-    <div class="container">
-        <p class="h1 text-center text-dark hammersmithOne">Property Gallery</p>
-        <hr class="uk-align-center hr-custom">
-        <div class="row row-cols-1 row-cols-md-3">
-          <% property.forEach(ele => { %> 
-            <% //console.log(ele) %>
-            <div class="col mb-4">
-              <div class="card h-100 shadow uk-transition-toggle" tabindex="0">
-                <div class="overflow-hidden h-50">
-                  <img src="<%= ele.image %>" class="card-img-top uk-transition-scale-up uk-transition-opaque h-100" alt="...">
-                </div>
-                <div class="h-50">
-                  <div class="card-body">
-                    <a href="./property?type=residential&id=<%= ele.id %>" class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
-                    <p class="card-text">
-                      <div class="small uk-child-width-1-2" uk-grid>
-                        <div>
-                          Status: <%= ele.status %> 
+
+<!-- Sales -->
+<section class="mt-5 mb-5 p-3">
+  <div class="container">
+      <h3 class="text-center hammersmithOne">Buy Properties</h3> 
+      <div class="uk-slider-container-offset" uk-slider="finite: true">
+  
+          <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+      
+              <ul class="uk-slider-items uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1 uk-grid text-dark">
+                  <% saleproperties.forEach(ele => { %> 
+                  <li>
+                      <div class="card h-100 shadow uk-transition-toggle" tabindex="0">
+                        <div class="overflow-hidden h-50">
+                          <img src="<%= ele.image %>" class="card-img-top uk-transition-scale-up uk-transition-opaque h-100" alt="...">
                         </div>
-                        <div>
-                          Furnishing: <%= ele.furnishing %>
+                        <div class="h-50">
+                          <div class="card-body">
+                            <a href="./property?type=residential&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
+                            <p class="card-text">
+                              <div class="small uk-child-width-1-2" uk-grid>
+                                <div>
+                                  Status: <%= ele.status %> 
+                                </div>
+                                <div>
+                                  Furnishing: <%= ele.furnishing %>
+                                </div>
+                              </div>
+                            </p>
+                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                          </div>
+                          <div class="card-footer bg-white text-center">
+                            <div class="uk-child-width-1-3 small" uk-grid>
+                              <div class="hammersmithOne"><%= ele.bedroom %></div>
+                              <div class="hammersmithOne"><%= ele.bathroom %></div>
+                              <div class="hammersmithOne"><%= ele.area %> Sqft</div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </p>
-                    <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
-                  </div>
-                  <div class="card-footer bg-white text-center">
-                    <div class="uk-child-width-1-3 small" uk-grid>
-                      <div class="hammersmithOne"><%= ele.bedroom %></div>
-                      <div class="hammersmithOne"><%= ele.bathroom %></div>
-                      <div class="hammersmithOne"><%= ele.area %> Sqft</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% }) %> 
-        </div>
-        <div class="text-center m-5">
-          <a href="" class="btn btn-lg btn-outline-danger font-weight-bold rounded-pill">More Properties</a>
-        </div>
-    </div>
+                  </li>
+                  <% }) %>
+                  <li>
+                      <div class="d-flex justify-content-center align-items-center h-100 bg-light">
+                          <a href="">
+                              <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
+                          </a>
+                      </div>
+                  </li>
+              </ul>
+                  
+              <a class="uk-position-center-left uk-position-small text-light bg-dark rounded-circle uk-visible@s" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+              <a class="uk-position-center-right uk-position-small text-light bg-dark rounded-circle uk-visible@s" href="#" uk-slidenav-next uk-slider-item="next"></a>
+      
+          </div>
+          <br>
+          <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+      
+      </div>
+  </div>
 </section>
+
+<!-- Rent -->
+<section class="mt-5 mb-5 p-3">
+  <div class="container">
+      <h3 class="text-center hammersmithOne">Rent Properties</h3> 
+      <div class="uk-slider-container-offset" uk-slider="finite: true">
+  
+          <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+      
+              <ul class="uk-slider-items uk-child-width-1-3@l uk-child-width-1-2@m uk-child-width-1-1 uk-grid text-dark">
+                  <% rentproperties.forEach(ele => { %> 
+                  <li>
+                      <div class="card h-100 shadow uk-transition-toggle" tabindex="0">
+                        <div class="overflow-hidden h-50">
+                          <img src="<%= ele.image %>" class="card-img-top uk-transition-scale-up uk-transition-opaque h-100" alt="...">
+                        </div>
+                        <div class="h-50">
+                          <div class="card-body">
+                            <a href="./property?type=residential&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
+                            <p class="card-text">
+                              <div class="small uk-child-width-1-2" uk-grid>
+                                <div>
+                                  Status: <%= ele.status %> 
+                                </div>
+                                <div>
+                                  Furnishing: <%= ele.furnishing %>
+                                </div>
+                              </div>
+                            </p>
+                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                          </div>
+                          <div class="card-footer bg-white text-center">
+                            <div class="uk-child-width-1-3 small" uk-grid>
+                              <div class="hammersmithOne"><%= ele.bedroom %></div>
+                              <div class="hammersmithOne"><%= ele.bathroom %></div>
+                              <div class="hammersmithOne"><%= ele.area %> Sqft</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </li>
+                  <% }) %>
+                  <li>
+                      <div class="d-flex justify-content-center align-items-center h-100 bg-light">
+                          <a href="">
+                            <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
+                          </a>
+                      </div>
+                  </li>
+              </ul>
+                  
+              <a class="uk-position-center-left uk-position-small text-light bg-dark rounded-circle uk-visible@s" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+              <a class="uk-position-center-right uk-position-small text-light bg-dark rounded-circle uk-visible@s" href="#" uk-slidenav-next uk-slider-item="next"></a>
+      
+          </div>
+          <br>
+          <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+      
+      </div>
+  </div>
+</section>
+
+
+<!-- Commercial -->
 
 <%- include('./layouts/Footer') -%>
