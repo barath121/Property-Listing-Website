@@ -784,5 +784,5 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     });
   }
   console.log(properties);
-  res.render("Search_page", { properties: properties,page:countofpage });
+  res.render("commercial_search", { properties: properties,page:countofpage });
 }

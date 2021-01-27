@@ -1,0 +1,381 @@
+<%- include('./layouts/imports') -%>
+    <div class="uk-background-muted p-lg-4 p-2 ">
+        <div class="container mt-4 ">
+            <div class="row hammersmithOne">
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="uk-background-default p-5 shadow-sm rounded overflow-auto"
+                        style="top: 100px; position: sticky; display: flex; flex-direction: column; height: 650px;">
+                        <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
+                        </p>
+                        <form action="/search" method="GET">
+                            <label>Property For</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" onchange="sale()" name="propertyfor"
+                                    value="Sale" id="PropertyforSale" checked>
+                                <label class="form-check-label" for="PropertyforSale">Sale</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" onchange="rent()" name="propertyfor"
+                                    value="Rent/Lease" id="PropertyforRent">
+                                <label class="form-check-label" for="PropertyforRent">Rent</label>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="PropertyType">Property type</label>
+                            <br>
+                            <select class="form-control" name="propertytype" id="PropertyType">
+                                <option value="">Select</option>
+                                <option value="Flat/Apartment"> Flat/Apartment </option>
+                                <option value="Residential House"> Residential House </option>
+                                <option value="Villa"> Villa </option>
+                                <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+                                <option value="Penthouse"> Penthouse </option>
+                                <option value="Studio Apartment"> Studio Apartment </option>
+                                <option value="Farm House"> Farm House </option>
+                            </select>
+                            <br>
+                            <div id="saleBudget">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select text-dark" id="form-stacked-select" name="price">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                                    <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                                    <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                                    <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                                    <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                                    <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                                    <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                                    <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                                    <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                                    <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                                    <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                                    <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                                    <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                                    <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                                    <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                                    <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
+                                </select>
+                            </div>
+
+                            <div id="rentBudget" class="d-none">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select  text-dark" name="price"
+                                    id="form-stacked-select">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="1000 - 5000">1000 - 5000</option>
+                                    <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
+                                    <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
+                                    <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
+                                    <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
+                                    <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
+                                    <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
+                                    <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
+                                    <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
+                                    <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
+                                    <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
+                                    <option class="text-dark" value="8000 +">8000 +</option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="Locality">Locality</label>
+                            <br>
+                            <select class="form-control " name="locality" id="Locality">
+                                <option value="">Select</option>
+                                <option value="Roadpali">Roadpali</option>
+                                <option value="Kalamboli">Kalamboli</option>
+                                <option value="Kharghar">Kharghar</option>
+                            </select>
+                            <br>
+                            <br>
+                            <div id="sale" class="">
+                                <label>Possession Status</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status"
+                                        value="Under Construction" id="possessionStatusUnder">
+                                    <label class="form-check-label" for="possessionStatusUnder">Under
+                                        Construction</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="Ready to Move"
+                                        id="possessionStatusReady">
+                                    <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <br>
+                            <label for="name">Name</label>
+                            <br>
+                            <input type="text" placeholder="Enter name of property" class="form-control" id="name"
+                                name="name">
+                            <br>
+                            <label for="sqmin">Minimum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Minimum area in Sq.ft" class="form-control" id="sqmin"
+                                name="sqmin">
+                            <br>
+                            <label for="sqmax">Maximum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Maximum area in Sq.ft" class="form-control" id="sqmax"
+                                name="sqmax">
+                            <br>
+
+                            <div class="d-flex w-100 justify-content-center">
+                                <button class="btn btn-outline-danger" type="submit">Apply</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-12">
+                    <div class="w-100 text-cente mb-4">
+                        <h3 class="hammersmithOne">
+                            <%= properties.length %> Properties matching your preference
+                        </h3>
+                    </div>
+                    <div class="">
+                        <% if(properties.length !=0) { %>
+                            <% for(var i=0; i< properties.length ; i++) {%>
+                                <a href="/property?type=residential&id=<%= properties[i].id %>"
+                                    style="text-decoration: none;">
+                                    <div class="card mb-4 rounded uk-card uk-card-hover" style="cursor: pointer;">
+                                        <div class="row card-body">
+                                            <div class="col-lg-4 col-12">
+                                                <img src="<%= properties[i].image %>" alt="Img" height="500px">
+                                            </div>
+                                            <div class="col-lg-8 col-12 mt-lg-0 mt-4">
+                                                <h3 class="mb-4 text-danger hammersmithOne">
+                                                    <%= properties[i].title %>
+                                                </h3>
+                                                <div class="row">
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Carpet Area<p>
+                                                            <%= properties[i].area %>SqFt
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Status<p>
+                                                            <%= properties[i].status %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Bedroom<p>
+                                                            <%= properties[i].bedroom %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Furnishing<p>
+                                                            <%= properties[i].furnishing %>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-start">
+                                                    <p class="m-2">
+                                                        <span
+                                                            class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹
+                                                            <%= properties[i].price %>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <% } %>
+                                    <% } else { %>
+                                        <div style="display: flex;flex-direction: column; align-items: center;">
+                                            <img src="/undraw_Building_vpxo.svg" alt="Img" width="250px">
+                                            <br>
+                                            <p style="font-size: x-large; font-weight: 600;">Error No Properties match
+                                                the given filters</p>
+                                        </div>
+                                        <% } %>
+                                            <% if(properties.length !=0 && page !=0) { %>
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination justify-content-end">
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                        </li>
+                                                        <% for(var i=1; i<=page; i++) {%>
+                                                            <li class="page-item">
+                                                                <a class="page-link text-danger"
+                                                                    onclick="pages('<%= i %>')">
+                                                                    <%= i %>
+                                                                </a>
+                                                            </li>
+                                                            <% } %>
+                                                                <li class="page-item">
+                                                                    <a class="page-link text-danger" href="#">Next</a>
+                                                                </li>
+
+                                                    </ul>
+                                                </nav>
+                                                <% } %>
+
+                    </div>
+                </div>
+            </div>
+            <div class="d-lg-none d-block">
+                <a class="uk-button uk-button-default" href="#modal-full" uk-toggle> <button
+                        class="rounded-lg btn btn-dark  shadow font-weight-bold"
+                        style="position: fixed; bottom: 15px; right: 15px;"><span
+                            uk-icon="settings"></span></button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-full" class="uk-modal-full" uk-modal>
+        <div class="uk-modal-dialog" uk-height-viewport>
+            <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+            <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+                <div class="uk-padding-large">
+                    <div class="hammersmithOne">
+                        <p class="text-center mb-4" style="font-weight: 600;"><span uk-icon="settings"></span>Filters
+                        </p>
+                        <form action="/search" method="GET">
+                            <label>Property For</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" onchange="mobsale()" name="propertyfor"
+                                    value="Sale" id="PropertyforSale" checked>
+                                <label class="form-check-label" for="PropertyforSale">Sale</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" onchange="mobrent()" name="propertyfor" value="Rent/Lease"
+                                    id="PropertyforRent">
+                                <label class="form-check-label"  for="PropertyforRent">Rent</label>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="PropertyType">Property type</label>
+                            <br>
+                            <select class="form-control" name="propertytype" id="propertytype">
+                                <option value="">Select</option>
+                                <option value="Flat/Apartment"> Flat/Apartment </option>
+                                <option value="Residential House"> Residential House </option>
+                                <option value="Villa"> Villa </option>
+                                <option value="Builder Floor Apartment">Builder Floor Apartment </option>
+                                <option value="Penthouse"> Penthouse </option>
+                                <option value="Studio Apartment"> Studio Apartment </option>
+                                <option value="Farm House"> Farm House </option>
+                            </select>
+                            <br>
+                            <div id="mobSaleBudget">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select text-dark" id="form-stacked-select" name="price">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                                    <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                                    <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                                    <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                                    <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                                    <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                                    <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                                    <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                                    <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                                    <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                                    <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                                    <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                                    <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                                    <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                                    <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                                    <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
+                                </select>
+                            </div>
+                            <div id="mobRentBudget" class="d-none">
+                                <label for="form-stacked-select">Budget</label>
+                                <select class="uk-select text-dark" name="price"
+                                    id="form-stacked-select">
+                                    <option value="">Select</option>
+                                    <option class="text-dark" value="1000 - 5000">1000 - 5000</option>
+                                    <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
+                                    <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
+                                    <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
+                                    <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
+                                    <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
+                                    <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
+                                    <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
+                                    <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
+                                    <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
+                                    <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
+                                    <option class="text-dark" value="8000 +">8000 +</option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="Locality">Locality</label>
+                            <br>
+                            <select class="form-control " name="locality" id="locality">
+                                <option value="">Select</option>
+                                <option value="Roadpali">Roadpali</option>
+                                <option value="Kalamboli">Kalamboli</option>
+                                <option value="Kharghar">Kharghar</option>
+                            </select>
+                            <br>
+                            <label for="Bedrooms">Bedrooms</label>
+                            <br>
+                            <select class="form-control " onchange="dimensions()" name="bedrooms" id="Bedrooms">
+                                <option value="">Select</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="more than 4">more than 4</option>
+                            </select>
+                            <br>
+                            <br>
+                            <div id="mobsale" class="">
+                                <label>Possession Status</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status"
+                                        value="Under Construction" id="possessionStatusUnder">
+                                    <label class="form-check-label" for="possessionStatusUnder">Under
+                                        Construction</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="status" value="Ready to Move"
+                                        id="possessionStatusReady">
+                                    <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                            <label for="furnishingStatus">Furnishing Status</label>
+                            <br>
+                            <select class="form-control" name="furnishing" id="furnishing">
+                                <option value="">Select</option>
+                                <option value="Furnished">Furnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
+                                <option value="Semi-Furnished">Semi-Furnished</option>
+                            </select>
+                            <br>
+                            <label for="name">Name</label>
+                            <br>
+                            <input type="text" placeholder="Enter name of property" class="form-control" id="name"
+                                name="name">
+                            <br>
+                            <label for="sqmin">Minimum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Minimum area in Sq.ft" class="form-control" id="sqmin"
+                                name="sqmin">
+                            <br>
+                            <label for="sqmax">Maximum Area</label>
+                            <br>
+                            <input type="text" placeholder="Enter Maximum area in Sq.ft" class="form-control" id="sqmax"
+                                name="sqmax">
+                            <br>
+
+                            <div class="d-flex w-100 justify-content-center">
+                                <button class="btn btn-outline-danger" type="submit">Apply</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/commercialSearchPage.js"></script>
+
+    <%- include('./layouts/Footer') -%>
