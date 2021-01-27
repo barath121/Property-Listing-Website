@@ -303,7 +303,7 @@ module.exports.ViewProperty = (req, res, next) => {
 };
 module.exports.HomePage = async (req, res,next) => {
   let Properties = await Property.aggregate([
-    {$match : {propertyFor : "Sale"}},
+    {$match : {$and: [{isAvaliable : true},{propertyFor : "Sale"}]}},
     { $sample: { size: 6 } },
   ]).catch((err) => next(err));
   properties = [];
@@ -349,7 +349,7 @@ module.exports.HomePage = async (req, res,next) => {
     properties.push(property);
   });
   let RentProperties = await Property.aggregate([
-    {$match : {propertyFor : "Rent/Lease"}},
+    {$match : {$and : [{isAvaliable : true},{propertyFor : "Rent/Lease"}]}},
     { $sample: { size: 6 } },
   ]).catch((err) => next(err));
   rentproperties = [];
@@ -384,6 +384,7 @@ module.exports.Search = async (req, res) => {
   let countofpage  =0;
   let filters = req.query;
   let conditions = [];
+  conditions.push({isAvaliable : true});
   if (filters.name) {
     conditions.push({ name: new RegExp(filters.name, "i") });
   }
@@ -663,6 +664,7 @@ module.exports.EditProperty = (req,res,next) =>{
 module.exports.SearchCommercial = async (req,res,next) =>{
   let filters = req.query;
   let conditions = [];
+  conditions.push({isAvaliable : true});
   if (filters.name) {
     conditions.push({ name: new RegExp(filters.name, "i") });
   }
