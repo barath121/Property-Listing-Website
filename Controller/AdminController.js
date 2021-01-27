@@ -234,9 +234,9 @@ module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
   // res.redirect('/admin/admindashboard')
 }
 
-module.exports.MarkQuerySolved = (res,req) =>{
+module.exports.MarkQuerySolved = (req,res) =>{
   Enquiry.findByIdAndUpdate(req.body.id,{contacted : true}).then(saved=>{
     req.flash("success","Enquiry Has Been Solved");
-    res.redirect("/admin/admindashboard?value=customer");
+    res.redirect("/admin/admindashboard");
   });
 }
