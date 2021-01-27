@@ -326,7 +326,7 @@ module.exports.HomePage = async (req, res,next) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     rentproperties.push(property);
   });
-  res.render("index", { property: properties ,rentproperties:RentProperties});
+  res.render("index", { property: rentproperties ,rentproperties:rentproperties});
 };
 module.exports.Search = async (req, res) => {
   let countofpage  =0;
