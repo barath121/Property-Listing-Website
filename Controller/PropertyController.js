@@ -250,6 +250,7 @@ module.exports.ViewProperty = (req, res, next) => {
 };
 module.exports.HomePage = async (req, res,next) => {
   let Properties = await Property.aggregate([
+    {$match : {propertyFor : "Sale"}},
     { $sample: { size: 6 } },
   ]).catch((err) => next(err));
   properties = [];
@@ -294,7 +295,37 @@ module.exports.HomePage = async (req, res,next) => {
     property.bathroom = element.propertyFeatures.bathroom + " Bath";
     properties.push(property);
   });
-  res.render("index", { property: properties });
+  let RentProperties = await Property.aggregate([
+    {$match : {propertyFor : "Rent/Lease"}},
+    { $sample: { size: 6 } },
+  ]).catch((err) => next(err));
+  rentproperties = [];
+  RentProperties.forEach((element) => {
+    property = {};
+    element.Images.images.forEach((img) => {
+      if (img.includes("CoverImages")) {
+        property.image = img;
+      }
+    });
+    property.id = element._id;
+    property.title =
+      element.propertyType +
+      " For " +
+      element.propertyFor +
+      " at " +
+      element.name +
+      ", " +
+      element.locality;
+    property.area = element.propertyFeatures.carpetArea;
+    property.furnishing = element.propertyFeatures.furnishingStatus;
+    property.status = "Ready to Move";
+    property.price =
+      element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
+    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
+    property.bathroom = element.propertyFeatures.bathroom + " Bath";
+    rentproperties.push(property);
+  });
+  res.render("index", { property: properties ,rentproperties:RentProperties});
 };
 module.exports.Search = async (req, res) => {
   let countofpage  =0;
@@ -438,7 +469,8 @@ module.exports.CommercialProperty = async (req, res, next) => {
   let commercial = {};
   commercial.name = req.body.name;
   commercial.address = req.body.address;
-  commercial.propertyType = req.body.propertyType;
+  commercial.propertyType = req.body.PropertyType;
+  
   commercial.propertyFor = req.body.Propertyfor;
   commercial.locatedInside = req.body.locatedInside;
   commercial.zoneType = req.body.zoneType;
@@ -457,7 +489,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
     req.body.carpetArea[0],
     req.body.carpetArea[1]
   );
-  if ((req.body.propertyType = "Commercial Office Space")) {
+  if ((req.body.propertyType == "Commercial Office Space")) {
     commercial.officeSetup = {};
     commercial.officeSetup.minSeats = req.body.minSeats;
     commercial.officeSetup.maxSeats = req.body.maxSeats;
@@ -475,21 +507,23 @@ module.exports.CommercialProperty = async (req, res, next) => {
     commercial.washrooms.quantity = req.body.quantity;
   }
   if (
-    req.body.propertyType == "Commercial Shop" ||
-    req.body.propertyType == "Commercial Showroom"
+    req.body.PropertyType == "Commercial Shop" ||
+    req.body.PropertyType == "Commercial Showroom"
   ) {
     commercial.balconies = req.body.balconies;
   }
+  console.log(req.body.PropertyType == "Commercial Shop" ||
+  req.body.PropertyType == "Commercial Showroom");
   commercial.facilities = req.body.facilities;
   commercial.fireSafetyMeasures = req.body.fireSafetyMeasures;
   commercial.floorDetails = {};
   commercial.floorDetails.totalFloors = req.body.totalFloors;
   commercial.floorDetails.yourFloor = req.body.yourFloor;
   commercial.floorDetails.noOfStaircases = req.body.noOfStaircases;
-
-  if (req.body.liftisAvaliable) {
-    commercial.lifts = {};
-    commercial.lifts.isAvaliable = req.body.liftisAvaliable;
+  commercial.lifts = {};
+  commercial.lifts.isAvaliable = req.body.liftisAvaliable||false;
+  console.log(commercial.lifts.isAvaliable)
+  if (commercial.lifts.isAvaliable) {
     commercial.lifts.passengerLifts = req.body.passengerLifts;
     commercial.lifts.serviceLifts = req.body.serviceLifts;
   }
@@ -500,6 +534,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   else commercial.brokerage.fixedBrokerage = req.body.fixedBrokerage;
   if (commercial.propertyFor == "Sale") {
     commercial.expectedPrice = req.body.expectedPrice;
+    commercial.saleBrokerage = req.body.saleBrokerage;
     //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
     commercial.transactionType = req.body.transactionType;
   }
