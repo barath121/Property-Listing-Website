@@ -50,6 +50,12 @@ module.exports.AdminDashboard = async (req,res) =>{
     const Page = req.query.page||1;
     const limit = req.query.limit * 1||14;
     const skip = (Page - 1) * limit;
+    let saved = {};
+    if(req.query.number){
+     await User.find({phone : req.query.number}).then(async user=>{
+        saved = await Saved.find({customerID : user._id});
+      }).catch(err=>next(err));
+    }
     Property.aggregate([{
       $facet : {
         "ActivatedProperty" : [
@@ -67,6 +73,7 @@ module.exports.AdminDashboard = async (req,res) =>{
                 address : 1,
                 createdAt : 1,
                 "priceDetails.expectedPrice" : 1,
+                "priceDetails.expectedRent" : 1,
                 "propertyFeatures.carpetArea" : 1
               }
             }
@@ -86,6 +93,7 @@ module.exports.AdminDashboard = async (req,res) =>{
               address : 1,
               createdAt : 1,
               "priceDetails.expectedPrice" : 1,
+              "priceDetails.expectedRent" : 1,
               "propertyFeatures.carpetArea" : 1
             }
           }
@@ -106,6 +114,7 @@ module.exports.AdminDashboard = async (req,res) =>{
                 address : 1,
                 createdAt : 1,
                 "priceDetails.expectedPrice" : 1,
+                "priceDetails.expectedRent" : 1,
                 "propertyFeatures.carpetArea" : 1
               }
             }
@@ -115,10 +124,10 @@ module.exports.AdminDashboard = async (req,res) =>{
       console.log(err)
     }).then(async result=>{
       let enquiries = await Enquiry.find({contacted : false});
-      console.log(enquiries);
       res.render("adminDashboard",{
         properties : result,
-        enquiries : enquiries
+        enquiries : enquiries,
+        saved : saved
       })
     })
 }
@@ -138,29 +147,22 @@ module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
 module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
   console.log(req.body.id)
   Property.findById(req.body.id).then(result=>{
-    firebase.deleteFile(result.Images.imageid);
+    firebase.deleteFile(result.Images.images);
+    Saved.remove({propertyID : req.body.id})
     Property.findByIdAndDelete(req.body.id).then(deleted=>{
       req.flash("success","Property Has Been Removed");
-      console.log("random")
       res.redirect('/admin/admindashboard')
     });
-  }).catch(err=>{next(err)})
+  }).catch(err=>{
+    console.log(err)
+    next(err)})
   
-  res.redirect('/admin/admindashboard')
-}
-
-module.exports.GetCustomerSaved = (req,res,next) =>{
-  let phonenumber = req.query.number;
-  User.find({phone : phonenumber}).then(user=>{
-    Saved.find({customerID : user._id}).then(saved=>{
-      res.render("/admin/admindashboard",saved);
-    })
-  }).catch(err=>next(err));
+  // res.redirect('/admin/admindashboard')
 }
 
 module.exports.MarkQuerySolved = (res,req) =>{
   Enquiry.findByIdAndUpdate(req.body.id,{contacted : true}).then(saved=>{
     req.flash("success","Enquiry Has Been Solved");
-    res.render("/admin/admindashboard");
+    res.redirect("/admin/admindashboard");
   });
 }
