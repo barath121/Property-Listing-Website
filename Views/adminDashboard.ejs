@@ -139,7 +139,7 @@
                                         <p>
                                             Address: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].address %> </span>
                                         </p>
-                                        <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <a href="/property/editproperty?type=residential&_id=<%= ele.ActivatedProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
                                         <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
                                             <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
                                             <input type="hidden" name="status" value="false">
@@ -185,7 +185,7 @@
                                         <p>
                                             Address: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].address %> </span>
                                         </p>
-                                        <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <a href="/property/editproperty?type=residential&_id=<%= ele.DisabledProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
                                         <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
                                             <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
                                             <input type="hidden" name="status" value="true">
@@ -233,7 +233,7 @@
                                         <p>
                                             Address: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].address %> </span>
                                         </p>
-                                        <a href=""><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <a href="/property/editproperty?type=residential&_id=<%= ele.AllProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
                                         <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
                                             <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
                                             <% if (ele.AllProperty[a].isAvaliable == true) { %> 
