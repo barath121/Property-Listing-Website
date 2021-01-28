@@ -2517,10 +2517,10 @@
           <div class="form-check form-check-inline">
             <% if(property && property.OccupanceCertified == true){ %>
             <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-              id="OccupanceCertified" required checked> 
+              id="OccupanceCertified"  checked> 
               <%} else {%>
                 <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-                  id="OccupanceCertified" required>
+                  id="OccupanceCertified" >
                 <%}%>
             <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
               for="OccupanceCertified">Occupance Certified</label>
@@ -2594,11 +2594,12 @@
               </div>
             </div>
           </div>
-
+        <div id="WashroomParent" class="d-none">
           <h3>Washrooms</h3>
           <div id="washroomPics">
 
           </div>
+        </div>
 
           <h3>Others</h3>
           <div class='mb-3'>
@@ -2804,6 +2805,15 @@
         if (!document.getElementById("Shop").classList.contains("d-none")) {
           document.getElementById("Shop").classList.add("d-none")
         }
+        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+          document.getElementById("commercialShop").classList.add("d-none")
+        }
+        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+          document.getElementById("CommercialShowroom").classList.add("d-none")
+        }
+        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
+        }
         document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
           ele.removeAttribute("required");
         })
@@ -2990,6 +3000,9 @@
     }
     function washroomQuantity() {
       if(document.getElementById("washroomPics")){
+        if(document.getElementById("WashroomParent").classList.contains("d-none")){
+          document.getElementById("WashroomParent").classList.remove("d-none");
+        }
         document.getElementById("washroomPics").innerHTML = null;
       for (var i = 0; i < document.getElementById("quantity").value; i++) {
         img("washroomPics", i);
