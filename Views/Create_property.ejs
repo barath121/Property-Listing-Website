@@ -119,11 +119,9 @@
                     <label for="address">Address</label>
                     <br>
                     <% if(property.address){ %>
-                      <input type="text" placeholder="Enter address" class="form-control w-50" id="address"
-                        name="address" value="<%=property.address%>" required>
-                      <%}else{%>
-                        <input type="text" placeholder="Enter address" class="form-control w-50" id="address"
-                          name="address" required>
+                     <textarea type="text" class="form-control w-50" name="address" id="address" cols="30" rows="3" required><%=property.address%></textarea>
+                     <%}else{%>
+                      <textarea type="text" class="form-control w-50" name="address" id="address" cols="30" rows="3"><%=property.address%></textarea>
                         <%}%>
                           <br>
                           <br>
@@ -1939,7 +1937,7 @@
                     <input class="form-check-input" type="checkbox" onchange="unit()" name="multipleUnitsAvaliable"
                       value="true" id="multipleUnitsAvaliable">
                     <%}%>
-                <label class="form-check-label" for="multipleUnitsAvaliable">Multiple Units Avaliable</label>
+                <label class="form-check-label" for="multipleUnitsAvaliable">Multiple Units Available</label>
               </div>
               <% if(property && property.additionalFeatures.multipleUnitsAvaliable == true){ %> 
               <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
@@ -1956,62 +1954,62 @@
               <label for="avaliablityOfWater">Avaliablity Of Water</label>
               <br>
               <select class="form-control w-50" name="avaliablityOfWater" id="avaliablityOfWater" required>
-                <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "24 Hours Avaliable"){ %>
-                <option value="24 Hours Avaliable" selected>24 Hours Avaliable</option>
+                <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "24 Hours Available"){ %>
+                <option value="24 Hours Available" selected>24 Hours Available</option>
                 <%}else{%>
-                  <option value="24 Hours Avaliable">24 Hours Avaliable</option>
+                  <option value="24 Hours Available">24 Hours Available</option>
                   <%}%>
-                  <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "12 Hours Avaliable"){ %>
-                <option value="12 Hours Avaliable" selected>12 Hours Avaliable</option>
+                  <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "12 Hours Available"){ %>
+                <option value="12 Hours Available" selected>12 Hours Available</option>
                 <%}else{%>
-                  <option value="12 Hours Avaliable">12 Hours Avaliable</option>
+                  <option value="12 Hours Available">12 Hours Available</option>
                   <%}%>
-                  <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "6 Hours Avaliable"){ %>
-                <option value="6 Hours Avaliable" selected>6 Hours Avaliable</option>
+                  <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "6 Hours Available"){ %>
+                <option value="6 Hours Available" selected>6 Hours Available</option>
                 <%}else{%>
-                  <option value="6 Hours Avaliable">6 Hours Avaliable</option>
+                  <option value="6 Hours Available">6 Hours Available</option>
                   <%}%>
-                  <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "2 Hours Avaliable"){ %>
-                <option value="2 Hours Avaliable" selected>2 Hours Avaliable</option>
+                  <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "2 Hours Available"){ %>
+                <option value="2 Hours Available" selected>2 Hours Available</option>
                 <%}else{%>
-                  <option value="2 Hours Avaliable">2 Hours Avaliable</option>
+                  <option value="2 Hours Available">2 Hours Available</option>
                   <%}%>
-                <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "1 Hours Avaliable"){ %>
-                <option value="1 Hours Avaliable">1 Hours Avaliable</option>
+                <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "1 Hours Available"){ %>
+                <option value="1 Hours Available">1 Hours Available</option>
                 <%}else{%>
-                  <option value="1 Hours Avaliable">1 Hours Avaliable</option>
+                  <option value="1 Hours Available">1 Hours Available</option>
                   <%}%>
               </select>
               <br>
               <br>
 
-              <label for="avaliablityOfElectricity">Avaliablity Of Electricity</label>
+              <label for="avaliablityOfElectricity">Availablity Of Electricity</label>
               <br>
               <select class="form-control w-50" name="avaliablityOfElectricity" id="avaliablityOfElectricity" required>
-                <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "24 Hours Avaliable"){ %>
-                  <option value="24 Hours Avaliable" selected>24 Hours Avaliable</option>
+                <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "24 Hours Available"){ %>
+                  <option value="24 Hours Available" selected>24 Hours Available</option>
                   <%}else{%>
-                    <option value="24 Hours Avaliable">24 Hours Avaliable</option>
+                    <option value="24 Hours Available">24 Hours Available</option>
                     <%}%>
-                    <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "12 Hours Avaliable"){ %>
-                  <option value="12 Hours Avaliable" selected>12 Hours Avaliable</option>
+                    <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "12 Hours Available"){ %>
+                  <option value="12 Hours Available" selected>12 Hours Available</option>
                   <%}else{%>
-                    <option value="12 Hours Avaliable">12 Hours Avaliable</option>
+                    <option value="12 Hours Available">12 Hours Available</option>
                     <%}%>
-                    <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "6 Hours Avaliable"){ %>
-                  <option value="6 Hours Avaliable" selected>6 Hours Avaliable</option>
+                    <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "6 Hours Available"){ %>
+                  <option value="6 Hours Available" selected>6 Hours Available</option>
                   <%}else{%>
-                    <option value="6 Hours Avaliable">6 Hours Avaliable</option>
+                    <option value="6 Hours Available">6 Hours Available</option>
                     <%}%>
-                    <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "2 Hours Avaliable"){ %>
-                  <option value="2 Hours Avaliable" selected>2 Hours Avaliable</option>
+                    <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "2 Hours Available"){ %>
+                  <option value="2 Hours Available" selected>2 Hours Available</option>
                   <%}else{%>
-                    <option value="2 Hours Avaliable">2 Hours Avaliable</option>
+                    <option value="2 Hours Available">2 Hours Available</option>
                     <%}%>
-                  <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "1 Hours Avaliable"){ %>
-                  <option value="1 Hours Avaliable">1 Hours Avaliable</option>
+                  <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "1 Hours Available"){ %>
+                  <option value="1 Hours Available">1 Hours Available</option>
                   <%}else{%>
-                    <option value="1 Hours Avaliable">1 Hours Avaliable</option>
+                    <option value="1 Hours Available">1 Hours Available</option>
                     <%}%>
               </select>
               <br>

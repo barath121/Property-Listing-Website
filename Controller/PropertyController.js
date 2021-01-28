@@ -720,7 +720,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.Images = {};
   commercial.Images.images = imagesArray;
   commercial.Images.imageid = imageid;
-}
+
   Commercial.create(commercial)
     .catch((err) => {
       console.log(err);
@@ -729,9 +729,21 @@ module.exports.CommercialProperty = async (req, res, next) => {
     .then((result) => {
       if (result) res.redirect("/");
     });
-};
+  }else{
+    Commercial.findByIdAndUpdate(req.body._id,commercial) 
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    })
+    .then((result) => {
+      if (result) res.redirect("/"); 
+      else
+      res.redirect("/404")
+    });
+  }
+  };
 module.exports.EditProperty = (req,res,next) =>{
-  if(req.query.type="residential"){
+  if(req.query.type == "residential"){
     Property.findById(req.query._id).then(property=>{
       if(property){
         console.log(property)
@@ -744,7 +756,8 @@ module.exports.EditProperty = (req,res,next) =>{
   }else{
     Commercial.findById(req.query._id).then(property=>{
       if(property){
-        res.render('commercial_property',property);
+        console.log("commercial",property)
+        res.render('commercial_property',{property : property});
       }
       else
      res.redirect('/404');
