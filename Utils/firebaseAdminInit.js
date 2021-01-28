@@ -2,18 +2,28 @@ const Cloud = require('@google-cloud/storage')
 const path = require('path')
 const util = require('util')
 const { format } = util
-const serviceKey = path.join(__dirname, './Firebase Credentials/keys.json')
-
 
 const { Storage } = Cloud
 
-const storage = new Storage({
-  keyFilename: serviceKey,
-  projectId: process.env.FBProjectId,
+let serviceKey = path.join(__dirname, './Firebase Credentials/keys.json')
+let storage = new Storage({
+keyFilename: serviceKey,
+projectId: process.env.FBProjectId,
 })
+let gc = storage
+let bucket = gc.bucket(process.env.FBStorageBucket)
+let fburl = process.env.FirebaseURL;
 
-const gc = storage
-const bucket = gc.bucket(process.env.FBStorageBucket)
+if(process.env.NODE_ENV == 'prod'){
+  serviceKey = path.join(__dirname, './Firebase Credentials/prodkeys.json')
+  storage = new Storage({
+    keyFilename: serviceKey,
+    projectId: process.env.FBProjectProdId,
+  })
+  gc = storage
+  bucket = gc.bucket(process.env.FBProdStorageBucket)
+  fburl = process.env.FirebaseProdURL;
+}
 
 module.exports.uploadFile = (file,imageid,i) => new Promise((resolve, reject) => {
   const { originalname, buffer ,fieldname} = file
@@ -38,7 +48,6 @@ module.exports.uploadFile = (file,imageid,i) => new Promise((resolve, reject) =>
 
 module.exports.deleteFile = async(images) =>{
   images.forEach(image=>{
-    console.log(image.split("https://storage.googleapis.com/santoshproperty-4b66f.appspot.com/").pop())
-    bucket.file(image.split("https://storage.googleapis.com/santoshproperty-4b66f.appspot.com/").pop()).delete();
+    bucket.file(image.split("https://storage.googleapis.com/"+fburl).pop()).delete();
   })
 }

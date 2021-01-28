@@ -207,6 +207,18 @@ module.exports.AdminDashboard = async (req,res,next) =>{
 }
 
 module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
+  if(req.body.type = "commercial"){
+    Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
+      if(req.body.status==true){
+        req.flash("success","Property has ben Activated");
+      }
+      else{
+        req.flash("success","Property has been deactived");
+      }
+      res.redirect('/admin/admindashboard')
+    }).catch(err=>{next(err)});
+  }
+  else{
   Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
     if(req.body.status==true){
       req.flash("success","Property has ben Activated");
@@ -215,11 +227,22 @@ module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
       req.flash("success","Property has been deactived");
     }
     res.redirect('/admin/admindashboard')
-  }).catch(err=>{next(err)});
+  }).catch(err=>{next(err)});}
 }
 
 module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
-  console.log(req.body.id)
+  if(req.body.type = "commercial"){
+    Commercial.findById(req.body.id).then(result=>{
+      firebase.deleteFile(result.Images.images);
+      Saved.remove({propertyID : req.body.id})
+      Property.findByIdAndDelete(req.body.id).then(deleted=>{
+        req.flash("success","Property Has Been Removed");
+        res.redirect('/admin/admindashboard')
+      });
+    }).catch(err=>{
+      console.log(err)
+      next(err)})
+  }else{
   Property.findById(req.body.id).then(result=>{
     firebase.deleteFile(result.Images.images);
     Saved.remove({propertyID : req.body.id})
@@ -230,7 +253,7 @@ module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
   }).catch(err=>{
     console.log(err)
     next(err)})
-  
+  }
   // res.redirect('/admin/admindashboard')
 }
 
