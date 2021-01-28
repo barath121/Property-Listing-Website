@@ -35,13 +35,6 @@ body {
     }
 }
 
-.hr-custom {
-    width: 250px;
-    background-color:  #d9534f;
-    height: 5px;
-    margin-top: 10px!important;
-}
-
 .breeSerif {
     font-family: 'Bree Serif', serif;
 }
