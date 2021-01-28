@@ -195,8 +195,11 @@ module.exports.AdminDashboard = async (req,res,next) =>{
         console.log(err)
       }).then(async result=>{
         console.log(result);
+        let customer = await User.find({isAdmin : false}).sort({_id:-1});
         let enquiries = await Enquiry.find({contacted : false});
+        console.log(customer)
         res.render("adminDashboard",{
+          customer :customer,
           commercial : commercialresult,
           properties : result,
           enquiries : enquiries,
