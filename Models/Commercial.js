@@ -178,15 +178,15 @@ receptionArea : {
     },
     expectedRent :{
         type : String,
-        required : function(){ return this.propertyFor=='Rent'}
+        required : function(){ return this.propertyFor=='Rent/Lease'}
     },
     securityDeposit :{
         type : String,
-        required : function(){ return this.propertyFor=='Rent'}
+        required : function(){ return this.propertyFor=='Rent/Lease'}
     },
     priceIncludes :{
         type :[String],
-        enum : ['Tax and Govt Charges','DG and UPS Price Included','Price Negotiable']
+        enum : ['Tax and Govt Charges','DG and UPS Price Included','Price Negotiable','Brokerage Included']
     },
     saleBrokerage : {
         type : String,
@@ -196,7 +196,10 @@ receptionArea : {
     rentBrokerage : {
         type : String,
         enum : ['No Brokerage','30 Days','45 Days','60 Days'],
-        required : function(){return this.propertyFor=='Rent'}
+        required : function(){return this.propertyFor=='Rent/Lease'}
+    },
+    bookingAmount : {
+        type : Number,
     },
     NOCCertified : {
         type : Boolean,
