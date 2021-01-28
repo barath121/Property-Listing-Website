@@ -152,8 +152,7 @@
                             <div>
                                 <div class="text-danger">Washrooms</div>
                                 <% if (property.washrooms.isAvaliable == true) { %> 
-                                <div>Available</div>
-                                <div><%= property.washrooms.quantity %></div>
+                                <div>Available: <%= property.washrooms.quantity %></div>
                                 <% } else { %> 
                                 <div>Not available</div>
                                 <% } %> 
@@ -208,7 +207,7 @@
                                 <div class="text-danger">Facilities</div>
                                 <ul class="p-0 mt-0">
                                     <% property.facilities.forEach(ele => { %> 
-                                    <li class="uk-inline"><%= ele %>  </li>
+                                    <li class="uk-inline"><%= ele %> | </li>
                                     <% }) %>
                                 </ul>
                             </div>
@@ -219,7 +218,7 @@
                                 <div class="text-danger">Fire Safety Measures</div>
                                 <ul class="p-0 mt-0">
                                     <% property.fireSafetyMeasures.forEach(ele => { %> 
-                                        <li class="uk-inline"><%= ele %>  </li>
+                                        <li class="uk-inline"><%= ele %> | </li>
                                     <% }) %>
                                 </ul>
                             </div>
@@ -230,7 +229,7 @@
                                 <div class="text-danger">Price Includes</div>
                                 <ul class="p-0 mt-0">
                                     <% property.priceIncludes.forEach(ele => { %> 
-                                        <li class="uk-inline"><%= ele %>  </li>
+                                        <li class="uk-inline"><%= ele %> | </li>
                                     <% }) %>
                                 </ul>
                             </div>
