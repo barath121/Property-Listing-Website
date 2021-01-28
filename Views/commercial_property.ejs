@@ -12,6 +12,9 @@
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
       <form action="/property/commercialproperty" enctype="multipart/form-data" method="POST">
+        <% if(property) {%>
+          <input type="hidden" name="_id" value="<%= property._id %>">
+        <%}%>
         <div id="1" class="">
           <h1 class="font-weight-bold">Property Details</h1>
           <br>
@@ -21,23 +24,53 @@
           <br>
           <select class="form-control w-50" onchange="select()" name="PropertyType" id="PropertyType" required>
             <option value="">Select</option>
-            <option value="Commercial Shop"> Commercial Shop </option>
-            <option value="Commercial Office Space"> Commercial Office Space </option>
-            <option value="Commercial Showroom"> Commercial Showroom </option>
-            <option value="Warehouse/Godows">Warehouse/Godows </option>
-            <option value="Industrial Shed"> Industrial Shed </option>
+            <% if(property && property.propertyType == "Commercial Shop" ){ %>
+            <option value="Commercial Shop" selected> Commercial Shop </option>
+            <%} else {%>
+              <option value="Commercial Shop"> Commercial Shop </option>
+            <%}%>
+            <% if(property && property.propertyType == "Commercial Office Space" ){ %>
+            <option value="Commercial Office Space" selected> Commercial Office Space </option>
+            <%} else {%>
+              <option value="Commercial Office Space"> Commercial Office Space </option>
+              <%}%>
+            <% if(property && property.propertyType == "Commercial Showroom" ){ %>
+            <option value="Commercial Showroom" selected> Commercial Showroom </option>
+            <%} else {%>
+              <option value="Commercial Showroom"> Commercial Showroom </option>
+              <%}%>
+              <% if(property && property.propertyType == "Warehouse/Godows" ){ %>
+            <option value="Warehouse/Godows" selected>Warehouse/Godows </option>
+            <%} else {%>
+              <option value="Warehouse/Godows">Warehouse/Godows </option>
+              <%}%>
+              <% if(property && property.propertyType == "Industrial Shed" ){ %>
+            <option value="Industrial Shed" selected> Industrial Shed </option>
+            <%} else {%>
+              <option value="Industrial Shed"> Industrial Shed </option>
+              <%}%>
           </select>
 
           <h4>Property For</h4>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
-              id="PropertyforSale" required>
-            <label class="form-check-label" for="PropertyforSale">Sale</label>
+            <% if(property && property.propertyFor=="Sale" ){ %>
+              <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
+                id="PropertyforSale" checked required>
+              <%}else{%>
+                <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()"
+                  value="Sale" id="PropertyforSale" required>
+                <%}%>
+                  <label class="form-check-label" for="PropertyforSale">Sale</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()" value="Rent/Lease"
-              id="PropertyforRent" required>
-            <label class="form-check-label" for="PropertyforRent">Rent</label>
+            <% if( property && property.propertyFor=="Rent/Lease" ){ %>
+              <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()"
+                value="Rent/Lease" id="PropertyforRent" checked>
+              <%}else{%>
+                <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()"
+                  value="Rent/Lease" id="PropertyforRent">
+                <%}%>
+                  <label class="form-check-label" for="PropertyforRent">Rent</label>
           </div>
           <br>
           <br>
@@ -45,88 +78,206 @@
           <br>
           <br>
           <select class="form-control w-50" name="Locality" id="Locality" required>
-            <option value="Roadpali">Roadpali</option>
-            <option value="Kalamboli">Kalamboli</option>
-            <option value="Kharghar">Kharghar</option>
+            <% if(property && property.locality=="Roadpali" ){ %>
+              <option value="Roadpali" selected>Roadpali</option>
+              <%}else{%>
+                <option value="Roadpali">Roadpali</option>
+                <%}%>
+                  <% if(property && property.locality=="Kalamboli" ){ %>
+                    <option value="Kalamboli" selected>Kalamboli</option>
+                    <%}else{%>
+                      <option value="Kalamboli">Kalamboli</option>
+                      <%}%>
+                        <% if(property && property.locality=="Kharghar" ){ %>
+                          <option value="Kharghar" selected>Kharghar</option>
+                          <%}else{%>
+                            <option value="Kharghar">Kharghar</option>
+                            <%}%>
           </select>
           <br>
           <h3>Property Features</h3>
           <label for="name">Name</label>
           <br>
-          <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name"
-            required>
+          <% if(property && property.name){ %>
+            <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name"
+              value="<%= property.name %>" required>
+            <%}else{%>
+              <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name"
+                name="name" required>
+              <%}%>
           <br>
           <br>
           <label for="address">Address</label>
           <br>
+          <% if(property && property.address){ %>
           <textarea class="form-control w-50" name="address" placeholder="Enter Address" id="address" cols="30" rows="3"
-            required></textarea>
+            required> <%= property.address %> </textarea>
+            <%}else{%>
+              <textarea class="form-control w-50" name="address" placeholder="Enter Address" id="address" cols="30" rows="3"
+                required></textarea>
+              <%}%>
           <br>
           <br>
           <label for="locatedInside">Located Inside</label>
           <br>
           <select class="form-control w-50" name="locatedInside" id="locatedInside" required>
-            <option value="">Select</option>
-            <option value="IT Park"> IT Park </option>
-            <option value="Business Park"> Business Park </option>
-            <option value="Other"> Other </option>
+            <% if(property && property.locatedInside == ""){ %>
+            <option value="" selected>Select</option>
+            <%}else{%>
+              <option value="">Select</option>
+              <%}%>
+              <% if(property && property.locatedInside == "IT Park"){ %>
+            <option value="IT Park" selected> IT Park </option>
+            <%}else{%>
+              <option value="IT Park"> IT Park </option>
+              <%}%>
+              <% if(property && property.locatedInside == "Business Park"){ %>
+            <option value="Business Park" selected> Business Park </option>
+            <%}else{%>
+              <option value="Business Park"> Business Park </option>
+              <%}%>
+              <% if(property && property.locatedInside == "Other"){ %>
+            <option value="Other" selected> Other </option>
+            <%}else{%>
+              <option value="Other"> Other </option>
+              <%}%>
           </select>
           <br>
           <br>
           <label for="zoneType">Zone Type</label>
           <br>
           <select class="form-control w-50" name="zoneType" id="zoneType" required>
-            <option value="">Select</option>
-            <option value="Industrial"> Industrial </option>
-            <option value="Residential"> Residential </option>
-            <option value="Transport and Communication"> Transport and Communication </option>
-            <option value="Public Utilities"> Public Utilities </option>
-            <option value="Public and Semi Public Use"> Public and Semi Public Use </option>
-            <option value="Open Spaces"> Open Spaces </option>
-            <option value="Agricultural Zone"> Agricultural Zone </option>
-            <option value="Special Economic Zone"> Special Economic Zone </option>
-            <option value="Natural Conservation Zone"> Natural Conservation Zone </option>
-            <option value="Government Use"> Government Use </option>
-            <option value="Other"> Other </option>
+            <% if(property && property.zoneType == ""){ %>
+            <option value="" selected>Select</option>
+            <%}else{%>
+              <option value="">Select</option>
+              <%}%>
+              <% if(property && property.zoneType == "Industrial"){ %>
+            <option value="Industrial" selected> Industrial </option>
+            <%}else{%>
+              <option value="Industrial"> Industrial </option>
+              <%}%>
+              <% if(property && property.zoneType == "Residential"){ %>
+            <option value="Residential" selected> Residential </option>
+            <%}else{%>
+              <option value="Residential"> Residential </option>
+              <%}%>
+              <% if(property && property.zoneType == "Transport and Communication"){ %>
+            <option value="Transport and Communication" selected> Transport and Communication </option>
+            <%}else{%>
+              <option value="Transport and Communication"> Transport and Communication </option>
+              <%}%>
+              <% if(property && property.zoneType == "Public Utilities"){ %>
+            <option value="Public Utilities" selected> Public Utilities </option>
+            <%}else{%>
+              <option value="Public Utilities"> Public Utilities </option>
+              <%}%>
+              <% if(property && property.zoneType == "Public and Semi Public Use"){ %>
+            <option value="Public and Semi Public Use" selected> Public and Semi Public Use </option>
+            <%}else{%>
+              <option value="Public and Semi Public Use"> Public and Semi Public Use </option>
+              <%}%>
+              <% if(property && property.zoneType == "Open Spaces"){ %>
+            <option value="Open Spaces" selected> Open Spaces </option>
+            <%}else{%>
+              <option value="Open Spaces"> Open Spaces </option>
+              <%}%>
+            <% if(property && property.zoneType == "Agricultural Zone"){ %>
+            <option value="Agricultural Zone" selected> Agricultural Zone </option>
+            <%}else{%>
+              <option value="Agricultural Zone"> Agricultural Zone </option>
+              <%}%>
+            <% if(property && property.zoneType == "Special Economic Zone"){ %>
+            <option value="Special Economic Zone" selected> Special Economic Zone </option>
+            <%}else{%>
+              <option value="Special Economic Zone"> Special Economic Zone </option>
+              <%}%>
+            <% if(property && property.zoneType == "Natural Conservation Zone"){ %>
+            <option value="Natural Conservation Zone" selected> Natural Conservation Zone </option>
+            <%}else{%>
+              <option value="Natural Conservation Zone"> Natural Conservation Zone </option>
+              <%}%>
+            <% if(property && property.zoneType == "Government Use"){ %>
+            <option value="Government Use" selected> Government Use </option>
+            <%}else{%>
+              <option value="Government Use"> Government Use </option>
+              <%}%>
+            <% if(property && property.zoneType == "Other"){ %>
+            <option value="Other" selected> Other </option>
+            <%}else{%>
+              <option value="Other"> Other </option>
+              <%}%>
           </select>
           <br>
           <br>
-          <div id="Office" class="d-none">
+          <% if(property ){ %>
+               <% if(property.propertyType == "Commercial Office Space" ){%>
+          <div id="Office" class="">
             <label for="minSeats">Minimum Seats</label>
             <br>
-            <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+            <% if(property.officeSetup.minSeats){%>
+            <input type="text" value="<%= property.officeSetup.minSeats %>" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
               required>
+              <%}else{%>
+                <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+                required>
+                <%}%>
             <br>
             <br>
             <label for="maxSeats">Maximum Seats</label>
             <br>
-            <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+            <% if(property.officeSetup.maxSeats){%>
+            <input type="text" value="<%= property.officeSetup.maxSeats %>" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
               required>
+              <%}else{%>
+                <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+              required>
+                <%}%>
             <br>
             <br>
             <label for="noOfCabins">Number Of Cabins</label>
             <br>
+            <% if(property.officeSetup.noOfCabins){%>
             <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
-              name="noOfCabins" required>
+              name="noOfCabins" value="<%= property.officeSetup.noOfCabins %>" required>
+              <%}else{%>
+                <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
+                  name="noOfCabins" required>
+                <%}%>
             <br>
             <br>
             <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
             <br>
+            <% if(property.officeSetup.noOfMeetingRooms){%>
             <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
+              class="form-control w-50" value="<%= property.officeSetup.noOfMeetingRooms %>" id="noOfMeetingRooms" name="noOfMeetingRooms" required>
+              <%}else{%>
+                <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
               class="form-control w-50" id="noOfMeetingRooms" name="noOfMeetingRooms" required>
+                <%}%>
             <br>
             <br>
             <div class="form-check form-check-inline">
+              <% if(property.conferenceRoom == true){%>
               <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
+                value="true" id="conferenceRoom" required checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
                 value="true" id="conferenceRoom" required>
+                  <%}%>
               <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                 for="conferenceRoom">Conference Room</label>
             </div>
             <br>
             <br>
             <div class="form-check form-check-inline">
+              <% if(property.receptionArea == true){%>
               <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
-                value="true" id="receptionArea" required>
+                value="true" id="receptionArea" required checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
+                    value="true" id="receptionArea" required>
+                  <%}%>
               <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                 for="receptionArea">Reception Area</label>
             </div>
@@ -135,42 +286,1144 @@
             <label for="pantryTypes">Pantry Types</label>
             <br>
             <select class="form-control w-50" name="pantryTypes" id="pantryTypes" required>
-              <option value="">Select</option>
-              <option value="Private"> Private </option>
-              <option value="Shared"> Shared </option>
-              <option value="Not Avaliable"> Not Avaliable </option>
+              <% if(property.pantryType.pantryTypes == ""){%>
+              <option value="" selected>Select</option>
+              <%}else{%>
+                <option value="">Select</option>
+                <%}%>
+              <% if(property.pantryType.pantryTypes == "Private"){%>
+              <option value="Private" selected> Private </option>
+              <%}else{%>
+                <option value="Private"> Private </option>
+                <%}%>
+                <% if(property.pantryType.pantryTypes == "Shared"){%>
+              <option value="Shared" selected> Shared </option>
+              <%}else{%>
+                <option value="Shared"> Shared </option>
+                <%}%>
+                <% if(property.pantryType.pantryTypes == "Not Avaliable"){%>
+              <option value="Not Avaliable" selected> Not Avaliable </option>
+              <%}else{%>
+                <option value="Not Avaliable"> Not Avaliable </option>
+                <%}%>
             </select>
             <br>
             <br>
             <label for="pantrySize">Pantry Size</label>
             <br>
-            <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
-              required>
+            <% if(property.pantryType.pantrySize){%>
+            <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" value="<%= property.pantryType.pantrySize %>" name="pantrySize"
+              required >
+              <%}else{%>
+                <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
+                  required>
+                <%}%>
           </div>
 
           <div id="showroom" class="d-none">
             <label for="balconies">Balconies</label>
             <br>
             <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
-              id="balconies" name="balconies" required>
+              id="balconies" name="balconies" >
           </div>
 
           <div id="Shop" class="d-none">
             <label for="shopbalconies">Balconies</label>
             <br>
             <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-              class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+              class="form-control w-50" id="shopbalconies" name="shopbalconies" >
           </div>
+
+          <div id="extras" class="">
+            <h3>Washrooms</h3>
+            <div class="form-check form-check-inline">
+              <% if(property.washrooms.isAvaliable == true){ %>
+              <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                value="true" id="WashroomisAvaliable" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                    value="true" id="WashroomisAvaliable" >
+                  <%}%>
+              <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
+            </div>
+            <br>
+            <br>
+            <% if(property.washrooms.isAvaliable == true){ %>
+            <div id="washroomQuantity" class="">
+              <label for="quantity">Quantity</label>
+              <br>
+              <% if(property.washrooms.quantity){ %>
+              <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                class="form-control w-50" id="quantity" name="quantity" value="<%= property.washrooms.quantity %>">
+                <%}else{%>
+                  <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                    class="form-control w-50" id="quantity" name="quantity" >
+                  <%}%>
+              <br>
+            </div>
+            <%}else{%>
+              <div id="washroomQuantity" class="d-none">
+                <label for="quantity">Quantity</label>
+                <br>
+                <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                  class="form-control w-50" id="quantity" name="quantity">
+                <br>
+              </div>
+            <%}%>
+            <h3>facilities</h3>
+            <div class="form-check form-check-inline">
+              <% if(property.facilities.includes("Furnished")){ %>
+              <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
+                <%}%>
+              <label class="form-check-label" for="Furnished">Furnished</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if(property.facilities.includes("Central Air Condition")){ %>
+              <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                id="centralAirCondition" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                    id="centralAirCondition">
+                  <%}%>
+              <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if(property.facilities.includes("Oxygen Duct")){ %>
+              <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
+                <%}%>
+              <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if(property.facilities.includes("UPS")){ %>
+              <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
+                <%}%>
+              <label class="form-check-label" for="UPS">UPS</label>
+            </div>
+            <h3>Fire Safety Measures</h3>
+            <div class="form-check form-check-inline">
+              <% if(property.fireSafetyMeasures.includes("Fire Extingusher")){ %>
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                id="fireExtingusher" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                    id="fireExtingusher">
+                  <%}%>
+              <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if(property.fireSafetyMeasures.includes("Fire Sensors")){ %>
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                id="fireSensors" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                    id="fireSensors">
+                  <%}%>
+              <label class="form-check-label" for="fireSensors">Fire Sensors</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if(property.fireSafetyMeasures.includes("Sprinklers")){ %>
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                id="Sprinklers" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                    id="Sprinklers">
+                  <%}%>
+              <label class="form-check-label" for="Sprinklers">Sprinklers</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if(property.fireSafetyMeasures.includes("Firehouse")){ %>
+              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                id="Firehouse" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                    id="Firehouse">
+                  <%}%>
+              <label class="form-check-label" for="Firehouse">Firehouse</label>
+            </div>
+
+            <h3>Floor Details</h3>
+            <label for="totalFloors">Total Floors</label>
+            <br>  
+            <% if(property.floorDetails.totalFloors){ %>
+            <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+              class="form-control w-50" value="<%= property.floorDetails.totalFloors %>" id="totalFloors" name="totalFloors" required>
+              <%}else{%>
+                <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+              class="form-control w-50" id="totalFloors" name="totalFloors" required>
+                <%}%>
+            <br>
+            <br>
+            <label for="yourFloor">Your Floor</label>
+            <br>
+            <% if(property.floorDetails.yourFloor){ %>
+            <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+              id="yourFloor" value="<%= property.floorDetails.yourFloor %>" name="yourFloor" required>
+              <%}else{%>
+                <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+              id="yourFloor" name="yourFloor" required>
+                <%}%>
+            <br>
+            <br>
+            <label for="noOfStaircases">No Of Staircases</label>
+            <br>
+            <% if(property.floorDetails.noOfStaircases){ %>
+            <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+              id="noOfStaircases" value="<%= property.floorDetails.noOfStaircases  %>" name="noOfStaircases" required>
+              <%}else{%>
+                <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                  id="noOfStaircases" name="noOfStaircases" required>
+                <%}%>
+            <h3>Lifts</h3>
+            <div class="form-check form-check-inline">
+              <% if(property.washrooms.isAvaliable == true){ %>
+              <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                value="true" id="liftisAvaliable" checked>
+                <%}else{%>
+                  <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                value="true" id="liftisAvaliable" >
+                  <%}%>
+              <label class="form-check-label " for="liftisAvaliable">Lifts</label>
+            </div>
+            <br>
+            <br>
+            <% if(property.washrooms.isAvaliable == true){ %>
+            <div id="liftQuantity" class="">
+              <label for="passengerLifts">Passenger Lifts</label>
+              <br>
+              <% if(property.washrooms.passengerLifts){ %>
+              <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                id="passengerLifts" value="<%= property.washrooms.passengerLifts %>" name="passengerLifts">
+                <%}else{%>
+                  <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                    id="passengerLifts" name="passengerLifts">
+                  <%}%>
+              <br>
+              <label for="serviceLifts">Service Lifts</label>
+              <br>
+              <% if(property.washrooms.serviceLifts){ %>
+              <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                name="serviceLifts" value="<%= property.washrooms.serviceLifts %>">
+                <%} else {%>
+                  <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                    name="serviceLifts">
+                  <%}%>
+            </div>
+            <%}else{%>
+              <div id="liftQuantity" class="d-none">
+                <label for="passengerLifts">Passenger Lifts</label>
+                <br>
+                <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                  id="passengerLifts" name="passengerLifts">
+                <br>
+                <label for="serviceLifts">Service Lifts</label>
+                <br>
+                <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                  name="serviceLifts">
+              </div>
+              <%}%>
+          </div>
+               <%} else if(property.propertyType == "Commercial Shop") {%>
+                <div id="Office" class="d-none">
+                  <label for="minSeats">Minimum Seats</label>
+                  <br>
+                  <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+                    >
+                  <br>
+                  <br>
+                  <label for="maxSeats">Maximum Seats</label>
+                  <br>
+                  <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+                    >
+                  <br>
+                  <br>
+                  <label for="noOfCabins">Number Of Cabins</label>
+                  <br>
+                  <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
+                    name="noOfCabins" >
+                  <br>
+                  <br>
+                  <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
+                  <br>
+                  <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
+                    class="form-control w-50" id="noOfMeetingRooms" name="noOfMeetingRooms" >
+                  <br>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
+                      value="true" id="conferenceRoom" >
+                    <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                      for="conferenceRoom">Conference Room</label>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
+                      value="true" id="receptionArea" >
+                    <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                      for="receptionArea">Reception Area</label>
+                  </div>
+                  <br>
+                  <br>
+                  <label for="pantryTypes">Pantry Types</label>
+                  <br>
+                  <select class="form-control w-50" name="pantryTypes" id="pantryTypes" >
+                    <option value="">Select</option>
+                    <option value="Private"> Private </option>
+                    <option value="Shared"> Shared </option>
+                    <option value="Not Avaliable"> Not Avaliable </option>
+                  </select>
+                  <br>
+                  <br>
+                  <label for="pantrySize">Pantry Size</label>
+                  <br>
+                  <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
+                    >
+                </div>
+      
+                <div id="showroom" class="d-none">
+                  <label for="balconies">Balconies</label>
+                  <br>
+                  <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
+                    id="balconies" name="balconies" >
+                </div>
+      
+                <div id="Shop" class="">
+                  <label for="shopbalconies">Balconies</label>
+                  <br>
+                  <% if(property.balconies) {%>
+                  <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
+                    class="form-control w-50" value="<%= property.balconies %>" id="shopbalconies" name="shopbalconies" required>
+                    <%} else {%>
+                      <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
+                    class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+                      <%}%>
+                </div>
+      
+                <div id="extras" class="">
+                  <h3>Washrooms</h3>
+                  <div class="form-check form-check-inline">
+                    <% if(property.washrooms.isAvaliable == true){ %>
+                    <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                      value="true" id="WashroomisAvaliable" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                          value="true" id="WashroomisAvaliable" >
+                        <%}%>
+                    <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
+                  </div>
+                  <br>
+                  <br>
+                  <% if(property.washrooms.isAvaliable == true){ %>
+                  <div id="washroomQuantity" class="">
+                    <label for="quantity">Quantity</label>
+                    <br>
+                    <% if(property.washrooms.quantity){ %>
+                    <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                      class="form-control w-50" id="quantity" name="quantity" value="<%= property.washrooms.quantity %>">
+                      <%}else{%>
+                        <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                          class="form-control w-50" id="quantity" name="quantity" >
+                        <%}%>
+                    <br>
+                  </div>
+                  <%}else{%>
+                    <div id="washroomQuantity" class="d-none">
+                      <label for="quantity">Quantity</label>
+                      <br>
+                      <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                        class="form-control w-50" id="quantity" name="quantity">
+                      <br>
+                    </div>
+                  <%}%>
+                  <h3>facilities</h3>
+                  <div class="form-check form-check-inline">
+                    <% if(property.facilities.includes("Furnished")){ %>
+                    <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished" checked>
+                    <%}else{%>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
+                      <%}%>
+                    <label class="form-check-label" for="Furnished">Furnished</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <% if(property.facilities.includes("Central Air Condition")){ %>
+                    <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                      id="centralAirCondition" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                          id="centralAirCondition">
+                        <%}%>
+                    <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <% if(property.facilities.includes("Oxygen Duct")){ %>
+                    <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct" checked>
+                    <%}else{%>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
+                      <%}%>
+                    <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <% if(property.facilities.includes("UPS")){ %>
+                    <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS" checked>
+                    <%}else{%>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
+                      <%}%>
+                    <label class="form-check-label" for="UPS">UPS</label>
+                  </div>
+                  <h3>Fire Safety Measures</h3>
+                  <div class="form-check form-check-inline">
+                    <% if(property.fireSafetyMeasures.includes("Fire Extingusher")){ %>
+                    <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                      id="fireExtingusher" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                          id="fireExtingusher">
+                        <%}%>
+                    <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <% if(property.fireSafetyMeasures.includes("Fire Sensors")){ %>
+                    <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                      id="fireSensors" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                          id="fireSensors">
+                        <%}%>
+                    <label class="form-check-label" for="fireSensors">Fire Sensors</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <% if(property.fireSafetyMeasures.includes("Sprinklers")){ %>
+                    <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                      id="Sprinklers" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                          id="Sprinklers">
+                        <%}%>
+                    <label class="form-check-label" for="Sprinklers">Sprinklers</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <% if(property.fireSafetyMeasures.includes("Firehouse")){ %>
+                    <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                      id="Firehouse" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                          id="Firehouse">
+                        <%}%>
+                    <label class="form-check-label" for="Firehouse">Firehouse</label>
+                  </div>
+      
+                  <h3>Floor Details</h3>
+                  <label for="totalFloors">Total Floors</label>
+                  <br>  
+                  <% if(property.floorDetails.totalFloors){ %>
+                  <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+                    class="form-control w-50" value="<%= property.floorDetails.totalFloors %>" id="totalFloors" name="totalFloors" required>
+                    <%}else{%>
+                      <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+                    class="form-control w-50" id="totalFloors" name="totalFloors" required>
+                      <%}%>
+                  <br>
+                  <br>
+                  <label for="yourFloor">Your Floor</label>
+                  <br>
+                  <% if(property.floorDetails.yourFloor){ %>
+                  <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+                    id="yourFloor" value="<%= property.floorDetails.yourFloor %>" name="yourFloor" required>
+                    <%}else{%>
+                      <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+                    id="yourFloor" name="yourFloor" required>
+                      <%}%>
+                  <br>
+                  <br>
+                  <label for="noOfStaircases">No Of Staircases</label>
+                  <br>
+                  <% if(property.floorDetails.noOfStaircases){ %>
+                  <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                    id="noOfStaircases" value="<%= property.floorDetails.noOfStaircases  %>" name="noOfStaircases" required>
+                    <%}else{%>
+                      <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                        id="noOfStaircases" name="noOfStaircases" required>
+                      <%}%>
+                  <h3>Lifts</h3>
+                  <div class="form-check form-check-inline">
+                    <% if(property.washrooms.isAvaliable == true){ %>
+                    <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                      value="true" id="liftisAvaliable" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                      value="true" id="liftisAvaliable" >
+                        <%}%>
+                    <label class="form-check-label " for="liftisAvaliable">Lifts</label>
+                  </div>
+                  <br>
+                  <br>
+                  <% if(property.washrooms.isAvaliable == true){ %>
+                  <div id="liftQuantity" class="">
+                    <label for="passengerLifts">Passenger Lifts</label>
+                    <br>
+                    <% if(property.washrooms.passengerLifts){ %>
+                    <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                      id="passengerLifts" value="<%= property.washrooms.passengerLifts %>" name="passengerLifts">
+                      <%}else{%>
+                        <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                          id="passengerLifts" name="passengerLifts">
+                        <%}%>
+                    <br>
+                    <label for="serviceLifts">Service Lifts</label>
+                    <br>
+                    <% if(property.washrooms.serviceLifts){ %>
+                    <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                      name="serviceLifts" value="<%= property.washrooms.serviceLifts %>">
+                      <%} else {%>
+                        <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                          name="serviceLifts">
+                        <%}%>
+                  </div>
+                  <%}else{%>
+                    <div id="liftQuantity" class="d-none">
+                      <label for="passengerLifts">Passenger Lifts</label>
+                      <br>
+                      <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                        id="passengerLifts" name="passengerLifts">
+                      <br>
+                      <label for="serviceLifts">Service Lifts</label>
+                      <br>
+                      <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                        name="serviceLifts">
+                    </div>
+                    <%}%>
+                </div>
+                <%} else if(property.propertyType == "Commercial Showroom") {%>
+                  <div id="Office" class="d-none">
+                    <label for="minSeats">Minimum Seats</label>
+                    <br>
+                    <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+                    >
+                    <br>
+                    <br>
+                    <label for="maxSeats">Maximum Seats</label>
+                    <br>
+                    <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+                      >
+                    <br>
+                    <br>
+                    <label for="noOfCabins">Number Of Cabins</label>
+                    <br>
+                    <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
+                      name="noOfCabins" >
+                    <br>
+                    <br>
+                    <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
+                    <br>
+                    <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
+                      class="form-control w-50" id="noOfMeetingRooms" name="noOfMeetingRooms" >
+                    <br>
+                    <br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
+                        value="true" id="conferenceRoom" >
+                      <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                        for="conferenceRoom">Conference Room</label>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
+                        value="true" id="receptionArea" >
+                      <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                        for="receptionArea">Reception Area</label>
+                    </div>
+                    <br>
+                    <br>
+                    <label for="pantryTypes">Pantry Types</label>
+                    <br>
+                    <select class="form-control w-50" name="pantryTypes" id="pantryTypes" >
+                      <option value="">Select</option>
+                      <option value="Private"> Private </option>
+                      <option value="Shared"> Shared </option>
+                      <option value="Not Avaliable"> Not Avaliable </option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="pantrySize">Pantry Size</label>
+                    <br>
+                    <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
+                      >
+                  </div>
+        
+                  <div id="showroom" class="">
+                    <label for="balconies">Balconies</label>
+                    <br>
+                    <% if(property.balconies) {%>
+                    <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
+                      id="balconies" name="balconies" value="<%= property.balconies %>" required>
+                      <%} else {%>
+                        <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
+                          id="balconies" name="balconies" required>
+                        <%}%>
+                  </div>
+        
+                  <div id="Shop" class="d-none">
+                    <label for="shopbalconies">Balconies</label>
+                    <br>
+                    <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
+                      class="form-control w-50" id="shopbalconies" name="shopbalconies" >
+                  </div>
+        
+                  <div id="extras" class="">
+                    <h3>Washrooms</h3>
+                    <div class="form-check form-check-inline">
+                      <% if(property.washrooms.isAvaliable == true){ %>
+                      <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                        value="true" id="WashroomisAvaliable" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                            value="true" id="WashroomisAvaliable" >
+                          <%}%>
+                      <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
+                    </div>
+                    <br>
+                    <br>
+                    <% if(property.washrooms.isAvaliable == true){ %>
+                    <div id="washroomQuantity" class="">
+                      <label for="quantity">Quantity</label>
+                      <br>
+                      <% if(property.washrooms.quantity){ %>
+                      <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                        class="form-control w-50" id="quantity" name="quantity" value="<%= property.washrooms.quantity %>">
+                        <%}else{%>
+                          <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                            class="form-control w-50" id="quantity" name="quantity" >
+                          <%}%>
+                      <br>
+                    </div>
+                    <%}else{%>
+                      <div id="washroomQuantity" class="d-none">
+                        <label for="quantity">Quantity</label>
+                        <br>
+                        <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                          class="form-control w-50" id="quantity" name="quantity">
+                        <br>
+                      </div>
+                    <%}%>
+                    <h3>facilities</h3>
+                    <div class="form-check form-check-inline">
+                      <% if(property.facilities.includes("Furnished")){ %>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
+                        <%}%>
+                      <label class="form-check-label" for="Furnished">Furnished</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.facilities.includes("Central Air Condition")){ %>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                        id="centralAirCondition" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                            id="centralAirCondition">
+                          <%}%>
+                      <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.facilities.includes("Oxygen Duct")){ %>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
+                        <%}%>
+                      <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.facilities.includes("UPS")){ %>
+                      <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS" checked>
+                      <%}else{%>
+                        <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
+                        <%}%>
+                      <label class="form-check-label" for="UPS">UPS</label>
+                    </div>
+                    <h3>Fire Safety Measures</h3>
+                    <div class="form-check form-check-inline">
+                      <% if(property.fireSafetyMeasures.includes("Fire Extingusher")){ %>
+                      <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                        id="fireExtingusher" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                            id="fireExtingusher">
+                          <%}%>
+                      <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.fireSafetyMeasures.includes("Fire Sensors")){ %>
+                      <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                        id="fireSensors" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                            id="fireSensors">
+                          <%}%>
+                      <label class="form-check-label" for="fireSensors">Fire Sensors</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.fireSafetyMeasures.includes("Sprinklers")){ %>
+                      <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                        id="Sprinklers" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                            id="Sprinklers">
+                          <%}%>
+                      <label class="form-check-label" for="Sprinklers">Sprinklers</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.fireSafetyMeasures.includes("Firehouse")){ %>
+                      <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                        id="Firehouse" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                            id="Firehouse">
+                          <%}%>
+                      <label class="form-check-label" for="Firehouse">Firehouse</label>
+                    </div>
+        
+                    <h3>Floor Details</h3>
+                    <label for="totalFloors">Total Floors</label>
+                    <br>  
+                    <% if(property.floorDetails.totalFloors){ %>
+                    <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+                      class="form-control w-50" value="<%= property.floorDetails.totalFloors %>" id="totalFloors" name="totalFloors" required>
+                      <%}else{%>
+                        <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+                      class="form-control w-50" id="totalFloors" name="totalFloors" required>
+                        <%}%>
+                    <br>
+                    <br>
+                    <label for="yourFloor">Your Floor</label>
+                    <br>
+                    <% if(property.floorDetails.yourFloor){ %>
+                    <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+                      id="yourFloor" value="<%= property.floorDetails.yourFloor %>" name="yourFloor" required>
+                      <%}else{%>
+                        <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+                      id="yourFloor" name="yourFloor" required>
+                        <%}%>
+                    <br>
+                    <br>
+                    <label for="noOfStaircases">No Of Staircases</label>
+                    <br>
+                    <% if(property.floorDetails.noOfStaircases){ %>
+                    <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                      id="noOfStaircases" value="<%= property.floorDetails.noOfStaircases  %>" name="noOfStaircases" required>
+                      <%}else{%>
+                        <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                          id="noOfStaircases" name="noOfStaircases" required>
+                        <%}%>
+                    <h3>Lifts</h3>
+                    <div class="form-check form-check-inline">
+                      <% if(property.washrooms.isAvaliable == true){ %>
+                      <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                        value="true" id="liftisAvaliable" checked>
+                        <%}else{%>
+                          <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                        value="true" id="liftisAvaliable" >
+                          <%}%>
+                      <label class="form-check-label " for="liftisAvaliable">Lifts</label>
+                    </div>
+                    <br>
+                    <br>
+                    <% if(property.washrooms.isAvaliable == true){ %>
+                    <div id="liftQuantity" class="">
+                      <label for="passengerLifts">Passenger Lifts</label>
+                      <br>
+                      <% if(property.washrooms.passengerLifts){ %>
+                      <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                        id="passengerLifts" value="<%= property.washrooms.passengerLifts %>" name="passengerLifts">
+                        <%}else{%>
+                          <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                            id="passengerLifts" name="passengerLifts">
+                          <%}%>
+                      <br>
+                      <label for="serviceLifts">Service Lifts</label>
+                      <br>
+                      <% if(property.washrooms.serviceLifts){ %>
+                      <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                        name="serviceLifts" value="<%= property.washrooms.serviceLifts %>">
+                        <%} else {%>
+                          <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                            name="serviceLifts">
+                          <%}%>
+                    </div>
+                    <%}else{%>
+                      <div id="liftQuantity" class="d-none">
+                        <label for="passengerLifts">Passenger Lifts</label>
+                        <br>
+                        <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                          id="passengerLifts" name="passengerLifts">
+                        <br>
+                        <label for="serviceLifts">Service Lifts</label>
+                        <br>
+                        <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                          name="serviceLifts">
+                      </div>
+                      <%}%>
+                  </div>
+                  <%} else {%>
+                    <div id="Office" class="d-none">
+                      <label for="minSeats">Minimum Seats</label>
+                      <br>
+                      <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+                        required>
+                      <br>
+                      <br>
+                      <label for="maxSeats">Maximum Seats</label>
+                      <br>
+                      <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+                        required>
+                      <br>
+                      <br>
+                      <label for="noOfCabins">Number Of Cabins</label>
+                      <br>
+                      <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
+                        name="noOfCabins" required>
+                      <br>
+                      <br>
+                      <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
+                      <br>
+                      <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
+                        class="form-control w-50" id="noOfMeetingRooms" name="noOfMeetingRooms" required>
+                      <br>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
+                          value="true" id="conferenceRoom" required>
+                        <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                          for="conferenceRoom">Conference Room</label>
+                      </div>
+                      <br>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
+                          value="true" id="receptionArea" required>
+                        <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                          for="receptionArea">Reception Area</label>
+                      </div>
+                      <br>
+                      <br>
+                      <label for="pantryTypes">Pantry Types</label>
+                      <br>
+                      <select class="form-control w-50" name="pantryTypes" id="pantryTypes" required>
+                        <option value="">Select</option>
+                        <option value="Private"> Private </option>
+                        <option value="Shared"> Shared </option>
+                        <option value="Not Avaliable"> Not Avaliable </option>
+                      </select>
+                      <br>
+                      <br>
+                      <label for="pantrySize">Pantry Size</label>
+                      <br>
+                      <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
+                        required>
+                    </div>
+          
+                    <div id="showroom" class="d-none">
+                      <label for="balconies">Balconies</label>
+                      <br>
+                      <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
+                        id="balconies" name="balconies" required>
+                    </div>
+          
+                    <div id="Shop" class="d-none">
+                      <label for="shopbalconies">Balconies</label>
+                      <br>
+                      <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
+                        class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+                    </div>
+          
+                    <div id="extras" class="d-none">
+                      <h3>Washrooms</h3>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                          value="true" id="WashroomisAvaliable" >
+                        <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
+                      </div>
+                      <br>
+                      <br>
+                      <div id="washroomQuantity" class="d-none">
+                        <label for="quantity">Quantity</label>
+                        <br>
+                        <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                          class="form-control w-50" id="quantity" name="quantity" required>
+                        <br>
+                      </div>
+                      <h3>facilities</h3>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
+                        <label class="form-check-label" for="Furnished">Furnished</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                          id="centralAirCondition">
+                        <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
+                        <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
+                        <label class="form-check-label" for="UPS">UPS</label>
+                      </div>
+                      <h3>Fire Safety Measures</h3>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                          id="fireExtingusher">
+                        <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                          id="fireSensors">
+                        <label class="form-check-label" for="fireSensors">Fire Sensors</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                          id="Sprinklers">
+                        <label class="form-check-label" for="Sprinklers">Sprinklers</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                          id="Firehouse">
+                        <label class="form-check-label" for="Firehouse">Firehouse</label>
+                      </div>
+          
+                      <h3>Floor Details</h3>
+                      <label for="totalFloors">Total Floors</label>
+                      <br>
+                      <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+                        class="form-control w-50" id="totalFloors" name="totalFloors" required>
+                      <br>
+                      <br>
+                      <label for="yourFloor">Your Floor</label>
+                      <br>
+                      <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+                        id="yourFloor" name="yourFloor" required>
+                      <br>
+                      <br>
+                      <label for="noOfStaircases">No Of Staircases</label>
+                      <br>
+                      <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                        id="noOfStaircases" name="noOfStaircases" required>
+                      <h3>Lifts</h3>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                          value="true" id="liftisAvaliable">
+                        <label class="form-check-label " for="liftisAvaliable">Lifts</label>
+                      </div>
+                      <br>
+                      <br>
+                      <div id="liftQuantity" class="d-none">
+                        <label for="passengerLifts">Passenger Lifts</label>
+                        <br>
+                        <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                          id="passengerLifts" name="passengerLifts">
+                        <br>
+                        <label for="serviceLifts">Service Lifts</label>
+                        <br>
+                        <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                          name="serviceLifts">
+                      </div>
+                    </div>
+                    <%}%>
+          <%} else {%>
+            <div id="Office" class="d-none">
+              <label for="minSeats">Minimum Seats</label>
+              <br>
+              <input type="text" placeholder="Enter minimum Seats" class="form-control w-50" id="minSeats" name="minSeats"
+                required>
+              <br>
+              <br>
+              <label for="maxSeats">Maximum Seats</label>
+              <br>
+              <input type="text" placeholder="Enter maximum Seats" class="form-control w-50" id="maxSeats" name="maxSeats"
+                required>
+              <br>
+              <br>
+              <label for="noOfCabins">Number Of Cabins</label>
+              <br>
+              <input type="text" placeholder="Enter number Of Cabins" class="form-control w-50" id="noOfCabins"
+                name="noOfCabins" required>
+              <br>
+              <br>
+              <label for="noOfMeetingRooms">Number Of Meeting Rooms</label>
+              <br>
+              <input type="text" onchange="meetingRooms()" placeholder="Enter number Of Meeting Rooms"
+                class="form-control w-50" id="noOfMeetingRooms" name="noOfMeetingRooms" required>
+              <br>
+              <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
+                  value="true" id="conferenceRoom" required>
+                <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                  for="conferenceRoom">Conference Room</label>
+              </div>
+              <br>
+              <br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
+                  value="true" id="receptionArea" required>
+                <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
+                  for="receptionArea">Reception Area</label>
+              </div>
+              <br>
+              <br>
+              <label for="pantryTypes">Pantry Types</label>
+              <br>
+              <select class="form-control w-50" name="pantryTypes" id="pantryTypes" required>
+                <option value="">Select</option>
+                <option value="Private"> Private </option>
+                <option value="Shared"> Shared </option>
+                <option value="Not Avaliable"> Not Avaliable </option>
+              </select>
+              <br>
+              <br>
+              <label for="pantrySize">Pantry Size</label>
+              <br>
+              <input type="text" placeholder="Enter size" class="form-control w-50" id="pantrySize" name="pantrySize"
+                required>
+            </div>
+  
+            <div id="showroom" class="d-none">
+              <label for="balconies">Balconies</label>
+              <br>
+              <input type="text" placeholder="Enter number of balconies" onchange="balcony()" class="form-control w-50"
+                id="balconies" name="balconies" required>
+            </div>
+  
+            <div id="Shop" class="d-none">
+              <label for="shopbalconies">Balconies</label>
+              <br>
+              <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
+                class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+            </div>
+  
+            <div id="extras" class="">
+              <h3>Washrooms</h3>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
+                  value="true" id="WashroomisAvaliable" >
+                <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
+              </div>
+              <br>
+              <br>
+              <div id="washroomQuantity" class="d-none">
+                <label for="quantity">Quantity</label>
+                <br>
+                <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
+                  class="form-control w-50" id="quantity" name="quantity" required>
+                <br>
+              </div>
+              <h3>facilities</h3>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
+                <label class="form-check-label" for="Furnished">Furnished</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
+                  id="centralAirCondition">
+                <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
+                <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
+                <label class="form-check-label" for="UPS">UPS</label>
+              </div>
+              <h3>Fire Safety Measures</h3>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
+                  id="fireExtingusher">
+                <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
+                  id="fireSensors">
+                <label class="form-check-label" for="fireSensors">Fire Sensors</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
+                  id="Sprinklers">
+                <label class="form-check-label" for="Sprinklers">Sprinklers</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
+                  id="Firehouse">
+                <label class="form-check-label" for="Firehouse">Firehouse</label>
+              </div>
+  
+              <h3>Floor Details</h3>
+              <label for="totalFloors">Total Floors</label>
+              <br>
+              <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
+                class="form-control w-50" id="totalFloors" name="totalFloors" required>
+              <br>
+              <br>
+              <label for="yourFloor">Your Floor</label>
+              <br>
+              <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
+                id="yourFloor" name="yourFloor" required>
+              <br>
+              <br>
+              <label for="noOfStaircases">No Of Staircases</label>
+              <br>
+              <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
+                id="noOfStaircases" name="noOfStaircases" required>
+              <h3>Lifts</h3>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
+                  value="true" id="liftisAvaliable">
+                <label class="form-check-label " for="liftisAvaliable">Lifts</label>
+              </div>
+              <br>
+              <br>
+              <div id="liftQuantity" class="d-none">
+                <label for="passengerLifts">Passenger Lifts</label>
+                <br>
+                <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
+                  id="passengerLifts" name="passengerLifts">
+                <br>
+                <label for="serviceLifts">Service Lifts</label>
+                <br>
+                <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
+                  name="serviceLifts">
+              </div>
+            </div>
+            <%}%>
 
           <h3>Area</h3>
 
           <label for="carpetArea">Carpet Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
-              name="carpetArea" required><span>
-              <select name="carpetArea" class="form-control border-top-0 border-left-0 border-right-0"
-                id="furnishingStatus" required>
+            <% if(property && property.areaDetails.carpetArea){ %>
+              <input type="text" id="carpetArea" pattern="^[0-9]*$"
+                title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0"
+                name="carpetArea" value="<%= property.areaDetails.carpetArea %>"
+                required>
+              <%} else {%>
+                <input type="text" id="carpetArea" pattern="^[0-9]*$"
+                  title="Please enter a valid number"
+                  class="form-control border-top-0 border-left-0 border-right-0"
+                  name="carpetArea" required>
+                <%}%>
+                <span>
+                  <select name="carpetArea"
+                    class="form-control border-top-0 border-left-0 border-right-0"
+                    id="furnishingStatus">
                 <option value="Sqft">Sqft</option>
                 <option value="Acre">Acre</option>
                 <option value="Sq-M">Sq-M</option>
@@ -182,10 +1435,22 @@
           <label for="superBuiltUpArea">Super BuiltUp Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-              name="superBuiltUpArea" required><span>
-              <select name="superBuiltUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-                id="superBuiltUpArea" required>
+            <% if(property && property.areaDetails.superBuiltUpArea){ %>
+              <input type="text" id="superBuiltUpArea" pattern="^[0-9]*$"
+                title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0"
+                name="superBuiltUpArea"
+                value="<%= property.areaDetails.superBuiltUpArea %>">
+              <%} else {%>
+                <input type="text" id="superBuiltUpArea" pattern="^[0-9]*$"
+                  title="Please enter a valid number"
+                  class="form-control border-top-0 border-left-0 border-right-0"
+                  name="superBuiltUpArea">
+                <%}%>
+                <span>
+                  <select name="superBuiltUpArea"
+                    class="form-control border-top-0 border-left-0 border-right-0"
+                    id="superBuiltUpArea">
                 <option value="Sqft">Sqft</option>
                 <option value="Acre">Acre</option>
                 <option value="Sq-M">Sq-M</option>
@@ -198,10 +1463,22 @@
           <label for="builtUpArea">BuiltUp Area</label>
           <br>
           <div class="input-group w-50">
-            <input type="text" id="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0"
-              name="builtUpArea" required><span>
-              <select name="builtUpArea" class="form-control border-top-0 border-left-0 border-right-0 "
-                class="form-control" id="builtUpArea" required>
+            <% if(property && property.areaDetails.builtUpArea){ %>
+              <input type="text" id="builtUpArea" pattern="^[0-9]*$"
+                title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0"
+                name="builtUpArea"
+                value="<%= property.areaDetails.builtUpArea %>">
+              <%} else {%>
+                <input type="text" id="builtUpArea" pattern="^[0-9]*$"
+                  title="Please enter a valid number"
+                  class="form-control border-top-0 border-left-0 border-right-0"
+                  name="builtUpArea">
+                <%}%>
+                <span>
+                  <select name="builtUpArea"
+                    class="form-control border-top-0 border-left-0 border-right-0 "
+                    class="form-control" id="builtUpArea">
                 <option value="Sqft">Sqft</option>
                 <option value="Acre">Acre</option>
                 <option value="Sq-M">Sq-M</option>
@@ -209,251 +1486,1042 @@
             </span>
           </div>
           <br>
-          <div id="extras" class="">
-            <h3>Washrooms</h3>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" onchange="washroomAvailible()" name="WashroomisAvaliable"
-                value="true" id="WashroomisAvaliable" >
-              <label class="form-check-label " for="WashroomisAvaliable">Washrooms Available</label>
-            </div>
-            <br>
-            <br>
-            <div id="washroomQuantity" class="d-none">
-              <label for="quantity">Quantity</label>
-              <br>
-              <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
-                class="form-control w-50" id="quantity" name="quantity" required>
-              <br>
-            </div>
-            <h3>facilities</h3>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="facilities" value="Furnished" id="Furnished">
-              <label class="form-check-label" for="Furnished">Furnished</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="facilities" value="Central Air Condition"
-                id="centralAirCondition">
-              <label class="form-check-label" for="centralAirCondition">Central Air Condition</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="facilities" value="Oxygen Duct" id="OxygenDuct">
-              <label class="form-check-label" for="OxygenDuct">Oxygen Duct</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="facilities" value="UPS" id="UPS">
-              <label class="form-check-label" for="UPS">UPS</label>
-            </div>
-            <h3>Fire Safety Measures</h3>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Extingusher"
-                id="fireExtingusher">
-              <label class="form-check-label" for="fireExtingusher">Fire Extingusher</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Fire Sensors"
-                id="fireSensors">
-              <label class="form-check-label" for="fireSensors">Fire Sensors</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Sprinklers"
-                id="Sprinklers">
-              <label class="form-check-label" for="Sprinklers">Sprinklers</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="fireSafetyMeasures" value="Firehouse"
-                id="Firehouse">
-              <label class="form-check-label" for="Firehouse">Firehouse</label>
-            </div>
-
-            <h3>Floor Details</h3>
-            <label for="totalFloors">Total Floors</label>
-            <br>
-            <input type="text" onchange="totalFloor()" placeholder="Enter total number of Floors"
-              class="form-control w-50" id="totalFloors" name="totalFloors" required>
-            <br>
-            <br>
-            <label for="yourFloor">Your Floor</label>
-            <br>
-            <input type="text" onchange="FloorNo()" placeholder="Enter Your Floors" class="form-control w-50"
-              id="yourFloor" name="yourFloor" required>
-            <br>
-            <br>
-            <label for="noOfStaircases">No Of Staircases</label>
-            <br>
-            <input type="text" placeholder="Enter total number of Staircases" class="form-control w-50"
-              id="noOfStaircases" name="noOfStaircases" required>
-            <h3>Lifts</h3>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
-                value="true" id="liftisAvaliable">
-              <label class="form-check-label " for="liftisAvaliable">Lifts</label>
-            </div>
-            <br>
-            <br>
-            <div id="liftQuantity" class="d-none">
-              <label for="passengerLifts">Passenger Lifts</label>
-              <br>
-              <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
-                id="passengerLifts" name="passengerLifts">
-              <br>
-              <label for="serviceLifts">Service Lifts</label>
-              <br>
-              <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
-                name="serviceLifts">
-            </div>
-          </div>
+          
           <h3>Price Details</h3>
-          <div id="sale">
-            <label for="expectedPrice">Expected Price</label>
-            <br>
-            <input type="text" id="expectedPrice" pattern="^[0-9]*$" title="Please enter a valid number"
-              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="expectedPrice"
-              placeholder="Enter total price"><span>
+          <% if(property && property.propertyFor=="Sale" ){ %>
+            <div id="sale">
+              <label for="expectedPrice">Expected Price</label>
               <br>
-              <br>
-              <label for="bookingAmount">Booking Amount</label>
-              <br>
-              <input type="text" id="bookingAmount" pattern="^[0-9]*$" title="Please enter a valid number"
-                class="form-control border-top-0 border-left-0 border-right-0 w-50" name="bookingAmount"
+              <input type="text" id="expectedPrice" pattern="^[0-9]*$"
+                title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                name="expectedPrice"
+                value="<%= property.expectedPrice %>"
                 placeholder="Enter total price"><span>
                 <br>
                 <br>
-                <label>Transaction Type</label>
+                <label for="bookingAmount">Booking Amount</label>
                 <br>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="transactionType" value="New Property"
-                    id="transactionTypenew">
-                  <label class="form-check-label" for="transactionTypenew">New Property</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="transactionType" value="Resale"
-                    id="transactionTypeReSale">
-                  <label class="form-check-label" for="transactionTypeReSale">Resale</label>
-                </div>
-                <br>
-                <br>
-                <div id="newProperty">
-                  <label>Possession Status </label>
+                <input type="text" id="bookingAmount" pattern="^[0-9]*$"
+                  title="Please enter a valid number"
+                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                  name="bookingAmount"
+                  value="<%= property.bookingAmount %>" placeholder="Enter total price"><span>
+                  <br>
+                  <br>
+                  <label>Transaction Type</label>
                   <br>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" onchange="Underconstruction()" name="possessionStatus"
-                      value="Under Construction" id="possessionStatusUnder" required>
-                    <label class="form-check-label" for="possessionStatusUnder">Under Construction</label>
+                    <% if(property.transactionType=="New Property" ){ %>
+                      <input class="form-check-input" type="radio"
+                        name="transactionType" value="New Property"
+                        id="transactionTypenew" checked>
+                      <%} else {%>
+                        <input class="form-check-input" type="radio"
+                          name="transactionType" value="New Property"
+                          id="transactionTypenew">
+                        <%}%>
+                          <label class="form-check-label" for="transactionTypenew">New
+                            Property</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" onchange="Readyconstruction()" name="possessionStatus"
-                      value="Ready to Move" id="possessionStatusReady">
-                    <label class="form-check-label" for="possessionStatusReady">Ready to Move</label>
+                    <% if(property.transactionType=="Resale" ){ %>
+                      <input class="form-check-input" type="radio"
+                        name="transactionType" value="Resale"
+                        id="transactionTypeReSale" checked>
+                      <%} else {%>
+                        <input class="form-check-input" type="radio"
+                          name="transactionType" value="Resale"
+                          id="transactionTypeReSale">
+                        <%}%>
+                          <label class="form-check-label"
+                            for="transactionTypeReSale">Resale</label>
                   </div>
                   <br>
                   <br>
-                  <div id="construction">
-                    <label>Available From</label>
+                  <div id="newProperty">
+                    <label>Possession Status</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                      <% if(property.possessionStatus=="Under Construction"
+                        ){ %>
+                        <input class="form-check-input" type="radio"
+                          onchange="Underconstruction()" name="possessionStatus"
+                          value="Under Construction" id="possessionStatusUnder"
+                          checked required>
+                        <%} else {%>
+                          <input class="form-check-input" type="radio"
+                            onchange="Underconstruction()" name="possessionStatus"
+                            value="Under Construction" id="possessionStatusUnder"
+                            required>
+                          <%}%>
+                            <label class="form-check-label"
+                              for="possessionStatusUnder">Under
+                              Construction</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <% if(property.possessionStatus=="Ready to Move" ){
+                        %>
+                        <input class="form-check-input" type="radio"
+                          onchange="Readyconstruction()" name="possessionStatus"
+                          value="Ready to Move" checked id="possessionStatusReady">
+                        <%} else {%>
+                          <input class="form-check-input" type="radio"
+                            onchange="Readyconstruction()" name="possessionStatus"
+                            value="Ready to Move" id="possessionStatusReady">
+                          <%}%>
+                            <label class="form-check-label"
+                              for="possessionStatusReady">Ready
+                              to Move</label>
+                    </div>
                     <br>
                     <br>
-                    <label for="month">Month</label>
-                    <br>
-                    <select class="form-control w-50" name="month" id="month" required>
-                      <option value="January">January</option>
-                      <option value="February">February</option>
-                      <option value="March">March</option>
-                      <option value="April">April</option>
-                      <option value="May">May</option>
-                      <option value="June">June</option>
-                      <option value="July">July</option>
-                      <option value="August">August</option>
-                      <option value="September">September</option>
-                      <option value="October">October</option>
-                      <option value="November">November</option>
-                      <option value="Devember">Devember</option>
-                    </select>
-                    <br>
-                    <label for="year">Year</label>
-                    <br>
-                    <input type="text" class="form-control w-50" pattern="^[0-9]*$" title="Please enter a valid number"
-                      id="year" name="year" placeholder="Enter year" required>
-                  </div>
-                  <div id="age">
-                    <br>
-                    <label for="ageOfConstruction">Age Of Construction</label>
-                    <br>
-                    <select class="form-control w-50" name="ageOfConstruction" id="ageOfConstruction" required>
-                      <option value="">select</option>
-                      <option value="New Construction">New Construction</option>
-                      <option value="Less than 5 years">Less than 5 years</option>
-                      <option value="5 to 10 years">5 to 10 years</option>
-                      <option value="10 to 15 years">10 to 15 years</option>
-                      <option value="15 to 20 years">15 to 20 years</option>
-                      <option value="Above 20 years">Above 20 years</option>
-                    </select>
+                    <% if(property.possessionStatus=="Under Construction"
+                      ){ %>
+                      <div id="construction">
+                        <label>Available From</label>
+                        <br>
+                        <br>
+                        <label for="month">Month</label>
+                        <br>
+                        <select class="form-control w-50" name="month" id="month"
+                          required>
+                          <% if(property.avaliableFrom.month=="January" ){ %>
+                            <option value="January" selected>January</option>
+                            <%} else {%>
+                              <option value="January">January</option>
+                              <%}%>
+                                <% if(property.avaliableFrom.month=="February" ){ %>
+                                  <option value="February" selected>February</option>
+                                  <%} else {%>
+                                    <option value="February">February</option>
+                                    <%}%>
+                                      <% if(property.avaliableFrom.month=="March" ){ %>
+                                        <option value="March" selected>March</option>
+                                        <%} else {%>
+                                          <option value="March">March</option>
+                                          <%}%>
+                                            <% if(property.avaliableFrom.month=="April"
+                                              ){ %>
+                                              <option value="April" selected>April
+                                              </option>
+                                              <%} else {%>
+                                                <option value="April">April</option>
+                                                <%}%>
+                                                  <% if(property.avaliableFrom.month=="May"
+                                                    ){ %>
+                                                    <option value="May" selected>May
+                                                    </option>
+                                                    <%} else {%>
+                                                      <option value="May">May</option>
+                                                      <%}%>
+                                                        <% if(property.avaliableFrom.month=="June"
+                                                          ){ %>
+                                                          <option value="June"
+                                                            selected>June</option>
+                                                          <%} else {%>
+                                                            <option value="June">June
+                                                            </option>
+                                                            <%}%>
+                                                              <% if(property.avaliableFrom.month=="July"
+                                                                ){ %>
+                                                                <option value="July"
+                                                                  selected>July
+                                                                </option>
+                                                                <%} else {%>
+                                                                  <option
+                                                                    value="July">July
+                                                                  </option>
+                                                                  <%}%>
+                                                                    <% if(property.avaliableFrom.month=="August"
+                                                                      ){ %>
+                                                                      <option
+                                                                        value="August"
+                                                                        selected>
+                                                                        August
+                                                                      </option>
+                                                                      <%} else {%>
+                                                                        <option
+                                                                          value="August">
+                                                                          August
+                                                                        </option>
+                                                                        <%}%>
+                                                                          <% if(property.avaliableFrom.month=="September"
+                                                                            ){ %>
+                                                                            <option
+                                                                              value="September"
+                                                                              selected>
+                                                                              September
+                                                                            </option>
+                                                                            <%} else
+                                                                              {%>
+                                                                              <option
+                                                                                value="September">
+                                                                                September
+                                                                              </option>
+                                                                              <%}%>
+                                                                                <% if(property.avaliableFrom.month=="October"
+                                                                                  ){
+                                                                                  %>
+                                                                                  <option
+                                                                                    value="October"
+                                                                                    selected>
+                                                                                    October
+                                                                                  </option>
+                                                                                  <%}
+                                                                                    else
+                                                                                    {%>
+                                                                                    <option
+                                                                                      value="October">
+                                                                                      October
+                                                                                    </option>
+                                                                                    <%}%>
+                                                                                      <% if(property.avaliableFrom.month=="November"
+                                                                                        ){
+                                                                                        %>
+                                                                                        <option
+                                                                                          value="November"
+                                                                                          selected>
+                                                                                          November
+                                                                                        </option>
+                                                                                        <%}
+                                                                                          else
+                                                                                          {%>
+                                                                                          <option
+                                                                                            value="November">
+                                                                                            November
+                                                                                          </option>
+                                                                                          <%}%>
+                                                                                            <% if(property.avaliableFrom.month=="December"
+                                                                                              ){
+                                                                                              %>
+                                                                                              <option
+                                                                                                value="December"
+                                                                                                selected>
+                                                                                                December
+                                                                                              </option>
+                                                                                              <%}
+                                                                                                else
+                                                                                                {%>
+                                                                                                <option
+                                                                                                  value="December">
+                                                                                                  December
+                                                                                                </option>
+                                                                                                <%}%>
+                        </select>
+
+                        <br>
+                        <label for="year">Year</label>
+                        <br>
+                        <% if(property.avaliableFrom.year){ %>
+                          <input type="text" class="form-control w-50"
+                            pattern="^[0-9]*$" title="Please enter a valid number"
+                            id="year" name="year" placeholder="Enter year"
+                            value="<%= property.avaliableFrom.year %>" required>
+                          <%} else {%>
+                            <input type="text" class="form-control w-50"
+                              pattern="^[0-9]*$" title="Please enter a valid number"
+                              id="year" name="year" placeholder="Enter year" required>
+                            <%}%>
+                      </div>
+                      <div id="age" class="d-none">
+                        <br>
+                        <label for="ageOfConstruction">Age Of Construction</label>
+                        <br>
+                        <select class="form-control w-50" name="ageOfConstruction"
+                          id="ageOfConstruction" >
+                          <% if(property.ageOfConstruction=="" ){ %>
+                            <option value="" selected>select</option>
+                            <%} else {%>
+                              <option value="">select</option>
+                              <%}%>
+                                <% if(property.ageOfConstruction=="New Construction"
+                                  ){ %>
+                                  <option value="New Construction" selected>New
+                                    Construction</option>
+                                  <%} else {%>
+                                    <option value="New Construction">New Construction
+                                    </option>
+                                    <%}%>
+                                      <% if(property.ageOfConstruction=="Less than 5 years"
+                                        ){ %>
+                                        <option value="Less than 5 years" selected>
+                                          Less than 5 years</option>
+                                        <%} else {%>
+                                          <option value="Less than 5 years">Less than
+                                            5 years</option>
+                                          <%}%>
+                                            <% if(property.ageOfConstruction=="5 to 10 years"
+                                              ){ %>
+                                              <option value="5 to 10 years" selected>5
+                                                to 10 years</option>
+                                              <%} else {%>
+                                                <option value="5 to 10 years">5 to 10
+                                                  years</option>
+                                                <%}%>
+                                                  <% if(property.ageOfConstruction=="10 to 15 years"
+                                                    ){ %>
+                                                    <option value="10 to 15 years"
+                                                      selected>10 to 15 years</option>
+                                                    <%} else {%>
+                                                      <option value="10 to 15 years">
+                                                        10 to 15 years</option>
+                                                      <%}%>
+                                                        <% if(property.ageOfConstruction=="15 to 20 years"
+                                                          ){ %>
+                                                          <option
+                                                            value="15 to 20 years"
+                                                            selected>15 to 20 years
+                                                          </option>
+                                                          <%} else {%>
+                                                            <option
+                                                              value="15 to 20 years">
+                                                              15 to 20 years</option>
+                                                            <%}%>
+                                                              <% if(property.ageOfConstruction=="Above 20 years"
+                                                                ){ %>
+                                                                <option
+                                                                  value="Above 20 years"
+                                                                  selected>Above 20
+                                                                  years</option>
+                                                                <%} else {%>
+                                                                  <option
+                                                                    value="Above 20 years">
+                                                                    Above 20 years
+                                                                  </option>
+                                                                  <%}%>
+                        </select>
+                      </div>
+                      <%} else
+                        if(property.possessionStatus=="Ready to Move"
+                        ){%>
+                        <div id="construction" class="d-none">
+                          <label>Available From</label>
+                          <br>
+                          <br>
+                          <label for="month">Month</label>
+                          <br>
+                          <select class="form-control w-50" name="month" id="month"
+                            >
+                            <% if(property.avaliableFrom.month=="January" ){ %>
+                              <option value="January" selected>January</option>
+                              <%} else {%>
+                                <option value="January">January</option>
+                                <%}%>
+                                  <% if(property.avaliableFrom.month=="February" ){ %>
+                                    <option value="February" selected>February
+                                    </option>
+                                    <%} else {%>
+                                      <option value="February">February</option>
+                                      <%}%>
+                                        <% if(property.avaliableFrom.month=="March" ){
+                                          %>
+                                          <option value="March" selected>March
+                                          </option>
+                                          <%} else {%>
+                                            <option value="March">March</option>
+                                            <%}%>
+                                              <% if(property.avaliableFrom.month=="April"
+                                                ){ %>
+                                                <option value="April" selected>April
+                                                </option>
+                                                <%} else {%>
+                                                  <option value="April">April</option>
+                                                  <%}%>
+                                                    <% if(property.avaliableFrom.month=="May"
+                                                      ){ %>
+                                                      <option value="May" selected>May
+                                                      </option>
+                                                      <%} else {%>
+                                                        <option value="May">May
+                                                        </option>
+                                                        <%}%>
+                                                          <% if(property.avaliableFrom.month=="June"
+                                                            ){ %>
+                                                            <option value="June"
+                                                              selected>June</option>
+                                                            <%} else {%>
+                                                              <option value="June">
+                                                                June</option>
+                                                              <%}%>
+                                                                <% if(property.avaliableFrom.month=="July"
+                                                                  ){ %>
+                                                                  <option value="July"
+                                                                    selected>July
+                                                                  </option>
+                                                                  <%} else {%>
+                                                                    <option
+                                                                      value="July">
+                                                                      July</option>
+                                                                    <%}%>
+                                                                      <% if(property.avaliableFrom.month=="August"
+                                                                        ){ %>
+                                                                        <option
+                                                                          value="August"
+                                                                          selected>
+                                                                          August
+                                                                        </option>
+                                                                        <%} else {%>
+                                                                          <option
+                                                                            value="August">
+                                                                            August
+                                                                          </option>
+                                                                          <%}%>
+                                                                            <% if(property.avaliableFrom.month=="September"
+                                                                              ){ %>
+                                                                              <option
+                                                                                value="September"
+                                                                                selected>
+                                                                                September
+                                                                              </option>
+                                                                              <%} else
+                                                                                {%>
+                                                                                <option
+                                                                                  value="September">
+                                                                                  September
+                                                                                </option>
+                                                                                <%}%>
+                                                                                  <% if(property.avaliableFrom.month=="October"
+                                                                                    ){
+                                                                                    %>
+                                                                                    <option
+                                                                                      value="October"
+                                                                                      selected>
+                                                                                      October
+                                                                                    </option>
+                                                                                    <%}
+                                                                                      else
+                                                                                      {%>
+                                                                                      <option
+                                                                                        value="October">
+                                                                                        October
+                                                                                      </option>
+                                                                                      <%}%>
+                                                                                        <% if(property.avaliableFrom.month=="November"
+                                                                                          ){
+                                                                                          %>
+                                                                                          <option
+                                                                                            value="November"
+                                                                                            selected>
+                                                                                            November
+                                                                                          </option>
+                                                                                          <%}
+                                                                                            else
+                                                                                            {%>
+                                                                                            <option
+                                                                                              value="November">
+                                                                                              November
+                                                                                            </option>
+                                                                                            <%}%>
+                                                                                              <% if(property.avaliableFrom.month=="December"
+                                                                                                ){
+                                                                                                %>
+                                                                                                <option
+                                                                                                  value="December"
+                                                                                                  selected>
+                                                                                                  December
+                                                                                                </option>
+                                                                                                <%}
+                                                                                                  else
+                                                                                                  {%>
+                                                                                                  <option
+                                                                                                    value="December">
+                                                                                                    December
+                                                                                                  </option>
+                                                                                                  <%}%>
+                          </select>
+                          <br>
+                          <label for="year">Year</label>
+                          <br>
+                          <% if(property.avaliableFrom.year){ %>
+                            <input type="text" class="form-control w-50"
+                              pattern="^[0-9]*$" title="Please enter a valid number"
+                              id="year" name="year" placeholder="Enter year"
+                              value="<%= property.priceDetails.year %>" required>
+                            <%} else {%>
+                              <input type="text" class="form-control w-50"
+                                pattern="^[0-9]*$" title="Please enter a valid number"
+                                id="year" name="year" placeholder="Enter year"
+                                >
+                              <%}%>
+                        </div>
+                        <div id="age">
+                          <br>
+                          <label for="ageOfConstruction">Age Of Construction</label>
+                          <br>
+                          <select class="form-control w-50" name="ageOfConstruction"
+                            id="ageOfConstruction" required>
+                            <% if(property.ageOfConstruction=="" ){ %>
+                              <option value="" selected>select</option>
+                              <%} else {%>
+                                <option value="">select</option>
+                                <%}%>
+                                  <% if(property.ageOfConstruction=="New Construction"
+                                    ){ %>
+                                    <option value="New Construction" selected>New
+                                      Construction</option>
+                                    <%} else {%>
+                                      <option value="New Construction">New
+                                        Construction</option>
+                                      <%}%>
+                                        <% if(property.ageOfConstruction=="Less than 5 years"
+                                          ){ %>
+                                          <option value="Less than 5 years" selected>
+                                            Less than 5 years</option>
+                                          <%} else {%>
+                                            <option value="Less than 5 years">Less
+                                              than 5 years</option>
+                                            <%}%>
+                                              <% if(property.ageOfConstruction=="5 to 10 years"
+                                                ){ %>
+                                                <option value="5 to 10 years"
+                                                  selected>5 to 10 years</option>
+                                                <%} else {%>
+                                                  <option value="5 to 10 years">5 to
+                                                    10 years</option>
+                                                  <%}%>
+                                                    <% if(property.ageOfConstruction=="10 to 15 years"
+                                                      ){ %>
+                                                      <option value="10 to 15 years"
+                                                        selected>10 to 15 years
+                                                      </option>
+                                                      <%} else {%>
+                                                        <option
+                                                          value="10 to 15 years">10 to
+                                                          15 years</option>
+                                                        <%}%>
+                                                          <% if(property.ageOfConstruction=="15 to 20 years"
+                                                            ){ %>
+                                                            <option
+                                                              value="15 to 20 years"
+                                                              selected>15 to 20 years
+                                                            </option>
+                                                            <%} else {%>
+                                                              <option
+                                                                value="15 to 20 years">
+                                                                15 to 20 years
+                                                              </option>
+                                                              <%}%>
+                                                                <% if(property.ageOfConstruction=="Above 20 years"
+                                                                  ){ %>
+                                                                  <option
+                                                                    value="Above 20 years"
+                                                                    selected>Above 20
+                                                                    years</option>
+                                                                  <%} else {%>
+                                                                    <option
+                                                                      value="Above 20 years">
+                                                                      Above 20 years
+                                                                    </option>
+                                                                    <%}%>
+                          </select>
+                        </div>
+                        <%}%>
                   </div>
 
-                </div>
+                  <br>
+                  <br>
+                  <label for="saleBrokerage">Sale Brokerage</label>
+                  <br>
+                  <select class="form-control w-50" name="saleBrokerage"
+                    id="saleBrokerage" required>
+                    <% if(property.saleBrokerage=="No Brokerage" ){ %>
+                      <option value="No Brokerage" selected>No Brokerage</option>
+                      <%} else {%>
+                        <option value="No Brokerage">No Brokerage</option>
+                        <%}%>
+                          <% if(property.saleBrokerage=="0.25%" ){ %>
+                            <option value="0.25%" selected>0.25%</option>
+                            <%} else {%>
+                              <option value="0.25%">0.25%</option>
+                              <%}%>
+                                <% if(property.saleBrokerage=="0.5%" ){
+                                  %>
+                                  <option value="0.5%" selected>0.5%</option>
+                                  <%} else {%>
+                                    <option value="0.5%">0.5%</option>
+                                    <%}%>
+                                      <% if(property.saleBrokerage=="0.75%"
+                                        ){ %>
+                                        <option value="0.75%" selected>0.75%</option>
+                                        <%} else {%>
+                                          <option value="0.75%">0.75%</option>
+                                          <%}%>
+                                            <% if(property.saleBrokerage=="1%"
+                                              ){ %>
+                                              <option value="1%" selected>1%</option>
+                                              <%} else {%>
+                                                <option value="1%">1%</option>
+                                                <%}%>
+                                                  <% if(property.saleBrokerage=="1.5%"
+                                                    ){ %>
+                                                    <option value="1.5%" selected>1.5%
+                                                    </option>
+                                                    <%} else {%>
+                                                      <option value="1.5%">1.5%
+                                                      </option>
+                                                      <%}%>
+                                                        <% if(property.saleBrokerage=="2%"
+                                                          ){ %>
+                                                          <option value="2%" selected>
+                                                            2%</option>
+                                                          <%} else {%>
+                                                            <option value="2%">2%
+                                                            </option>
+                                                            <%}%>
+                                                              <% if(property.saleBrokerage=="3%"
+                                                                ){ %>
+                                                                <option value="3%"
+                                                                  selected>3%</option>
+                                                                <%} else {%>
+                                                                  <option value="3%">
+                                                                    3%</option>
+                                                                  <%}%>
+                                                                    <% if(property.saleBrokerage=="4%"
+                                                                      ){ %>
+                                                                      <option
+                                                                        value="4%"
+                                                                        selected>4%
+                                                                      </option>
+                                                                      <%} else {%>
+                                                                        <option
+                                                                          value="4%">
+                                                                          4%</option>
+                                                                        <%}%>
+                  </select>
+                  <br>
+                  <br>
+            </div>
+            <div id="rent" class="d-none">
+              <label for="expectedRent">Expected Rent</label>
+              <br>
+              <input type="text" id="expectedRent" pattern="^[0-9]*$"
+                title="Please enter a valid number"
+                class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                name="expectedRent" placeholder="Enter total price"><span>
+                <br>
+                <br>
+                <label for="securityDeposit">Security Deposit</label>
+                <br>
+                <input type="text" pattern="^[0-9]*$"
+                  title="Please enter a valid number" id="securityDeposit"
+                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                  name="securityDeposit" placeholder="Enter total price"><span>
+                  <br>
+                  <br>
+                  <label for="rentBrokerage">Rent Brokerage</label>
+                  <br>
+                  <select class="form-control w-50" name="rentBrokerage"
+                    id="rentBrokerage">
+                    <option value="No Brokerage">No Brokerage</option>
+                    <option value="30 Days">30 Days</option>
+                    <option value="45 Days">45 Days</option>
+                    <option value="60 Days">60 Days</option>
+                  </select>
+                  <br>
+                  <br>
+            </div>
+            <%} else if(property && property.propertyFor=="Rent/Lease" ){ %>
+              <div id="sale" class="d-none">
+                <label for="expectedPrice">Expected Price</label>
+                <br>
+                <input type="text" id="expectedPrice" pattern="^[0-9]*$"
+                  title="Please enter a valid number"
+                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                  name="expectedPrice" placeholder="Enter total price"><span>
+                  <br>
+                  <br>
+                  <label for="bookingAmount">Booking Amount</label>
+                  <br>
+                  <input type="text" id="bookingAmount" pattern="^[0-9]*$"
+                    title="Please enter a valid number"
+                    class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                    name="bookingAmount" placeholder="Enter total price"><span>
+                    <br>
+                    <br>
+                    <label>Transaction Type</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio"
+                        name="transactionType" value="New Property"
+                        id="transactionTypenew">
+                      <label class="form-check-label" for="transactionTypenew">New
+                        Property</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio"
+                        name="transactionType" value="Resale"
+                        id="transactionTypeReSale">
+                      <label class="form-check-label"
+                        for="transactionTypeReSale">Resale</label>
+                    </div>
+                    <br>
+                    <br>
+                    <div id="newProperty">
+                      <label>Possession Status </label>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio"
+                          onchange="Underconstruction()" name="possessionStatus"
+                          value="Under Construction" id="possessionStatusUnder"
+                          >
+                        <label class="form-check-label"
+                          for="possessionStatusUnder">Under
+                          Construction</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio"
+                          onchange="Readyconstruction()" name="possessionStatus"
+                          value="Ready to Move" id="possessionStatusReady">
+                        <label class="form-check-label"
+                          for="possessionStatusReady">Ready
+                          to Move</label>
+                      </div>
+                      <br>
+                      <br>
+                      <div id="construction">
+                        <label>Available From</label>
+                        <br>
+                        <br>
+                        <label for="month">Month</label>
+                        <br>
+                        <select class="form-control w-50" name="month" id="month"
+                          >
+                          <option value="January">January</option>
+                          <option value="February">February</option>
+                          <option value="March">March</option>
+                          <option value="April">April</option>
+                          <option value="May">May</option>
+                          <option value="June">June</option>
+                          <option value="July">July</option>
+                          <option value="August">August</option>
+                          <option value="September">September</option>
+                          <option value="October">October</option>
+                          <option value="November">November</option>
+                          <option value="Devember">Devember</option>
+                        </select>
+                        <br>
+                        <label for="year">Year</label>
+                        <br>
+                        <input type="text" class="form-control w-50"
+                          pattern="^[0-9]*$" title="Please enter a valid number"
+                          id="year" name="year" placeholder="Enter year" >
+                      </div>
+                      <div id="age">
+                        <br>
+                        <label for="ageOfConstruction">Age Of Construction</label>
+                        <br>
+                        <select class="form-control w-50" name="ageOfConstruction"
+                          id="ageOfConstruction" >
+                          <option value="">select</option>
+                          <option value="New Construction">New Construction</option>
+                          <option value="Less than 5 years">Less than 5 years</option>
+                          <option value="5 to 10 years">5 to 10 years</option>
+                          <option value="10 to 15 years">10 to 15 years</option>
+                          <option value="15 to 20 years">15 to 20 years</option>
+                          <option value="Above 20 years">Above 20 years</option>
+                        </select>
+                      </div>
 
+                    </div>
+
+                    <br>
+                    <br>
+                    <label for="saleBrokerage">Sale Brokerage</label>
+                    <br>
+                    <select class="form-control w-50" name="saleBrokerage"
+                      id="saleBrokerage" >
+                      <option value="No Brokerage">No Brokerage</option>
+                      <option value="0.25%">0.25%</option>
+                      <option value="0.5%">0.5%</option>
+                      <option value="0.75%">0.75%</option>
+                      <option value="1%">1%</option>
+                      <option value="1.5%">1.5%</option>
+                      <option value="2%">2%</option>
+                      <option value="3%">3%</option>
+                      <option value="4%">4%</option>
+                    </select>
+                    <br>
+                    <br>
+              </div>
+              <div id="rent">
+                <label for="expectedRent">Expected Rent</label>
                 <br>
-                <br>
-                <label for="saleBrokerage">Sale Brokerage</label>
-                <br>
-                <select class="form-control w-50" name="saleBrokerage" id="saleBrokerage" required>
-                  <option value="No Brokerage">No Brokerage</option>
-                  <option value="0.25%">0.25%</option>
-                  <option value="0.5%">0.5%</option>
-                  <option value="0.75%">0.75%</option>
-                  <option value="1%">1%</option>
-                  <option value="1.5%">1.5%</option>
-                  <option value="2%">2%</option>
-                  <option value="3%">3%</option>
-                  <option value="4%">4%</option>
-                </select>
-                <br>
-                <br>
-          </div>
-          <div id="rent">
-            <label for="expectedRent">Expected Rent</label>
-            <br>
-            <input type="text" id="expectedRent" pattern="^[0-9]*$" title="Please enter a valid number"
-              class="form-control border-top-0 border-left-0 border-right-0 w-50" name="expectedRent"
-              placeholder="Enter total price"><span>
-              <br>
-              <br>
-              <label for="securityDeposit">Security Deposit</label>
-              <br>
-              <input type="text" pattern="^[0-9]*$" title="Please enter a valid number" id="securityDeposit"
-                class="form-control border-top-0 border-left-0 border-right-0 w-50" name="securityDeposit"
-                placeholder="Enter total price"><span>
-                <br>
-                <br>
-                <label for="rentBrokerage">Rent Brokerage</label>
-                <br>
-                <select class="form-control w-50" name="rentBrokerage" id="rentBrokerage">
-                  <option value="No Brokerage">No Brokerage</option>
-                  <option value="30 Days">30 Days</option>
-                  <option value="45 Days">45 Days</option>
-                  <option value="60 Days">60 Days</option>
-                </select>
-                <br>
-                <br>
-          </div>
+                <% if(property.expectedRent){ %>
+                  <input type="text" id="expectedRent" pattern="^[0-9]*$"
+                    title="Please enter a valid number"
+                    class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                    name="expectedRent"
+                    value="<%= property.expectedRent %>"
+                    placeholder="Enter total price"><span>
+                    <%} else {%>
+                      <input type="text" id="expectedRent" pattern="^[0-9]*$"
+                        title="Please enter a valid number"
+                        class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                        name="expectedRent" placeholder="Enter total price"><span>
+                        <%}%>
+                          <br>
+                          <br>
+                          <label for="securityDeposit">Security Deposit</label>
+                          <br>
+                          <% if(property.securityDeposit){ %>
+                            <input type="text" pattern="^[0-9]*$"
+                              title="Please enter a valid number" id="securityDeposit"
+                              class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                              name="securityDeposit"
+                              value="<%= property.securityDeposit %>"
+                              placeholder="Enter total price"><span>
+                              <%} else {%>
+                                <input type="text" pattern="^[0-9]*$"
+                                  title="Please enter a valid number"
+                                  id="securityDeposit"
+                                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                  name="securityDeposit"
+                                  placeholder="Enter total price"><span>
+                                  <%}%>
+                                    <br>
+                                    <br>
+                                    <label for="rentBrokerage">Rent Brokerage</label>
+                                    <br>
+                                    <select class="form-control w-50"
+                                      name="rentBrokerage" id="rentBrokerage">
+                                      <% if(property.rentBrokerage=="No Brokerage"
+                                        ){ %>
+                                        <option value="No Brokerage" selected>No
+                                          Brokerage</option>
+                                        <%} else {%>
+                                          <option value="No Brokerage">No Brokerage
+                                          </option>
+                                          <%}%>
+                                            <% if(property.rentBrokerage=="30 Days"
+                                              ){ %>
+                                              <option value="30 Days" selected>30 Days
+                                              </option>
+                                              <%} else {%>
+                                                <option value="30 Days">30 Days
+                                                </option>
+                                                <%}%>
+                                                  <% if(property.rentBrokerage=="45 Days"
+                                                    ){ %>
+                                                    <option value="45 Days" selected>
+                                                      45 Days</option>
+                                                    <%} else {%>
+                                                      <option value="45 Days">45 Days
+                                                      </option>
+                                                      <%}%>
+                                                        <% if(property.rentBrokerage=="60 Days"
+                                                          ){ %>
+                                                          <option value="60 Days"
+                                                            selected>60 Days</option>
+                                                          <%} else {%>
+                                                            <option value="60 Days">60
+                                                              Days</option>
+                                                            <%}%>
+                                    </select>
+                                    <br>
+                                    <br>
+              </div>
+              <%}%>
+                <% if(!property){ %>
+                  <div id="sale">
+                    <label for="expectedPrice">Expected Price</label>
+                    <br>
+                    <input type="text" id="expectedPrice" pattern="^[0-9]*$"
+                      title="Please enter a valid number"
+                      class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                      name="expectedPrice" placeholder="Enter total price"><span>
+                      <br>
+                      <br>
+                      <label for="bookingAmount">Booking Amount</label>
+                      <br>
+                      <input type="text" id="bookingAmount" pattern="^[0-9]*$"
+                        title="Please enter a valid number"
+                        class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                        name="bookingAmount" placeholder="Enter total price"><span>
+                        <br>
+                        <br>
+                        <label>Transaction Type</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio"
+                            name="transactionType" value="New Property"
+                            id="transactionTypenew">
+                          <label class="form-check-label" for="transactionTypenew">New
+                            Property</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio"
+                            name="transactionType" value="Resale"
+                            id="transactionTypeReSale">
+                          <label class="form-check-label"
+                            for="transactionTypeReSale">Resale</label>
+                        </div>
+                        <br>
+                        <br>
+                        <div id="newProperty">
+                          <label>Possession Status </label>
+                          <br>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"
+                              onchange="Underconstruction()" name="possessionStatus"
+                              value="Under Construction" id="possessionStatusUnder"
+                              required>
+                            <label class="form-check-label"
+                              for="possessionStatusUnder">Under
+                              Construction</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"
+                              onchange="Readyconstruction()" name="possessionStatus"
+                              value="Ready to Move" id="possessionStatusReady">
+                            <label class="form-check-label"
+                              for="possessionStatusReady">Ready
+                              to Move</label>
+                          </div>
+                          <br>
+                          <br>
+                          <div id="construction">
+                            <label>Available From</label>
+                            <br>
+                            <br>
+                            <label for="month">Month</label>
+                            <br>
+                            <select class="form-control w-50" name="month" id="month"
+                              required>
+                              <option value="January">January</option>
+                              <option value="February">February</option>
+                              <option value="March">March</option>
+                              <option value="April">April</option>
+                              <option value="May">May</option>
+                              <option value="June">June</option>
+                              <option value="July">July</option>
+                              <option value="August">August</option>
+                              <option value="September">September</option>
+                              <option value="October">October</option>
+                              <option value="November">November</option>
+                              <option value="Devember">Devember</option>
+                            </select>
+                            <br>
+                            <label for="year">Year</label>
+                            <br>
+                            <input type="text" class="form-control w-50"
+                              pattern="^[0-9]*$" title="Please enter a valid number"
+                              id="year" name="year" placeholder="Enter year" required>
+                          </div>
+                          <div id="age">
+                            <br>
+                            <label for="ageOfConstruction">Age Of Construction</label>
+                            <br>
+                            <select class="form-control w-50" name="ageOfConstruction"
+                              id="ageOfConstruction" required>
+                              <option value="">select</option>
+                              <option value="New Construction">New Construction
+                              </option>
+                              <option value="Less than 5 years">Less than 5 years
+                              </option>
+                              <option value="5 to 10 years">5 to 10 years</option>
+                              <option value="10 to 15 years">10 to 15 years</option>
+                              <option value="15 to 20 years">15 to 20 years</option>
+                              <option value="Above 20 years">Above 20 years</option>
+                            </select>
+                          </div>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <label for="saleBrokerage">Sale Brokerage</label>
+                        <br>
+                        <select class="form-control w-50" name="saleBrokerage"
+                          id="saleBrokerage" required>
+                          <option value="No Brokerage">No Brokerage</option>
+                          <option value="0.25%">0.25%</option>
+                          <option value="0.5%">0.5%</option>
+                          <option value="0.75%">0.75%</option>
+                          <option value="1%">1%</option>
+                          <option value="1.5%">1.5%</option>
+                          <option value="2%">2%</option>
+                          <option value="3%">3%</option>
+                          <option value="4%">4%</option>
+                        </select>
+                        <br>
+                        <br>
+                  </div>
+                  <div id="rent">
+                    <label for="expectedRent">Expected Rent</label>
+                    <br>
+                    <input type="text" id="expectedRent" pattern="^[0-9]*$"
+                      title="Please enter a valid number"
+                      class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                      name="expectedRent" placeholder="Enter total price"><span>
+                      <br>
+                      <br>
+                      <label for="securityDeposit">Security Deposit</label>
+                      <br>
+                      <input type="text" pattern="^[0-9]*$"
+                        title="Please enter a valid number" id="securityDeposit"
+                        class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                        name="securityDeposit" placeholder="Enter total price"><span>
+                        <br>
+                        <br>
+                        <label for="rentBrokerage">Rent Brokerage</label>
+                        <br>
+                        <select class="form-control w-50" name="rentBrokerage"
+                          id="rentBrokerage">
+                          <option value="No Brokerage">No Brokerage</option>
+                          <option value="30 Days">30 Days</option>
+                          <option value="45 Days">45 Days</option>
+                          <option value="60 Days">60 Days</option>
+                        </select>
+                        <br>
+                        <br>
+                  </div>
+                  <%}%>
           <label for="priceIncludes">Price Includes</label>
           <br>
-          <select class="form-control w-50" name="priceIncludes" id="priceIncludes" required>
-            <option value="">Select</option>
-            <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
-            <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
-            <option value="Price Negotiable"> Price Negotiable </option>
+          <select class="form-control w-50" name="priceIncludes" id="priceIncludes">
+            <% if(property && property.priceIncludes.includes("")){ %>
+            <option value="" selected>Select</option>
+            <%} else {%>
+              <option value="">Select</option>
+              <%}%>
+              <% if(property && property.priceIncludes.includes("Tax and Govt Charges")){ %>
+            <option value="Tax and Govt Charges" selected> Tax and Govt Charges </option>
+            <%} else {%>
+              <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
+              <%}%>
+              <% if(property && property.priceIncludes.includes("DG and UPS Price Included")){ %>
+            <option value="DG and UPS Price Included" selected> DG and UPS Price Included </option>
+            <%} else {%>
+              <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
+              <%}%>
+              <% if(property && property.priceIncludes.includes("Price Negotiable")){ %>
+            <option value="Price Negotiable" selected> Price Negotiable </option>
+            <%} else {%>
+              <option value="Price Negotiable"> Price Negotiable </option>
+              <%}%>
           </select>
           <br>
           <br>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required>
+            <% if(property && property.NOCCertified == true){ %>
+            <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required checked>
+            <%} else {%>
+              <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required>
+              <%}%>
             <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="NOCCertified">NOC
               Certified</label>
           </div>
           <br>
           <br>
           <div class="form-check form-check-inline">
+            <% if(property && property.OccupanceCertified == true){ %>
             <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-              id="OccupanceCertified" required>
+              id="OccupanceCertified" required checked> 
+              <%} else {%>
+                <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
+                  id="OccupanceCertified" required>
+                <%}%>
             <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
               for="OccupanceCertified">Occupance Certified</label>
           </div>
@@ -461,13 +2529,22 @@
           <br>
           <label for="description">Description</label>
           <br>
-          <textarea class="form-control" name="description" id="description" cols="30" rows="5" required></textarea>
+          <% if(property && property.description){ %>
+            <textarea class="form-control" name="description" id="description" cols="30" rows="5" required> <%=  property.description %> </textarea>
+            <%}else{%>
+              <textarea class="form-control" name="description" id="description" cols="30" rows="5" required></textarea>
+              <%}%>
           <br>
           <div class="d-flex w-100 justify-content-around">
-            <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
-            <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
+            <% if(property) { %>
+              <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
+              <%} else {%>
+                <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
+                <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
+                <% } %>
           </div>
         </div>
+        <% if(!property) { %>
         <div id="2" class="d-none">
           <h1>Photos</h1>
           <h3>Cover</h3>
@@ -553,6 +2630,7 @@
             <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
           </div>
         </div>
+        <% } %>
       </form>
     </div>
   </div>
@@ -607,6 +2685,9 @@
         if (!document.getElementById("showroom").classList.contains("d-none")) {
           document.getElementById("showroom").classList.add("d-none")
         }
+        if (document.getElementById("Office").classList.contains("d-none")) {
+          document.getElementById("Office").classList.remove("d-none")
+        }
         if (!document.getElementById("Shop").classList.contains("d-none")) {
           document.getElementById("Shop").classList.add("d-none")
         }
@@ -641,6 +2722,9 @@
         if (!document.getElementById("Office").classList.contains("d-none")) {
           document.getElementById("Office").classList.add("d-none")
         }
+        if (document.getElementById("showroom").classList.contains("d-none")) {
+          document.getElementById("showroom").classList.remove("d-none")
+        }
         if (!document.getElementById("Shop").classList.contains("d-none")) {
           document.getElementById("Shop").classList.add("d-none")
         }
@@ -674,6 +2758,9 @@
       if (inp == "Commercial Shop") {
         if (!document.getElementById("Office").classList.contains("d-none")) {
           document.getElementById("Office").classList.add("d-none")
+        }
+        if (document.getElementById("Shop").classList.contains("d-none")) {
+          document.getElementById("Shop").classList.remove("d-none")
         }
         if (!document.getElementById("showroom").classList.contains("d-none")) {
           document.getElementById("showroom").classList.add("d-none")
@@ -886,33 +2973,42 @@
     }
 
     function balcony() {
+      if(document.getElementById("balconyPics")){
       document.getElementById("balconyPics").innerHTML = null;
       for (var i = 0; i < document.getElementById("balconies").value; i++) {
         img("balconyPics", i);
       }
     }
+    }
     function shopbalcony() {
+      if(document.getElementById("shopbalconyPics")){
       document.getElementById("shopbalconyPics").innerHTML = null;
       for (var i = 0; i < document.getElementById("shopbalconies").value; i++) {
         img("shopbalconyPics", i);
       }
     }
+    }
     function washroomQuantity() {
-      document.getElementById("washroomPics").innerHTML = null;
+      if(document.getElementById("washroomPics")){
+        document.getElementById("washroomPics").innerHTML = null;
       for (var i = 0; i < document.getElementById("quantity").value; i++) {
         img("washroomPics", i);
+      }
       }
     }
 
     function meetingRooms() {
-      document.getElementById("meetingRoomsDiv").innerHTML = null;
-      for (var i = 1; i <= document.getElementById("noOfMeetingRooms").value; i++) {
+      if(document.getElementById("meetingRoomsDiv")){
+        document.getElementById("meetingRoomsDiv").innerHTML = null;
+        for (var i = 1; i <= document.getElementById("noOfMeetingRooms").value; i++) {
         img("meetingRoomsDiv", i, "Meeting Room");
+      }
       }
     }
 
     function conferenceRooms(check) {
-      if (check.checked) {
+      if(document.getElementById("CommercialOfficeSpacefeatures")){
+        if (check.checked) {
         img("CommercialOfficeSpacefeatures", 0, "Conference Room");
       }
       if (!check.checked) {
@@ -924,10 +3020,12 @@
           }
         })
       }
+      }
     }
 
     function receptionAreas(check) {
-      if (check.checked) {
+      if(document.getElementById("CommercialOfficeSpacefeatures")){
+        if (check.checked) {
         img("CommercialOfficeSpacefeatures", 1, "Reception Area");
       }
       if (!check.checked) {
@@ -938,6 +3036,7 @@
             document.getElementById("ReceptionArea").innerHTML = null;
           }
         })
+      }
       }
     }
     function totalFloor() {
