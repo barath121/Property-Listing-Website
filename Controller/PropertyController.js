@@ -288,7 +288,7 @@ module.exports.ViewProperty = (req, res, next) => {
           if (saved) {
             issaved = true;
           }
-          res.render("property-detail", {
+          res.render("commercial-details", {
             savedetails: savedetails,
             property: property,
             issaved: issaved,
