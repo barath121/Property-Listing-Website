@@ -1,0 +1,313 @@
+<%- include('./layouts/imports') %> 
+
+<% //console.log(property) %> 
+<section class="bg-dark">
+    <div class="container">
+        <div class="pt-5 pb-5 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <h3 class="text-warning hammersmithOne"><%= property.name %></h3>
+                    <span class="text-white" uk-icon="icon: location"></span> 
+                    <span class="text-white"><%= property.address %></span> 
+                    <br> <br>
+                    <a href="/contact">
+                        <h4 class="btn btn-danger rounded-pill pl-5 pr-5 font-weight-bold">Contact</h4>
+                    </a>
+                    <% if(req.isAuthenticated()){ %>
+                    <% if(!issaved){ %>
+                    <a href="/user/addsaved?propertyid=<%= savedetails.propertyid %>&propertytype=<%= savedetails.propertytype %>">
+                        <h4 class="btn btn-outline-danger rounded-pill pl-5 pr-5 font-weight-bold">Save</h4>
+                    </a>
+                    <%}%>
+                    <% if(issaved){ %>
+                        <a href="/user/removesaved?propertyid=<%= savedetails.propertyid %>&propertytype=<%= savedetails.propertytype %>">
+                            <h4 class="btn btn-outline-danger rounded-pill pl-5 pr-5 font-weight-bold">Remove</h4>
+                        </a>
+                    <%}}%>
+                </div>
+                <div class="col-md-6 col-12">
+                    <% if (property.expectedPrice) { %> 
+                    <h3 class="text-warning txt-center font-weight-bold uk-hidden@s">₹ <%= property.expectedPrice %></h3>
+                    <h3 class="text-warning text-right font-weight-bold uk-visible@s">₹ <%= property.expectedPrice %></h3>
+                    <% } else if (property.expectedRent) { %>
+                        <div class="text-warning text-center font-weight-bold uk-hidden@s"><span class="h3 hammersmithOne">₹ <%= property.expectedRent %></span><br><span class="small text-white">per month</span></div>
+                        <div class="text-warning text-right font-weight-bold uk-visible@s"><span class="h3 hammersmithOne">₹ <%= property.expectedRent %></span><br><span class="small text-white">per month</span></div>
+                    <% } %> 
+                </div>
+            </div>
+            <div class="p-3 m-0">
+                <div>
+                    <p class="text-white"><%= property.description %> </p>
+                </div>
+                <div class="uk-child-width-auto" uk-grid>
+                    <div>
+                        <div>
+                            <div class="text-warning">Property For</div>
+                            <div class="text-white"><%= property.propertyFor %></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="text-warning">Property Type</div>
+                            <div class="text-white"><%= property.propertyType %></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-warning">Zone Type</div>
+                        <div class="text-white"><%= property.zoneType %></div>
+                    </div>
+                    <% if (property.possessionStatus) { %> 
+                        <div>
+                            <div class="text-warning">Possession Status</div>
+                            <div class="text-white"><%= property.possessionStatus %></div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="min-height: 300; max-height: 600; animation: push">
+
+            <ul class="uk-slideshow-items">
+                <% property.Images.images.forEach(ele => { %> 
+                <li>
+                    <img src="<%= ele %> " alt="" uk-cover>
+                </li>
+                <% }) %> 
+            </ul>
+        
+            <a class="bg-light text-dark rounded-circle uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+            <a class="bg-light text-dark rounded-circle uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+        
+        </div>
+    </div>
+</section>
+
+<section class="mt-5 mb-5">
+    <div class="container">
+        <div>
+            <div class="uk-width-4-5@s uk-align-center hammersmithOne">
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <div class="h4 hammersmithOne">Area Details</div> 
+                    <hr class="mt-0">
+                    <div class="uk-child-width-1-4@s uk-child-width-1-2" uk-grid>
+                        <div>
+                            <div>
+                                <div class="text-danger">Super BuiltUp Area</div>
+                                <div><%= property.areaDetails.superBuiltUpArea %> sqft</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div class="text-danger">BuiltUp Area</div>
+                                <div><%= property.areaDetails.builtUpArea %> sqft</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div class="text-danger">Carpet Area</div>
+                                <div><%= property.areaDetails.carpetArea %> sqft</div>
+                            </div>
+                        </div> 
+                    </div> 
+                </div>
+                <br>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    <div class="h4 hammersmithOne">Features</div>
+                    <hr class="mt-0">
+                    <div class="uk-child-width-auto" uk-grid>
+                        <% if(property.officeSetup) { %> 
+                            <% if(property.officeSetup.minSeats) { %> 
+                                <div>
+                                    <div class="text-danger">Minimum Seats</div>
+                                    <div><%= property.officeSetup.minSeats %></div> 
+                                </div>
+                            <% } %>
+                            <% if(property.officeSetup.maxSeats) { %> 
+                                <div>
+                                    <div class="text-danger">Maximum Seats</div>
+                                    <div><%= property.officeSetup.maxSeats %></div>
+                                </div>
+                            <% } %>
+                            <% if(property.officeSetup.noOfCabins) { %> 
+                                <div>
+                                    <div class="text-danger">Number of Cabins</div>
+                                    <div><%= property.officeSetup.noOfCabins %></div>
+                                </div>
+                            <% } %>
+                            <% if(property.officeSetup.noOfMeetingRooms) { %> 
+                                <div>
+                                    <div class="text-danger">Number of Meeting Rooms</div>
+                                    <div><%= property.officeSetup.noOfMeetingRooms %></div>
+                                </div>
+                            <% } %> 
+                        <% } %> 
+
+                        <% if(property.washrooms) { %>
+                            <div>
+                                <div class="text-danger">Washrooms</div>
+                                <% if (property.washrooms.isAvaliable == true) { %> 
+                                <div>Available</div>
+                                <div><%= property.washrooms.quantity %></div>
+                                <% } else { %> 
+                                <div>Not available</div>
+                                <% } %> 
+                            </div>
+                        <% } %>
+    
+                        <% if(property.pantryType) { %>
+                            <% if(property.pantryType.pantryTypes) { %>
+                            <div>
+                                <div class="text-danger">Pantry Type</div>
+                                <div><%= property.pantryType.pantryTypes %></div>
+                            </div>
+                            <% } %> 
+                            <% if(property.pantryType.pantrySize) { %>
+                            <div>
+                                <div class="text-danger">Pantry Size</div>
+                                <div><%= property.pantryType.pantrySize %> Sqft</div>    
+                            </div>
+                            <% } %> 
+                        <% } %>
+    
+                        <% if(property.floorDetails) { %>
+                            <% if(property.floorDetails.totalFloors) { %>
+                                <div>
+                                    <div class="text-danger">Total floors</div>
+                                    <div><%= property.floorDetails.totalFloors %></div>
+                                </div>
+                            <% } %>
+                            <% if(property.floorDetails.yourFloor) { %>
+                                <div>
+                                    <div class="text-danger">Your Floor</div>
+                                    <div><%= property.floorDetails.yourFloor %></div>    
+                                </div>
+                            <% } %>
+                            <% if(property.floorDetails.noOfStaircases) { %>
+                                <div>
+                                    <div class="text-danger">Number of Staircases</div>
+                                    <div><%= property.floorDetails.noOfStaircases %></div>    
+                                </div>
+                            <% } %>
+                        <% } %>
+    
+                        <% if(property.lifts == true) { %>
+                            <div>
+                                <div class="text-danger">Lifts</div>
+                                <div>avialable</div>
+                            </div>
+                        <% } %>
+                        
+                        <% if (property.facilities != 0) { %>
+                            <div>
+                                <div class="text-danger">Facilities</div>
+                                <ul class="p-0 mt-0">
+                                    <% property.facilities.forEach(ele => { %> 
+                                    <li class="uk-inline"><%= ele %>  </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        <% } %> 
+    
+                        <% if (property.fireSafetyMeasures != 0) { %> 
+                            <div>
+                                <div class="text-danger">Fire Safety Measures</div>
+                                <ul class="p-0 mt-0">
+                                    <% property.fireSafetyMeasures.forEach(ele => { %> 
+                                        <li class="uk-inline"><%= ele %>  </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        <% } %> 
+                        
+                        <% if (property.priceIncludes != 0) { %> 
+                            <div>
+                                <div class="text-danger">Price Includes</div>
+                                <ul class="p-0 mt-0">
+                                    <% property.priceIncludes.forEach(ele => { %> 
+                                        <li class="uk-inline"><%= ele %>  </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        <% } %>
+
+                        <% if (property.NOCCertified) { %> 
+                            <div>
+                                <div class="text-danger">NOC Certified</div>
+                                <div><%= property.NOCCertified %> </div>
+                            </div>
+                        <% } %> 
+
+                        <% if (property.OccupanceCertified) { %> 
+                            <div>
+                                <div class="text-danger">Occupance Certified</div>
+                                <div><%= property.OccupanceCertified %></div>
+                            </div>
+                        <% } %>
+
+                        <% if (property.locatedInside) { %> 
+                            <div>
+                                <div class="text-danger">Located Inside</div>
+                                <div><%= property.locatedInside %></div>
+                            </div>
+                        <% } %>
+
+                        <% if (property.conferenceRoom) { %> 
+                            <div>
+                                <div class="text-danger">Conference Room</div>
+                                <% if (property.conferenceRoom == true) { %>
+                                <div>Available</div>
+                                <% } else { %>  
+                                <div>Not available</div> 
+                                <% } %> 
+                            </div>
+                        <% } %>
+
+                        <% if (property.receptionArea) { %> 
+                            <div>
+                                <div class="text-danger">Reception Area</div>
+                                <% if (property.conferenceRoom == true) { %>
+                                <div>Available</div>
+                                <% } else { %>  
+                                <div>Not available</div> 
+                                <% } %>
+                            </div>
+                        <% } %>
+
+                        <% if (property.saleBrokerage) { %> 
+                            <div>
+                                <div class="text-danger">Sales Brokerage</div>
+                                <div><%= property.saleBrokerage %></div>
+                            </div>
+                        <% } %>
+
+                        <% if (property.transactionType) { %> 
+                            <div>
+                                <div class="text-danger">Transaction Type</div>
+                                <div><%= property.transactionType %></div>
+                            </div>
+                        <% } %>
+
+                        <% if (property.avaliableFrom) { %> 
+                            <div>
+                                <div class="text-danger">Available from</div>
+                                <% if (property.avaliableFrom.month && property.avaliableFrom.year) { %> 
+                                <div class=""><%= property.avaliableFrom.month %>, <%= property.avaliableFrom.year %></div>
+                                <% } else { %>
+                                <div class="">Not yet available</div>
+                                <% } %>  
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('./layouts/Footer') -%>
