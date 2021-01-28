@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="p-3 uk-align-center m-0">
-                <div class="uk-child-width-1-4@m uk-child-width-1-3 text-center" uk-grid>
+                <div class="uk-child-width-1-4@m uk-child-width-1-3" uk-grid>
                     <div>
                         <div class="text-warning">Bedroom</div>
                         <div class="text-white"><%= property.propertyFeatures.bedrooms %> </div>
@@ -218,16 +218,14 @@
                 </div>
                 <br> <br>
                 <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <div class="text- mb-4 hammersmithOne h5"><img width="30px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/642/642307.svg" alt=""> Furnishing</div>
+                    <div class="text- mb-4 hammersmithOne h5"><img width="30px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/642/642307.svg" alt="">Furnishing</div>
                     <div>
                         <div class="uk-child-width-1-6@m uk-child-width-1-3 hammersmithOne" uk-grid>
                             <% property.propertyFeatures.furnitures.map(ele => { %>
                             <div>
-                                <div class="text-danger"><%= ele.Type %></div>
-                                <% if (ele.Quantity == null) { %> 
-                                    <div>0</div>
-                                <% } else { %>     
-                                    <div><%= ele.Quantity %> </div>
+                                <% if (ele.Quantity !== null) { %> 
+                                    <div class="text-danger"><%= ele.Type %></div>
+                                    <div><%= ele.Quantity %></div>   
                                 <% } %> 
                             </div>
                             <% }) %> 
