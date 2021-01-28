@@ -110,6 +110,24 @@ Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',s
     savedProperties : result
   })
 })
+}
+module.exports.changepassword  = (req,res,next) =>{
+let oldpassword = req.body.oldpassword;
+let newpassword  = req.body.newpassword;
+User.findById(req.user._id).then(async user=>{
+  if(user){
+    if(await bcrypt.compare(oldpassword,user.password)){
+        User.findByIdAndUpdate(req.user._id,{password : newpassword});
+        req.flash("success","Password Has Been Changed");
+        res.redirect('/dashboard');
+    }
+    else{
+      req.flash("success","Please Check Your Old Password");
+        res.redirect('/dashboard');
+    }
+  }
+})
+}
 //  console.log(saveddata);
 // console.log(req.user._id);
 // let saveddata =Saved.find({customerID: req.user._id})
@@ -124,4 +142,4 @@ Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',s
 //   }).then(dat=>{
 //     console.log(dat);
 //   })
-}
+

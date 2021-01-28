@@ -685,13 +685,13 @@ module.exports.CommercialProperty = async (req, res, next) => {
   if (commercial.propertyFor == "Sale") {
     commercial.expectedPrice = req.body.expectedPrice;
     commercial.saleBrokerage = req.body.saleBrokerage;
-    //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
+    commercial.bookingAmount = req.body.bookingAmount;
     commercial.transactionType = req.body.transactionType;
   }
-  // if (commercial.propertyFor == "Rent/Lease") {
-  //   commercial.priceDetails.expectedRent = req.body.expectedRent;
-  //   commercial.priceDetails.securityDeposit = req.body.securityDeposit;
-  // }
+  if (commercial.propertyFor == "Rent/Lease") {
+    commercial.expectedRent = req.body.expectedRent;
+    commercial.securityDeposit = req.body.securityDeposit;
+  }
   if (commercial.propertyFor == "Sale") {
     commercial.possessionStatus = req.body.possessionStatus;
     if (commercial.possessionStatus == "Under Construction") {
@@ -702,6 +702,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
       commercial.ageOfConstruction = req.body.ageOfConstruction;
     }
   }
+  commercial.priceIncludes = req.body.priceIncludes;
   commercial.NOCCertified = req.body.NOCCertified;
   commercial.OccupanceCertified = req.body.OccupanceCertified;
   commercial.description = req.body.description;
