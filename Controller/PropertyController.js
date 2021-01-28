@@ -702,6 +702,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
       commercial.ageOfConstruction = req.body.ageOfConstruction;
     }
   }
+  commercial.priceIncludes = req.body.priceIncludes;
   commercial.NOCCertified = req.body.NOCCertified;
   commercial.OccupanceCertified = req.body.OccupanceCertified;
   commercial.description = req.body.description;
