@@ -512,7 +512,7 @@ module.exports.Search = async (req, res) => {
     }
     let maxpriceDetails = null;
     let maxprice = 0;
-    if (minpriceDetails[1].includes("+")) {
+    if (minpriceDetails[1] && minpriceDetails[1].includes("+")) {
       maxprice = 9990000000;
     }
     else{
