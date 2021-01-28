@@ -2530,7 +2530,7 @@
                 <div class='mb-3'>
                   <div class='custom-file'>
                     <input class='custom-file-input' type='file' onchange="loadFile(event,'kitchenPreview')"
-                      accept='.jpeg,.png,.jpg' name="KitchenImage" id='images' required>
+                      accept='.jpeg,.png,.jpg' name="KitchenImage" id='images'>
                     <label class='custom-file-label' for='inputGroupFile02'
                       aria-describedby='inputGroupFileAddon02'>Choose
                       file</label>
@@ -2548,7 +2548,7 @@
                 <div class='mb-3'>
                   <div class='custom-file'>
                     <input class='custom-file-input' type='file' onchange="loadFile(event,'livingPreview')"
-                      accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images' required>
+                      accept='.jpeg,.png,.jpg' name="LivingAreaImage" id='images' >
                     <label class='custom-file-label' for='inputGroupFile02'
                       aria-describedby='inputGroupFileAddon02'>Choose
                       file</label>
@@ -2566,7 +2566,7 @@
                 <div class='mb-3'>
                   <div class='custom-file'>
                     <input class='custom-file-input' type='file' onchange="loadFile(event,'diningPreview')"
-                      accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage" required>
+                      accept='.jpeg,.png,.jpg' id='images' name="DiningAreaImage" >
                     <label class='custom-file-label' for='inputGroupFile02'
                       aria-describedby='inputGroupFileAddon02'>Choose
                       file</label>
@@ -2584,7 +2584,7 @@
                 <div class='mb-3'>
                   <div class='custom-file'>
                     <input class='custom-file-input' type='file' onchange="loadFile(event,'mainPreview')"
-                      accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage" required>
+                      accept='.jpeg,.png,.jpg' id='images' name="MainEntranceImage" >
                     <label class='custom-file-label' for='inputGroupFile02'
                       aria-describedby='inputGroupFileAddon02'>Choose
                       file</label>
@@ -2603,7 +2603,7 @@
                 <div class='mb-3'>
                   <div class='custom-file'>
                     <input class='custom-file-input' type='file' onchange="loadFile(event,'otherPreview')"
-                      accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
+                      accept='.jpeg,.png,.jpg' id='images' name="OtherImages" >
                     <label class='custom-file-label' for='inputGroupFile02'
                       aria-describedby='inputGroupFileAddon02'>Choose
                       file</label>
@@ -2958,7 +2958,6 @@
       label.for = "inputGroupFile02"
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
-      inp.required = true;
       previewDiv.className = "d-flex w-100 justify-content-end mt-2"
       previewButton.className = "bg-transparent border-0"
       previewButton.type = "button"
