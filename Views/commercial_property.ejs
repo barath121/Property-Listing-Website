@@ -2479,28 +2479,30 @@
                   <%}%>
           <label for="priceIncludes">Price Includes</label>
           <br>
-          <select class="form-control w-50" name="priceIncludes" id="priceIncludes">
-            <% if(property && property.priceIncludes.includes("")){ %>
-            <option value="" selected>Select</option>
-            <%} else {%>
-              <option value="">Select</option>
-              <%}%>
+            <div class="form-check form-check-inline">
               <% if(property && property.priceIncludes.includes("Tax and Govt Charges")){ %>
-            <option value="Tax and Govt Charges" selected> Tax and Govt Charges </option>
-            <%} else {%>
-              <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
-              <%}%>
-              <% if(property && property.priceIncludes.includes("DG and UPS Price Included")){ %>
-            <option value="DG and UPS Price Included" selected> DG and UPS Price Included </option>
-            <%} else {%>
-              <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
-              <%}%>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="Tax and Govt Charges" id="TaxandGovtCharges" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="priceIncludes" value="Tax and Govt Charges" id="TaxandGovtCharges">
+                <%}%>
+              <label class="form-check-label" for="TaxandGovtCharges">Tax and Govt Charges</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if( property && property.priceIncludes.includes("DG and UPS Price Included")){ %>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="DG and UPS Price Included" id="DGandUPSPriceIncluded" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="priceIncludes" value="DG and UPS Price Included" id="DGandUPSPriceIncluded">
+                <%}%>
+              <label class="form-check-label" for="DGandUPSPriceIncluded">DG and UPS Price Included</label>
+            </div>
+            <div class="form-check form-check-inline">
               <% if(property && property.priceIncludes.includes("Price Negotiable")){ %>
-            <option value="Price Negotiable" selected> Price Negotiable </option>
-            <%} else {%>
-              <option value="Price Negotiable"> Price Negotiable </option>
-              <%}%>
-          </select>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="Price Negotiable" id="PriceNegotiable" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="priceIncludes" value="Price Negotiable" id="PriceNegotiable">
+                <%}%>
+              <label class="form-check-label" for="PriceNegotiable">Price Negotiable</label>
+            </div>
           <br>
           <br>
           <div class="form-check form-check-inline">
@@ -2551,7 +2553,7 @@
           <div class='mb-3'>
             <div class='custom-file'>
               <input class='custom-file-input' onchange="loadFile(event,'PreviewImg')" type='file'
-                accept=' .jpeg,.png,.jpg' name="CoverImages" id='images' required>
+                accept=' .jpeg,.png,.jpg' name="CoverImages" id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -2605,7 +2607,7 @@
           <div class='mb-3'>
             <div class='custom-file'>
               <input class='custom-file-input' type='file' onchange="loadFile(event,'otherPreview')"
-                accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
+                accept='.jpeg,.png,.jpg' id='images' name="OtherImages">
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -2938,7 +2940,6 @@
       label.for = "inputGroupFile02"
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
-      inp.required = true;
       previewDiv.className = "d-flex w-100 justify-content-end mt-2"
       previewButton.className = "bg-transparent border-0"
       previewButton.type = "button"
