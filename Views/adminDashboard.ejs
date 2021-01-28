@@ -32,7 +32,7 @@
                                 <span uk-search-icon></span>
                                 <input class="uk-search-input" name="number" type="search" placeholder="Search...">
                             </form> 
-                            <% console.log(saved) %> 
+                            <% //console.log(saved) %> 
                             <% if (saved == 0) { %> 
                                 <div class="text-center">
                                     <img src="/undraw_Building_vpxo.svg" alt="Img" width="250px">
@@ -50,9 +50,6 @@
                                             <div class=""><span class="hammersmithOne">Locality:</span> <%= saved[a].propertyID.locality %></div>
                                             <br>
                                             <div class=""><%= saved[a].propertyID.description %></div>
-                                            <form action="" class="text-center">
-                                                <button type="submit" class="btn btn-sm p-0 shadow-sm"><span class="bg-danger rounded-lg shadow-sm p-1" uk-icon="icon: trash; ratio: 1.3;"></span></button>
-                                            </form>
                                         </div>
                                     </div>
                                     <% } %> 
@@ -69,6 +66,12 @@
                                 <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
                             </div>
                         </div>
+                        <% if (messages.success) { %>
+                            <div class="uk-alert-success uk-width-auto" uk-alert>
+                              <a class="uk-alert-close" uk-close></a>
+                              <p class="text-center"><%= messages.success %></p>
+                            </div>
+                          <% } %>
                         <div class="uk-child-width-1-2@s" uk-grid>
                         <% enquiries.forEach(ele => { %> 
                             <div>
@@ -79,9 +82,10 @@
                                             <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
                                         </div>
                                         <div>
-                                            <p class="text-right">
-                                                <a href="" class="bg-success p-1 text-white text-decoration-none rounded-lg"><span uk-icon="icon: check"></span></a>
-                                            </p>
+                                            <form action="/admin/querysolved" class="text-right" method="POST">
+                                                <input type="hidden" name="id" value="<%= ele._id %>">
+                                                <button type="submit" class="btn btn-success"><span uk-icon="icon: check"></span></button>
+                                            </form>
                                         </div>
                                     </div>
                                     <p class=""><%= ele.message %> </p>

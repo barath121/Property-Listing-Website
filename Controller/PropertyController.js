@@ -58,6 +58,9 @@ module.exports.createProperty = async (req, res, next) => {
   property.propertyFeatures.furnishingStatus = req.body.furnishingStatus;
   property.propertyFeatures.flatsOnFloor = req.body.flatsOnFloor;
   property.propertyFeatures.furnitures = [];
+  if(req.body.furniture&&!Array.isArray(req.body.furniture)){
+    req.body.furniture = [req.body.furniture];
+  }
   if (req.body.furniture)
     req.body.furniture.forEach((furniture) => {
       if (furniture == "Fan") {
@@ -285,7 +288,7 @@ module.exports.ViewProperty = (req, res, next) => {
           if (saved) {
             issaved = true;
           }
-          res.render("property-detail", {
+          res.render("commercial-details", {
             savedetails: savedetails,
             property: property,
             issaved: issaved,
