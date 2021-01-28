@@ -58,6 +58,9 @@ module.exports.createProperty = async (req, res, next) => {
   property.propertyFeatures.furnishingStatus = req.body.furnishingStatus;
   property.propertyFeatures.flatsOnFloor = req.body.flatsOnFloor;
   property.propertyFeatures.furnitures = [];
+  if(req.body.furniture&&!Array.isArray(req.body.furniture)){
+    req.body.furniture = [req.body.furniture];
+  }
   if (req.body.furniture)
     req.body.furniture.forEach((furniture) => {
       if (furniture == "Fan") {
