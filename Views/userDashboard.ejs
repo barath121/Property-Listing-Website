@@ -12,30 +12,39 @@
                     </div> <br><br>
                     <div class="text-center">
                         <p class="text-capitalize"><span class="hammersmithOne">Name:</span> <%= req.user.name  %> </p>
-                        <p><span class="hammersmithOne">Phone:</span> <%= req.user.phone %> </p>
-                        <p><span class="hammersmithOne">Email:</span> <%= req.user.email %> </p>
-                        <!-- <a href="#modal-example" class="text-light bg-dark p-1 rounded" uk-icon="icon: pencil; ratio: 1.5" uk-toggle></a>
-                        <div id="modal-example" uk-modal>
-                            <div class="uk-modal-dialog uk-modal-body">
-                                <button class="uk-modal-close-default" type="button" uk-close></button>
-                                <h3 class="uk-modal-title text-center hammersmithOne">Edit</h3>
-                                <form action="">
-                                    <div class="uk-margin">
-                                        <label class="uk-form-label">Name</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" type="text" required>
-                                        </div>
+                        <p><span class="hammersmithOne">Phone:</span> <%= req.user.phone %></p>
+                        <p><span class="hammersmithOne">Email:</span> <%= req.user.email %></p>
+
+                        <a href="" class="form-text small text-muted mt-2" data-toggle="modal" data-target="#forgotPassword">Edit password <span uk-icon="icon: pencil"></span></a> 
+                        <div class="modal fade" id="forgotPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <div class="h4 text-center hammersmithOne" id="staticBackdropLabel">Edit Password</div>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form action="" method="POST">
+                                    <div>
+                                      <label class="hammersmithOne" for="password1">Old Password</label>
+                                      <input type="password" class="form-control" name="oldpassword" id="password">
                                     </div>
-                                    <div class="uk-margin">
-                                        <label class="uk-form-label">Phone</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" type="text" required>
-                                        </div>
+                                    <br>
+                                    <div>
+                                      <label class="hammersmithOne" for="password1">New Password</label>
+                                      <input type="password" class="form-control" name="newpassword" id="password">
                                     </div>
-                                    <button class="btn btn-danger">Submit</button>
-                                </form>
+                                    <br>
+                                    <div class="">
+                                        <button type="button" class="btn btn-success">Submit</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
                             </div>
-                        </div> -->
+                        </div> 
                     </div>
                 </div> <br>
                 <div class="border rounded-lg shadow-sm uk-padding bg-white">
@@ -96,9 +105,6 @@
                                     <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].propertyID.locality %></div>
                                     <br>
                                     <div class=""><%= savedProperties[a].propertyID.description %></div>
-                                    <form action="" class="text-center">
-                                        <button type="submit" class="btn btn-sm p-0 shadow-sm"><span class="bg-danger rounded-lg shadow-sm p-1" uk-icon="icon: trash; ratio: 1.3;"></span></button>
-                                    </form>
                                 </div>
                             </div>
                             <% } %> 
