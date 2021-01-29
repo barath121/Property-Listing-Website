@@ -216,12 +216,12 @@
                           <div class="card-body">
                             <a href="./property?type=residential&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div>
-                                  Furnishing: <%= ele.furnishing %>
+                                <div class="m-0">
+                                  <div>Furnishing: <span class="hammersmithOne"><%= ele.furnishing %></span></div>
                                 </div>
                               </div>
                             </p>
@@ -277,12 +277,12 @@
                           <div class="card-body">
                             <a href="./property?type=residential&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div>
-                                  Furnishing: <%= ele.furnishing %>
+                                <div class="m-0">
+                                  <div>Furnishing: <span class="hammersmithOne"><%= ele.furnishing %></span></div>
                                 </div>
                               </div>
                             </p>
@@ -339,16 +339,16 @@
                           <div class="card-body">
                             <a href="/property?type=commercial&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div>
-                                  <div class="hammersmithOne"><%= ele.area %> Sqft</div>
+                                <div class="m-0">
+                                  <div>Area: <span class="hammersmithOne"><%= ele.area %> Sqft</span></div>
                                 </div>
                               </div>
                             </p>
-                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p> <br>
                           </div>
                         </div>
                       </div>
@@ -356,7 +356,7 @@
                   <% }) %>
                   <li>
                       <div class="d-flex justify-content-center align-items-center h-100 bg-light">
-                          <a href="">
+                          <a href="/searchcommercial?propertyfor=Sale">
                             <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
                           </a>
                       </div>
@@ -393,17 +393,15 @@
                           <div class="card-body">
                             <a href="/property?type=commercial&id=<%= ele.id %>" class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div> 
-                                  <div class="hammersmithOne"><%= ele.area %> Sqft</div>
+                                <div class="m-0">
+                                  <div>Area: <span class="hammersmithOne"><%= ele.area %> Sqft</span></div>
                                 </div>
                               </div>
-                            </p>
-                            <% //console.log(ele) %> 
-                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p> <br>
                           </div>
                         </div>
                       </div>
@@ -411,7 +409,7 @@
                   <% }) %>
                   <li>
                       <div class="d-flex justify-content-center align-items-center h-100 bg-light">
-                          <a href="">
+                          <a href="/searchcommercial?propertyfor=Rent/Lease">
                             <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
                           </a>
                       </div>
@@ -428,7 +426,5 @@
       </div>
   </div>
 </section>
-
-
 
 <%- include('./layouts/Footer') -%>
