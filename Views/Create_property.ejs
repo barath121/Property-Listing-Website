@@ -327,125 +327,345 @@
                                                                     <%}%>
                                             </select>
                                             <br>
-                                            <div id="furnishedDiv" class="d-none" >
+                                            <% if(property && property.propertyFeatures.furnishingStatus=="Furnished" ){ %>
+                                            <div id="furnishedDiv" class="" >
                                               <h3>Furniture</h3>
                                               <div class="row">
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("TV")) {%>
                                                     <input class="form-check-input" name="furniture" type="checkbox"
-                                                      value="TV" id="TV">
+                                                      value="TV" id="TV" checked>
+                                                      <%}else {%>
+                                                        <input class="form-check-input" name="furniture" type="checkbox"
+                                                          value="TV" id="TV">
+                                                        <%}%>
                                                   <label class="form-check-label" for="TV">
                                                     TV
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("TV unit")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="TV unit" id="TV unit">
+                                                    value="TV unit" id="TV unit" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="TV unit" id="TV unit">
+                                                      <%}%>
                                                   <label class="form-check-label" for="TV unit">
                                                     TV unit
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Sofa")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Sofa" id="Sofa">
+                                                    value="Sofa" id="Sofa" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Sofa" id="Sofa">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Sofa">
                                                     Sofa
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Dining Table")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Dining Table" id="Dining Table">
+                                                    value="Dining Table" id="Dining Table" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Dining Table" id="Dining Table">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Dining Table">
                                                     Dining Table
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Fan")) {%>
                                                   <input class="form-check-input" onchange="fan()" name="furniture"
-                                                    type="checkbox" value="Fan" id="Fan.">
+                                                    type="checkbox" value="Fan" id="Fan." checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" onchange="fan()" name="furniture"
+                                                        type="checkbox" value="Fan" id="Fan.">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Fan.">
                                                     Fan
                                                   </label>
+                                                  <% if(Furniture.includes("Fan") && Quantity) {%>
                                                   <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                    title="Please enter a valid number" class="form-control w-50  d-none"
-                                                    id="fanAmount" name="Quantity">
+                                                    title="Please enter a valid number" class="form-control w-50"
+                                                    id="fanAmount" name="Quantity" value="<%= Quantity[0] %>">
+                                                    <%}else {%>
+                                                      <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                        title="Please enter a valid number" class="form-control w-50  d-none"
+                                                        id="fanAmount" name="Quantity">
+                                                      <%}%>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Light")) {%>
                                                   <input class="form-check-input" onchange="light()" name="furniture"
-                                                    type="checkbox" value="Light" id="Light">
+                                                    type="checkbox" value="Light" id="Light" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" onchange="light()" name="furniture"
+                                                        type="checkbox" value="Light" id="Light">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Light">
                                                     Light
                                                   </label>
+                                                  <% if(Furniture.includes("Light") && Quantity) {%>
                                                   <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                    title="Please enter a valid number" class="form-control w-50  d-none"
-                                                    id="lightAmount" name="Quantity">
+                                                    title="Please enter a valid number" class="form-control w-50 "
+                                                    id="lightAmount" name="Quantity" value="<%= Quantity[1] %>">
+                                                    <%}else {%>
+                                                      <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                        title="Please enter a valid number" class="form-control w-50  d-none"
+                                                        id="lightAmount" name="Quantity">
+                                                      <%}%>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Modular Kitchen")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Modular Kitchen" id="Modular Kitchen">
+                                                    value="Modular Kitchen" id="Modular Kitchen" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Modular Kitchen" id="Modular Kitchen">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Modular Kitchen">
                                                     Modular Kitchen
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Chimney")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Chimney" id="Chimney">
+                                                    value="Chimney" id="Chimney" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Chimney" id="Chimney">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Chimney">
                                                     Chimney
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Microwave")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Microwave" id="Microwave">
+                                                    value="Microwave" id="Microwave" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Microwave" id="Microwave">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Microwave">
                                                     Microwave
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Fridge")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Fridge" id="Fridge">
+                                                    value="Fridge" id="Fridge" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Fridge" id="Fridge">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Fridge">
                                                     Fridge
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Washing machine")) {%>
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="Washing machine" id="Washingmachine">
+                                                    value="Washing machine" id="Washingmachine" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="Washing machine" id="Washingmachine">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Washingmachine">
                                                     Washing machine
                                                   </label>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Bed")) {%>
                                                   <input class="form-check-input" onchange="bed()" name="furniture"
-                                                    type="checkbox" value="Bed" id="Bed">
+                                                    type="checkbox" value="Bed" id="Bed" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" onchange="bed()" name="furniture"
+                                                        type="checkbox" value="Bed" id="Bed">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Bed">
                                                     Bed
                                                   </label>
+                                                  <% if(Furniture.includes("Bed") && Quantity) {%>
                                                   <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                    title="Please enter a valid number" class="form-control w-50  d-none"
-                                                    id="bedAmount" name="Quantity">
+                                                    title="Please enter a valid number" class="form-control w-50"
+                                                    id="bedAmount" name="Quantity" value="<%= Quantity[2] %>">
+                                                    <%}else {%>
+                                                      <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                        title="Please enter a valid number" class="form-control w-50  d-none"
+                                                        id="bedAmount" name="Quantity">
+                                                      <%}%>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Wadrobe")) {%>
                                                   <input class="form-check-input" onchange="wadrobe()" name="furniture"
-                                                    type="checkbox" value="Wadrobe" id="Wadrobe">
+                                                    type="checkbox" value="Wadrobe" id="Wadrobe" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" onchange="wadrobe()" name="furniture"
+                                                        type="checkbox" value="Wadrobe" id="Wadrobe">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Wadrobe">
                                                     Wadrobe
                                                   </label>
+                                                  <% if(Furniture.includes("Wadrobe") && Quantity) {%>
                                                   <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                    title="Please enter a valid number" class="form-control w-50  d-none"
-                                                    id="wadrobeAmount" name="Quantity">
+                                                    title="Please enter a valid number" class="form-control w-50 "
+                                                    id="wadrobeAmount" name="Quantity" value="<%= Quantity[3] %>">
+                                                    <%}else {%>
+                                                      <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                        title="Please enter a valid number" class="form-control w-50  d-none"
+                                                        id="wadrobeAmount" name="Quantity">
+                                                      <%}%>
                                                 </div>
                                                 <div class="form-check col-6">
+                                                  <% if(Furniture && Furniture.includes("Curtains")) {%>
                                                   <input class="form-check-input" onchange="curtains()" name="furniture"
-                                                    type="checkbox" value="Curtains" id="Curtains">
+                                                    type="checkbox" value="Curtains" id="Curtains" checked>
+                                                    <%}else {%>
+                                                      <input class="form-check-input" onchange="curtains()" name="furniture"
+                                                        type="checkbox" value="Curtains" id="Curtains">
+                                                      <%}%>
                                                   <label class="form-check-label" for="Curtains">
                                                     Curtains
                                                   </label>
+                                                  <% if(Furniture.includes("Curtains") && Quantity) {%>
                                                   <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                    title="Please enter a valid number" class="form-control w-50  d-none"
-                                                    id="curtainsAmount" name="Quantity">
+                                                    title="Please enter a valid number" class="form-control w-50 "
+                                                    id="curtainsAmount" name="Quantity" value="<%= Quantity[4] %>">
+                                                    <%}else {%>
+                                                      <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                        title="Please enter a valid number" class="form-control w-50  d-none"
+                                                        id="curtainsAmount" name="Quantity">
+                                                      <%}%>
                                                 </div>
                                               </div>
                                             </div>
-                                            
+                                            <%}else {%>
+                                              <div id="furnishedDiv" class="d-none" >
+                                                <h3>Furniture</h3>
+                                                <div class="row">
+                                                  <div class="form-check col-6">
+                                                      <input class="form-check-input" name="furniture" type="checkbox"
+                                                        value="TV" id="TV">
+                                                    <label class="form-check-label" for="TV">
+                                                      TV
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="TV unit" id="TV unit">
+                                                    <label class="form-check-label" for="TV unit">
+                                                      TV unit
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Sofa" id="Sofa">
+                                                    <label class="form-check-label" for="Sofa">
+                                                      Sofa
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Dining Table" id="Dining Table">
+                                                    <label class="form-check-label" for="Dining Table">
+                                                      Dining Table
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" onchange="fan()" name="furniture"
+                                                      type="checkbox" value="Fan" id="Fan.">
+                                                    <label class="form-check-label" for="Fan.">
+                                                      Fan
+                                                    </label>
+                                                    <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                      title="Please enter a valid number" class="form-control w-50  d-none"
+                                                      id="fanAmount" name="Quantity">
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" onchange="light()" name="furniture"
+                                                      type="checkbox" value="Light" id="Light">
+                                                    <label class="form-check-label" for="Light">
+                                                      Light
+                                                    </label>
+                                                    <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                      title="Please enter a valid number" class="form-control w-50  d-none"
+                                                      id="lightAmount" name="Quantity">
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Modular Kitchen" id="Modular Kitchen">
+                                                    <label class="form-check-label" for="Modular Kitchen">
+                                                      Modular Kitchen
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Chimney" id="Chimney">
+                                                    <label class="form-check-label" for="Chimney">
+                                                      Chimney
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Microwave" id="Microwave">
+                                                    <label class="form-check-label" for="Microwave">
+                                                      Microwave
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Fridge" id="Fridge">
+                                                    <label class="form-check-label" for="Fridge">
+                                                      Fridge
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="Washing machine" id="Washingmachine">
+                                                    <label class="form-check-label" for="Washingmachine">
+                                                      Washing machine
+                                                    </label>
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" onchange="bed()" name="furniture"
+                                                      type="checkbox" value="Bed" id="Bed">
+                                                    <label class="form-check-label" for="Bed">
+                                                      Bed
+                                                    </label>
+                                                    <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                      title="Please enter a valid number" class="form-control w-50  d-none"
+                                                      id="bedAmount" name="Quantity">
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" onchange="wadrobe()" name="furniture"
+                                                      type="checkbox" value="Wadrobe" id="Wadrobe">
+                                                    <label class="form-check-label" for="Wadrobe">
+                                                      Wadrobe
+                                                    </label>
+                                                    <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                      title="Please enter a valid number" class="form-control w-50  d-none"
+                                                      id="wadrobeAmount" name="Quantity">
+                                                  </div>
+                                                  <div class="form-check col-6">
+                                                    <input class="form-check-input" onchange="curtains()" name="furniture"
+                                                      type="checkbox" value="Curtains" id="Curtains">
+                                                    <label class="form-check-label" for="Curtains">
+                                                      Curtains
+                                                    </label>
+                                                    <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                      title="Please enter a valid number" class="form-control w-50  d-none"
+                                                      id="curtainsAmount" name="Quantity">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <%}%>
                                             <br>
                                             <h3>Area</h3>
 
