@@ -768,7 +768,8 @@ module.exports.EditProperty = (req,res,next) =>{
       } 
       
     });
-        res.render('Create_property',{property : property});
+    console.log(Furniture)
+        res.render('Create_property',{property : property , Furniture : Furniture ,Quantity : Quantity});
       }
       else
         res.redirect('/404');
