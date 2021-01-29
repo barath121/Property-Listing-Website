@@ -212,7 +212,7 @@ module.exports.AdminDashboard = async (req,res,next) =>{
 module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
   if(req.body.type == "commercial"){
     Commercial.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
-      if(req.body.status=="flase"){
+      if(req.body.status=="true"){
         req.flash("success","Property has ben Activated");
       }
       else{
@@ -223,7 +223,7 @@ module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
   }
   else{
   Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
-    if(req.body.status=="flase"){
+    if(req.body.status=="true"){
       req.flash("success","Property has ben Activated");
     }
     else{
