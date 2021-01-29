@@ -90,8 +90,7 @@ module.exports.createProperty = async (req, res, next) => {
         });
       } else {
         property.propertyFeatures.furnitures.push({
-          Type: furniture,
-          Quantity: req.body.Quantity[4],
+          Type: furniture
         });
       }
     });
@@ -751,7 +750,24 @@ module.exports.EditProperty = (req,res,next) =>{
   if(req.query.type == "residential"){
     Property.findById(req.query._id).then(property=>{
       if(property){
-        console.log(property)
+        let Quantity = ["","","","",""]
+        let Furniture = []
+    if (property.propertyFeatures.furnitures)
+      property.propertyFeatures.furnitures.forEach((furniture) => {
+        Furniture.push(furniture.Type);
+      if (furniture.Type == "Fan") {
+        Quantity[0] = furniture.Quantity
+      } else if (furniture.Type == "Light") {
+        Quantity[1] = furniture.Quantity
+      } else if (furniture.Type == "Bed") {
+        Quantity[2] = furniture.Quantity
+      } else if (furniture.Type == "Wadrobe") {
+        Quantity[3] = furniture.Quantity
+      } else if (furniture.Type == "Curtains") {
+        Quantity[4] = furniture.Quantity
+      } 
+      
+    });
         res.render('Create_property',{property : property});
       }
       else

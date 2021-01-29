@@ -194,7 +194,9 @@ module.exports.AdminDashboard = async (req,res,next) =>{
       }]).catch(err=>{
         console.log(err)
       }).then(async result=>{
-        // console.log(result);
+        // result[0].AllProperty.forEach(res=>{
+        //  console.log(res)
+        // })
         let customer = await User.find({isAdmin : false}).sort({_id:-1});
         let enquiries = await Enquiry.find({contacted : false});
         // console.log(customer)
