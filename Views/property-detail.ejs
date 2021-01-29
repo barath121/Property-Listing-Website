@@ -1,5 +1,5 @@
 <%- include('./layouts/imports') %> 
-<% //console.log(property.propertyFeatures.bedroomArea) %>
+<% //console.log(property) %>
 <section class="bg-dark">
     <div class="container">
         <div class="pt-5 pb-5 d-flex flex-column justify-content-center">
@@ -81,7 +81,7 @@
             <ul class="uk-slideshow-items">
                 <% property.Images.images.forEach(ele => { %> 
                 <li>
-                    <img src="<%= ele %> " alt="" uk-cover>
+                    <img src="<%= ele %>" alt="" uk-cover>
                 </li>
                 <% }) %> 
             </ul>
@@ -167,7 +167,6 @@
                             <div class="text-danger">Bedroom Area</div>
                             <div>
                                 <ul class="m-0">
-                                    <% //console.log(property.propertyFeatures.bedroomArea) %> 
                                 <% property.propertyFeatures.bedroomArea.map(ele => { %>
                                     <li>
                                         <%= ele.lenght %> x <%= ele.breadth %>
@@ -217,6 +216,8 @@
                     </div>
                 </div>
                 <br> <br>
+
+                <% console.log(property.propertyFeatures.furnitures) %> 
                 <div class="bg-white p-3 rounded-lg shadow-sm">
                     <div class="text- mb-4 hammersmithOne h5"><img width="30px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/642/642307.svg" alt="">Furnishing</div>
                     <div>
@@ -233,13 +234,16 @@
                     </div>
                 </div>
                 <br> <br>
+
                 <div class="bg-white p-3 rounded-lg shadow-sm">
                     <div class="text- mb-4 hammersmithOne h5"><img width="25px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/60/60484.svg" alt=""> Price Details</div>
                     <div class="uk-child-width-1-4@s uk-child-width-1-2  hammersmithOne" uk-grid>
+                        <% if (property.priceDetails.priceIncludes != 0) { %> 
                         <div>
                             <div class="text-danger">Price Includes</div>
                             <div><%= property.priceDetails.priceIncludes %></div>
                         </div>
+                        <% } %> 
                         <div>
                             <div class="text-danger">Token Amount</div>
                             <div>₹ <%= property.priceDetails.tokenAmount %></div>
@@ -306,6 +310,7 @@
     </div>
 </section>
 
+<!-- Similar Properties -->
 <section class="mt-5 mb-5 p-3">
     <div class="container-fluid">
         <h3 class="text-center hammersmithOne">Similar Properties</h3> 
@@ -366,6 +371,7 @@
     </div>
 </section>
 
+<!-- More Properties -->
 <section class="mt-5 mb-5 p-3">
     <div class="container-fluid">
         <h3 class="text-center hammersmithOne">More properties from Kalamboli</h3> 
