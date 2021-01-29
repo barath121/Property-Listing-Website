@@ -54,9 +54,9 @@ module.exports.AdminDashboard = async (req,res,next) =>{
     let saved = {};
     if(req.query.number){
      await User.findOne({phone : req.query.number}).then(async user=>{
-       console.log(user)
+      //  console.log(user)
       saved = await Saved.find({customerID:user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
-      console.log(saved);
+      // console.log(saved);
    }).catch(err=>next(err));
     }
     
@@ -194,10 +194,10 @@ module.exports.AdminDashboard = async (req,res,next) =>{
       }]).catch(err=>{
         console.log(err)
       }).then(async result=>{
-        console.log(result);
+        // console.log(result);
         let customer = await User.find({isAdmin : false}).sort({_id:-1});
         let enquiries = await Enquiry.find({contacted : false});
-        console.log(customer)
+        // console.log(customer)
         res.render("adminDashboard",{
           customer :customer,
           commercial : commercialresult,
@@ -210,31 +210,31 @@ module.exports.AdminDashboard = async (req,res,next) =>{
 }
 
 module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
-  if(req.body.type = "commercial"){
-    Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
-      if(req.body.status==true){
+  if(req.body.type == "commercial"){
+    Commercial.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
+      if(req.body.status=="flase"){
         req.flash("success","Property has ben Activated");
       }
       else{
-        req.flash("success","Property has been deactived");
+        req.flash("success","Property has been Deactived");
       }
       res.redirect('/admin/admindashboard')
     }).catch(err=>{next(err)});
   }
   else{
   Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
-    if(req.body.status==true){
+    if(req.body.status=="flase"){
       req.flash("success","Property has ben Activated");
     }
     else{
-      req.flash("success","Property has been deactived");
+      req.flash("success","Property has been Deactived");
     }
     res.redirect('/admin/admindashboard')
   }).catch(err=>{next(err)});}
 }
 
 module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
-  if(req.body.type = "commercial"){
+  if(req.body.type == "commercial"){
     Commercial.findById(req.body.id).then(result=>{
       firebase.deleteFile(result.Images.images);
       Saved.remove({propertyID : req.body.id})

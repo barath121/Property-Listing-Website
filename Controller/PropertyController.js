@@ -657,11 +657,14 @@ module.exports.CommercialProperty = async (req, res, next) => {
     commercial.washrooms.quantity = req.body.quantity;
   }
   if (
-    req.body.PropertyType == "Commercial Shop" ||
     req.body.PropertyType == "Commercial Showroom"
   ) {
     commercial.balconies = req.body.balconies;
   }
+  if(req.body.PropertyType == "Commercial Shop" ){
+    commercial.balconies = req.body.shopbalconies;
+  }
+  
   console.log(req.body.PropertyType == "Commercial Shop" ||
   req.body.PropertyType == "Commercial Showroom");
   commercial.facilities = req.body.facilities;
@@ -691,6 +694,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   if (commercial.propertyFor == "Rent/Lease") {
     commercial.expectedRent = req.body.expectedRent;
     commercial.securityDeposit = req.body.securityDeposit;
+    commercial.rentBrokerage = req.body.rentBrokerage;
   }
   if (commercial.propertyFor == "Sale") {
     commercial.possessionStatus = req.body.possessionStatus;
