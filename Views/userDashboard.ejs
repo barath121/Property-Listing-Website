@@ -5,6 +5,12 @@
         <div class="row">
             <div class="col-md-4 col-12">
                 <div class="border rounded-lg shadow-sm uk-padding bg-white">
+                    <% if (messages.success) { %>
+                        <div class="uk-alert-danger uk-width-auto" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p class="text-center"><%= messages.success %></p>
+                          </div>
+                    <% } %>  
                     <p class="text-center h2 font-weight-bold hammersmithOne">Profile</p>
                     <br>
                     <div class="text-center"> 
@@ -15,7 +21,9 @@
                         <p><span class="hammersmithOne">Phone:</span> <%= req.user.phone %></p>
                         <p><span class="hammersmithOne">Email:</span> <%= req.user.email %></p>
 
-                        <a href="" class="form-text small text-muted mt-2" data-toggle="modal" data-target="#forgotPassword">Edit password <span uk-icon="icon: pencil"></span></a> 
+                        <% console.log() %> 
+                        <a href="#forgotPassword" class="form-text small text-muted mt-2" data-toggle="modal" data-target="#forgotPassword">Edit password <span uk-icon="icon: pencil"></span></a> 
+
                         <div class="modal fade" id="forgotPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -26,7 +34,7 @@
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <form action="" method="POST">
+                                  <form action="/changepassword" method="POST">
                                     <div>
                                       <label class="hammersmithOne" for="password1">Old Password</label>
                                       <input type="password" class="form-control" name="oldpassword" id="password">
@@ -37,9 +45,7 @@
                                       <input type="password" class="form-control" name="newpassword" id="password">
                                     </div>
                                     <br>
-                                    <div class="">
-                                        <button type="button" class="btn btn-success">Submit</button>
-                                    </div>
+                                    <button type="submit" class="btn btn-success">Submit</button>
                                   </form>
                                 </div>
                               </div>

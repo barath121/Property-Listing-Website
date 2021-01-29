@@ -1,11 +1,14 @@
 <%- include('./layouts/imports') -%>
 
-<%  
-    //console.log(customer)
-%> 
-
 <section class="mt-5 mb-5">
     <div class="container">
+        <% if (messages.success) { %>
+            <div class="uk-alert-success uk-width-auto" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p class="text-center"><%= messages.success %></p>
+            </div>
+        <% } %>
+
         <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active h4" id="pills-customer-tab" data-toggle="pill" href="#customer" role="tab" aria-controls="pills-customer" aria-selected="true">Customer</a>
@@ -59,7 +62,19 @@
                         </div>
                     </li>
                     <li>
-
+                        <div class="uk-child-width-1-2@s" uk-grid>
+                            <% customer.forEach(ele => { %> 
+                                <div>
+                                    <div class="bg-white uk-card uk-card-hover p-3 rounded-lg h-100">
+                                        <p class="h4 hammersmithOne"><%= ele.name %></p>
+                                        <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.phone %></span></p>
+                                        <p class="hammersmithOne">Mail: <%= ele.email %></p>
+                                        <hr class="">
+                                        <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
+                                    </div>
+                                </div>
+                            <% }) %>   
+                            </div>
                     </li>
                     <li>
                         <div class="uk-child-width-1-2" uk-grid>
@@ -70,12 +85,7 @@
                                 <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
                             </div>
                         </div>
-                        <% if (messages.success) { %>
-                            <div class="uk-alert-success uk-width-auto" uk-alert>
-                              <a class="uk-alert-close" uk-close></a>
-                              <p class="text-center"><%= messages.success %></p>
-                            </div>
-                          <% } %>
+                        
                         <div class="uk-child-width-1-2@s" uk-grid>
                         <% enquiries.forEach(ele => { %> 
                             <div>
@@ -287,7 +297,7 @@
                                 <div>
                                     <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
                                         <p class="h5 hammersmithOne">
-                                            <a class="text-danger" href="/property?type=residential&id=<%= ele.ActivatedProperty[a]._id %> ">
+                                            <a class="text-danger" href="/property?type=commercial&id=<%= ele.ActivatedProperty[a]._id %> ">
                                                 <%= ele.ActivatedProperty[a].title %>
                                             </a>
                                         </p> 
@@ -342,7 +352,7 @@
                                 <div>
                                     <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
                                         <p class="h5 hammersmithOne">
-                                            <a class="text-danger" href="/property?type=residential&id=<%= ele.DisabledProperty[a]._id %> ">
+                                            <a class="text-danger" href="/property?type=commercial&id=<%= ele.DisabledProperty[a]._id %> ">
                                                 <%= ele.DisabledProperty[a].title %>
                                             </a>
                                         </p> 
@@ -397,7 +407,7 @@
                                 <div>
                                     <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
                                         <p class="h5 hammersmithOne">
-                                            <a class="text-danger" href="/property?type=residential&id=<%= ele.AllProperty[a]._id %> ">
+                                            <a class="text-danger" href="/property?type=commercial&id=<%= ele.AllProperty[a]._id %> ">
                                                 <%= ele.AllProperty[a].title %>
                                             </a>
                                         </p> 
@@ -434,10 +444,13 @@
                                             <% if (ele.AllProperty[a].isAvaliable == true) { %> 
                                                 <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
                                                 <input type="hidden" name="status" value="false">
+                                                <input type="hidden" name="type" id="hidden">
+
                                             <% } %> 
                                             <% if (ele.AllProperty[a].isAvaliable == false) { %>
-                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                                 <input type="hidden" name="status" value="true">
+                                                <input type="hidden" name="type" id="hidden">
+                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                             <% } %>
                                         </form>
                                         <form action="/admin/deleteproperty" method="POST" class="uk-inline">
