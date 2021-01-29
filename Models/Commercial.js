@@ -11,7 +11,7 @@ Type : {
 },
 locality : {
     type : String,
-    enum : ['Roadpali','Kalamboli','Khargahar'],
+    enum : ['Roadpali','Kalamboli','Kharghar'],
     required : true
 },
 name :{
