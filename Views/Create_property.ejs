@@ -1846,16 +1846,6 @@
                 <label class="form-check-label" for="overlookingMain">Main Road</label>
               </div>
               <div class="form-check form-check-inline">
-                <% if(property && property.additionalFeatures.overlooking.includes("Servant Room")){ %> 
-                <input class="form-check-input" type="checkbox" id="overlooking" name="overlooking"
-                  value="Servant Room" checked>
-                  <%}else{%>
-                    <input class="form-check-input" type="checkbox" id="overlooking" name="overlooking"
-                      value="Servant Room">
-                    <%}%>
-                <label class="form-check-label" for="overlooking">Servant Room</label>
-              </div>
-              <div class="form-check form-check-inline">
                 <% if(property && property.additionalFeatures.overlooking.includes("Not Availiable")){ %> 
                 <input class="form-check-input" type="checkbox" id="overlookingNot" name="overlooking"
                   value="Not Availiable" checked>
@@ -1866,7 +1856,7 @@
                 <label class="form-check-label" for="overlookingNot">Not Availiable</label>
               </div>
               <br>
-              <br>
+              <br> 
               <label for="carParking">Car Parking</label>
               <br>
               <select class="form-control w-50 " name="carParking" id="carParking" required>
