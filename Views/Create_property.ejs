@@ -296,7 +296,7 @@
                                             <br>
                                             <label for="furnishingStatus">Furnishing Status</label>
                                             <br>
-                                            <select class="form-control w-50 " name="furnishingStatus"
+                                            <select class="form-control w-50 " onchange="furnishingSelect()" name="furnishingStatus"
                                               id="furnishingStatus" required>
                                               <% if(property && property.propertyFeatures.furnishingStatus=="" ){ %>
                                                 <option value="" selected>Select</option>
@@ -305,7 +305,7 @@
                                                   <%}%>
                                                     <% if(property &&
                                                       property.propertyFeatures.furnishingStatus=="Furnished" ){ %>
-                                                      <option value="Furnished" selected>Furnished</option>
+                                                      <option value="Furnished"  selected>Furnished</option>
                                                       <%}else {%>
                                                         <option value="Furnished">Furnished</option>
                                                         <%}%>
@@ -327,122 +327,125 @@
                                                                     <%}%>
                                             </select>
                                             <br>
-                                            <h3>Furniture</h3>
-                                            <div class="row">
-                                              <div class="form-check col-6">
+                                            <div id="furnishedDiv" class="d-none" >
+                                              <h3>Furniture</h3>
+                                              <div class="row">
+                                                <div class="form-check col-6">
+                                                    <input class="form-check-input" name="furniture" type="checkbox"
+                                                      value="TV" id="TV">
+                                                  <label class="form-check-label" for="TV">
+                                                    TV
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
                                                   <input class="form-check-input" name="furniture" type="checkbox"
-                                                    value="TV" id="TV">
-                                                <label class="form-check-label" for="TV">
-                                                  TV
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="TV unit" id="TV unit">
-                                                <label class="form-check-label" for="TV unit">
-                                                  TV unit
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Sofa" id="Sofa">
-                                                <label class="form-check-label" for="Sofa">
-                                                  Sofa
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Dining Table" id="Dining Table">
-                                                <label class="form-check-label" for="Dining Table">
-                                                  Dining Table
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" onchange="fan()" name="furniture"
-                                                  type="checkbox" value="Fan" id="Fan.">
-                                                <label class="form-check-label" for="Fan.">
-                                                  Fan
-                                                </label>
-                                                <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50  d-none"
-                                                  id="fanAmount" name="Quantity">
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" onchange="light()" name="furniture"
-                                                  type="checkbox" value="Light" id="Light">
-                                                <label class="form-check-label" for="Light">
-                                                  Light
-                                                </label>
-                                                <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50  d-none"
-                                                  id="lightAmount" name="Quantity">
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Modular Kitchen" id="Modular Kitchen">
-                                                <label class="form-check-label" for="Modular Kitchen">
-                                                  Modular Kitchen
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Chimney" id="Chimney">
-                                                <label class="form-check-label" for="Chimney">
-                                                  Chimney
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Microwave" id="Microwave">
-                                                <label class="form-check-label" for="Microwave">
-                                                  Microwave
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Fridge" id="Fridge">
-                                                <label class="form-check-label" for="Fridge">
-                                                  Fridge
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" name="furniture" type="checkbox"
-                                                  value="Washing machine" id="Washingmachine">
-                                                <label class="form-check-label" for="Washingmachine">
-                                                  Washing machine
-                                                </label>
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" onchange="bed()" name="furniture"
-                                                  type="checkbox" value="Bed" id="Bed">
-                                                <label class="form-check-label" for="Bed">
-                                                  Bed
-                                                </label>
-                                                <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50  d-none"
-                                                  id="bedAmount" name="Quantity">
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" onchange="wadrobe()" name="furniture"
-                                                  type="checkbox" value="Wadrobe" id="Wadrobe">
-                                                <label class="form-check-label" for="Wadrobe">
-                                                  Wadrobe
-                                                </label>
-                                                <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50  d-none"
-                                                  id="wadrobeAmount" name="Quantity">
-                                              </div>
-                                              <div class="form-check col-6">
-                                                <input class="form-check-input" onchange="curtains()" name="furniture"
-                                                  type="checkbox" value="Curtains" id="Curtains">
-                                                <label class="form-check-label" for="Curtains">
-                                                  Curtains
-                                                </label>
-                                                <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50  d-none"
-                                                  id="curtainsAmount" name="Quantity">
+                                                    value="TV unit" id="TV unit">
+                                                  <label class="form-check-label" for="TV unit">
+                                                    TV unit
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Sofa" id="Sofa">
+                                                  <label class="form-check-label" for="Sofa">
+                                                    Sofa
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Dining Table" id="Dining Table">
+                                                  <label class="form-check-label" for="Dining Table">
+                                                    Dining Table
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" onchange="fan()" name="furniture"
+                                                    type="checkbox" value="Fan" id="Fan.">
+                                                  <label class="form-check-label" for="Fan.">
+                                                    Fan
+                                                  </label>
+                                                  <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                    title="Please enter a valid number" class="form-control w-50  d-none"
+                                                    id="fanAmount" name="Quantity">
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" onchange="light()" name="furniture"
+                                                    type="checkbox" value="Light" id="Light">
+                                                  <label class="form-check-label" for="Light">
+                                                    Light
+                                                  </label>
+                                                  <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                    title="Please enter a valid number" class="form-control w-50  d-none"
+                                                    id="lightAmount" name="Quantity">
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Modular Kitchen" id="Modular Kitchen">
+                                                  <label class="form-check-label" for="Modular Kitchen">
+                                                    Modular Kitchen
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Chimney" id="Chimney">
+                                                  <label class="form-check-label" for="Chimney">
+                                                    Chimney
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Microwave" id="Microwave">
+                                                  <label class="form-check-label" for="Microwave">
+                                                    Microwave
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Fridge" id="Fridge">
+                                                  <label class="form-check-label" for="Fridge">
+                                                    Fridge
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" name="furniture" type="checkbox"
+                                                    value="Washing machine" id="Washingmachine">
+                                                  <label class="form-check-label" for="Washingmachine">
+                                                    Washing machine
+                                                  </label>
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" onchange="bed()" name="furniture"
+                                                    type="checkbox" value="Bed" id="Bed">
+                                                  <label class="form-check-label" for="Bed">
+                                                    Bed
+                                                  </label>
+                                                  <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                    title="Please enter a valid number" class="form-control w-50  d-none"
+                                                    id="bedAmount" name="Quantity">
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" onchange="wadrobe()" name="furniture"
+                                                    type="checkbox" value="Wadrobe" id="Wadrobe">
+                                                  <label class="form-check-label" for="Wadrobe">
+                                                    Wadrobe
+                                                  </label>
+                                                  <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                    title="Please enter a valid number" class="form-control w-50  d-none"
+                                                    id="wadrobeAmount" name="Quantity">
+                                                </div>
+                                                <div class="form-check col-6">
+                                                  <input class="form-check-input" onchange="curtains()" name="furniture"
+                                                    type="checkbox" value="Curtains" id="Curtains">
+                                                  <label class="form-check-label" for="Curtains">
+                                                    Curtains
+                                                  </label>
+                                                  <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
+                                                    title="Please enter a valid number" class="form-control w-50  d-none"
+                                                    id="curtainsAmount" name="Quantity">
+                                                </div>
                                               </div>
                                             </div>
+                                            
                                             <br>
                                             <h3>Area</h3>
 
@@ -2650,6 +2653,17 @@
       var Modal = document.getElementById("PreviewImgModal");
       var img = document.getElementById(id);
       Modal.src = img.src
+    }
+
+    function furnishingSelect(){
+      let val = document.getElementById("furnishingStatus").value;
+     if(val == "Furnished" || val == "Semi-Furnished"){
+       if(document.getElementById("furnishedDiv").classList.contains("d-none"))
+           document.getElementById("furnishedDiv").classList.remove("d-none")
+
+     }else{
+      document.getElementById("furnishedDiv").classList.add("d-none")
+     }
     }
 
     function ImgTag(event, id) {
