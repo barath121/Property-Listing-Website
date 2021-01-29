@@ -20,7 +20,7 @@
               <label for="PropertyType">Property type</label>
               <br>
               <br>
-              <select class="form-control w-50" name="PropertyType" id="PropertyType" required>
+              <select class="form-control w-50 " name="PropertyType" id="PropertyType" required>
                 <option value="">Select</option>
                 <% if(property.propertyType=="Flat/Apartment" ){ %>
                   <option value="Flat/Apartment" selected> Flat/Apartment </option>
@@ -85,7 +85,7 @@
               <label for="Locality">Locality</label>
               <br>
               <br>
-              <select class="form-control w-50" name="Locality" id="Locality" required>
+              <select class="form-control w-50 " name="Locality" id="Locality" required>
                 <% if(property.locality=="Roadpali" ){ %>
                   <option value="Roadpali" selected>Roadpali</option>
                   <%}else{%>
@@ -107,10 +107,10 @@
               <label for="name">Name</label>
               <br>
               <% if(property.name){ %>
-                <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name" name="name"
+                <input type="text" placeholder="Enter name of property" class="form-control w-50 " id="name" name="name"
                   value="<%= property.name %>" required>
                 <%}else{%>
-                  <input type="text" placeholder="Enter name of property" class="form-control w-50" id="name"
+                  <input type="text" placeholder="Enter name of property" class="form-control w-50 " id="name"
                     name="name" required>
                   <%}%>
 
@@ -119,16 +119,16 @@
                     <label for="address">Address</label>
                     <br>
                     <% if(property.address){ %>
-                     <textarea type="text" class="form-control w-50" name="address" id="address" cols="30" rows="3" required><%=property.address%></textarea>
+                     <textarea type="text" class="form-control w-50 " name="address" id="address" cols="30" rows="3" required><%=property.address%></textarea>
                      <%}else{%>
-                      <textarea type="text" class="form-control w-50" name="address" id="address" cols="30" rows="3"><%=property.address%></textarea>
+                      <textarea type="text" class="form-control w-50 " name="address" id="address" cols="30" rows="3"><%=property.address%></textarea>
                         <%}%>
                           <br>
                           <br>
                           <div>
                             <label for="Bedrooms">Bedrooms</label>
                             <br>
-                            <select class="form-control w-50" onchange="dimensions()" name="Bedrooms" id="Bedrooms"
+                            <select class="form-control w-50 " onchange="dimensions()" name="Bedrooms" id="Bedrooms"
                               required>
                               <% if(property && property.propertyFeatures.bedrooms=="0" ){ %>
                                 <option value="0" selected>0</option>
@@ -163,7 +163,7 @@
                                                                 <%}%>
                             </select>
                             <div id="tableDivBed" class="d-none">
-                              <table class="table w-50">
+                              <table class="table w-50 ">
                                 <thead>
                                   <th scope="col">#</th>
                                   <th scope="col">Length</th>
@@ -178,7 +178,7 @@
                             <br>
                             <label for="Balconies">Balconies</label>
                             <br>
-                            <select class="form-control w-50" onchange="balconies()" name="Balconies" id="Balconies"
+                            <select class="form-control w-50 " onchange="balconies()" name="Balconies" id="Balconies"
                               required>
                               <% if(property && property.propertyFeatures.balconies=="0" ){ %>
                                 <option value="0" selected>0</option>
@@ -215,7 +215,7 @@
                             <br>
                             <label for="bathroom">Bathroom</label>
                             <br>
-                            <select class="form-control w-50" onchange="bathrooms()" name="bathroom" id="bathroom"
+                            <select class="form-control w-50 " onchange="bathrooms()" name="bathroom" id="bathroom"
                               required>
                               <% if(property && property.propertyFeatures.bathroom=="0" ){ %>
                                 <option value="0" selected>0</option>
@@ -255,11 +255,11 @@
                           <label for="floorNo">Floor No.</label>
                           <br>
                           <% if(property && property.propertyFeatures.floorNo){ %>
-                            <input type="text" class="form-control w-50" onchange="FloorNo()" pattern="^[0-9]*$"
+                            <input type="text" class="form-control w-50 " onchange="FloorNo()" pattern="^[0-9]*$"
                               title="Please enter a valid number" placeholder="Enter Floor number" id="floorNo"
                               name="floorNo" value="<%= property.propertyFeatures.floorNo %>" required>
                             <%}else{%>
-                              <input type="text" class="form-control w-50" onchange="FloorNo()" pattern="^[0-9]*$"
+                              <input type="text" class="form-control w-50 " onchange="FloorNo()" pattern="^[0-9]*$"
                                 title="Please enter a valid number" placeholder="Enter Floor number" id="floorNo"
                                 name="floorNo" required>
                               <%}%>
@@ -268,12 +268,12 @@
                                 <label for="totalFloors">Total Floors</label>
                                 <br>
                                 <% if( property && property.propertyFeatures.totalFloors){ %>
-                                  <input type="text" onchange="totalFloor()" class="form-control w-50"
+                                  <input type="text" onchange="totalFloor()" class="form-control w-50 "
                                     pattern="^[0-9]*$" title="Please enter a valid number"
                                     placeholder="Enter Total Floors" id="totalFloors" name="totalFloors"
                                     value="<%= property.propertyFeatures.totalFloors %>" required>
                                   <%}else{%>
-                                    <input type="text" onchange="totalFloor()" class="form-control w-50"
+                                    <input type="text" onchange="totalFloor()" class="form-control w-50 "
                                       pattern="^[0-9]*$" title="Please enter a valid number"
                                       placeholder="Enter Total Floors" id="totalFloors" name="totalFloors" required>
                                     <%}%>
@@ -282,12 +282,12 @@
                                       <label for="flatsOnFloor">Flats On Floor</label>
                                       <br>
                                       <% if( property && property.propertyFeatures.totalFloors){ %>
-                                        <input type="text" class="form-control w-50"
+                                        <input type="text" class="form-control w-50 "
                                           placeholder="Enter The Number of Flats on the floor" pattern="^[0-9]*$"
                                           title="Please enter a valid number" id="flatsOnFloor" name="flatsOnFloor"
                                           value="<%= property.propertyFeatures.flatsOnFloor %>" required>
                                         <%}else{%>
-                                          <input type="text" class="form-control w-50"
+                                          <input type="text" class="form-control w-50 "
                                             placeholder="Enter The Number of Flats on the floor" pattern="^[0-9]*$"
                                             title="Please enter a valid number" id="flatsOnFloor" name="flatsOnFloor"
                                             required>
@@ -296,7 +296,7 @@
                                             <br>
                                             <label for="furnishingStatus">Furnishing Status</label>
                                             <br>
-                                            <select class="form-control w-50" name="furnishingStatus"
+                                            <select class="form-control w-50 " name="furnishingStatus"
                                               id="furnishingStatus" required>
                                               <% if(property && property.propertyFeatures.furnishingStatus=="" ){ %>
                                                 <option value="" selected>Select</option>
@@ -364,7 +364,7 @@
                                                   Fan
                                                 </label>
                                                 <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50 d-none"
+                                                  title="Please enter a valid number" class="form-control w-50  d-none"
                                                   id="fanAmount" name="Quantity">
                                               </div>
                                               <div class="form-check col-6">
@@ -374,7 +374,7 @@
                                                   Light
                                                 </label>
                                                 <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50 d-none"
+                                                  title="Please enter a valid number" class="form-control w-50  d-none"
                                                   id="lightAmount" name="Quantity">
                                               </div>
                                               <div class="form-check col-6">
@@ -419,7 +419,7 @@
                                                   Bed
                                                 </label>
                                                 <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50 d-none"
+                                                  title="Please enter a valid number" class="form-control w-50  d-none"
                                                   id="bedAmount" name="Quantity">
                                               </div>
                                               <div class="form-check col-6">
@@ -429,7 +429,7 @@
                                                   Wadrobe
                                                 </label>
                                                 <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50 d-none"
+                                                  title="Please enter a valid number" class="form-control w-50  d-none"
                                                   id="wadrobeAmount" name="Quantity">
                                               </div>
                                               <div class="form-check col-6">
@@ -439,7 +439,7 @@
                                                   Curtains
                                                 </label>
                                                 <input type="text" placeholder="enter quantity" pattern="^[0-9]*$"
-                                                  title="Please enter a valid number" class="form-control w-50 d-none"
+                                                  title="Please enter a valid number" class="form-control w-50  d-none"
                                                   id="curtainsAmount" name="Quantity">
                                               </div>
                                             </div>
@@ -448,7 +448,7 @@
 
                                             <label for="carpetArea">Carpet Area</label>
                                             <br>
-                                            <div class="input-group w-50">
+                                            <div class="input-group w-50 ">
                                               <% if(property && property.propertyFeatures.carpetArea){ %>
                                                 <input type="text" id="carpetArea" pattern="^[0-9]*$"
                                                   title="Please enter a valid number"
@@ -475,7 +475,7 @@
                                             <br>
                                             <label for="superBuiltUpArea">Super BuiltUp Area</label>
                                             <br>
-                                            <div class="input-group w-50">
+                                            <div class="input-group w-50 ">
                                               <% if(property && property.propertyFeatures.superBuiltUpArea){ %>
                                                 <input type="text" id="superBuiltUpArea" pattern="^[0-9]*$"
                                                   title="Please enter a valid number"
@@ -503,7 +503,7 @@
                                             <br>
                                             <label for="builtUpArea">BuiltUp Area</label>
                                             <br>
-                                            <div class="input-group w-50">
+                                            <div class="input-group w-50 ">
                                               <% if(property && property.propertyFeatures.builtUpArea){ %>
                                                 <input type="text" id="builtUpArea" pattern="^[0-9]*$"
                                                   title="Please enter a valid number"
@@ -538,7 +538,7 @@
                                                 <br>
                                                 <input type="text" id="expectedPrice" pattern="^[0-9]*$"
                                                   title="Please enter a valid number"
-                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                   name="expectedPrice"
                                                   value="<%= property.priceDetails.expectedPrice %>"
                                                   placeholder="Enter total price"><span>
@@ -548,7 +548,7 @@
                                                   <br>
                                                   <input type="text" id="bookingAmount" pattern="^[0-9]*$"
                                                     title="Please enter a valid number"
-                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                     name="bookingAmount"
                                                     value="<%= property.priceDetails.bookingAmount %>" placeholder="Enter total price"><span>
                                                     <br>
@@ -628,7 +628,7 @@
                                                           <br>
                                                           <label for="month">Month</label>
                                                           <br>
-                                                          <select class="form-control w-50" name="month" id="month"
+                                                          <select class="form-control w-50 " name="month" id="month"
                                                             required>
                                                             <% if(property.priceDetails.month=="January" ){ %>
                                                               <option value="January" selected>January</option>
@@ -758,12 +758,12 @@
                                                           <label for="year">Year</label>
                                                           <br>
                                                           <% if(property.priceDetails.year){ %>
-                                                            <input type="text" class="form-control w-50"
+                                                            <input type="text" class="form-control w-50 "
                                                               pattern="^[0-9]*$" title="Please enter a valid number"
                                                               id="year" name="year" placeholder="Enter year"
                                                               value="<%= property.priceDetails.year %>" required>
                                                             <%} else {%>
-                                                              <input type="text" class="form-control w-50"
+                                                              <input type="text" class="form-control w-50 "
                                                                 pattern="^[0-9]*$" title="Please enter a valid number"
                                                                 id="year" name="year" placeholder="Enter year" required>
                                                               <%}%>
@@ -772,7 +772,7 @@
                                                           <br>
                                                           <label for="ageOfConstruction">Age Of Construction</label>
                                                           <br>
-                                                          <select class="form-control w-50" name="ageOfConstruction"
+                                                          <select class="form-control w-50 " name="ageOfConstruction"
                                                             id="ageOfConstruction" >
                                                             <% if(property.priceDetails.ageOfConstruction=="" ){ %>
                                                               <option value="" selected>select</option>
@@ -845,7 +845,7 @@
                                                             <br>
                                                             <label for="month">Month</label>
                                                             <br>
-                                                            <select class="form-control w-50" name="month" id="month"
+                                                            <select class="form-control w-50 " name="month" id="month"
                                                               >
                                                               <% if(property.priceDetails.month=="January" ){ %>
                                                                 <option value="January" selected>January</option>
@@ -978,12 +978,12 @@
                                                             <label for="year">Year</label>
                                                             <br>
                                                             <% if(property.priceDetails.year){ %>
-                                                              <input type="text" class="form-control w-50"
+                                                              <input type="text" class="form-control w-50 "
                                                                 pattern="^[0-9]*$" title="Please enter a valid number"
                                                                 id="year" name="year" placeholder="Enter year"
                                                                 value="<%= property.priceDetails.year %>" required>
                                                               <%} else {%>
-                                                                <input type="text" class="form-control w-50"
+                                                                <input type="text" class="form-control w-50 "
                                                                   pattern="^[0-9]*$" title="Please enter a valid number"
                                                                   id="year" name="year" placeholder="Enter year"
                                                                   >
@@ -993,7 +993,7 @@
                                                             <br>
                                                             <label for="ageOfConstruction">Age Of Construction</label>
                                                             <br>
-                                                            <select class="form-control w-50" name="ageOfConstruction"
+                                                            <select class="form-control w-50 " name="ageOfConstruction"
                                                               id="ageOfConstruction" required>
                                                               <% if(property.priceDetails.ageOfConstruction=="" ){ %>
                                                                 <option value="" selected>select</option>
@@ -1067,7 +1067,7 @@
                                                     <br>
                                                     <label for="saleBrokerage">Sale Brokerage</label>
                                                     <br>
-                                                    <select class="form-control w-50" name="saleBrokerage"
+                                                    <select class="form-control w-50 " name="saleBrokerage"
                                                       id="saleBrokerage" required>
                                                       <% if(property.priceDetails.saleBrokerage=="No Brokerage" ){ %>
                                                         <option value="No Brokerage" selected>No Brokerage</option>
@@ -1141,7 +1141,7 @@
                                                 <br>
                                                 <input type="text" id="expectedRent" pattern="^[0-9]*$"
                                                   title="Please enter a valid number"
-                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                   name="expectedRent" placeholder="Enter total price"><span>
                                                   <br>
                                                   <br>
@@ -1149,13 +1149,13 @@
                                                   <br>
                                                   <input type="text" pattern="^[0-9]*$"
                                                     title="Please enter a valid number" id="securityDeposit"
-                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                     name="securityDeposit" placeholder="Enter total price"><span>
                                                     <br>
                                                     <br>
                                                     <label for="rentBrokerage">Rent Brokerage</label>
                                                     <br>
-                                                    <select class="form-control w-50" name="rentBrokerage"
+                                                    <select class="form-control w-50 " name="rentBrokerage"
                                                       id="rentBrokerage">
                                                       <option value="No Brokerage">No Brokerage</option>
                                                       <option value="30 Days">30 Days</option>
@@ -1171,7 +1171,7 @@
                                                   <br>
                                                   <input type="text" id="expectedPrice" pattern="^[0-9]*$"
                                                     title="Please enter a valid number"
-                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                     name="expectedPrice" placeholder="Enter total price"><span>
                                                     <br>
                                                     <br>
@@ -1179,7 +1179,7 @@
                                                     <br>
                                                     <input type="text" id="bookingAmount" pattern="^[0-9]*$"
                                                       title="Please enter a valid number"
-                                                      class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                      class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                       name="bookingAmount" placeholder="Enter total price"><span>
                                                       <br>
                                                       <br>
@@ -1229,7 +1229,7 @@
                                                           <br>
                                                           <label for="month">Month</label>
                                                           <br>
-                                                          <select class="form-control w-50" name="month" id="month"
+                                                          <select class="form-control w-50 " name="month" id="month"
                                                             >
                                                             <option value="January">January</option>
                                                             <option value="February">February</option>
@@ -1247,7 +1247,7 @@
                                                           <br>
                                                           <label for="year">Year</label>
                                                           <br>
-                                                          <input type="text" class="form-control w-50"
+                                                          <input type="text" class="form-control w-50 "
                                                             pattern="^[0-9]*$" title="Please enter a valid number"
                                                             id="year" name="year" placeholder="Enter year" >
                                                         </div>
@@ -1255,7 +1255,7 @@
                                                           <br>
                                                           <label for="ageOfConstruction">Age Of Construction</label>
                                                           <br>
-                                                          <select class="form-control w-50" name="ageOfConstruction"
+                                                          <select class="form-control w-50 " name="ageOfConstruction"
                                                             id="ageOfConstruction" >
                                                             <option value="">select</option>
                                                             <option value="New Construction">New Construction</option>
@@ -1273,7 +1273,7 @@
                                                       <br>
                                                       <label for="saleBrokerage">Sale Brokerage</label>
                                                       <br>
-                                                      <select class="form-control w-50" name="saleBrokerage"
+                                                      <select class="form-control w-50 " name="saleBrokerage"
                                                         id="saleBrokerage" >
                                                         <option value="No Brokerage">No Brokerage</option>
                                                         <option value="0.25%">0.25%</option>
@@ -1294,14 +1294,14 @@
                                                   <% if(property.priceDetails.expectedRent){ %>
                                                     <input type="text" id="expectedRent" pattern="^[0-9]*$"
                                                       title="Please enter a valid number"
-                                                      class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                      class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                       name="expectedRent"
                                                       value="<%= property.priceDetails.expectedRent %>"
                                                       placeholder="Enter total price"><span>
                                                       <%} else {%>
                                                         <input type="text" id="expectedRent" pattern="^[0-9]*$"
                                                           title="Please enter a valid number"
-                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                           name="expectedRent" placeholder="Enter total price"><span>
                                                           <%}%>
                                                             <br>
@@ -1311,7 +1311,7 @@
                                                             <% if(property.priceDetails.securityDeposit){ %>
                                                               <input type="text" pattern="^[0-9]*$"
                                                                 title="Please enter a valid number" id="securityDeposit"
-                                                                class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                                class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                                 name="securityDeposit"
                                                                 value="<%= property.priceDetails.securityDeposit %>"
                                                                 placeholder="Enter total price"><span>
@@ -1319,7 +1319,7 @@
                                                                   <input type="text" pattern="^[0-9]*$"
                                                                     title="Please enter a valid number"
                                                                     id="securityDeposit"
-                                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                                    class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                                     name="securityDeposit"
                                                                     placeholder="Enter total price"><span>
                                                                     <%}%>
@@ -1327,7 +1327,7 @@
                                                                       <br>
                                                                       <label for="rentBrokerage">Rent Brokerage</label>
                                                                       <br>
-                                                                      <select class="form-control w-50"
+                                                                      <select class="form-control w-50 "
                                                                         name="rentBrokerage" id="rentBrokerage">
                                                                         <% if(property.priceDetails.rentBrokerage=="No Brokerage"
                                                                           ){ %>
@@ -1372,7 +1372,7 @@
                                                       <br>
                                                       <input type="text" id="expectedPrice" pattern="^[0-9]*$"
                                                         title="Please enter a valid number"
-                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                         name="expectedPrice" placeholder="Enter total price"><span>
                                                         <br>
                                                         <br>
@@ -1380,7 +1380,7 @@
                                                         <br>
                                                         <input type="text" id="bookingAmount" pattern="^[0-9]*$"
                                                           title="Please enter a valid number"
-                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                           name="bookingAmount" placeholder="Enter total price"><span>
                                                           <br>
                                                           <br>
@@ -1430,7 +1430,7 @@
                                                               <br>
                                                               <label for="month">Month</label>
                                                               <br>
-                                                              <select class="form-control w-50" name="month" id="month"
+                                                              <select class="form-control w-50 " name="month" id="month"
                                                                 required>
                                                                 <option value="January">January</option>
                                                                 <option value="February">February</option>
@@ -1448,7 +1448,7 @@
                                                               <br>
                                                               <label for="year">Year</label>
                                                               <br>
-                                                              <input type="text" class="form-control w-50"
+                                                              <input type="text" class="form-control w-50 "
                                                                 pattern="^[0-9]*$" title="Please enter a valid number"
                                                                 id="year" name="year" placeholder="Enter year" required>
                                                             </div>
@@ -1456,7 +1456,7 @@
                                                               <br>
                                                               <label for="ageOfConstruction">Age Of Construction</label>
                                                               <br>
-                                                              <select class="form-control w-50" name="ageOfConstruction"
+                                                              <select class="form-control w-50 " name="ageOfConstruction"
                                                                 id="ageOfConstruction" required>
                                                                 <option value="">select</option>
                                                                 <option value="New Construction">New Construction
@@ -1476,7 +1476,7 @@
                                                           <br>
                                                           <label for="saleBrokerage">Sale Brokerage</label>
                                                           <br>
-                                                          <select class="form-control w-50" name="saleBrokerage"
+                                                          <select class="form-control w-50 " name="saleBrokerage"
                                                             id="saleBrokerage" required>
                                                             <option value="No Brokerage">No Brokerage</option>
                                                             <option value="0.25%">0.25%</option>
@@ -1496,7 +1496,7 @@
                                                       <br>
                                                       <input type="text" id="expectedRent" pattern="^[0-9]*$"
                                                         title="Please enter a valid number"
-                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                         name="expectedRent" placeholder="Enter total price"><span>
                                                         <br>
                                                         <br>
@@ -1504,13 +1504,13 @@
                                                         <br>
                                                         <input type="text" pattern="^[0-9]*$"
                                                           title="Please enter a valid number" id="securityDeposit"
-                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                           name="securityDeposit" placeholder="Enter total price"><span>
                                                           <br>
                                                           <br>
                                                           <label for="rentBrokerage">Rent Brokerage</label>
                                                           <br>
-                                                          <select class="form-control w-50" name="rentBrokerage"
+                                                          <select class="form-control w-50 " name="rentBrokerage"
                                                             id="rentBrokerage">
                                                             <option value="No Brokerage">No Brokerage</option>
                                                             <option value="30 Days">30 Days</option>
@@ -1569,14 +1569,14 @@
                                                       <% if(property && property.priceDetails.maintaninceCharge){ %>
                                                         <input type="text" id="maintaninceCharge" pattern="^[0-9]*$"
                                                           title="Please enter a valid number"
-                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                          class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                           name="maintaninceCharge"
                                                           value="<%= property.priceDetails.maintaninceCharge %>"
                                                           placeholder="Enter total price" required><span>
                                                           <%} else {%>
                                                             <input type="text" id="maintaninceCharge" pattern="^[0-9]*$"
                                                               title="Please enter a valid number"
-                                                              class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                              class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                               name="maintaninceCharge" placeholder="Enter total price"
                                                               required><span>
                                                               <%}%>
@@ -1585,7 +1585,7 @@
                                                                 <label for="maintaninceChargeType">Maintanince Charge
                                                                   Type</label>
                                                                 <br>
-                                                                <select class="form-control w-50"
+                                                                <select class="form-control w-50 "
                                                                   name="maintaninceChargeType"
                                                                   id="maintaninceChargeType" required>
                                                                   <% if(property &&
@@ -1639,7 +1639,7 @@
                                                                         id="priceIncludesPCL">
                                                                       <%}%>
                                                                   <label class="form-check-label"
-                                                                    for="priceIncludesPCL">PCL</label>
+                                                                    for="priceIncludesPCL">PLC</label>
                                                                 </div>
                                                                 <div class="form-check form-check-inline">
                                                                   <% if(property && property.priceDetails.priceIncludes.includes("Car Parking")){ %>
@@ -1692,13 +1692,13 @@
                                                                 <% if(property && property.priceDetails.tokenAmount){ %>
                                                                 <input type="text" id="tokenAmount" pattern="^[0-9]*$"
                                                                   title="Please enter a valid number"
-                                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                                   name="tokenAmount" placeholder="Enter total price" value="<%= property.priceDetails.tokenAmount %>"
                                                                   required><span>
                                                                     <%} else {%>
                                                                       <input type="text" id="tokenAmount" pattern="^[0-9]*$"
                                                                         title="Please enter a valid number"
-                                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                                                                         name="tokenAmount" placeholder="Enter total price"
                                                                         required><span>
                                                                       <%}%>
@@ -1771,7 +1771,7 @@
               <br>
               <label for="facing">Facing</label>
               <br>
-              <select class="form-control w-50" name="facing" id="facing" required>
+              <select class="form-control w-50 " name="facing" id="facing" required>
                 <% if(property && property.additionalFeatures.facing == "North" ){ %>
                 <option value="North" selected>North</option>
                 <%}else{%>
@@ -1869,7 +1869,7 @@
               <br>
               <label for="carParking">Car Parking</label>
               <br>
-              <select class="form-control w-50" name="carParking" id="carParking" required>
+              <select class="form-control w-50 " name="carParking" id="carParking" required>
                 <% if(property && property.additionalFeatures.carParking == "None"){ %> 
                 <option value="None" selected>None</option>
                 <%}else{%>
@@ -1895,7 +1895,7 @@
               <br>
               <label for="liftsInTheTower">Lifts In The Tower</label>
               <br>
-              <select class="form-control w-50" name="liftsInTheTower" id="liftsInTheTower" required>
+              <select class="form-control w-50 " name="liftsInTheTower" id="liftsInTheTower" required>
                 <% if(property && property.additionalFeatures.liftsInTheTower == "0"){ %> 
                 <option value="0" selected>0</option>
                 <%}else{%>
@@ -1941,10 +1941,10 @@
               </div>
               <% if(property && property.additionalFeatures.multipleUnitsAvaliable == true){ %> 
               <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
-                class="form-control w-50" id="unitAmount" value="<%=  property.additionalFeatures.unitQuantity %>" name="unitQuantity">
+                class="form-control w-50 " id="unitAmount" value="<%=  property.additionalFeatures.unitQuantity %>" name="unitQuantity">
                 <%}else{%>
                   <input type="text" placeholder="enter quantity" pattern="^[0-9]*$" title="Please enter a valid number"
-                class="form-control w-50 d-none" id="unitAmount" name="unitQuantity">
+                class="form-control w-50  d-none" id="unitAmount" name="unitQuantity">
                   <%}%>
               <br>
               <br>
@@ -1953,7 +1953,7 @@
 
               <label for="avaliablityOfWater">Avaliablity Of Water</label>
               <br>
-              <select class="form-control w-50" name="avaliablityOfWater" id="avaliablityOfWater" required>
+              <select class="form-control w-50 " name="avaliablityOfWater" id="avaliablityOfWater" required>
                 <% if(property && property.statusOfWaterandElectric.avaliablityOfWater == "24 Hours Available"){ %>
                 <option value="24 Hours Available" selected>24 Hours Available</option>
                 <%}else{%>
@@ -1985,7 +1985,7 @@
 
               <label for="avaliablityOfElectricity">Availablity Of Electricity</label>
               <br>
-              <select class="form-control w-50" name="avaliablityOfElectricity" id="avaliablityOfElectricity" required>
+              <select class="form-control w-50 " name="avaliablityOfElectricity" id="avaliablityOfElectricity" required>
                 <% if(property && property.statusOfWaterandElectric.avaliablityOfElectricity == "24 Hours Available"){ %>
                   <option value="24 Hours Available" selected>24 Hours Available</option>
                   <%}else{%>
@@ -2017,7 +2017,7 @@
               <h3>Others</h3>
               <label for="ownershipStatus">Ownership Status</label>
               <br>
-              <select class="form-control w-50" name="ownershipStatus" id="ownershipStatus" required>
+              <select class="form-control w-50 " name="ownershipStatus" id="ownershipStatus" required>
                 <% if(property && property.ownershipAndApproval.ownershipStatus == "Freehold"){ %>
                 <option value="Freehold" selected>Freehold</option>
                 <%}else{%>
@@ -2462,10 +2462,10 @@
               <label for="landmarks">Landmarks</label>
               <br>
               <% if(property && property.landmarks){ %>
-              <input type="text" id="landmarks" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+              <input type="text" id="landmarks" class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                 name="landmarks" value="<%= property.landmarks %>" placeholder="Enter landmark" required><span>
                   <%}else{%>
-                    <input type="text" id="landmarks" class="form-control border-top-0 border-left-0 border-right-0 w-50"
+                    <input type="text" id="landmarks" class="form-control border-top-0 border-left-0 border-right-0 w-50 "
                       name="landmarks" placeholder="Enter landmark" required><span>
                     <%}%>
                 <br>
