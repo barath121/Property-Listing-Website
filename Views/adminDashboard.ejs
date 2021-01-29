@@ -52,8 +52,6 @@
                                             <div class=""><span class="hammersmithOne">Property Type:</span> <%= saved[a].propertyID.propertyType %></div>
                                             <div class=""><span class="hammersmithOne">Property For:</span> <%= saved[a].propertyID.propertyFor %></div>
                                             <div class=""><span class="hammersmithOne">Locality:</span> <%= saved[a].propertyID.locality %></div>
-                                            <br>
-                                            <div class=""><%= saved[a].propertyID.description %></div>
                                         </div>
                                     </div>
                                     <% } %> 
@@ -135,9 +133,9 @@
                                         <p>
                                             Price: 
                                             <span class="text-dark hammersmithOne">
-                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                                <% if (ele.ActivatedProperty[a].priceDetails.expectedPrice) { %>
                                                     ₹ <%= ele.ActivatedProperty[a].priceDetails.expectedPrice %>
-                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                                <% } else if(ele.ActivatedProperty[a].priceDetails.expectedRent) { %> 
                                                     ₹ <%= ele.ActivatedProperty[a].priceDetails.expectedRent %> per month
                                                 <% } %>
                                             </span> | 
@@ -164,7 +162,7 @@
                                             <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
                                         </form>
                                         <form action="/admin/deleteproperty" method="POST" class="uk-inline">
-                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
                                             <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
                                         </form>
                                     </div>
@@ -184,9 +182,9 @@
                                         <p>
                                             Price: 
                                             <span class="text-dark hammersmithOne">
-                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
+                                                <% if (ele.DisabledProperty[a].priceDetails.expectedPrice) { %> 
                                                     ₹ <%= ele.DisabledProperty[a].priceDetails.expectedPrice %>
-                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
+                                                <% } else if(ele.DisablesProperty[a].priceDetails.expectedRent) { %> 
                                                     ₹ <%= ele.DisabledProperty[a].priceDetails.expectedRent %> per month
                                                 <% } %>
                                             </span> | 
@@ -213,7 +211,7 @@
                                             <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                         </form>
                                         <form action="/admin/deleteproperty" method="POST" class="uk-inline">
-                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
                                             <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
                                         </form>
                                     </div>
@@ -335,7 +333,7 @@
                                             <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
                                         </form>
                                         <form action="/admin/deleteproperty" method="POST" class="uk-inline">
-                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
                                             <input type="hidden" name="type" value="commercial">
                                             <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
                                         </form>
@@ -387,7 +385,7 @@
                                         <a href="/property/editproperty?type=commercial&_id=<%= ele.DisabledProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
                                         <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
                                             <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
-                                            <input type="hidden" name="status" value="false">
+                                            <input type="hidden" name="status" value="true">
                                             <input type="hidden" name="type" value="commercial">
                                             <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                         </form>
@@ -446,14 +444,12 @@
                                             <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
                                             <input type="hidden" name="type" value="commercial">
                                             <% if (ele.AllProperty[a].isAvaliable == true) { %> 
-                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
                                                 <input type="hidden" name="status" value="false">
-                                                <input type="hidden" name="type" id="hidden">
+                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
 
                                             <% } %> 
                                             <% if (ele.AllProperty[a].isAvaliable == false) { %>
                                                 <input type="hidden" name="status" value="true">
-                                                <input type="hidden" name="type" id="hidden">
                                                 <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                             <% } %>
                                         </form>
