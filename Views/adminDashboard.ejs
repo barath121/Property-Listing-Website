@@ -3,7 +3,7 @@
 <section class="mt-5 mb-5">
     <div class="container">
         <% if (messages.success) { %>
-            <div class="uk-alert- uk-width-auto" uk-alert>
+            <div class="uk-alert-success uk-width-auto" uk-alert>
               <a class="uk-alert-close" uk-close></a>
               <p class="text-center"><%= messages.success %></p>
             </div>
@@ -251,7 +251,7 @@
                                                 <span class="text-danger font-weight-bold hammersmithOne">
                                                 InActive
                                                 </span>
-                                                <% } %> 
+                                            <% } %> 
                                             | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
                                         </p>
                                         <p>
@@ -370,13 +370,15 @@
                                         </p>
                                         <p>
                                             Status: 
-                                            <span class="text-success font-weight-bold hammersmithOne">
-                                                <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
+                                            <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
+                                                <span class="text-success font-weight-bold hammersmithOne">
                                                 Active
+                                                </span>
                                                 <% } else { %> 
+                                                <span class="text-danger font-weight-bold hammersmithOne">
                                                 InActive
-                                                <% } %> 
-                                            </span> 
+                                                </span>
+                                            <% } %>
                                             | Posted on: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].createdAt %></span>
                                         </p>
                                         <p>
@@ -387,10 +389,10 @@
                                             <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
                                             <input type="hidden" name="status" value="false">
                                             <input type="hidden" name="type" value="commercial">
-                                            <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+                                            <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                         </form>
                                         <form action="/admin/deleteproperty" method="POST" class="uk-inline">
-                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
                                             <input type="hidden" name="type" value="commercial">
                                             <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
                                         </form>
@@ -425,13 +427,15 @@
                                         </p>
                                         <p>
                                             Status: 
-                                            <span class="text-success font-weight-bold hammersmithOne">
-                                                <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                            <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                                <span class="text-success font-weight-bold hammersmithOne">
                                                 Active
+                                                </span>
                                                 <% } else { %> 
+                                                <span class="text-danger font-weight-bold hammersmithOne">
                                                 InActive
-                                                <% } %> 
-                                            </span> 
+                                                </span>
+                                            <% } %>
                                             | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
                                         </p>
                                         <p>
