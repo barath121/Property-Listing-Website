@@ -20,7 +20,7 @@ const StaticRoutes = (app) =>{
     })
     app.get('/property', PropertyController.ViewProperty);
     app.get('/newproperty', (req, res) => {
-        res.render('Create_property',{property:false})
+        res.render('Create_property',{property:false,Furniture:false,Quantity:false})
     })
     app.get('/dashboard', UserController.CheckLogin,UserController.userdashboard);
     app.get('/commercialproperty', (req, res) => {
