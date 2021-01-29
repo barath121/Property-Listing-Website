@@ -10,31 +10,36 @@
                       <a class="uk-alert-close" uk-close></a>
                       <p class="text-center"><%= messages.Success %></p>
                     </div>
-                  <% } %>
+                <% } %>
+                <div class="text-center breeSerif">
+                    <div class="text-danger"><span uk-icon="icon: mail; ratio: 3;"></span></div>
+                    <div>santoshproperty1@gmail.com</div>
+                </div>
+                <p class="text-center h3 breeSerif">OR</p> <br>
                 <form action="/user/addenquiry" method="POST">
                     <div class="form-group">
                       <label>Email address</label>
-                      <input type="email" name="email" class="form-control form-control-lg" required>
+                      <input type="email" name="email" class="form-control form-control-lg hammersmithOne" required>
                     </div>
     
                     <div class="form-group">
                         <label>Name</label>
-                        <input name="name" class="form-control form-control-lg" required>
+                        <input name="name" class="form-control form-control-lg hammersmithOne" required>
                     </div>
 
                     <div class="form-group">
                         <label>Contact Number</label>
-                        <input name="contactno" class="form-control form-control-lg" pattern="[7-9]{1}[0-9]{9}" 
+                        <input name="contactno" class="form-control form-control-lg hammersmithOne" pattern="[7-9]{1}[0-9]{9}" 
                         title="Enter A Phone Number" required>
                     </div>
 
                     <div class="form-group">
                         <label>Message (if any)</label>
-                        <textarea name="message" class="form-control form-control-lg" rows="7"></textarea>
+                        <textarea name="message" class="form-control form-control-lg hammersmithOne" rows="7"></textarea>
                     </div>
                     
                     <div class="text-center">
-                        <button type="submit" class="btn btn-lg btn-danger rounded-pill pl-5 pr-5">Submit</button>
+                        <button type="submit" class="btn btn-lg btn-danger rounded-pill pl-5 pr-5 hammersmithOne">Submit</button>
                     </div>
                 </form>
             </div>
@@ -44,15 +49,17 @@
                     <div class="col-6 text-center">
                         <span class="text-danger" uk-icon="icon: location; ratio: 2"></span>
                         <hr class="uk-divider-small">
-                        <div class="small">
+                        <div class="breeSerif">
                             Shop no. 4,<br>Siddhivinayak Heights <br> Sector 20, Roadpali,<br> Kalamboli, Panvel,<br> Navi Mumbai, <br> Maharashtra 410218
                         </div>
                     </div>
                     <div class="col-6 text-center">
                         <span class="text-danger" uk-icon="icon: phone; ratio: 2"></span>
                         <hr class="uk-divider-small">
-                        <div class="small">
-                            depending on how <br> big you want <br> you icon to be.
+                        <div class="breeSerif">
+                            <div>+91 9892274727</div>
+                            <div>+91 9082815289</div>
+                            <div>+91 9930735109</div>
                         </div>
                     </div>
                 </div> <br> <br>
