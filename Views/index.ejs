@@ -19,6 +19,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Location</label>
                       <select class="uk-select bg-transparent text-light" name="locality" id="form-stacked-select">
+                        <option class="text-dark" value="">Select</option>
                         <option class="text-dark" value="Roadpali">Roadpali</option>
                         <option class="text-dark" value="Kalamboli">Kalamboli</option>
                         <option class="text-dark" value="kharghar">Kharghar</option>
@@ -28,6 +29,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label class="text-warning">Status</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="status">
+                        <option value="">Select</option>
                         <option value="Ready to Move">Ready to Move</option>
                         <option value="Under Construction">Under Construction</option>
                       </select>
@@ -49,6 +51,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Bedroom</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="bedrooms">
+                        <option class="text-dark" value="">Select</option>
                         <option class="text-dark" value="1">1 BHK</option>
                         <option class="text-dark" value="2">2 BHK</option>
                         <option class="text-dark" value="3">3 BHK</option>
@@ -58,6 +61,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label for="exampleFormControlSelect1" class="text-warning">Budget</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="price">
+                        <option class="text-dark" value="">Select</option> 
                         <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option> 
                         <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
                         <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
@@ -92,6 +96,7 @@
                         <option class="text-dark" value="kharghar">Kharghar</option>
                       </select>
                     </div>
+                    <input type="hidden" name="propertyfor" value="Rent/Lease">
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label class="text-warning">Property Type</label>
                       <select class="uk-select bg-transparent text-light" name="propertytype" id="form-stacked-select">
@@ -144,17 +149,18 @@
               </li>
               <li>
                 <div class="uk-align-center rounded-lg p-4 " style="background-color: rgba(0,0,0,0.6);">
-                <form action="/search" method="GET">
+                <form action="/searchcommercial" method="GET">
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Buy / Rent</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
-                        <option class="text-dark" value="buy">Buy</option>
-                        <option class="text-dark" value="lease">Rent</option>
+                      <select class="uk-select bg-transparent text-light" name="propertyfor" id="form-stacked-select">
+                        <option class="text-dark" value="">Select</option>
+                        <option class="text-dark" value="Sale">Buy</option>
+                        <option class="text-dark" value="Rent/Lease">Rent</option>
                       </select>
                     </div>
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Location</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
+                      <select class="uk-select bg-transparent text-light" name="location" id="form-stacked-select">
                         <option value="">Select</option>
                         <option class="text-dark" value="Roadpali">Roadpali</option>
                         <option class="text-dark" value="Kalamboli">Kalamboli</option>
@@ -163,26 +169,32 @@
                     </div>
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label class="text-warning">Status</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
+                      <select class="uk-select bg-transparent text-light" name="status" id="form-stacked-select">
+                        <option value="">Select</option>
                         <option value="Ready to move">Ready to move</option>
                         <option value="Under construction">Under construction</option>
                       </select>
                     </div>
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label for="exampleFormControlSelect1" class="text-warning">Budget</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
-                        <option class="text-dark" value="1000 - 5000">1000 - 5000</option> 
-                        <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
-                        <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
-                        <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
-                        <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
-                        <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
-                        <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
-                        <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
-                        <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
-                        <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
-                        <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
-                        <option class="text-dark" value="8000 +">8000 +</option>
+                      <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="price">
+                        <option class="text-dark" value="">Select</option> 
+                        <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option> 
+                        <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                        <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                        <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                        <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                        <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                        <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                        <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                        <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                        <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                        <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                        <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                        <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                        <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                        <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                        <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
                       </select>
                     </div>
                   <button class="btn btn-danger uk-width-auto@s uk-width-1-1 ml-sm-3"><span class="p-1" uk-icon="search"></span></button>

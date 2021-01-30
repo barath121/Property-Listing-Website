@@ -865,7 +865,7 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     .skip(skip)
     .limit(limit)
     ;
-    countofpage  = await Property.countDocuments(condition);
+    countofpage  = await Commercial.countDocuments(condition);
     countofpage = parseInt(countofpage/10);
     conditionedProperties.forEach((element) => {
       console.log(element)
