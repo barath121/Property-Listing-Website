@@ -155,8 +155,11 @@ module.exports.AddEnquiry = (req,res,next) =>{
 module.exports.AddSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
+  let propertytype = req.query.propertytype
+  if(req.query.propertytype == "commercial")
+  saved.commercialID = req.query.propertyid;
+  else
   saved.propertyID = req.query.propertyid;
-  let propertytype  = req.query.propertytype;
   Saved.create(saved) 
   .catch(err=>{
     next(err);
@@ -172,11 +175,14 @@ module.exports.AddSaved = (req,res,next) =>{
 module.exports.RemoveSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
+  let propertytype = req.query.propertytype;
+  if(req.query.propertytype == "commercial")
+  saved.commercialID = req.query.propertyid;
+  else
   saved.propertyID = req.query.propertyid;
-  let propertytype  = req.query.propertytype;
   Saved.findOneAndRemove({$and : [
     {customerID : saved.customerID},
-    {propertyID : saved.propertyID}
+    {$or:[{propertyID : saved.propertyID},{commercialID : saved.commercialID}]}
   ]}) 
   .catch(err=>{
     next(err);
@@ -191,6 +197,7 @@ module.exports.RemoveSaved = (req,res,next) =>{
 module.exports.userdashboard =(req,res,next) =>{
 Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',select:'propertyType propertyFor name locality furnishing description'})
  .then(result=>{
+   console.log(result)
   res.render('userDashboard',{
     savedProperties : result
   })
