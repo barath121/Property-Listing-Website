@@ -17,4 +17,5 @@ UserRoute.route('/addenquiry').post(UserController.AddEnquiry);
 UserRoute.route('/addsaved').get(UserController.CheckLogin,UserController.AddSaved);
 UserRoute.route('/removesaved').get(UserController.CheckLogin,UserController.RemoveSaved);
 UserRoute.route('/changepassword').post(UserController.CheckLogin,UserController.changepassword);
+UserRoute.route('/forgotpassword').post(UserController.forgotpassword);
 module.exports = UserRoute;
