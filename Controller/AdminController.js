@@ -80,7 +80,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 "expectedRent" : 1,
                 "areaDetails.carpetArea" : 1
               }
-            }
+            },
+            { $sort : { _id : -1 } }
         ],
         "DisabledProperty" : [
           {
@@ -100,7 +101,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
               "expectedRent" : 1,
               "areaDetails.carpetArea" : 1
             }
-          }
+          },
+          { $sort : { _id : -1 } }
         ],
         "AllProperty" : [
           {
@@ -121,7 +123,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 "expectedRent" : 1,
                 "areaDetails.carpetArea" : 1
               }
-            }
+            },
+            { $sort : { _id : -1 } }
         ]
       }
     }]).catch(err=>{
@@ -147,7 +150,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                   "priceDetails.expectedRent" : 1,
                   "propertyFeatures.carpetArea" : 1
                 }
-              }
+              },
+              { $sort : { _id : -1 } }
           ],
           "DisabledProperty" : [
             {
@@ -167,7 +171,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 "priceDetails.expectedRent" : 1,
                 "propertyFeatures.carpetArea" : 1
               }
-            }
+            },
+            { $sort : { _id : -1 } }
           ],
           "AllProperty" : [
             {
@@ -188,7 +193,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                   "priceDetails.expectedRent" : 1,
                   "propertyFeatures.carpetArea" : 1
                 }
-              }
+              },
+              { $sort : { _id : -1 } }
           ]
         }
       }]).catch(err=>{
