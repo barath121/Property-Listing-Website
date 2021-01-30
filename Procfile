@@ -1,0 +1,1 @@
+web: $env:NODE_ENV="prod" npm start
