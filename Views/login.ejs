@@ -10,6 +10,12 @@
                   <p class="text-center"><%= messages.error %></p>
                 </div>
               <% } %>
+              <% if (messages.success) { %>
+                <div class="uk-alert-danger uk-width-auto" uk-alert>
+                  <a class="uk-alert-close" uk-close></a>
+                  <p class="text-center"><%= messages.success %></p>
+                </div>
+              <% } %>
               <h2 class="text-center font-weight-bold hammersmithOne">Welcome Back!</h2>
               <div class="text-center" >
                 <span uk-icon="icon: user; ratio: 3"></span>
