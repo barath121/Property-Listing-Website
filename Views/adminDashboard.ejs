@@ -1,12 +1,15 @@
 <%- include('./layouts/imports') -%>
 
-<% 
-    //properties.forEach(ele => {console.log(ele.ActivatedProperty);})
-%> 
-
 <section class="mt-5 mb-5">
     <div class="container">
-        <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+        <% if (messages.success) { %>
+            <div class="uk-alert-success uk-width-auto" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p class="text-center"><%= messages.success %></p>
+            </div>
+        <% } %>
+
+        <ul class="nav nav-pills mb-3 d-flex justify-content-center" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active h4" id="pills-customer-tab" data-toggle="pill" href="#customer" role="tab" aria-controls="pills-customer" aria-selected="true">Customer</a>
             </li>
@@ -22,6 +25,7 @@
             <div class="tab-pane fade show active" id="customer" role="tabpanel" aria-labelledby="pills-customer-tab">
                 <ul class="justify-content-center" uk-tab>
                     <li><a class="hammersmithOne" href="#">Customer Saved</a></li>
+                    <li><a class="hammersmithOne" href="#">Customer</a></li>
                     <li><a class="hammersmithOne" href="#">Queries</a></li>
                 </ul>
 
@@ -38,24 +42,50 @@
                                     <img src="/undraw_Building_vpxo.svg" alt="Img" width="250px">
                                     <h4 class="hammersmithOne">No Saved Properties</h4>
                                 </div>
-                            <% } else { %> 
+                            <% } else { %>
                                 <div class="row row-cols-2 row-cols-lg-4">
                                     <% for (var a in saved) { %> 
-                                    <div class="col mb-4">
-                                        <div class="card h-100 p-2">
-                                            <a href="/property?type=residential&id=<%= saved[a].propertyID._id %>" class="text-danger h4 hammersmithOne"><%= saved[a].propertyID.name %></a>
-                                            <hr class="mt-0">
-                                            <div class=""><span class="hammersmithOne">Property Type:</span> <%= saved[a].propertyID.propertyType %></div>
-                                            <div class=""><span class="hammersmithOne">Property For:</span> <%= saved[a].propertyID.propertyFor %></div>
-                                            <div class=""><span class="hammersmithOne">Locality:</span> <%= saved[a].propertyID.locality %></div>
-                                            <br>
-                                            <div class=""><%= saved[a].propertyID.description %></div>
+                                        <% if (saved[a].propertyID) { %> 
+                                        <div class="col mb-4">
+                                            <div class="card h-100 p-2">
+                                                <a href="/property?type=residential&id=<%= saved[a].propertyID._id %>" class="text-danger h4 hammersmithOne"><%= saved[a].propertyID.name %></a>
+                                                <hr class="mt-0">
+                                                <div class=""><span class="hammersmithOne">Property Type:</span> <%= saved[a].propertyID.propertyType %></div>
+                                                <div class=""><span class="hammersmithOne">Property For:</span> <%= saved[a].propertyID.propertyFor %></div>
+                                                <div class=""><span class="hammersmithOne">Locality:</span> <%= saved[a].propertyID.locality %></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <% } %> 
+                                        <% if (saved[a].commercialID) { %> 
+                                            <div class="col mb-4">
+                                                <div class="card h-100 p-2">
+                                                    <a href="/property?type=commercial&id=<%= saved[a].commercialID._id %>" class="text-danger h4 hammersmithOne"><%= saved[a].commercialID.name %></a>
+                                                    <hr class="mt-0">
+                                                    <div class=""><span class="hammersmithOne">Property Type:</span> <%= saved[a].commercialID.propertyType %></div>
+                                                    <div class=""><span class="hammersmithOne">Property For:</span> <%= saved[a].commercialID.propertyFor %></div>
+                                                    <div class=""><span class="hammersmithOne">Locality:</span> <%= saved[a].commercialID.locality %></div>
+                                                </div>
+                                            </div>
+                                        <% } %> 
                                     <% } %> 
                                 </div>
                             <% } %>
                         </div>
+                    </li>
+                    <li>
+                        <div class="uk-child-width-1-2@s" uk-grid>
+                            <% customer.forEach(ele => { %> 
+                                <div>
+                                    <div class="bg-white uk-card uk-card-hover p-3 rounded-lg h-100">
+                                        <p class="h4 hammersmithOne"><%= ele.name %></p>
+                                        <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.phone %></span></p>
+                                        <p class="hammersmithOne">Mail: <%= ele.email %></p>
+                                        <hr class="">
+                                        <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
+                                    </div>
+                                </div>
+                            <% }) %>   
+                            </div>
                     </li>
                     <li>
                         <div class="uk-child-width-1-2" uk-grid>
@@ -66,12 +96,7 @@
                                 <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
                             </div>
                         </div>
-                        <% if (messages.success) { %>
-                            <div class="uk-alert-success uk-width-auto" uk-alert>
-                              <a class="uk-alert-close" uk-close></a>
-                              <p class="text-center"><%= messages.success %></p>
-                            </div>
-                          <% } %>
+                        
                         <div class="uk-child-width-1-2@s" uk-grid>
                         <% enquiries.forEach(ele => { %> 
                             <div>
@@ -121,13 +146,13 @@
                                         <p>
                                             Price: 
                                             <span class="text-dark hammersmithOne">
-                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
-                                                    <%= ele.ActivatedProperty[a].priceDetails.expectedPrice %>
-                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
-                                                    <%= ele.ActivatedProperty[a].priceDetails.expectedRent %> per month
+                                                <% if (ele.ActivatedProperty[a].priceDetails.expectedPrice) { %>
+                                                    ₹ <%= ele.ActivatedProperty[a].priceDetails.expectedPrice %>
+                                                <% } else if(ele.ActivatedProperty[a].priceDetails.expectedRent) { %> 
+                                                    ₹ <%= ele.ActivatedProperty[a].priceDetails.expectedRent %> per month
                                                 <% } %>
                                             </span> | 
-                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %></span>
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].propertyFeatures.carpetArea %> sqft</span>
                                         </p>
                                         <p>
                                             Status: 
@@ -149,7 +174,10 @@
                                             <input type="hidden" name="status" value="false">
                                             <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
                                         </form>
-                                        <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                                        <form action="/admin/deleteproperty" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
+                                            <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
+                                        </form>
                                     </div>
                                 </div>
                                 <% } %> 
@@ -167,10 +195,10 @@
                                         <p>
                                             Price: 
                                             <span class="text-dark hammersmithOne">
-                                                <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
-                                                    <%= ele.DisabledProperty[a].priceDetails.expectedPrice %>
-                                                <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
-                                                    <%= ele.DisabledProperty[a].priceDetails.expectedRent %> per month
+                                                <% if (ele.DisabledProperty[a].priceDetails.expectedPrice) { %> 
+                                                    ₹ <%= ele.DisabledProperty[a].priceDetails.expectedPrice %>
+                                                <% } else if(ele.DisablesProperty[a].priceDetails.expectedRent) { %> 
+                                                    ₹ <%= ele.DisabledProperty[a].priceDetails.expectedRent %> per month
                                                 <% } %>
                                             </span> | 
                                             Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].propertyFeatures.carpetArea %></span>
@@ -195,7 +223,10 @@
                                             <input type="hidden" name="status" value="true">
                                             <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
                                         </form>
-                                        <a href=""><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></a>
+                                        <form action="/admin/deleteproperty" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
+                                            <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
+                                        </form>
                                     </div>
                                 </div>
                                 <% } %> 
@@ -214,12 +245,12 @@
                                             Price: 
                                             <span class="text-dark hammersmithOne"> 
                                                 <% if (ele.AllProperty[a].priceDetails.expectedPrice) { %> 
-                                                    <%= ele.AllProperty[a].priceDetails.expectedPrice %>
+                                                    ₹ <%= ele.AllProperty[a].priceDetails.expectedPrice %>
                                                 <% } else if(ele.AllProperty[a].priceDetails.expectedRent) { %> 
-                                                    <%= ele.AllProperty[a].priceDetails.expectedRent %> per month
+                                                    ₹ <%= ele.AllProperty[a].priceDetails.expectedRent %> per month
                                                 <% } %> 
                                             </span> | 
-                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %></span>
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].propertyFeatures.carpetArea %> sqft</span>
                                         </p>
                                         <p>
                                             Status: 
@@ -231,7 +262,7 @@
                                                 <span class="text-danger font-weight-bold hammersmithOne">
                                                 InActive
                                                 </span>
-                                                <% } %> 
+                                            <% } %> 
                                             | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
                                         </p>
                                         <p>
@@ -267,6 +298,185 @@
                     <li><a class="hammersmithOne" href="#">Active Properties</a></li>
                     <li><a class="hammersmithOne" href="#">Disabled Properties</a></li>
                     <li><a class="hammersmithOne" href="#">All properties</a></li>
+                </ul>
+
+                <ul class="uk-switcher uk-margin">
+                    <li>
+                        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                            <% commercial.map(ele => { %>  
+                                <% for (var a in ele.ActivatedProperty) { %> 
+                                <div>
+                                    <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                        <p class="h5 hammersmithOne">
+                                            <a class="text-danger" href="/property?type=commercial&id=<%= ele.ActivatedProperty[a]._id %> ">
+                                                <%= ele.ActivatedProperty[a].title %>
+                                            </a>
+                                        </p> 
+                                        <hr>
+                                        <p>
+                                            Price: 
+                                            <span class="text-dark hammersmithOne">
+                                                <% if (ele.ActivatedProperty[a].expectedPrice) { %> 
+                                                    ₹ <%= ele.ActivatedProperty[a].expectedPrice %>
+                                                <% } else if(ele.ActivatedProperty[a].expectedRent) { %> 
+                                                    ₹ <%= ele.ActivatedProperty[a].expectedRent %> per month
+                                                <% } %>
+                                            </span> | 
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].areaDetails.carpetArea %> sqft</span>
+                                        </p>
+                                        <p>
+                                            Status: 
+                                            <span class="text-success font-weight-bold hammersmithOne">
+                                                <% if (ele.ActivatedProperty[a].isAvaliable == true) { %> 
+                                                Active
+                                                <% } else { %> 
+                                                InActive
+                                                <% } %> 
+                                            </span> 
+                                            | Posted on: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].createdAt %></span>
+                                        </p>
+                                        <p>
+                                            Address: <span class="text-dark hammersmithOne"><%= ele.ActivatedProperty[a].address %> </span>
+                                        </p>
+                                        <a href="/property/editproperty?type=commercial&_id=<%= ele.ActivatedProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
+                                            <input type="hidden" name="status" value="false">
+                                            <input type="hidden" name="type" value="commercial">
+                                            <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+                                        </form>
+                                        <form action="/admin/deleteproperty" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.ActivatedProperty[a]._id %>">
+                                            <input type="hidden" name="type" value="commercial">
+                                            <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% } %> 
+                            <% }) %> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                            <% commercial.map(ele => { %>  
+                                <% for (var a in ele.DisabledProperty) { %> 
+                                <div>
+                                    <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                        <p class="h5 hammersmithOne">
+                                            <a class="text-danger" href="/property?type=commercial&id=<%= ele.DisabledProperty[a]._id %> ">
+                                                <%= ele.DisabledProperty[a].title %>
+                                            </a>
+                                        </p> 
+                                        <hr>
+                                        <p>
+                                            Price: 
+                                            <span class="text-dark hammersmithOne">
+                                                <% if (ele.DisabledProperty[a].expectedPrice) { %> 
+                                                    ₹ <%= ele.DisabledProperty[a].expectedPrice %>
+                                                <% } else if(ele.DisabledProperty[a].expectedRent) { %> 
+                                                    ₹ <%= ele.DisabledProperty[a].expectedRent %> per month
+                                                <% } %>
+                                            </span> | 
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].areaDetails.carpetArea %> sqft</span>
+                                        </p>
+                                        <p>
+                                            Status: 
+                                            <% if (ele.DisabledProperty[a].isAvaliable == true) { %> 
+                                                <span class="text-success font-weight-bold hammersmithOne">
+                                                Active
+                                                </span>
+                                                <% } else { %> 
+                                                <span class="text-danger font-weight-bold hammersmithOne">
+                                                InActive
+                                                </span>
+                                            <% } %>
+                                            | Posted on: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].createdAt %></span>
+                                        </p>
+                                        <p>
+                                            Address: <span class="text-dark hammersmithOne"><%= ele.DisabledProperty[a].address %> </span>
+                                        </p>
+                                        <a href="/property/editproperty?type=commercial&_id=<%= ele.DisabledProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
+                                            <input type="hidden" name="status" value="true">
+                                            <input type="hidden" name="type" value="commercial">
+                                            <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
+                                        </form>
+                                        <form action="/admin/deleteproperty" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.DisabledProperty[a]._id %>">
+                                            <input type="hidden" name="type" value="commercial">
+                                            <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% } %> 
+                            <% }) %> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+                            <% commercial.map(ele => { %>  
+                                <% for (var a in ele.AllProperty) { %> 
+                                <div>
+                                    <div class="uk-card bg-white uk-card-hover rounded-lg uk-card-body border">
+                                        <p class="h5 hammersmithOne">
+                                            <a class="text-danger" href="/property?type=commercial&id=<%= ele.AllProperty[a]._id %> ">
+                                                <%= ele.AllProperty[a].title %>
+                                            </a>
+                                        </p> 
+                                        <hr>
+                                        <p>
+                                            Price: 
+                                            <span class="text-dark hammersmithOne">
+                                                <% if (ele.AllProperty[a].expectedPrice) { %> 
+                                                    ₹ <%= ele.AllProperty[a].expectedPrice %>
+                                                <% } else if(ele.AllProperty[a].expectedRent) { %> 
+                                                    ₹ <%= ele.AllProperty[a].expectedRent %> per month
+                                                <% } %>
+                                            </span> | 
+                                            Super built-up Area: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].areaDetails.carpetArea %> sqft</span>
+                                        </p>
+                                        <p>
+                                            Status: 
+                                            <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                                <span class="text-success font-weight-bold hammersmithOne">
+                                                Active
+                                                </span>
+                                                <% } else { %> 
+                                                <span class="text-danger font-weight-bold hammersmithOne">
+                                                InActive
+                                                </span>
+                                            <% } %>
+                                            | Posted on: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].createdAt %></span>
+                                        </p>
+                                        <p>
+                                            Address: <span class="text-dark hammersmithOne"><%= ele.AllProperty[a].address %> </span>
+                                        </p>
+                                        <a href="/property/editproperty?type=commercial&_id=<%= ele.AllProperty[a]._id %>"><span class="bg-primary rounded-lg p-1 text-white" uk-icon="icon: pencil; ratio: 1.5"></span></a>
+                                        <form action="/admin/propertyavaliablity" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <input type="hidden" name="type" value="commercial">
+                                            <% if (ele.AllProperty[a].isAvaliable == true) { %> 
+                                                <input type="hidden" name="status" value="false">
+                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-dark rounded-lg p-1 text-white" uk-icon="icon: ban; ratio: 1.5"></span></button>
+
+                                            <% } %> 
+                                            <% if (ele.AllProperty[a].isAvaliable == false) { %>
+                                                <input type="hidden" name="status" value="true">
+                                                <button type="submit" class="btn btn-sm p-0"><span class="bg-success rounded-lg p-1 text-white" uk-icon="icon: check; ratio: 1.5"></span></button>
+                                            <% } %>
+                                        </form>
+                                        <form action="/admin/deleteproperty" method="POST" class="uk-inline">
+                                            <input type="hidden" name="id" value="<%= ele.AllProperty[a]._id %>">
+                                            <input type="hidden" name="type" value="commercial">
+                                            <button type="submit" class="btn btm-sm p-0"><span class="bg-danger rounded-lg p-1 text-white" uk-icon="icon: trash; ratio: 1.5"></span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% } %> 
+                            <% }) %> 
+                        </div> 
+                    </li>
                 </ul>
             </div>
         </div>

@@ -10,6 +10,12 @@
                   <p class="text-center"><%= messages.error %></p>
                 </div>
               <% } %>
+              <% if (messages.success) { %>
+                <div class="uk-alert-danger uk-width-auto" uk-alert>
+                  <a class="uk-alert-close" uk-close></a>
+                  <p class="text-center"><%= messages.success %></p>
+                </div>
+              <% } %>
               <h2 class="text-center font-weight-bold hammersmithOne">Welcome Back!</h2>
               <div class="text-center" >
                 <span uk-icon="icon: user; ratio: 3"></span>
@@ -26,7 +32,32 @@
                   </div> <br>
                   <button type="submit" class="btn btn-primary w-100">Submit</button>
               </form>
-              <a href="" class="form-text small text-muted mt-2">forgot password?</a>  
+
+              <a href="#forgotPassword" class="form-text small text-muted mt-2" data-toggle="modal" data-target="#forgotPassword">forgot password?</a> 
+
+              <div class="modal fade" id="forgotPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="h4 text-center hammersmithOne" id="staticBackdropLabel">Forgot Password</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/user/forgotpassword" method="POST">
+                          <div>
+                            <label class="hammersmithOne" for="password1">Phone Number</label>
+                            <input type="tel" class="form-control" name="phone" id="phone">
+                          </div>
+                          <br>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              </div> 
+
             </div>
             <hr>
             <p>Don't have account? <a href="/register" uk-toggle>Register here!</a></p>

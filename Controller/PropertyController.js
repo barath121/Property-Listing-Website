@@ -90,8 +90,7 @@ module.exports.createProperty = async (req, res, next) => {
         });
       } else {
         property.propertyFeatures.furnitures.push({
-          Type: furniture,
-          Quantity: req.body.Quantity[4],
+          Type: furniture
         });
       }
     });
@@ -512,7 +511,7 @@ module.exports.Search = async (req, res) => {
     }
     let maxpriceDetails = null;
     let maxprice = 0;
-    if (minpriceDetails[1].includes("+")) {
+    if (minpriceDetails[1] && minpriceDetails[1].includes("+")) {
       maxprice = 9990000000;
     }
     else{
@@ -657,11 +656,14 @@ module.exports.CommercialProperty = async (req, res, next) => {
     commercial.washrooms.quantity = req.body.quantity;
   }
   if (
-    req.body.PropertyType == "Commercial Shop" ||
     req.body.PropertyType == "Commercial Showroom"
   ) {
     commercial.balconies = req.body.balconies;
   }
+  if(req.body.PropertyType == "Commercial Shop" ){
+    commercial.balconies = req.body.shopbalconies;
+  }
+  
   console.log(req.body.PropertyType == "Commercial Shop" ||
   req.body.PropertyType == "Commercial Showroom");
   commercial.facilities = req.body.facilities;
@@ -685,13 +687,14 @@ module.exports.CommercialProperty = async (req, res, next) => {
   if (commercial.propertyFor == "Sale") {
     commercial.expectedPrice = req.body.expectedPrice;
     commercial.saleBrokerage = req.body.saleBrokerage;
-    //commercial.priceDetails.bookingAmount = req.body.bookingAmount;
+    commercial.bookingAmount = req.body.bookingAmount;
     commercial.transactionType = req.body.transactionType;
   }
-  // if (commercial.propertyFor == "Rent/Lease") {
-  //   commercial.priceDetails.expectedRent = req.body.expectedRent;
-  //   commercial.priceDetails.securityDeposit = req.body.securityDeposit;
-  // }
+  if (commercial.propertyFor == "Rent/Lease") {
+    commercial.expectedRent = req.body.expectedRent;
+    commercial.securityDeposit = req.body.securityDeposit;
+    commercial.rentBrokerage = req.body.rentBrokerage;
+  }
   if (commercial.propertyFor == "Sale") {
     commercial.possessionStatus = req.body.possessionStatus;
     if (commercial.possessionStatus == "Under Construction") {
@@ -702,6 +705,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
       commercial.ageOfConstruction = req.body.ageOfConstruction;
     }
   }
+  commercial.priceIncludes = req.body.priceIncludes;
   commercial.NOCCertified = req.body.NOCCertified;
   commercial.OccupanceCertified = req.body.OccupanceCertified;
   commercial.description = req.body.description;
@@ -720,7 +724,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.Images = {};
   commercial.Images.images = imagesArray;
   commercial.Images.imageid = imageid;
-}
+
   Commercial.create(commercial)
     .catch((err) => {
       console.log(err);
@@ -729,13 +733,43 @@ module.exports.CommercialProperty = async (req, res, next) => {
     .then((result) => {
       if (result) res.redirect("/");
     });
-};
+  }else{
+    Commercial.findByIdAndUpdate(req.body._id,commercial) 
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    })
+    .then((result) => {
+      if (result) res.redirect("/"); 
+      else
+      res.redirect("/404")
+    });
+  }
+  };
 module.exports.EditProperty = (req,res,next) =>{
   if(req.query.type == "residential"){
     Property.findById(req.query._id).then(property=>{
       if(property){
-        console.log(property)
-        res.render('Create_property',{property : property});
+        let Quantity = ["","","","",""]
+        let Furniture = []
+    if (property.propertyFeatures.furnitures)
+      property.propertyFeatures.furnitures.forEach((furniture) => {
+        Furniture.push(furniture.Type);
+      if (furniture.Type == "Fan") {
+        Quantity[0] = furniture.Quantity
+      } else if (furniture.Type == "Light") {
+        Quantity[1] = furniture.Quantity
+      } else if (furniture.Type == "Bed") {
+        Quantity[2] = furniture.Quantity
+      } else if (furniture.Type == "Wadrobe") {
+        Quantity[3] = furniture.Quantity
+      } else if (furniture.Type == "Curtains") {
+        Quantity[4] = furniture.Quantity
+      } 
+      
+    });
+    console.log(Furniture)
+        res.render('Create_property',{property : property , Furniture : Furniture ,Quantity : Quantity});
       }
       else
         res.redirect('/404');
@@ -831,7 +865,7 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     .skip(skip)
     .limit(limit)
     ;
-    countofpage  = await Property.countDocuments(condition);
+    countofpage  = await Commercial.countDocuments(condition);
     countofpage = parseInt(countofpage/10);
     conditionedProperties.forEach((element) => {
       console.log(element)

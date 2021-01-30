@@ -32,36 +32,31 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse w-50" id="navbarNav">
-          <ul class="navbar-nav nav-overlay ml-auto mr-auto">
+        <div class="collapse navbar-collapse w-100" id="navbarNav">
+          <ul class="navbar-nav nav-overlay ml-auto breeSerif">
               <li class="nav-item active">
                   <a class="nav-link text-light text-center" href="/about">About</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light text-center" href="/property/test">Add Property</a>
-              </li>
+              </li> 
               <li class="nav-item">
                 <a class="nav-link text-light text-center" href="/contact">Contact</a>
               </li>
-              <li class="nav-item d-md-block d-none">
-                <a class="nav-link text-light text-center" href="/search">
-                  <span uk-icon="icon: search"></span>
-                </a>
-              </li>
-              <li class="nav-item d-md-none d-block">
-                <a class="nav-link text-light text-center" href="/search">Search</a>
-              </li>
               <% if (req.user) { %>
                 <% if (req.user.isAdmin) { %>
-                <li class="nav-item">
-                  <a class="nav-link text-light text-center d-md-none d-block" href="/admin/admindashboard">Dashboard</a>
-                </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light text-center d-md-none d-block" href="/newproperty">Add resident</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light text-center d-md-none d-block" href="/commercialproperty">Add Commercial</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light text-center d-md-none d-block" href="/admin/admindashboard">Dashboard</a>
+                  </li>
                 <%}%>
                 <% if (!req.user.isAdmin) { %>
                   <li class="nav-item">
                     <a class="nav-link text-light text-center d-md-none d-block" href="/dashboard">Dashboard</a>
                   </li>
-                  <% }%>
+                <% }%>
                 <li class="nav-item">
                   <a class="nav-link text-light text-center btn btn-danger text-white rounded-pill d-md-none d-block" href="/user/logout">Logout</a>
                 </li>
@@ -70,33 +65,45 @@
                   <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light d-md-none d-block" href="/login" uk-toggle>Login</a>
                 </li>
               <% } %>
-          </ul>
-        </div>
-        <div class="collapse navbar-collapse w-25" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <% if (req.user) { %>
-              <li class="nav-item">
-                <div class="text-white text-capitalize hammersmithOne h5 mb-0 text-center d-md-block d-none" type="button"><%= req.user.name %> <span uk-icon="triangle-down"></span></div>
-                <div uk-dropdown="mode: click; pos: bottom-justify; offset: 20">
-                  <ul class="uk-nav uk-dropdown-nav">
-                    <%if(req.user.isAdmin){%>
-                    <li><a class="text-center text-dark" href="/admin/admindashboard">Dashboard</a></li>
-                    <%}%>
-                    <%if(!req.user.isAdmin){%>
-                      <li><a class="text-center text-dark" href="/dashboard">Dashboard</a></li>
+              <% if (req.user) { %>
+                <% if (req.user.isAdmin) { %>
+                <li class="nav-item">
+                  <div class="text-white nav-link ml-3 d-md-block d-none" type="button">Add <span class="" uk-icon="icon: triangle-down"></span></div>
+                  <div uk-dropdown="mode: click; pos: bottom-justify; offset: 20">
+                    <ul class="uk-nav uk-dropdown-nav">
+                      <li><a class="text-center text-dark hammersmithOne" href="/newproperty">Add resident</a></li>
+                      <li><a class="text-center text-dark hammersmithOne" href="/commercialproperty">Add Commercial</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <% } %> 
+                <li class="nav-item">
+                  <div class="nav-link bg-danger rounded-pill h5 pl-3 pr-3 ml-3 text-white text-capitalize hammersmithOne mb-0 text-center d-md-block d-none" type="button"><%= req.user.name %> <span class="bg-white text-danger rounded-circle" uk-icon="triangle-down"></span></div>
+                  <div uk-dropdown="mode: click; pos: bottom-justify; offset: 20">
+                    <ul class="uk-nav uk-dropdown-nav">
+                      <%if(req.user.isAdmin){%>
+                      <li><a class="text-center text-dark" href="/admin/admindashboard">Dashboard</a></li>
                       <%}%>
-                    <li class="uk-nav-divider"></li>
-                    <li><a class="btn btn-danger rounded-pill text-white" href="/user/logout">Logout</a></li>
-                  </ul>
-                </div>
-              </li>
-            <%  } else { %> 
-              <li class="nav-item">
-                <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light d-md-block d-none" href="/login" uk-toggle>Login</a>
-              </li>  
-            <% } %> 
+                      <%if(!req.user.isAdmin){%>
+                        <li><a class="text-center text-dark" href="/dashboard">Dashboard</a></li>
+                      <%}%>
+                      <li class="uk-nav-divider"></li>
+                      <li><a class="btn btn-danger rounded-pill text-white" href="/user/logout">Logout</a></li>
+                    </ul>
+                  </div>
+                </li>
+              <%  } else { %> 
+                <li class="nav-item">
+                  <a class="border border-danger pl-5 pr-5 rounded-pill bg-danger nav-link text-center text-light d-md-block d-none" href="/login" uk-toggle>Login</a>
+                </li>  
+              <% } %>
           </ul>
         </div>
+        <!-- <div class="collapse navbar-collapse w-auto" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+             
+          </ul>
+        </div> -->
       </div>
     </nav>
       

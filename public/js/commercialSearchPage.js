@@ -1,5 +1,18 @@
 function pages(page){
-    window.location.href = location.href+"&"+"page="+page;
+    var re = /\s*(?:&|=)\s*/
+    var locArr = location.href.split(re);
+    console.log(locArr)
+    if(locArr.includes("page")){
+        var lastEle = locArr[locArr.length -1]
+        window.location.href = location.href.replace("page="+lastEle,"page="+page);
+    }else{
+        if(locArr[0] == location.href){
+            window.location.href = location.href+"?"+"page="+page;
+        }
+        else{
+            window.location.href = location.href+"&"+"page="+page;
+        }
+    }
 }
 function sale(){
     if(document.getElementById("sale").classList.contains("d-none")){

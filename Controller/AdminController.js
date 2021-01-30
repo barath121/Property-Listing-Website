@@ -54,9 +54,9 @@ module.exports.AdminDashboard = async (req,res,next) =>{
     let saved = {};
     if(req.query.number){
      await User.findOne({phone : req.query.number}).then(async user=>{
-       console.log(user)
-      saved = await Saved.find({customerID:user._id}).populate({path:'propertyID',select:'propertyType propertyFor name locality furnishing description'})
-      console.log(saved);
+      //  console.log(user)
+      saved = await Saved.find({customerID:user._id}).populate({path:'propertyID commercialID',select:'propertyType propertyFor name locality furnishing description'})
+      // console.log(saved);
    }).catch(err=>next(err));
     }
     
@@ -80,7 +80,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 "expectedRent" : 1,
                 "areaDetails.carpetArea" : 1
               }
-            }
+            },
+            { $sort : { _id : -1 } }
         ],
         "DisabledProperty" : [
           {
@@ -100,7 +101,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
               "expectedRent" : 1,
               "areaDetails.carpetArea" : 1
             }
-          }
+          },
+          { $sort : { _id : -1 } }
         ],
         "AllProperty" : [
           {
@@ -121,7 +123,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 "expectedRent" : 1,
                 "areaDetails.carpetArea" : 1
               }
-            }
+            },
+            { $sort : { _id : -1 } }
         ]
       }
     }]).catch(err=>{
@@ -147,7 +150,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                   "priceDetails.expectedRent" : 1,
                   "propertyFeatures.carpetArea" : 1
                 }
-              }
+              },
+              { $sort : { _id : -1 } }
           ],
           "DisabledProperty" : [
             {
@@ -167,7 +171,8 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                 "priceDetails.expectedRent" : 1,
                 "propertyFeatures.carpetArea" : 1
               }
-            }
+            },
+            { $sort : { _id : -1 } }
           ],
           "AllProperty" : [
             {
@@ -188,15 +193,21 @@ module.exports.AdminDashboard = async (req,res,next) =>{
                   "priceDetails.expectedRent" : 1,
                   "propertyFeatures.carpetArea" : 1
                 }
-              }
+              },
+              { $sort : { _id : -1 } }
           ]
         }
       }]).catch(err=>{
         console.log(err)
       }).then(async result=>{
-        console.log(result);
+        // result[0].AllProperty.forEach(res=>{
+        //  console.log(res)
+        // })
+        let customer = await User.find({isAdmin : false}).sort({_id:-1});
         let enquiries = await Enquiry.find({contacted : false});
+        // console.log(customer)
         res.render("adminDashboard",{
+          customer :customer,
           commercial : commercialresult,
           properties : result,
           enquiries : enquiries,
@@ -207,19 +218,42 @@ module.exports.AdminDashboard = async (req,res,next) =>{
 }
 
 module.exports.TogglePropertyAvaliablity = (req,res,next) =>{
+  if(req.body.type == "commercial"){
+    Commercial.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
+      if(req.body.status=="true"){
+        req.flash("success","Property has ben Activated");
+      }
+      else{
+        req.flash("success","Property has been Deactived");
+      }
+      res.redirect('/admin/admindashboard')
+    }).catch(err=>{next(err)});
+  }
+  else{
   Property.findByIdAndUpdate(req.body.id,{isAvaliable : req.body.status}).then(property=>{
-    if(req.body.status==true){
+    if(req.body.status=="true"){
       req.flash("success","Property has ben Activated");
     }
     else{
-      req.flash("success","Property has been deactived");
+      req.flash("success","Property has been Deactived");
     }
     res.redirect('/admin/admindashboard')
-  }).catch(err=>{next(err)});
+  }).catch(err=>{next(err)});}
 }
 
 module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
-  console.log(req.body.id)
+  if(req.body.type == "commercial"){
+    Commercial.findById(req.body.id).then(result=>{
+      firebase.deleteFile(result.Images.images);
+      Saved.remove({propertyID : req.body.id})
+      Commercial.findByIdAndDelete(req.body.id).then(deleted=>{
+        req.flash("success","Property Has Been Removed");
+        res.redirect('/admin/admindashboard')
+      });
+    }).catch(err=>{
+      console.log(err)
+      next(err)})
+  }else{
   Property.findById(req.body.id).then(result=>{
     firebase.deleteFile(result.Images.images);
     Saved.remove({propertyID : req.body.id})
@@ -230,7 +264,7 @@ module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
   }).catch(err=>{
     console.log(err)
     next(err)})
-  
+  }
   // res.redirect('/admin/admindashboard')
 }
 

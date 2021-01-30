@@ -11,6 +11,7 @@
               <li><a class="text-light hammersmithOne" href="">Rent</a></li>
               <li><a class="text-light hammersmithOne" href="">Commercials</a></li>
             </ul>
+
             <ul class="uk-switcher uk-margin">
               <li>
                 <div class="uk-align-center rounded-lg p-4 " style="background-color: rgba(0,0,0,0.6);">
@@ -18,6 +19,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Location</label>
                       <select class="uk-select bg-transparent text-light" name="locality" id="form-stacked-select">
+                        <option class="text-dark" value="">Select</option>
                         <option class="text-dark" value="Roadpali">Roadpali</option>
                         <option class="text-dark" value="Kalamboli">Kalamboli</option>
                         <option class="text-dark" value="kharghar">Kharghar</option>
@@ -27,6 +29,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label class="text-warning">Status</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="status">
+                        <option value="">Select</option>
                         <option value="Ready to Move">Ready to Move</option>
                         <option value="Under Construction">Under Construction</option>
                       </select>
@@ -48,6 +51,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Bedroom</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="bedrooms">
+                        <option class="text-dark" value="">Select</option>
                         <option class="text-dark" value="1">1 BHK</option>
                         <option class="text-dark" value="2">2 BHK</option>
                         <option class="text-dark" value="3">3 BHK</option>
@@ -57,6 +61,7 @@
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label for="exampleFormControlSelect1" class="text-warning">Budget</label>
                       <select class="uk-select bg-transparent text-light" id="form-stacked-select" name="price">
+                        <option class="text-dark" value="">Select</option> 
                         <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option> 
                         <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
                         <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
@@ -91,6 +96,7 @@
                         <option class="text-dark" value="kharghar">Kharghar</option>
                       </select>
                     </div>
+                    <input type="hidden" name="propertyfor" value="Rent/Lease">
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label class="text-warning">Property Type</label>
                       <select class="uk-select bg-transparent text-light" name="propertytype" id="form-stacked-select">
@@ -143,17 +149,18 @@
               </li>
               <li>
                 <div class="uk-align-center rounded-lg p-4 " style="background-color: rgba(0,0,0,0.6);">
-                  <form action="/search" method="GET">
+                <form action="/searchcommercial" method="GET">
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Buy / Rent</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
-                        <option class="text-dark" value="buy">Buy</option>
-                        <option class="text-dark" value="lease">Rent</option>
+                      <select class="uk-select bg-transparent text-light" onchange="PropertyFor()" name="propertyfor" id="propertyfor">
+                        <option class="text-dark" value="">Select</option>
+                        <option class="text-dark" value="Sale">Buy</option>
+                        <option class="text-dark" value="Rent/Lease">Rent</option>
                       </select>
                     </div>
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3 uk-inline-clip">
                       <label class="text-warning">Location</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
+                      <select class="uk-select bg-transparent text-light" name="location" id="form-stacked-select">
                         <option value="">Select</option>
                         <option class="text-dark" value="Roadpali">Roadpali</option>
                         <option class="text-dark" value="Kalamboli">Kalamboli</option>
@@ -162,35 +169,56 @@
                     </div>
                     <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
                       <label class="text-warning">Status</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
+                      <select class="uk-select bg-transparent text-light" name="status" id="form-stacked-select">
+                        <option value="">Select</option>
                         <option value="Ready to move">Ready to move</option>
                         <option value="Under construction">Under construction</option>
                       </select>
                     </div>
-                    <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
-                      <label class="text-warning">Area</label> <br>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
-                        <option class="text-dark" value="8000 +">9000</option>
-                        <option class="text-dark" value="8000 +">9000</option>
-                        <option class="text-dark" value="8000 +">9000</option>
+                <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
+                  <div id="saleBudget" class="">
+                      <label for="exampleFormControlSelect1" class="text-warning">Budget</label>
+                      <select class="uk-select bg-transparent text-white" name="price" id="salePrice">
+                          <option value="">Select</option>
+                          <option class="text-dark" value="5 Lac - 10 Lac">5 Lac - 10 Lac</option>
+                          <option class="text-dark" value="10 Lac - 20 Lac">10 Lac - 20 Lac</option>
+                          <option class="text-dark" value="20 Lac - 30 Lac">20 Lac - 30 Lac</option>
+                          <option class="text-dark" value="30 Lac - 40 Lac">30 Lac - 40 Lac</option>
+                          <option class="text-dark" value="40 Lac - 50 Lac">40 Lac - 50 Lac</option>
+                          <option class="text-dark" value="50 Lac - 60 Lac">50 Lac - 60 Lac</option>
+                          <option class="text-dark" value="60 Lac - 70 Lac">60 Lac - 70 Lac</option>
+                          <option class="text-dark" value="70 Lac - 80 Lac">70 Lac - 80 Lac</option>
+                          <option class="text-dark" value="80 Lac - 90 Lac">80 Lac - 90 Lac</option>
+                          <option class="text-dark" value="90 Lac - 1 Cr">90 Lac - 1 Cr</option>
+                          <option class="text-dark" value="1 Cr - 1.5 Cr">1 Cr - 1.5 Cr</option>
+                          <option class="text-dark" value="1.5 Cr - 2 Cr">1.5 Cr - 2 Cr</option>
+                          <option class="text-dark" value="2 Cr - 2.5 Cr">2 Cr - 2.5 Cr</option>
+                          <option class="text-dark" value="2.5 Cr - 3 Cr">2.5 Cr - 3 Cr</option>
+                          <option class="text-dark" value="3 Cr - 3.5 Cr">3 Cr - 3.5 Cr</option>
+                          <option class="text-dark" value="3.5 Cr - 4 Cr">3.5 Cr - 4 Cr</option>
                       </select>
                     </div>
-                    <div class="form-group uk-width-1-6@m uk-width-1-3@s ml-sm-3  uk-inline-clip">
-                      <label for="exampleFormControlSelect1" class="text-warning">Budget</label>
-                      <select class="uk-select bg-transparent text-light" id="form-stacked-select">
-                        <option class="text-dark" value="1000 - 5000">1000 - 5000</option> 
-                        <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
-                        <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
-                        <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
-                        <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
-                        <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
-                        <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
-                        <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
-                        <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
-                        <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
-                        <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
-                        <option class="text-dark" value="8000 +">8000 +</option>
-                      </select>
+                    
+                    <div id="rentBudget" class="d-none">
+                        <label for="exampleFormControlSelect1" class="text-warning">Budget</label>
+                        <select class="uk-select bg-transparent text-white"
+                        id="rentPrice">
+                        <option value="">Select</option>
+                        <option class="text-dark" value="1000 - 5000">1000 - 5000</option>
+                            <option class="text-dark" value="5000 - 10000">5000 - 10000</option>
+                            <option class="text-dark" value="10000 - 15000">10000 - 15000</option>
+                            <option class="text-dark" value="15000 - 20000">15000 - 20000</option>
+                            <option class="text-dark" value="20000 - 25000">20000 - 25000</option>
+                            <option class="text-dark" value="25000 - 30000">25000 - 30000</option>
+                            <option class="text-dark" value="30000 - 40000">30000 - 40000</option>
+                            <option class="text-dark" value="40000 - 50000">40000 - 50000</option>
+                            <option class="text-dark" value="50000 - 60000">50000 - 60000</option>
+                            <option class="text-dark" value="60000 - 70000">60000 - 70000</option>
+                            <option class="text-dark" value="70000 - 80000">70000 - 80000</option>
+                            <option class="text-dark" value="80000 +">80000 +</option>
+                          </select>   
+                      </div>
+                      
                     </div>
                   <button class="btn btn-danger uk-width-auto@s uk-width-1-1 ml-sm-3"><span class="p-1" uk-icon="search"></span></button>
                 </form>
@@ -223,12 +251,12 @@
                           <div class="card-body">
                             <a href="./property?type=residential&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div>
-                                  Furnishing: <%= ele.furnishing %>
+                                <div class="m-0">
+                                  <div>Furnishing: <span class="hammersmithOne"><%= ele.furnishing %></span></div>
                                 </div>
                               </div>
                             </p>
@@ -247,7 +275,7 @@
                   <% }) %>
                   <li>
                       <div class="d-flex justify-content-center align-items-center h-100 bg-light">
-                          <a href="">
+                          <a href="/search?propertyfor=Sale">
                               <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
                           </a>
                       </div>
@@ -284,12 +312,12 @@
                           <div class="card-body">
                             <a href="./property?type=residential&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div>
-                                  Furnishing: <%= ele.furnishing %>
+                                <div class="m-0">
+                                  <div>Furnishing: <span class="hammersmithOne"><%= ele.furnishing %></span></div>
                                 </div>
                               </div>
                             </p>
@@ -308,7 +336,7 @@
                   <% }) %>
                   <li>
                       <div class="d-flex justify-content-center align-items-center h-100 bg-light">
-                          <a href="">
+                          <a href="/search?propertyfor=Rent%2FLease">
                             <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
                           </a>
                       </div>
@@ -344,18 +372,18 @@
                         </div>
                         <div class="h-50">
                           <div class="card-body">
-                            <a href="./property?type=commercial&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
+                            <a href="/property?type=commercial&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div>
-                                  <div class="hammersmithOne"><%= ele.area %> Sqft</div>
+                                <div class="m-0">
+                                  <div>Area: <span class="hammersmithOne"><%= ele.area %> Sqft</span></div>
                                 </div>
                               </div>
                             </p>
-                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p> <br>
                           </div>
                         </div>
                       </div>
@@ -363,7 +391,7 @@
                   <% }) %>
                   <li>
                       <div class="d-flex justify-content-center align-items-center h-100 bg-light">
-                          <a href="">
+                          <a href="/searchcommercial?propertyfor=Sale">
                             <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
                           </a>
                       </div>
@@ -398,18 +426,17 @@
                         </div>
                         <div class="h-50">
                           <div class="card-body">
-                            <a href="./property?type=commertial&id=<%= ele.id %> " class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
+                            <a href="/property?type=commercial&id=<%= ele.id %>" class="card-title text-danger h6 hammersmithOne"><%= ele.title %> </a>
                             <p class="card-text">
-                              <div class="small uk-child-width-1-2" uk-grid>
+                              <div class="uk-child-width-auto" uk-grid>
                                 <div>
-                                  Status: <%= ele.status %> 
+                                  Status: <span class="hammersmithOne"><%= ele.status %></span> 
                                 </div>
-                                <div> 
-                                  <div class="hammersmithOne"><%= ele.area %> Sqft</div>
+                                <div class="m-0">
+                                  <div>Area: <span class="hammersmithOne"><%= ele.area %> Sqft</span></div>
                                 </div>
                               </div>
-                            </p>
-                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p>
+                            <p class="card-text"><span class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹ <%= ele.price %></span></p> <br>
                           </div>
                         </div>
                       </div>
@@ -417,7 +444,7 @@
                   <% }) %>
                   <li>
                       <div class="d-flex justify-content-center align-items-center h-100 bg-light">
-                          <a href="">
+                          <a href="/searchcommercial?propertyfor=Rent/Lease">
                             <div class="text-white bg-danger p-2 pl-3 pr-3 rounded-pill h5">view more  <span class="bg-white text-danger rounded-circle" uk-icon="icon: arrow-right; ratio: 1.5"></span></div>
                           </a>
                       </div>
@@ -435,6 +462,30 @@
   </div>
 </section>
 
-
+<script>
+  function PropertyFor(){
+if(document.getElementById("propertyfor").value == "Sale"){
+  if(document.getElementById("saleBudget").classList.contains("d-none")){
+        document.getElementById("saleBudget").classList.remove("d-none")
+        document.getElementById("salePrice").setAttribute("name","price")
+    }
+   if(!document.getElementById("rentBudget").classList.contains("d-none")){
+        document.getElementById("rentBudget").classList.add("d-none")
+        document.getElementById("rentPrice").removeAttribute("name")
+    }
+}else if(document.getElementById("propertyfor").value == "Rent/Lease"){
+  if(document.getElementById("rentBudget").classList.contains("d-none")){
+        document.getElementById("rentBudget").classList.remove("d-none")
+         document.getElementById("rentPrice").setAttribute("name","price")
+    }
+     if(!document.getElementById("saleBudget").classList.contains("d-none")){
+        document.getElementById("saleBudget").classList.add("d-none")
+        document.getElementById("salePrice").removeAttribute("name")
+    }
+    
+}
+    
+  }
+</script>
 
 <%- include('./layouts/Footer') -%>

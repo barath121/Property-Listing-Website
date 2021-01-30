@@ -260,10 +260,10 @@
             <div class="form-check form-check-inline">
               <% if(property.conferenceRoom == true){%>
               <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
-                value="true" id="conferenceRoom" required checked>
+                value="true" id="conferenceRoom"  checked>
                 <%}else{%>
                   <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
-                value="true" id="conferenceRoom" required>
+                value="true" id="conferenceRoom" >
                   <%}%>
               <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                 for="conferenceRoom">Conference Room</label>
@@ -273,10 +273,10 @@
             <div class="form-check form-check-inline">
               <% if(property.receptionArea == true){%>
               <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
-                value="true" id="receptionArea" required checked>
+                value="true" id="receptionArea"  checked>
                 <%}else{%>
                   <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
-                    value="true" id="receptionArea" required>
+                    value="true" id="receptionArea" >
                   <%}%>
               <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                 for="receptionArea">Reception Area</label>
@@ -481,7 +481,7 @@
                 <%}%>
             <h3>Lifts</h3>
             <div class="form-check form-check-inline">
-              <% if(property.washrooms.isAvaliable == true){ %>
+              <% if(property.lifts.isAvaliable == true){ %>
               <input class="form-check-input" type="checkbox" onchange="liftAvailible()" name="liftisAvaliable"
                 value="true" id="liftisAvaliable" checked>
                 <%}else{%>
@@ -492,11 +492,11 @@
             </div>
             <br>
             <br>
-            <% if(property.washrooms.isAvaliable == true){ %>
+            <% if(property.lifts.isAvaliable == true){ %>
             <div id="liftQuantity" class="">
               <label for="passengerLifts">Passenger Lifts</label>
               <br>
-              <% if(property.washrooms.passengerLifts){ %>
+              <% if(property.lifts.passengerLifts){ %>
               <input type="text" placeholder="Enter number of Passenger Lifts" class="form-control w-50"
                 id="passengerLifts" value="<%= property.washrooms.passengerLifts %>" name="passengerLifts">
                 <%}else{%>
@@ -506,7 +506,7 @@
               <br>
               <label for="serviceLifts">Service Lifts</label>
               <br>
-              <% if(property.washrooms.serviceLifts){ %>
+              <% if(property.lifts.serviceLifts){ %>
               <input type="text" placeholder="Enter number of Service Lifts" class="form-control w-50" id="serviceLifts"
                 name="serviceLifts" value="<%= property.washrooms.serviceLifts %>">
                 <%} else {%>
@@ -1098,7 +1098,7 @@
                       <br>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
-                          value="true" id="conferenceRoom" required>
+                          value="true" id="conferenceRoom" >
                         <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                           for="conferenceRoom">Conference Room</label>
                       </div>
@@ -1106,7 +1106,7 @@
                       <br>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
-                          value="true" id="receptionArea" required>
+                          value="true" id="receptionArea" >
                         <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                           for="receptionArea">Reception Area</label>
                       </div>
@@ -1155,7 +1155,7 @@
                         <label for="quantity">Quantity</label>
                         <br>
                         <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
-                          class="form-control w-50" id="quantity" name="quantity" required>
+                          class="form-control w-50" id="quantity" name="quantity" >
                         <br>
                       </div>
                       <h3>facilities</h3>
@@ -1264,7 +1264,7 @@
               <br>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" onchange="conferenceRooms(this)" name="conferenceRoom"
-                  value="true" id="conferenceRoom" required>
+                  value="true" id="conferenceRoom" >
                 <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                   for="conferenceRoom">Conference Room</label>
               </div>
@@ -1272,7 +1272,7 @@
               <br>
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" onchange="receptionAreas(this)" name="receptionArea"
-                  value="true" id="receptionArea" required>
+                  value="true" id="receptionArea">
                 <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
                   for="receptionArea">Reception Area</label>
               </div>
@@ -1321,7 +1321,7 @@
                 <label for="quantity">Quantity</label>
                 <br>
                 <input type="text" onchange="washroomQuantity()" placeholder="Enter number of quantity"
-                  class="form-control w-50" id="quantity" name="quantity" required>
+                  class="form-control w-50" id="quantity" name="quantity" >
                 <br>
               </div>
               <h3>facilities</h3>
@@ -2479,35 +2479,37 @@
                   <%}%>
           <label for="priceIncludes">Price Includes</label>
           <br>
-          <select class="form-control w-50" name="priceIncludes" id="priceIncludes">
-            <% if(property && property.priceIncludes.includes("")){ %>
-            <option value="" selected>Select</option>
-            <%} else {%>
-              <option value="">Select</option>
-              <%}%>
+            <div class="form-check form-check-inline">
               <% if(property && property.priceIncludes.includes("Tax and Govt Charges")){ %>
-            <option value="Tax and Govt Charges" selected> Tax and Govt Charges </option>
-            <%} else {%>
-              <option value="Tax and Govt Charges"> Tax and Govt Charges </option>
-              <%}%>
-              <% if(property && property.priceIncludes.includes("DG and UPS Price Included")){ %>
-            <option value="DG and UPS Price Included" selected> DG and UPS Price Included </option>
-            <%} else {%>
-              <option value="DG and UPS Price Included"> DG and UPS Price Included </option>
-              <%}%>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="Tax and Govt Charges" id="TaxandGovtCharges" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="priceIncludes" value="Tax and Govt Charges" id="TaxandGovtCharges">
+                <%}%>
+              <label class="form-check-label" for="TaxandGovtCharges">Tax and Govt Charges</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <% if( property && property.priceIncludes.includes("DG and UPS Price Included")){ %>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="DG and UPS Price Included" id="DGandUPSPriceIncluded" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="priceIncludes" value="DG and UPS Price Included" id="DGandUPSPriceIncluded">
+                <%}%>
+              <label class="form-check-label" for="DGandUPSPriceIncluded">DG and UPS Price Included</label>
+            </div>
+            <div class="form-check form-check-inline">
               <% if(property && property.priceIncludes.includes("Price Negotiable")){ %>
-            <option value="Price Negotiable" selected> Price Negotiable </option>
-            <%} else {%>
-              <option value="Price Negotiable"> Price Negotiable </option>
-              <%}%>
-          </select>
+              <input class="form-check-input" type="checkbox" name="priceIncludes" value="Price Negotiable" id="PriceNegotiable" checked>
+              <%}else{%>
+                <input class="form-check-input" type="checkbox" name="priceIncludes" value="Price Negotiable" id="PriceNegotiable">
+                <%}%>
+              <label class="form-check-label" for="PriceNegotiable">Price Negotiable</label>
+            </div>
           <br>
           <br>
           <div class="form-check form-check-inline">
             <% if(property && property.NOCCertified == true){ %>
-            <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required checked>
+            <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified"  checked>
             <%} else {%>
-              <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" required>
+              <input class="form-check-input" type="checkbox" name="NOCCertified" value="true" id="NOCCertified" >
               <%}%>
             <label class="form-check-label font-weight-bold" style="text-decoration: underline;" for="NOCCertified">NOC
               Certified</label>
@@ -2517,10 +2519,10 @@
           <div class="form-check form-check-inline">
             <% if(property && property.OccupanceCertified == true){ %>
             <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-              id="OccupanceCertified" required checked> 
+              id="OccupanceCertified"  checked> 
               <%} else {%>
                 <input class="form-check-input" type="checkbox" name="OccupanceCertified" value="true"
-                  id="OccupanceCertified" required>
+                  id="OccupanceCertified" >
                 <%}%>
             <label class="form-check-label font-weight-bold" style="text-decoration: underline;"
               for="OccupanceCertified">Occupance Certified</label>
@@ -2551,7 +2553,7 @@
           <div class='mb-3'>
             <div class='custom-file'>
               <input class='custom-file-input' onchange="loadFile(event,'PreviewImg')" type='file'
-                accept=' .jpeg,.png,.jpg' name="CoverImages" id='images' required>
+                accept=' .jpeg,.png,.jpg' name="CoverImages" id='images'>
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -2594,17 +2596,18 @@
               </div>
             </div>
           </div>
-
+        <div id="WashroomParent" class="d-none">
           <h3>Washrooms</h3>
           <div id="washroomPics">
 
           </div>
+        </div>
 
           <h3>Others</h3>
           <div class='mb-3'>
             <div class='custom-file'>
               <input class='custom-file-input' type='file' onchange="loadFile(event,'otherPreview')"
-                accept='.jpeg,.png,.jpg' id='images' name="OtherImages" required>
+                accept='.jpeg,.png,.jpg' id='images' name="OtherImages">
               <label class='custom-file-label' for='inputGroupFile02' aria-describedby='inputGroupFileAddon02'>Choose
                 file</label>
             </div>
@@ -2706,7 +2709,15 @@
         document.getElementById("Office").classList.remove("d-none")
 
         document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
-          ele.setAttribute("required", true);
+          if(ele.getAttribute("name") == "receptionArea" ){
+            ele.removeAttribute("required");
+          }
+          if(ele.getAttribute("name") == "conferenceRoom" ){
+            ele.removeAttribute("required");
+          }
+          else if(ele.getAttribute("name") != "receptionArea" && ele.getAttribute("name") == "conferenceRoom" ){
+            ele.setAttribute("required", true);
+          }
         })
 
         document.getElementById("showroom").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
@@ -2803,6 +2814,15 @@
         }
         if (!document.getElementById("Shop").classList.contains("d-none")) {
           document.getElementById("Shop").classList.add("d-none")
+        }
+        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+          document.getElementById("commercialShop").classList.add("d-none")
+        }
+        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+          document.getElementById("CommercialShowroom").classList.add("d-none")
+        }
+        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
         }
         document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
           ele.removeAttribute("required");
@@ -2928,7 +2948,6 @@
       label.for = "inputGroupFile02"
       label.innerHTML = "Choose file"
       label.className = "custom-file-label"
-      inp.required = true;
       previewDiv.className = "d-flex w-100 justify-content-end mt-2"
       previewButton.className = "bg-transparent border-0"
       previewButton.type = "button"
@@ -2990,6 +3009,9 @@
     }
     function washroomQuantity() {
       if(document.getElementById("washroomPics")){
+        if(document.getElementById("WashroomParent").classList.contains("d-none")){
+          document.getElementById("WashroomParent").classList.remove("d-none");
+        }
         document.getElementById("washroomPics").innerHTML = null;
       for (var i = 0; i < document.getElementById("quantity").value; i++) {
         img("washroomPics", i);

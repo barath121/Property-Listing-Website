@@ -219,12 +219,12 @@ unitQuantity : {
 statusOfWaterandElectric : {
 avaliablityOfWater :{
     type :  String,
-    enum :['24 Hours Avaliable','12 Hours Avaliable','6 Hours Avaliable','2 Hours Avaliable','1 Hours Avaliable'],
+    enum :['24 Hours Available','12 Hours Available','6 Hours Available','2 Hours Available','1 Hours Available'],
     required : true
 },
 avaliablityOfElectricity :{
     type :  String,
-    enum :['24 Hours Avaliable','12 Hours Avaliable','6 Hours Avaliable','2 Hours Avaliable','1 Hours Avaliable'],
+    enum :['24 Hours Available','12 Hours Available','6 Hours Available','2 Hours Available','1 Hours Available'],
     required : true
 }
 },
