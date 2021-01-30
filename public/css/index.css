@@ -6,7 +6,8 @@ body {
 
 .header-bg {
     height: 100vh;
-    background-image: url("https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    /* background-image: url("https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); */
+    background-image: url("../image/building2.jpg");
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;

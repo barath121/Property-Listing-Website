@@ -240,7 +240,7 @@ module.exports.DeletePropertyAvaliablity = (req,res,next) =>{
     Commercial.findById(req.body.id).then(result=>{
       firebase.deleteFile(result.Images.images);
       Saved.remove({propertyID : req.body.id})
-      Property.findByIdAndDelete(req.body.id).then(deleted=>{
+      Commercial.findByIdAndDelete(req.body.id).then(deleted=>{
         req.flash("success","Property Has Been Removed");
         res.redirect('/admin/admindashboard')
       });
