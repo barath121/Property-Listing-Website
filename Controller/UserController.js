@@ -116,6 +116,18 @@ module.exports.forgotpassword = async (req,res) =>{
   
       postreq.on('error', error => {
         console.error(error)
+        User.findOneAndUpdate({
+          phone : phone
+        },{
+          password : result.password
+        }).catch(err=>{
+          next(err);
+        }).then(result=>{
+            if(result){
+              req.flash("sucess","Some Error Please Try Again");
+              res.redirect("/login");
+            }
+          })
       })
   
       postreq.write(data)
