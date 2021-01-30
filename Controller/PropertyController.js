@@ -192,6 +192,8 @@ else{
 module.exports.ViewProperty = (req, res, next) => {
   let id = req.query.id;
   let type = req.query.type;
+  let similarproperties = [];
+  let localityproperties = [];
   if (type == "residential") {
     let savedetails = {};
     Property.findById(id)
@@ -199,20 +201,14 @@ module.exports.ViewProperty = (req, res, next) => {
         if (property) {
           savedetails.propertytype = "residential";
           savedetails.propertyid = property._id;
-          let similarproperties = [];
-          let localityproperties = [];
           try {
-            let similarproperties = await Property.find({
+            similarproperties = await Property.find({
               $or: [
                 { propertyType: property.propertyType },
                 { propertyFor: property.propertyFor },
-                {
-                  "propertyFeatures.bedrooms":
-                    property.propertyFeatures.bedrooms,
-                },
               ],
             }).limit(10);
-            let localityproperties = await Property.find({
+            localityproperties = await Property.find({
               locality: property.locality,
             }).limit(10);
           } catch {
@@ -257,16 +253,15 @@ module.exports.ViewProperty = (req, res, next) => {
         if (property) {
           savedetails.propertytype = "commercial";
           savedetails.propertyid = property._id;
-          let similarproperties = [];
-          let localityproperties = [];
+          
           try {
-            let similarproperties = await Commercial.find({
+             similarproperties = await Commercial.find({
               $or: [
                 { propertyType: property.propertyType },
                 { propertyFor: property.propertyFor }
               ],
             }).limit(10);
-            let localityproperties = await Commercial.find({
+            localityproperties = await Commercial.find({
               locality: property.locality,
             }).limit(10);
           } catch {
