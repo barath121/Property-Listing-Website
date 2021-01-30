@@ -101,17 +101,34 @@
                     <% } else { %> 
                         <div class="row row-cols-1 row-cols-lg-2">
                             <% for (var a in savedProperties) { %> 
-                            <div class="col mb-4">
-                                <div class="card h-100 p-2">
-                                    <a href="/property?type=residential&id=<%= savedProperties[a].propertyID._id %>" class="text-danger h4 hammersmithOne"><%= savedProperties[a].propertyID.name %></a>
-                                    <hr class="mt-0">
-                                    <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].propertyID.propertyType %></div>
-                                    <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].propertyID.propertyFor %></div>
-                                    <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].propertyID.locality %></div>
-                                    <br>
-                                    <div class=""><%= savedProperties[a].propertyID.description %></div>
+                                <% if (savedProperties[a].propertyID) { %> 
+                                <div class="col mb-4">
+                                    <div class="card h-100 p-2">
+                                        <a href="/property?type=residential&id=<%= savedProperties[a].propertyID._id %>" class="text-danger h4 hammersmithOne"><%= savedProperties[a].propertyID.name %></a>
+                                        <hr class="mt-0">
+                                        <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].propertyID.propertyType %></div>
+                                        <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].propertyID.propertyFor %></div>
+                                        <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].propertyID.locality %></div>
+                                        <br>
+                                        <div class="hammersmithOne">Description:</div>
+                                        <div class=""><%= savedProperties[a].propertyID.description %></div>
+                                    </div>
                                 </div>
-                            </div>
+                                <% } %> 
+                                <% if (savedProperties[a].commercialID) { %> 
+                                <div class="col mb-4">
+                                    <div class="card h-100 p-2">
+                                        <a href="/property?type=commercial&id=<%= savedProperties[a].commercialID._id %>" class="text-danger h4 hammersmithOne"><%= savedProperties[a].commercialID.name %></a>
+                                        <hr class="mt-0">
+                                        <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].commercialID.propertyType %></div>
+                                        <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].commercialID.propertyFor %></div>
+                                        <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].commercialID.locality %></div>
+                                        <br>
+                                        <div class="hammersmithOne">Description:</div>
+                                        <div class=""><%= savedProperties[a].commercialID.description %></div>
+                                    </div>
+                                </div>
+                                <% } %> 
                             <% } %> 
                         </div>
                     <% } %> 
