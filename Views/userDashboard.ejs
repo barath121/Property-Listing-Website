@@ -21,10 +21,9 @@
                         <p><span class="hammersmithOne">Phone:</span> <%= req.user.phone %></p>
                         <p><span class="hammersmithOne">Email:</span> <%= req.user.email %></p>
 
-                        <% console.log() %> 
-                        <a href="#forgotPassword" class="form-text small text-muted mt-2" data-toggle="modal" data-target="#forgotPassword">Edit password <span uk-icon="icon: pencil"></span></a> 
+                        <a href="#editPassword" class="form-text small text-muted mt-2" data-toggle="modal" data-target="#forgotPassword">Edit password <span uk-icon="icon: pencil"></span></a> 
 
-                        <div class="modal fade" id="forgotPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="editPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
