@@ -11,7 +11,6 @@ UserRoute.route('/login').post(passport.authenticate('local',{
 }));
 UserRoute.route("/loginredirect").get(UserController.Redirect);
 UserRoute.route('/register').post(UserController.Register);
-UserRoute.route('/test').get(UserController.test);
 UserRoute.route('/logout').get(UserController.logout);
 UserRoute.route('/addenquiry').post(UserController.AddEnquiry);
 UserRoute.route('/addsaved').get(UserController.CheckLogin,UserController.AddSaved);
