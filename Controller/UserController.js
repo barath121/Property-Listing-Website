@@ -7,10 +7,6 @@ const https = require('https')
 const Property = require('../Models/Property');
 const { customAlphabet } = require("nanoid");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 8);
-module.exports.test = (req,res) =>{
-  console.log(req.isAuthenticated());
-console.log(req.user.name)
-}
 module.exports.Redirect = (req,res) =>{
   console.log(req.user);
   if(req.user.isAdmin){
@@ -218,10 +214,13 @@ Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',s
 module.exports.changepassword  = (req,res,next) =>{
 let oldpassword = req.body.oldpassword;
 let newpassword  = req.body.newpassword;
+console.log(oldpassword,newpassword)
 User.findById(req.user._id).then(async user=>{
   if(user){
     if(await bcrypt.compare(oldpassword,user.password)){
-        User.findByIdAndUpdate(req.user._id,{password : newpassword});
+      console.log(newpassword)
+     let encrypted_password = await bcrypt.hash(newpassword,parseInt(process.env.Salt));
+        await User.findByIdAndUpdate(user._id,{password : encrypted_password});
         req.flash("success","Password Has Been Changed");
         res.redirect('/dashboard');
     }
