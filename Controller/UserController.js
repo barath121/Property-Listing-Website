@@ -3,7 +3,10 @@ const bcrypt = require('bcrypt');
 const Enquiry = require('../Models/Enquiry');
 const Saved = require('../Models/Saved');
 const mongoose = require('mongoose');
+const https = require('https')
 const Property = require('../Models/Property');
+const { customAlphabet } = require("nanoid");
+const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 8);
 module.exports.test = (req,res) =>{
   console.log(req.isAuthenticated());
 console.log(req.user.name)
@@ -31,7 +34,40 @@ module.exports.Register = async (req,res,next) =>{
     user.email = req.body.email;
     user.phone = req.body.phone;
     user.name = req.body.name;
-    user.password = await bcrypt.hash(/*req.body.password*/"Hello",parseInt(process.env.Salt));
+    let unencrypted_password =nanoid();
+    console.log(unencrypted_password);
+    user.password = await bcrypt.hash(unencrypted_password,parseInt(process.env.Salt));
+   
+    const data = JSON.stringify({"From":"SNTSHP",
+    "To":req.body.phone,
+    "TemplateName":"Password",
+    "VAR1":req.body.name,
+    "VAR2":unencrypted_password
+    });
+    const options = {
+      hostname: '2factor.in',
+      path: '/API/V1/'+process.env.smskey+'/ADDON_SERVICES/SEND/TSMS',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': data.length
+      }
+    }
+
+    const postreq = https.request(options, theresult => {
+      console.log(`statusCode: ${theresult.statusCode}`)
+
+      theresult.on('data', d => {
+        process.stdout.write(d)
+      })
+    })
+
+    postreq.on('error', error => {
+      console.error(error)
+    })
+
+    postreq.write(data)
+    postreq.end()
     User.create(user).catch(err=>{
       next(err);
     }).then(result=>{
@@ -39,6 +75,55 @@ module.exports.Register = async (req,res,next) =>{
     {  req.flash("sucess","Account created sucessfully password has been sent to your mobile number");
       res.redirect("/login");}
     })
+}
+module.exports.forgotpassword = async (req,res) =>{
+    let user = {}
+    let phone = req.body.phone;
+    let unencrypted_password =nanoid();
+    let password = await bcrypt.hash(unencrypted_password,parseInt(process.env.Salt));
+    User.findOneAndUpdate({
+      phone : phone
+    },{
+      password : password
+    }).catch(err=>{
+      next(err);
+    }).then(result=>{
+        if(result)
+    { 
+      const data = JSON.stringify({"From":"SNTSHP",
+      "To":req.body.phone,
+      "TemplateName":"Password",
+      "VAR1":req.body.name,
+      "VAR2":unencrypted_password
+      });
+      const options = {
+        hostname: '2factor.in',
+        path: '/API/V1/'+process.env.smskey+'/ADDON_SERVICES/SEND/TSMS',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': data.length
+        }
+      }
+  
+      const postreq = https.request(options, theresult => {
+        console.log(`statusCode: ${theresult.statusCode}`)
+  
+        theresult.on('data', d => {
+          process.stdout.write(d)
+        })
+      })
+  
+      postreq.on('error', error => {
+        console.error(error)
+      })
+  
+      postreq.write(data)
+      postreq.end()
+      req.flash("sucess","Your New Password Has Been Sent to your phone");
+      res.redirect("/login");}
+    })
+   
 }
 module.exports.logout = (req,res) =>{
   req.logOut();

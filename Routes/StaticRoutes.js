@@ -1,6 +1,7 @@
 const PropertyController = require("../Controller/PropertyController");
 const User = require("../Models/User");
 const UserController = require("./../Controller/UserController");
+const AdminController = require("./../Controller/AdminController");
 const StaticRoutes = (app) =>{
     app.get('/', PropertyController.HomePage);
     app.get('/admindashboard', (req, res) => {
@@ -19,11 +20,11 @@ const StaticRoutes = (app) =>{
         res.render("about");
     })
     app.get('/property', PropertyController.ViewProperty);
-    app.get('/newproperty', (req, res) => {
+    app.get('/newproperty',AdminController.isAdmin,(req, res) => {
         res.render('Create_property',{property:false,Furniture:false,Quantity:false})
     })
     app.get('/dashboard', UserController.CheckLogin,UserController.userdashboard);
-    app.get('/commercialproperty', (req, res) => {
+    app.get('/commercialproperty',AdminController.isAdmin ,(req, res) => {
         res.render('commercial_property',{property : false})
     })
     app.use('/search',PropertyController.Search);
