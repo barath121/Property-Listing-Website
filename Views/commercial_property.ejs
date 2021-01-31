@@ -2916,6 +2916,11 @@
       // }
       window.location = "#navBody"
     }
+    window.addEventListener('keydown',function(event){
+      if(event.keyCode === 13){
+        event.preventDefault();
+      }
+    })
     function Previous() {
       // if(page == 3){
       //   pageReached = false;
