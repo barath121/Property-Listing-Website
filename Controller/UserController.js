@@ -8,7 +8,6 @@ const Property = require('../Models/Property');
 const { customAlphabet } = require("nanoid");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 8);
 module.exports.Redirect = (req,res) =>{
-  console.log(req.user);
   if(req.user.isAdmin){
     res.redirect('/admin/admindashboard');
   }
@@ -31,7 +30,6 @@ module.exports.Register = async (req,res,next) =>{
     user.phone = req.body.phone;
     user.name = req.body.name;
     let unencrypted_password =nanoid();
-    console.log(unencrypted_password);
     user.password = await bcrypt.hash(unencrypted_password,parseInt(process.env.Salt));
    
     const data = JSON.stringify({"From":"SNTSHP",
@@ -51,8 +49,6 @@ module.exports.Register = async (req,res,next) =>{
     }
 
     const postreq = https.request(options, theresult => {
-      console.log(`statusCode: ${theresult.statusCode}`)
-
       theresult.on('data', d => {
         process.stdout.write(d)
       })
@@ -103,8 +99,6 @@ module.exports.forgotpassword = async (req,res) =>{
       }
   
       const postreq = https.request(options, theresult => {
-        console.log(`statusCode: ${theresult.statusCode}`)
-  
         theresult.on('data', d => {
           process.stdout.write(d)
         })
@@ -143,7 +137,6 @@ module.exports.AddEnquiry = (req,res,next) =>{
   enquiry.name = req.body.name;
   enquiry.contactno = req.body.contactno;
   enquiry.message = req.body.message;
-  console.log(enquiry);
   Enquiry.create(enquiry)
   .catch(err=>{
     next(err);
@@ -176,7 +169,6 @@ module.exports.AddSaved = (req,res,next) =>{
     if(result){
       req.flash("success","Property Has Been Saved");
       res.redirect('/property?type='+propertytype+'&id='+saved.propertyID);
-      console.log(saved);
     }
   })
 }
@@ -205,7 +197,6 @@ module.exports.RemoveSaved = (req,res,next) =>{
 module.exports.userdashboard =(req,res,next) =>{
 Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',select:'propertyType propertyFor name locality furnishing description'})
  .then(result=>{
-   console.log(result)
   res.render('userDashboard',{
     savedProperties : result
   })
@@ -214,11 +205,9 @@ Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',s
 module.exports.changepassword  = (req,res,next) =>{
 let oldpassword = req.body.oldpassword;
 let newpassword  = req.body.newpassword;
-console.log(oldpassword,newpassword)
 User.findById(req.user._id).then(async user=>{
   if(user){
     if(await bcrypt.compare(oldpassword,user.password)){
-      console.log(newpassword)
      let encrypted_password = await bcrypt.hash(newpassword,parseInt(process.env.Salt));
         await User.findByIdAndUpdate(user._id,{password : encrypted_password});
         req.flash("success","Password Has Been Changed");
@@ -231,18 +220,3 @@ User.findById(req.user._id).then(async user=>{
   }
 })
 }
-//  console.log(saveddata);
-// console.log(req.user._id);
-// let saveddata =Saved.find({customerID: req.user._id})
-
-// console.log(saveddata);
-// Saved.aggregate([
-//   {$match : {"customerID":req.user._id}},
- 
-//   ])
-//   .catch(err=>{
-//     next(err);
-//   }).then(dat=>{
-//     console.log(dat);
-//   })
-

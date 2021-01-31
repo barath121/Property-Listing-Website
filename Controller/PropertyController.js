@@ -541,11 +541,9 @@ module.exports.Search = async (req, res) => {
     let condition = {}
     if(conditions.length)
     condition = { $and: conditions };
-    console.log(conditions)
     let page = req.query.page || 1;
     let limit = 10;
     let skip = (page-1) * limit;
-    console.log(skip,limit)
     let conditionedProperties = 
     await Property
     .find(condition)
@@ -602,11 +600,9 @@ module.exports.Search = async (req, res) => {
       properties.push(property);
     });
   }
-  console.log(properties);
   res.render("Search_page", { properties: properties,page:countofpage });
 };
 module.exports.CommercialProperty = async (req, res, next) => {
-  console.log(req.body);
   let commercial = {};
   commercial.name = req.body.name;
   commercial.address = req.body.address;
@@ -630,8 +626,6 @@ module.exports.CommercialProperty = async (req, res, next) => {
     req.body.carpetArea[0],
     req.body.carpetArea[1]
   );
-  console.log(req.body.propertyType == "Commercial Office Space")
-  console.log("Hello");
   if ((req.body.PropertyType == "Commercial Office Space")) {
     commercial.officeSetup = {};
     commercial.officeSetup.minSeats = req.body.minSeats;
@@ -639,7 +633,6 @@ module.exports.CommercialProperty = async (req, res, next) => {
     commercial.officeSetup.noOfCabins = req.body.noOfCabins;
     commercial.officeSetup.noOfMeetingRooms = req.body.noOfMeetingRooms;
     commercial.conferenceRoom = req.body.conferenceRoom||false;
-    console.log(req.body.conferenceRoom + "Helloooooooo");
     commercial.receptionArea = req.body.receptionArea||false;
     commercial.pantryType = {};
     commercial.pantryType.pantryTypes = req.body.pantryTypes;
@@ -658,9 +651,6 @@ module.exports.CommercialProperty = async (req, res, next) => {
   if(req.body.PropertyType == "Commercial Shop" ){
     commercial.balconies = req.body.shopbalconies;
   }
-  
-  console.log(req.body.PropertyType == "Commercial Shop" ||
-  req.body.PropertyType == "Commercial Showroom");
   commercial.facilities = req.body.facilities;
   commercial.fireSafetyMeasures = req.body.fireSafetyMeasures;
   commercial.floorDetails = {};
@@ -669,7 +659,6 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.floorDetails.noOfStaircases = req.body.noOfStaircases;
   commercial.lifts = {};
   commercial.lifts.isAvaliable = req.body.liftisAvaliable||false;
-  console.log(commercial.lifts.isAvaliable)
   if (commercial.lifts.isAvaliable) {
     commercial.lifts.passengerLifts = req.body.passengerLifts;
     commercial.lifts.serviceLifts = req.body.serviceLifts;
@@ -763,7 +752,6 @@ module.exports.EditProperty = (req,res,next) =>{
       } 
       
     });
-    console.log(Furniture)
         res.render('Create_property',{property : property , Furniture : Furniture ,Quantity : Quantity});
       }
       else
@@ -773,7 +761,6 @@ module.exports.EditProperty = (req,res,next) =>{
   }else{
     Commercial.findById(req.query._id).then(property=>{
       if(property){
-        console.log("commercial",property)
         res.render('commercial_property',{property : property});
       }
       else
@@ -848,11 +835,9 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     let condition = {}
     if(conditions.length)
     condition = { $and: conditions };
-    console.log(conditions)
     let page = req.query.page || 1;
     let limit = 10;
     let skip = (page-1) * limit;
-    console.log(skip,limit)
     let conditionedProperties = 
     await Commercial
     .find(condition)
@@ -863,7 +848,6 @@ module.exports.SearchCommercial = async (req,res,next) =>{
     countofpage  = await Commercial.countDocuments(condition);
     countofpage = parseInt(countofpage/10);
     conditionedProperties.forEach((element) => {
-      console.log(element)
       property = {};
       element.Images.images.forEach((img) => {
         if (img.includes("CoverImages")) {
@@ -884,7 +868,6 @@ module.exports.SearchCommercial = async (req,res,next) =>{
         element.name +
         ", " +
         element.locality;
-        console.log(element)
       property.area = element.areaDetails.carpetArea;
       if (
         element.possessionStatus == "Under Construction" &&
@@ -907,6 +890,5 @@ module.exports.SearchCommercial = async (req,res,next) =>{
       properties.push(property);
     });
   }
-  console.log(properties);
   res.render("commercial_search", { properties: properties,page:countofpage });
 }
