@@ -6,8 +6,11 @@ const multer = require('multer');
 const StaticRoutes = require('./StaticRoutes');
 const AdminRoute = require('./AdminRoute');
 const wwwRedirect= (req, res, next) =>{
+    console.log(req.headers.host.slice(0, 4))
+    console.log(req.protocol + '://' + newHost + req.originalUrl);
     if (req.headers.host.slice(0, 4) === 'www.') {
         var newHost = req.headers.host.slice(4);
+        
         return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
     }
     next();
