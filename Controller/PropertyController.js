@@ -125,8 +125,6 @@ module.exports.createProperty = async (req, res, next) => {
   property.priceDetails.stampDutyCharges = req.body.stampDutyCharges
     ? req.body.stampDutyCharges
     : false;
-  property.priceDetails.tokenAmount = req.body.tokenAmount;
-
   property.additionalFeatures = {};
   property.additionalFeatures.additonalRooms = req.body.additonalRooms;
   property.additionalFeatures.facing = req.body.facing;
@@ -229,8 +227,6 @@ module.exports.ViewProperty = (req, res, next) => {
           if (saved) {
             issaved = true;
           }
-          console.log(saved);
-          console.log(issaved);
           res.render("property-detail", {
             savedetails: savedetails,
             property: property,

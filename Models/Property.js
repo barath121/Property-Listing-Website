@@ -163,11 +163,6 @@ priceDetails :{
         type : Boolean,
         required : true
     },
-    tokenAmount : {
-        type : String,
-        required : false,
-        default: "0"
-    },
     saleBrokerage : {
         type : String,
         enum : ['No Brokerage','0.25%','0.5%','0.75%','1%','1.5%','2%','3%','4%'],

@@ -11,10 +11,13 @@
     </div>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="/property/commercialproperty" enctype="multipart/form-data" method="POST">
+      <form action="/property/commercialproperty" enctype="multipart/form-data" id="propertyform" method="POST">
         <% if(property) {%>
           <input type="hidden" name="_id" value="<%= property._id %>">
         <%}%>
+        <div id="errormsg" class="d-none uk-alert-danger uk-width-auto" uk-alert>
+          <p class="text-center">Please Check All Inputs</p>
+        </div>
         <div id="1" class="">
           <h1 class="font-weight-bold">Property Details</h1>
           <br>
@@ -2539,7 +2542,7 @@
           <br>
           <div class="d-flex w-100 justify-content-around">
             <% if(property) { %>
-              <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
+              <button class="btn btn-outline-danger"  onclick="SubmitForm(this)" type="submit">Submit</button>
               <%} else {%>
                 <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
                 <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
@@ -2548,6 +2551,9 @@
         </div>
         <% if(!property) { %>
         <div id="2" class="d-none">
+          <div id="errormsg" class="d-none uk-alert-danger uk-width-auto" uk-alert>
+            <p class="text-center">Please Check All Inputs</p>
+          </div>
           <h1>Photos</h1>
           <h3>Cover</h3>
           <div class='mb-3'>
@@ -2630,7 +2636,7 @@
 
           <div class="d-flex w-100 justify-content-around">
             <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
-            <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
+            <button class="btn btn-outline-danger" onclick="SubmitForm(this)" type="submit">Submit</button>
           </div>
         </div>
         <% } %>
@@ -3087,10 +3093,20 @@
      if(document.getElementById("loader").classList.contains("d-none")){
        document.getElementById("loader").classList.remove("d-none")
        document.getElementById("loader").classList.add("d-flex")
+       console.log("Hello");
      }else{
       document.getElementById("loader").classList.remove("d-flex")
       document.getElementById("loader").classList.add("d-none")
      }
+   }
+   function SubmitForm(element){
+    var myForm = document.getElementById('propertyform');
+    if(myForm.checkValidity()){
+      document.getElementById("errormsg").classList.add("d-none")
+      Loader();
+    }else{
+      document.getElementById("errormsg").classList.remove("d-none")
+    }
    }
   </script>
   <%- include('./layouts/Footer') -%>
