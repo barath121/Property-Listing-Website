@@ -175,9 +175,13 @@
                             <div>
                                 <ul class="m-0">
                                 <% property.propertyFeatures.bedroomArea.map(ele => { %>
+                                    <% if (ele.lenght && ele.breadth) { %> 
                                     <li>
                                         <%= (ele.lenght*ele.breadth)+" Sqft" %>
                                     </li>
+                                    <% } else { %>
+                                        <div>-</div>
+                                    <% } %>  
                                 <% }) %> 
                                 </ul>
                             </div> 
@@ -185,41 +189,102 @@
                     </div>
                 </div>  
                 <br> <br>
+
+                <div class="bg-white p-3 rounded-lg shadow-sm hammersmithOne">
+                    <div class="h4 ">Area Details</div>
+                    <hr class="mt-0">
+                    <div class="uk-child-width-1-4@s uk-child-width-1-2" uk-grid>
+                        <% if(property.propertyFeatures.superBuiltUpArea){ %>
+                            <div>
+                                <div>
+                                    <div class="text-danger">Super BuiltUp Area</div>
+                                    <div>
+                                        <%= property.propertyFeatures.superBuiltUpArea %> sqft
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <% if(property.propertyFeatures.builtUpArea){ %>
+                            <div>
+                                <div>
+                                    <div class="text-danger">BuiltUp Area</div>
+                                    <div>
+                                        <%= property.propertyFeatures.builtUpArea %> sqft
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        <% if(property.propertyFeatures.carpetArea){ %>
+                            <div>
+                                <div>
+                                    <div class="text-danger">Carpet Area</div>
+                                    <div>
+                                        <%= property.propertyFeatures.carpetArea %> sqft
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <br>
                 <div class="bg-white p-3 rounded-lg shadow-sm">
-                    <div class="text- mb-4 hammersmithOne h5"><img width="25px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/503/503849.svg" alt=""> Features</div>
+                    <div class="text- mb-4 hammersmithOne h5"><img width="25px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/503/503849.svg" alt="">Features</div>
                     <div class="uk-child-width-1-4@s uk-child-width-1-2 hammersmithOne" uk-grid>
-                        <div>
-                            <div class="text-danger">Additional Rooms</div>
-                            <div><%= property.additionalFeatures.additonalRooms %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Overlooking</div>
-                            <div><%= property.additionalFeatures.overlooking %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Unit Quantity</div>
-                            <div><%= property.additionalFeatures.unitQuantity %></div>
-                        </div>
+                        <% if (property.additionalFeatures.additonalRooms) { %>
+                            <div>
+                                <div class="text-danger">Additional Rooms</div>
+                                <div><%= property.additionalFeatures.additonalRooms %></div>
+                            </div>
+                        <% } %> 
+                        <% if (property.additionalFeatures.overlooking) { %>
+                            <div>
+                                <div class="text-danger">Overlooking</div>
+                                <div><%= property.additionalFeatures.overlooking %></div>
+                            </div>
+                        <% } %>
+                        <% if (property.additionalFeatures.unitQuantity) { %>
+                            <div>
+                                <div class="text-danger">Unit Quantity</div>
+                                <div><%= property.additionalFeatures.unitQuantity %></div>
+                            </div>
+                        <% } %>
+                        <% if (property.additionalFeatures.carParking) { %>
+                        <% } %>
                         <div>
                             <div class="text-danger">Car Parking</div>
                             <div><%= property.additionalFeatures.carParking %></div>
                         </div>
-                        <div>
-                            <div class="text-danger">Lifts</div>
-                            <div><%= property.additionalFeatures.liftsInTheTower %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Multiple Units Avaliable</div>
-                            <div><%= property.additionalFeatures.multipleUnitsAvaliable %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Availablity of Water</div>
-                            <div><%= property.statusOfWaterandElectric.avaliablityOfWater %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Availablity of Electricity</div>
-                            <div><%= property.statusOfWaterandElectric.avaliablityOfElectricity %></div>
-                        </div>
+                        <% if (property.additionalFeatures.liftsInTheTower) { %>
+                            <div>
+                                <div class="text-danger">Lifts</div>
+                                <div><%= property.additionalFeatures.liftsInTheTower %></div>
+                            </div>
+                        <% } %>
+                        <% if (property.additionalFeatures.multipleUnitsAvaliable) { %>
+                            <div>
+                                <div class="text-danger">Multiple Units Avaliable</div>
+                                <% if (property.additionalFeatures.multipleUnitsAvaliable === true) { %> 
+                                <div>Yes</div>
+                                <% } else { %>
+                                <div>No</div>
+                                <% } %>  
+                            </div>
+                        <% } %>
+                        <% if (property.statusOfWaterandElectric.avaliablityOfElectricity) { %>
+                            <div>
+                                <div class="text-danger">Availablity of Electricity</div>
+                                <div>
+                                    <%= property.statusOfWaterandElectric.avaliablityOfElectricity %>
+                                </div>
+                            </div>
+                            <% } %>
+                        <% if (property.statusOfWaterandElectric.avaliablityOfWater) { %>
+                            <div>
+                                <div class="text-danger">Availablity of Water</div>
+                                <div><%= property.statusOfWaterandElectric.avaliablityOfWater %></div>
+                            </div>
+                        <% } %> 
                     </div>
                 </div>
                 <br> <br>
@@ -295,7 +360,7 @@
                         <% } %>
                         <div>
                             <div class="text-danger">Maintanince Charge</div>
-                            <div><%= property.priceDetails.maintaninceCharge %></div>
+                            <div>₹ <%= property.priceDetails.maintaninceCharge %></div>
                         </div>
                         <div>
                             <div class="text-danger">Maintanince Charge Type</div>

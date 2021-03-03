@@ -1,6 +1,8 @@
 <%- include('./layouts/imports') %> 
 
 <% //console.log(property) %> 
+
+<!-- landing section -->
 <section class="bg-dark">
     <div class="container">
         <div class="pt-5 pb-5 d-flex flex-column justify-content-center">
@@ -87,6 +89,7 @@
     </div>
 </section>
 
+<!-- details/features etc -->
 <section class="mt-5 mb-5">
     <div class="container">
         <div>
@@ -95,24 +98,30 @@
                     <div class="h4 hammersmithOne">Area Details</div> 
                     <hr class="mt-0">
                     <div class="uk-child-width-1-4@s uk-child-width-1-2" uk-grid>
+                        <% if(property.areaDetails.superBuiltUpArea){ %>
                         <div>
                             <div>
                                 <div class="text-danger">Super BuiltUp Area</div>
                                 <div><%= property.areaDetails.superBuiltUpArea %> sqft</div>
                             </div>
                         </div>
+                        <% } %> 
+                        <% if(property.areaDetails.builtUpArea){ %>
                         <div>
                             <div>
                                 <div class="text-danger">BuiltUp Area</div>
                                 <div><%= property.areaDetails.builtUpArea %> sqft</div>
                             </div>
                         </div>
+                        <% } %> 
+                        <% if(property.areaDetails.carpetArea){ %>
                         <div>
                             <div>
                                 <div class="text-danger">Carpet Area</div>
                                 <div><%= property.areaDetails.carpetArea %> sqft</div>
                             </div>
                         </div> 
+                        <% } %> 
                     </div> 
                 </div>
                 <br>
