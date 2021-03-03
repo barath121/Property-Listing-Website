@@ -23,10 +23,12 @@
     "express-session": "^1.17.1",
     "firebase": "^8.2.0",
     "firebase-admin": "^9.4.2",
+    "gm": "^1.23.1",
     "mongoose": "^5.11.7",
     "multer": "^1.4.2",
     "nanoid": "^3.1.20",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "un": "0.0.0"
   }
 }
