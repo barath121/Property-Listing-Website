@@ -81,7 +81,7 @@
                                         <p class="font-weight-bold"><span class="bg-danger p-2 text-white rounded-pill">+91 <%= ele.phone %></span></p>
                                         <p class="hammersmithOne">Mail: <%= ele.email %></p>
                                         <hr class="">
-                                        <div class="small">Posted on: <span class="hammersmithOne"><%= ele.createdAt %></span></div>
+                                        <div class="small">Joined on: <span class="hammersmithOne"><%= ele.createdAt.toLocaleDateString() %></span></div>
                                     </div>
                                 </div>
                             <% }) %>   
@@ -90,10 +90,10 @@
                     <li>
                         <div class="uk-child-width-1-2" uk-grid>
                             <div>
-                                <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Solved</div>
+                                <div class="text-center"><span class="h1 hammersmithOne"><%= solved %></span><br>Solved</div>
                             </div>
                             <div>
-                                <div class="text-center"><span class="h1 hammersmithOne">50</span><br>Current</div>
+                                <div class="text-center"><span class="h1 hammersmithOne"><%= unsolved %></span><br>Remaining</div>
                             </div>
                         </div>
                         

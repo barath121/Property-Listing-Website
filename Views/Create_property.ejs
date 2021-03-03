@@ -9,11 +9,14 @@
       <span uk-spinner="ratio: 4.5"></span>
     </div>
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="/property/createproperty" enctype="multipart/form-data" method="POST">
+      <form action="/property/createproperty" enctype="multipart/form-data" id="propertyform" method="POST">
         <% if(property) {%>
           <input type="hidden" name="_id" value="<%= property._id %>">
           <%}%>
             <div id="1" class="">
+              <div id="errormsg1" class="d-none uk-alert-danger uk-width-auto" uk-alert>
+                <p class="text-center">Please Check All Inputs</p>
+              </div>
               <h1 class="font-weight-bold">Property Details</h1>
               <br>
               <br>
@@ -1934,6 +1937,9 @@
                                                                   </div>
             </div>
             <div id="2" class="d-none">
+              <div id="errormsg2" class="d-none uk-alert-danger uk-width-auto" uk-alert>
+                <p class="text-center">Please Check All Inputs</p>
+              </div>
               <h1 class="font-weight-bold">Additional Details</h1>
               <label>Additonal Rooms</label>
               <br>
@@ -2686,7 +2692,7 @@
                 <div class="d-flex w-100 justify-content-around">
                   <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
                   <% if(property) { %>
-                    <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
+                    <button class="btn btn-outline-danger" onclick="SubmitForm()" type="submit">Submit</button>
                     <%} else {%>
                       <button class="btn btn-outline-danger" onclick="switchUp()" type="button">Continue</button>
                       <% } %>
@@ -2694,6 +2700,9 @@
             </div>
             <% if(!property) { %>
               <div id="3" class="d-none">
+                <div id="errormsg3" class="d-none uk-alert-danger uk-width-auto" uk-alert>
+                  <p class="text-center">Please Check All Inputs</p>
+                </div>
                 <h1>Photos</h1>
                 <!-- <ul uk-tab>
             <li class="uk-active"><a href="#">Kitchen</a></li>
@@ -2840,7 +2849,7 @@
 
                 <div class="d-flex w-100 justify-content-around">
                   <button class="btn btn-outline-danger" onclick="Previous()" type="button">Previous</button>
-                  <button class="btn btn-outline-danger" onclick="Loader()" type="submit">Submit</button>
+                  <button class="btn btn-outline-danger" onclick="SubmitForm()" type="submit">Submit</button>
                 </div>
               </div>
               <% } %>
@@ -3238,5 +3247,18 @@
         event.preventDefault();
       }
     })
+    function SubmitForm(element){
+    var myForm = document.getElementById('propertyform');
+    if(myForm.checkValidity()){
+      document.getElementById("errormsg1").classList.add("d-none")
+      document.getElementById("errormsg2").classList.add("d-none")
+      document.getElementById("errormsg3").classList.add("d-none")
+      Loader();
+    }else{
+      document.getElementById("errormsg1").classList.remove("d-none")
+      document.getElementById("errormsg2").classList.remove("d-none")
+      document.getElementById("errormsg3").classList.remove("d-none")
+    }
+   }
   </script>
   <%- include('./layouts/Footer') -%>
