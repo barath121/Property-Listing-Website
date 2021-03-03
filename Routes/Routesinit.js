@@ -5,12 +5,21 @@ const PropertyRoute = require('./PropertyRoute');
 const multer = require('multer');
 const StaticRoutes = require('./StaticRoutes');
 const AdminRoute = require('./AdminRoute');
+const wwwRedirect= (req, res, next) =>{
+    if (req.headers.host.slice(0, 4) === 'www.') {
+        var newHost = req.headers.host.slice(4);
+        return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
+    }
+    next();
+};
+
 const Routesinit = (app) => {
     app.use((req, res, next) => {
         res.locals.req = req
         next()
     })
-    
+    app.set('trust proxy', true);
+    app.use(wwwRedirect);
     StaticRoutes(app);
     app.use('/property', PropertyRoutes);
     app.use('/user',UserRoute);
