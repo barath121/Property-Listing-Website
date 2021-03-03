@@ -176,7 +176,7 @@
                                 <ul class="m-0">
                                 <% property.propertyFeatures.bedroomArea.map(ele => { %>
                                     <li>
-                                        <%= ele.lenght %> x <%= ele.breadth %>
+                                        <%= (ele.lenght*ele.breadth)+" Sqft" %>
                                     </li>
                                 <% }) %> 
                                 </ul>
@@ -255,10 +255,6 @@
                         </div>
                         <% } %> 
                         <div>
-                            <div class="text-danger">Token Amount</div>
-                            <div>₹ <%= property.priceDetails.tokenAmount %></div>
-                        </div>
-                        <div>
                             <% if (property.priceDetails.expectedPrice) { %>
                                 <div class="text-danger">Expected Price</div>
                                 <div>₹ <%= property.priceDetails.expectedPrice %></div>
@@ -307,7 +303,12 @@
                         </div>
                         <div>
                             <div class="text-danger">Stamp Duty Charges</div>
-                            <div><%= property.priceDetails.stampDutyCharges %></div>
+                            <% if(property.priceDetails.stampDutyCharges){%>
+                            <div>Included</div>
+                            <%}%>
+                            <% if(!property.priceDetails.stampDutyCharges){%>
+                                <div>Not Included</div>
+                            <%}%>
                         </div>
                     </div> 
                 </div>
