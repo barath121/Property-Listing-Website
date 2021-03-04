@@ -138,19 +138,12 @@
                             <div><%= property.propertyFeatures.flatsOnFloor %></div>
                         </div>
                         <div>
-                            <div class="text-danger">Landmarks</div>
-                            <div><%= property.propertyFeatures.carpetArea %></div>
-                        </div>
-                        <div>
-                            <div class="text-danger">Type</div>
-                            <div><%= property.Type %></div>
-                        </div>
-                        <div>
                             <div class="text-danger">Ownership</div>
                             <div><%= property.ownershipAndApproval.ownershipStatus %></div>
                         </div>
                     </div> <br>
                     <div class="uk-child-width-1-3@s" uk-grid>
+                        <% if (property.flooring.length != 0) { %>
                         <div> 
                             <div class="text-danger">Flooring</div>
                             <div>
@@ -163,6 +156,9 @@
                                 <% }) %> 
                             </div>                  
                         </div>
+                        <% } %>  
+
+                        <% if (property.amenities.length != 0) { %>
                         <div>
                             <div class="text-danger">Amenities</div>
                             <div>
@@ -175,6 +171,9 @@
                                 <% }) %> 
                             </div>  
                         </div>
+                        <% } %> 
+
+                        <% if (property.propertyFeatures.bedroomArea.length != 0) { %> 
                         <div>
                             <div class="text-danger">Bedroom Area</div>
                             <div>
@@ -186,11 +185,12 @@
                                     </li>
                                     <% } else { %>
                                         <div>-</div>
-                                    <% } %>  
+                                    <%  } %>  
                                 <% }) %> 
                                 </ul>
                             </div> 
                         </div>
+                        <% } %> 
                     </div>
                 </div>  
                 <br> <br>
