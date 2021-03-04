@@ -208,7 +208,6 @@ module.exports.AdminDashboard = async (req,res,next) =>{
         let enquiries_count = await Enquiry.find({contacted : false}).count();
         let enquiries_solved = await Enquiry.find({contacted : true}).count();
         // console.log(customer)
-        console.log(enquiries_count,enquiries_solved);
         res.render("adminDashboard",{
           customer :customer,
           commercial : commercialresult,

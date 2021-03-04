@@ -3,6 +3,7 @@ const Commercial = require("../Models/Commercial");
 const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
 const Saved = require("../Models/Saved");
+const sharp = require("sharp");
 const User = require("../Models/User");
 const { count } = require("../Models/Property");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
@@ -152,16 +153,31 @@ module.exports.createProperty = async (req, res, next) => {
   property.landmarks = req.body.landmarks;
   if(!req.body._id)
   {let imagesArray = [];
-  let i = 0;
-  const images = req.files;
-  const imageid = nanoid();
+    let i = 0;
+    const images = req.files;
+    let optimizeimages = [];
+    const imageid = nanoid();
+    await Promise.all(
+      images.map(async (image) =>{
+        const newimage = {};
+      newimage.fieldname = image.fieldname;
+      newimage.originalname = image.originalname.substr(0, image.originalname.lastIndexOf(".")) + ".webp";
+      newimage.buffer = await sharp(image.buffer)
+      .toFormat("webp")
+      .jpeg({ quality: 80 })
+      .toBuffer()
+      optimizeimages.push(newimage);
+        }
+      )
+    );
+    
   await Promise.all(
-    images.map((image) =>
-      firebase.uploadFile(image, imageid, i++).then((result) => {
-        imagesArray.push(result);
-      })
-    )
-  );
+      optimizeimages.map(async (image) =>{
+        await firebase.uploadFile(image, imageid, i++).then((result) => {
+          imagesArray.push(result);
+        })}
+      )
+    );
   property.Images = {};
   property.Images.images = imagesArray;
   property.Images.imageid = imageid;}
@@ -690,17 +706,33 @@ module.exports.CommercialProperty = async (req, res, next) => {
   commercial.OccupanceCertified = req.body.OccupanceCertified;
   commercial.description = req.body.description;
   if(!req.body._id)
-  {let imagesArray = [];
-  let i = 0;
-  const images = req.files;
-  const imageid = nanoid();
+  { let imagesArray = [];
+    let i = 0;
+    const images = req.files;
+    console.log(req.files)
+    let optimizeimages = [];
+    const imageid = nanoid();
+    await Promise.all(
+      images.map(async (image) =>{
+        const newimage = {};
+      newimage.fieldname = image.fieldname;
+      newimage.originalname = image.originalname.substr(0, image.originalname.lastIndexOf(".")) + ".webp";
+      newimage.buffer = await sharp(image.buffer)
+      .toFormat("webp")
+      .jpeg({ quality: 80 })
+      .toBuffer()
+      optimizeimages.push(newimage);
+        }
+      )
+    );
   await Promise.all(
-    images.map((image) =>
-      firebase.uploadFile(image, imageid, i++).then((result) => {
-        imagesArray.push(result);
-      })
-    )
-  );
+      optimizeimages.map(async (image) =>{
+        await firebase.uploadFile(image, imageid, i++).then((result) => {
+          imagesArray.push(result);
+        })}
+      )
+    );
+    console.log(imagesArray);
   commercial.Images = {};
   commercial.Images.images = imagesArray;
   commercial.Images.imageid = imageid;

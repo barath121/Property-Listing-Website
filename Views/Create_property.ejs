@@ -1474,7 +1474,7 @@
                                                             <option value="September">September</option>
                                                             <option value="October">October</option>
                                                             <option value="November">November</option>
-                                                            <option value="Devember">Devember</option>
+                                                            <option value="December">December</option>
                                                           </select>
                                                           <br>
                                                           <label for="year">Year</label>
@@ -1920,22 +1920,6 @@
                                                                 </div>
                                                                 <br>
                                                                 <br>
-                                                                <label for="saleBrokerage">Token Amount</label>
-                                                                <% if(property && property.priceDetails.tokenAmount){ %>
-                                                                <input type="text" id="tokenAmount" pattern="^[0-9]*$"
-                                                                  title="Please enter a valid number"
-                                                                  class="form-control border-top-0 border-left-0 border-right-0 w-50 "
-                                                                  name="tokenAmount" placeholder="Enter total price" value="<%= property.priceDetails.tokenAmount %>"
-                                                                  required><span>
-                                                                    <%} else {%>
-                                                                      <input type="text" id="tokenAmount" pattern="^[0-9]*$"
-                                                                        title="Please enter a valid number"
-                                                                        class="form-control border-top-0 border-left-0 border-right-0 w-50 "
-                                                                        name="tokenAmount" placeholder="Enter total price"
-                                                                        required><span>
-                                                                      <%}%>
-                                                                  <br>
-                                                                  <br>
                                                                   <div class="d-flex w-100 justify-content-center">
                                                                     <button class="btn btn-outline-danger"
                                                                       onclick="switchUp()"
