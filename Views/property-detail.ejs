@@ -236,13 +236,13 @@
                 <div class="bg-white p-3 rounded-lg shadow-sm">
                     <div class="text- mb-4 hammersmithOne h5"><img width="25px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/503/503849.svg" alt="">Features</div>
                     <div class="uk-child-width-1-4@s uk-child-width-1-2 hammersmithOne" uk-grid>
-                        <% if (property.additionalFeatures.additonalRooms) { %>
+                        <% if (property.additionalFeatures.additonalRooms.length != 0) { %>
                             <div>
                                 <div class="text-danger">Additional Rooms</div>
                                 <div><%= property.additionalFeatures.additonalRooms %></div>
                             </div>
                         <% } %> 
-                        <% if (property.additionalFeatures.overlooking) { %>
+                        <% if (property.additionalFeatures.overlooking.length != 0) { %>
                             <div>
                                 <div class="text-danger">Overlooking</div>
                                 <div><%= property.additionalFeatures.overlooking %></div>
@@ -294,7 +294,7 @@
                 </div>
                 <br> <br>
 
-                <% if(property.propertyFeatures.furnitures != 0) { %> 
+                <% if(property.propertyFeatures.furnitures.length != 0) { %> 
                 <div class="bg-white p-3 rounded-lg shadow-sm">
                     <div class="text- mb-4 hammersmithOne h5"><img width="30px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/642/642307.svg" alt="">Furnishing</div>
                     <div>
@@ -318,59 +318,63 @@
                 <div class="bg-white p-3 rounded-lg shadow-sm">
                     <div class="text- mb-4 hammersmithOne h5"><img width="25px" class="image-fluid" src="https://www.flaticon.com/svg/static/icons/svg/60/60484.svg" alt=""> Price Details</div>
                     <div class="uk-child-width-1-4@s uk-child-width-1-2  hammersmithOne" uk-grid>
-                        <% if (property.priceDetails.priceIncludes != 0) { %> 
+                        <% if (property.priceDetails.priceIncludes.length != 0) { %> 
                         <div>
                             <div class="text-danger">Price Includes</div>
                             <div><%= property.priceDetails.priceIncludes %></div>
                         </div>
                         <% } %> 
+                        <% if (property.priceDetails.expectedPrice) { %>
                         <div>
-                            <% if (property.priceDetails.expectedPrice) { %>
-                                <div class="text-danger">Expected Price</div>
-                                <div>₹ <%= property.priceDetails.expectedPrice %></div>
-                            <% } else if (property.priceDetails.expectedRent) { %>
-                                <div class="text-danger">Expected Rent</div>
-                                <div>₹ <%= property.priceDetails.expectedRent %></div>
-                            <% } %>
+                            <div class="text-danger">Expected Price</div>
+                            <div>₹ <%= property.priceDetails.expectedPrice %></div>
+                        <% } else if (property.priceDetails.expectedRent) { %>
+                            <div class="text-danger">Expected Rent</div>
+                            <div>₹ <%= property.priceDetails.expectedRent %></div>
                         </div>
+                        <% } %>
+                        <% if (property.priceDetails.bookingAmount) { %>
                         <div>
-                            <% if (property.priceDetails.bookingAmount) { %>
                             <div class="text-danger">Booking Amount</div>
                             <div>₹ <%= property.priceDetails.bookingAmount %></div>
                             <% } else if (property.priceDetails.securityDeposit) { %>
                             <div class="text-danger">Security Deposit</div>
                             <div>₹ <%= property.priceDetails.securityDeposit %></div>
-                            <% } %>
                         </div>
+                        <% } %>
                         <% if (property.priceDetails.transactionType) { %>
                         <div> 
                             <div class="text-danger">Transaction Type</div>
                             <div><%= property.priceDetails.transactionType %></div>
                         </div>
                         <% } %>
+                        <% if (property.priceDetails.saleBrokerage) { %>
                         <div>
-                            <% if (property.priceDetails.saleBrokerage) { %>
-                                <div class="text-danger">Sales Brokerage</div>
-                                <div><%= property.priceDetails.saleBrokerage %></div>
-                            <% } else if (property.priceDetails.rentBrokerage) { %>
-                                <div class="text-danger">Rent Brokage</div>
-                                <div>₹ <%= property.priceDetails.rentBrokerage %></div>
-                                <% } %>
+                            <div class="text-danger">Sales Brokerage</div>
+                            <div><%= property.priceDetails.saleBrokerage %></div>
+                        <% } else if (property.priceDetails.rentBrokerage) { %>
+                            <div class="text-danger">Rent Brokage</div>
+                            <div>₹ <%= property.priceDetails.rentBrokerage %></div>
                         </div>
+                        <% } %>
                         <% if (property.priceDetails.ageOfConstruction) { %>
                         <div>
                             <div class="text-danger">Age of Construction</div>
                             <div><%= property.priceDetails.ageOfConstruction %></div>
                         </div>
                         <% } %>
+                        <% if (property.priceDetails.maintaninceCharge) { %>
                         <div>
                             <div class="text-danger">Maintanince Charge</div>
                             <div>₹ <%= property.priceDetails.maintaninceCharge %></div>
                         </div>
+                        <% } %> 
+                        <% if (property.priceDetails.maintaninceChargeType) { %>
                         <div>
                             <div class="text-danger">Maintanince Charge Type</div>
                             <div><%= property.priceDetails.maintaninceChargeType %></div>
                         </div>
+                        <% } %> 
                         <div>
                             <div class="text-danger">Stamp Duty Charges</div>
                             <% if(property.priceDetails.stampDutyCharges){%>
