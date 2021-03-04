@@ -93,7 +93,8 @@ receptionArea : {
     },
     balconies : {
         type : String,
-        required : function(){return this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'}
+        required : function(){return this.propertyType=='Commercial Shop'||this.propertyType=='Commercial Showroom'},
+        default : 0
     },
     pantryType : {
         pantryTypes:{
