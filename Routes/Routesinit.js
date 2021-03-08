@@ -11,7 +11,7 @@ const wwwRedirect= (req, res, next) =>{
         return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
     }
     if(req.headers.host.includes("evennode")){
-        return res.redirect(301, "santoshproperty.in");
+        return res.redirect(301, "https://santoshproperty.in");
     }
     next();
 };
