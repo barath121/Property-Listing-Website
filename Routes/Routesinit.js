@@ -10,6 +10,9 @@ const wwwRedirect= (req, res, next) =>{
         var newHost = req.headers.host.slice(4);
         return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
     }
+    if(req.headers.host.includes("evennode")){
+        return res.redirect(301, "santoshproperty.in");
+    }
     next();
 };
 
