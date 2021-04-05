@@ -164,7 +164,7 @@ module.exports.createProperty = async (req, res, next) => {
       newimage.originalname = image.originalname.substr(0, image.originalname.lastIndexOf(".")) + ".webp";
       newimage.buffer = await sharp(image.buffer)
       .toFormat("webp")
-      .jpeg({ quality: 80 })
+      .jpeg({ quality: 90 })
       .toBuffer()
       optimizeimages.push(newimage);
         }
@@ -719,7 +719,7 @@ module.exports.CommercialProperty = async (req, res, next) => {
       newimage.originalname = image.originalname.substr(0, image.originalname.lastIndexOf(".")) + ".webp";
       newimage.buffer = await sharp(image.buffer)
       .toFormat("webp")
-      .jpeg({ quality: 80 })
+      .jpeg({ quality: 90 })
       .toBuffer()
       optimizeimages.push(newimage);
         }
