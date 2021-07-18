@@ -1,6 +1,5 @@
 # Santosh Property
-<a href="https://santoshproperty.herokuapp.com/">Santosh Property</a> is a business to consumer application. Where a realestate agent can sell or rent apartments and the customers can check out those accroding to their needs.
-This website was made according to the requirments and demand of a realestate consultancy after through reserch and meets all the requirments of the client. 
+<a href="https://santoshproperty.herokuapp.com/">Santosh Property</a> is a business to consumer application. Where a real estate agent can sell or rent apartments and the customers can check out those according to their needs. This website was made according to the requirements and demand of a real estate consultancy after through research and meets all the requirements of the client.
 
 # Technologies Used
 ### Backend
