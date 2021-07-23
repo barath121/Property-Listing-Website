@@ -45,7 +45,7 @@ propertyFeatures : {
     },
     bedrooms : {
         type : String,
-        enum : ["0","1","2","3","4","More Than 4"],
+        enum : ["0","1","2","3","4","more than 4"],
         required : true
     },
     bedroomArea :[{
@@ -60,12 +60,12 @@ propertyFeatures : {
     }],
     balconies :{
         type : String,
-        enum : ["0","1","2","3","4","More Than 4"],
+        enum : ["0","1","2","3","4","more than 4"],
         required : true
     },
     bathroom :{
         type : String,
-        enum : ["0","1","2","3","More Than 3"],
+        enum : ["0","1","2","3","4","more than 4"],
         required : true
     },
     floorNo : {
