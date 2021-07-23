@@ -31,7 +31,8 @@ const Routesinit = (app) => {
         const err = new Error("Hello");
         err.status = 'fail';
         err.statusCode = 404;
-        next(new AppError(`Cannot Find the ${req.originalUrl} on server`, 404));
+        res.render("404");
+        // next(new AppError(`Cannot Find the ${req.originalUrl} on server`, 404));
     });
    
     app.use((err, req, res, next) => {
