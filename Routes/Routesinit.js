@@ -1,8 +1,5 @@
 const PropertyRoutes = require('./PropertyRoute')
-const AppError = require('./../Utils/appError');
 const UserRoute = require('./UserRoute');
-const PropertyRoute = require('./PropertyRoute');
-const multer = require('multer');
 const StaticRoutes = require('./StaticRoutes');
 const AdminRoute = require('./AdminRoute');
 const wwwRedirect= (req, res, next) =>{
