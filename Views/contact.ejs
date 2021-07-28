@@ -11,10 +11,16 @@
         <div class="row">
             <div class="col-md-6 col-12 p-5">
                 <h3 class="text-center font-weight-bold">We'd love to hear from you</h3> <br> <br>
-                <% if (messages.Success) { %>
-                    <div class="uk-alert-success uk-width-auto" uk-alert>
+                <% if (messages.error) { %>
+                    <div class="uk-alert-danger uk-width-auto" uk-alert>
                       <a class="uk-alert-close" uk-close></a>
-                      <p class="text-center"><%= messages.Success %></p>
+                      <p class="text-center"><%= messages.error %></p>
+                    </div>
+                <% } %>
+                <% if (messages.success) { %>
+                    <div class="uk-alert-success uk-width-auto" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        <p class="text-center"><%= messages.success %></p>
                     </div>
                 <% } %>
                 <div class="text-center breeSerif">

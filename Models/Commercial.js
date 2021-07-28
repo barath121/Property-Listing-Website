@@ -232,5 +232,3 @@ Images :{
 
 const Commercial = mongoose.model('Commercial',CommercialSchema);
 module.exports = Commercial;
-
-//Add map soon

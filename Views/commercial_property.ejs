@@ -25,7 +25,7 @@
           <label for="PropertyType">Property type</label>
           <br>
           <br>
-          <select class="form-control w-50" onchange="select()" name="PropertyType" id="PropertyType" required>
+          <select class="form-control w-50" onchange="select()" name="propertyType" id="PropertyType" required>
             <option value="">Select</option>
             <% if(property && property.propertyType == "Commercial Shop" ){ %>
             <option value="Commercial Shop" selected> Commercial Shop </option>
@@ -57,20 +57,20 @@
           <h4>Property For</h4>
           <div class="form-check form-check-inline">
             <% if(property && property.propertyFor=="Sale" ){ %>
-              <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
+              <input class="form-check-input" type="radio" name="propertyFor" onchange="saleSelected()" value="Sale"
                 id="PropertyforSale" checked required>
               <%}else{%>
-                <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()"
+                <input class="form-check-input" type="radio" name="propertyFor" onchange="saleSelected()"
                   value="Sale" id="PropertyforSale" required>
                 <%}%>
                   <label class="form-check-label" for="PropertyforSale">Sale</label>
           </div>
           <div class="form-check form-check-inline">
             <% if( property && property.propertyFor=="Rent/Lease" ){ %>
-              <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()"
+              <input class="form-check-input" type="radio" name="propertyFor" onchange="RentSelected()"
                 value="Rent/Lease" id="PropertyforRent" checked>
               <%}else{%>
-                <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()"
+                <input class="form-check-input" type="radio" name="propertyFor" onchange="RentSelected()"
                   value="Rent/Lease" id="PropertyforRent">
                 <%}%>
                   <label class="form-check-label" for="PropertyforRent">Rent</label>
@@ -80,7 +80,7 @@
           <label for="Locality">Locality</label>
           <br>
           <br>
-          <select class="form-control w-50" name="Locality" id="Locality" required>
+          <select class="form-control w-50" name="locality" id="Locality" required>
             <% if(property && property.locality=="Roadpali" ){ %>
               <option value="Roadpali" selected>Roadpali</option>
               <%}else{%>
@@ -334,7 +334,7 @@
             <label for="shopbalconies">Balconies</label>
             <br>
             <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-              class="form-control w-50" id="shopbalconies" name="shopbalconies" >
+              class="form-control w-50" id="shopbalconies" name="balconies" >
           </div>
 
           <div id="extras" class="">
@@ -601,10 +601,10 @@
                   <br>
                   <% if(property.balconies) {%>
                   <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-                    class="form-control w-50" value="<%= property.balconies %>" id="shopbalconies" name="shopbalconies" required>
+                    class="form-control w-50" value="<%= property.balconies %>" id="shopbalconies" name="balconies" required>
                     <%} else {%>
                       <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-                    class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+                    class="form-control w-50" id="shopbalconies" name="balconies" required>
                       <%}%>
                 </div>
       
@@ -876,7 +876,7 @@
                     <label for="shopbalconies">Balconies</label>
                     <br>
                     <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-                      class="form-control w-50" id="shopbalconies" name="shopbalconies" >
+                      class="form-control w-50" id="shopbalconies" name="balconies" >
                   </div>
         
                   <div id="extras" class="">
@@ -1142,7 +1142,7 @@
                       <label for="shopbalconies">Balconies</label>
                       <br>
                       <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-                        class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+                        class="form-control w-50" id="shopbalconies" name="balconies" required>
                     </div>
           
                     <div id="extras" class="d-none">
@@ -1308,7 +1308,7 @@
               <label for="shopbalconies">Balconies</label>
               <br>
               <input type="text" placeholder="Enter number of balconies" onchange="shopbalcony()"
-                class="form-control w-50" id="shopbalconies" name="shopbalconies" required>
+                class="form-control w-50" id="shopbalconies" name="balconies" required>
             </div>
   
             <div id="extras" class="">

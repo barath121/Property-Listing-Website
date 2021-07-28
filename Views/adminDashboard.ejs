@@ -13,6 +13,12 @@
               <p class="text-center"><%= messages.success %></p>
             </div>
         <% } %>
+        <% if (messages.error) { %>
+            <div class="uk-alert-success uk-width-auto" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p class="text-center"><%= messages.error %></p>
+            </div>
+        <% } %>
 
         <ul class="nav nav-pills mb-3 d-flex justify-content-center" role="tablist">
             <li class="nav-item" role="presentation">
@@ -202,7 +208,7 @@
                                             <span class="text-dark hammersmithOne">
                                                 <% if (ele.DisabledProperty[a].priceDetails.expectedPrice) { %> 
                                                     ₹ <%= ele.DisabledProperty[a].priceDetails.expectedPrice %>
-                                                <% } else if(ele.DisablesProperty[a].priceDetails.expectedRent) { %> 
+                                                <% } else if(ele.DisabledProperty[a].priceDetails.expectedRent) { %> 
                                                     ₹ <%= ele.DisabledProperty[a].priceDetails.expectedRent %> per month
                                                 <% } %>
                                             </span> | 

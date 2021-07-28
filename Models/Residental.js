@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const PropertySchema = mongoose.Schema({
+const ResidentalSchema = mongoose.Schema({
 isAvaliable : {
 type : Boolean,
 required : true,
@@ -261,7 +261,5 @@ Images :{
     timestamps: true,
 });
 
-const Property = mongoose.model('Property',PropertySchema);
-module.exports = Property;
-
-//Add map soon
+const Residental = mongoose.model('Residental',ResidentalSchema);
+module.exports = Residental;
