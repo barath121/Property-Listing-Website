@@ -4,7 +4,6 @@ const firebase = require("./../Utils/firebaseAdminInit");
 const { customAlphabet } = require("nanoid");
 const Saved = require("../Models/Saved");
 const sharp = require("sharp");
-const User = require("../Models/User");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
 const flashSuccess = "success";
 const catchAsync = (fn) => {

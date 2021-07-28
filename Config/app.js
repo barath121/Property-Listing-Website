@@ -1,17 +1,12 @@
 const express = require('express')
 const app = express();
 const path = require("path");
-const appError = require('./../Utils/appError')
 var bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload');
-var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var dotenv = require('dotenv');
 const passport = require('passport');
-const AppError = require('./../Utils/appError');
 const initializePassport = require('./passport');
 const  session  = require('express-session');
-const User = require('../Models/User');
 const flash = require('express-flash');
 dotenv.config({ path: "./.env" });
 
