@@ -26,10 +26,10 @@
               <h1 class="font-weight-bold">Property Details</h1>
               <br>
               <br>
-              <label for="PropertyType">Property type</label>
+              <label for="propertyType">Property type</label>
               <br>
               <br>
-              <select class="form-control w-50 " name="PropertyType" id="PropertyType" required>
+              <select class="form-control w-50 " name="propertyType" id="propertyType" required>
                 <option value="">Select</option>
                 <% if(property.propertyType=="Flat/Apartment" ){ %>
                   <option value="Flat/Apartment" selected> Flat/Apartment </option>
@@ -71,20 +71,20 @@
               <h4>Property For</h4>
               <div class="form-check form-check-inline">
                 <% if(property.propertyFor=="Sale" ){ %>
-                  <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()" value="Sale"
+                  <input class="form-check-input" type="radio" name="propertyFor" onchange="saleSelected()" value="Sale"
                     id="PropertyforSale" checked required>
                   <%}else{%>
-                    <input class="form-check-input" type="radio" name="Propertyfor" onchange="saleSelected()"
+                    <input class="form-check-input" type="radio" name="propertyFor" onchange="saleSelected()"
                       value="Sale" id="PropertyforSale" required>
                     <%}%>
                       <label class="form-check-label" for="PropertyforSale">Sale</label>
               </div>
               <div class="form-check form-check-inline">
                 <% if(property.propertyFor=="Rent/Lease" ){ %>
-                  <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()"
+                  <input class="form-check-input" type="radio" name="propertyFor" onchange="RentSelected()"
                     value="Rent/Lease" id="PropertyforRent" checked>
                   <%}else{%>
-                    <input class="form-check-input" type="radio" name="Propertyfor" onchange="RentSelected()"
+                    <input class="form-check-input" type="radio" name="propertyFor" onchange="RentSelected()"
                       value="Rent/Lease" id="PropertyforRent">
                     <%}%>
                       <label class="form-check-label" for="PropertyforRent">Rent</label>
@@ -94,7 +94,7 @@
               <label for="Locality">Locality</label>
               <br>
               <br>
-              <select class="form-control w-50 " name="Locality" id="Locality" required>
+              <select class="form-control w-50 " name="locality" id="Locality" required>
                 <% if(property.locality=="Roadpali" ){ %>
                   <option value="Roadpali" selected>Roadpali</option>
                   <%}else{%>
@@ -3230,17 +3230,29 @@
       }
     })
     function SubmitForm(element){
+    const params = new URLSearchParams(window.location.search);
     var myForm = document.getElementById('propertyform');
     if(myForm.checkValidity()){
       document.getElementById("errormsg1").classList.add("d-none")
       document.getElementById("errormsg2").classList.add("d-none")
+      if(!params.get('_id'))
       document.getElementById("errormsg3").classList.add("d-none")
       Loader();
     }else{
+     console.log(myForm);
       document.getElementById("errormsg1").classList.remove("d-none")
       document.getElementById("errormsg2").classList.remove("d-none")
+      if(!params.get('_id'))
       document.getElementById("errormsg3").classList.remove("d-none")
     }
+    var contactForm = document.getElementById('propertyform');
+    if (contactForm.checkValidity() == false) {
+    var list = contactForm.querySelectorAll(':invalid');
+    for (var item of list) {
+        console.log(item)
+        item.setAttribute("style", "background-color: red;")
+    }
+}
    }
   </script>
   <%- include('./layouts/Footer') -%>

@@ -2,11 +2,10 @@ const User = require('./../Models/User');
 const bcrypt = require('bcrypt');
 const Enquiry = require('../Models/Enquiry');
 const Saved = require('../Models/Saved');
-const mongoose = require('mongoose');
 const https = require('https')
-const Property = require('../Models/Property');
 const { customAlphabet } = require("nanoid");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 8);
+const flashSuccess = "success";
 module.exports.Redirect = (req,res) =>{
   if(req.user.isAdmin){
     res.redirect('/admin/admindashboard');
@@ -25,13 +24,10 @@ module.exports.CheckLogin = (req,res,next) =>{
   }
 }
 module.exports.Register = async (req,res,next) =>{
-    let user = {};
-    user.email = req.body.email;
-    user.phone = req.body.phone;
-    user.name = req.body.name;
+    let user = req.body;
     let unencrypted_password =nanoid();
     user.password = await bcrypt.hash(unencrypted_password,parseInt(process.env.Salt));
-   
+
     const data = JSON.stringify({"From":"SNTSHP",
     "To":req.body.phone,
     "TemplateName":"Password",
@@ -63,14 +59,13 @@ module.exports.Register = async (req,res,next) =>{
     User.create(user).catch(err=>{
       next(err);
     }).then(result=>{
-        if(result)
-    {  req.flash("sucess","Account created sucessfully password has been sent to your mobile number");
-      res.redirect("/login");}
+    if(result) {  
+      req.flash(flashSuccess,"Account created sucessfully password has been sent to your mobile number");
+      res.redirect("/login");
+    }
     })
 }
 module.exports.forgotpassword = async (req,res) =>{
-    let user = {}
-    let phone = req.body.phone;
     let unencrypted_password =nanoid();
     let password = await bcrypt.hash(unencrypted_password,parseInt(process.env.Salt));
     User.findOneAndUpdate({
@@ -114,7 +109,7 @@ module.exports.forgotpassword = async (req,res) =>{
           next(err);
         }).then(result=>{
             if(result){
-              req.flash("sucess","Some Error Please Try Again");
+              req.flash(flashSuccess,"Some Error Please Try Again");
               res.redirect("/login");
             }
           })
@@ -122,7 +117,7 @@ module.exports.forgotpassword = async (req,res) =>{
   
       postreq.write(data)
       postreq.end()
-      req.flash("sucess","Your New Password Has Been Sent to your phone");
+      req.flash(flashSuccess,"Your New Password Has Been Sent to your phone");
       res.redirect("/login");}
     })
    
@@ -132,11 +127,7 @@ module.exports.logout = (req,res) =>{
   res.redirect('/login');
 }
 module.exports.AddEnquiry = (req,res,next) =>{
-  let enquiry = {}
-  enquiry.email = req.body.email;
-  enquiry.name = req.body.name;
-  enquiry.contactno = req.body.contactno;
-  enquiry.message = req.body.message;
+  let enquiry = req.body;
   Enquiry.create(enquiry)
   .catch(err=>{
     next(err);
@@ -144,11 +135,11 @@ module.exports.AddEnquiry = (req,res,next) =>{
   .then(result=>{
     if(result){
     if(req.body.page=="dashboard"){
-      req.flash("Success","Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
+      req.flash(flashSuccess,"Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
       res.redirect("/dashboard");
     }
     else{
-    req.flash("Success","Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
+    req.flash(flashSuccess,"Your Request Have Been Sumbitted Your Will Be Contacted By Our Agent Soon");
     res.redirect("/contact");}
   }
   });
@@ -160,14 +151,14 @@ module.exports.AddSaved = (req,res,next) =>{
   if(req.query.propertytype == "commercial")
   saved.commercialID = req.query.propertyid;
   else
-  saved.propertyID = req.query.propertyid;
+  saved.residentalID = req.query.propertyid;
   Saved.create(saved) 
   .catch(err=>{
     next(err);
   })
   .then(result=>{
     if(result){
-      req.flash("success","Property Has Been Saved");
+      req.flash(flashSuccess,"Property Has Been Saved");
       res.redirect('/property?type='+propertytype+'&id='+saved.propertyID);
     }
   })
@@ -175,27 +166,26 @@ module.exports.AddSaved = (req,res,next) =>{
 module.exports.RemoveSaved = (req,res,next) =>{
   let saved = {}
   saved.customerID = req.user._id;
-  let propertytype = req.query.propertytype;
   if(req.query.propertytype == "commercial")
   saved.commercialID = req.query.propertyid;
   else
-  saved.propertyID = req.query.propertyid;
+  saved.residentalID = req.query.propertyid;
   Saved.findOneAndRemove({$and : [
     {customerID : saved.customerID},
-    {$or:[{propertyID : saved.propertyID},{commercialID : saved.commercialID}]}
+    {$or:[{residentalID : saved.residentalID},{commercialID : saved.commercialID}]}
   ]}) 
   .catch(err=>{
     next(err);
   })
   .then(result=>{
     if(result){
-      req.flash("success","Property Has Been Removed");
-      res.redirect('/property?type='+propertytype+'&id='+saved.propertyID);
+      req.flash(flashSuccess,"Property Has Been Removed");
+      res.redirect('/property?type='+req.query.propertytype+'&id='+saved.propertyID);
     }
   })
 }
 module.exports.userdashboard =(req,res,next) =>{
-Saved.find({customerID:req.user._id}).populate({path:'propertyID commercialID',select:'propertyType propertyFor name locality furnishing description'})
+Saved.find({customerID:req.user._id}).populate({path:'residentalID commercialID',select:'propertyType propertyFor name locality furnishing description'})
  .then(result=>{
   res.render('userDashboard',{
     savedProperties : result
@@ -210,11 +200,11 @@ User.findById(req.user._id).then(async user=>{
     if(await bcrypt.compare(oldpassword,user.password)){
      let encrypted_password = await bcrypt.hash(newpassword,parseInt(process.env.Salt));
         await User.findByIdAndUpdate(user._id,{password : encrypted_password});
-        req.flash("success","Password Has Been Changed");
+        req.flash(flashSuccess,"Password Has Been Changed");
         res.redirect('/dashboard');
     }
     else{
-      req.flash("success","Please Check Your Old Password");
+      req.flash(flashSuccess,"Please Check Your Old Password");
         res.redirect('/dashboard');
     }
   }

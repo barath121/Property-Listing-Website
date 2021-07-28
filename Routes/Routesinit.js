@@ -1,4 +1,4 @@
-PropertyRoutes = require('./PropertyRoute')
+const PropertyRoutes = require('./PropertyRoute')
 const AppError = require('./../Utils/appError');
 const UserRoute = require('./UserRoute');
 const PropertyRoute = require('./PropertyRoute');
@@ -28,11 +28,7 @@ const Routesinit = (app) => {
     app.use('/user',UserRoute);
     app.use('/admin',AdminRoute);
     app.use((req, res, next) => {
-        const err = new Error("Hello");
-        err.status = 'fail';
-        err.statusCode = 404;
         res.render("404");
-        // next(new AppError(`Cannot Find the ${req.originalUrl} on server`, 404));
     });
    
     app.use((err, req, res, next) => {
@@ -44,10 +40,12 @@ const Routesinit = (app) => {
         else if (err.name === 'ValidationError') {
            err.message =  "Please enter all required fields"
         }
-        res.status(err.statusCode).json({
-            status: err.status,
-            message: err.message
-        })
+        req.flash("error",err.message);
+        res.redirect('back');
+        // res.status(err.statusCode).json({
+        //     status: err.status,
+        //     message: err.message
+        // })
     })
 }
 module.exports = Routesinit;
