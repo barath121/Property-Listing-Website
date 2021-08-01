@@ -106,17 +106,17 @@
                     <% } else { %> 
                         <div class="row row-cols-1 row-cols-lg-2">
                             <% for (var a in savedProperties) { %> 
-                                <% if (savedProperties[a].propertyID) { %> 
+                                <% if (savedProperties[a].residentialID) { %> 
                                 <div class="col mb-4">
                                     <div class="card h-100 p-2">
-                                        <a href="/property?type=residential&id=<%= savedProperties[a].propertyID._id %>" class="text-danger h4 hammersmithOne"><%= savedProperties[a].propertyID.name %></a>
+                                        <a href="/property?type=residential&id=<%= savedProperties[a].residentialID._id %>" class="text-danger h4 hammersmithOne"><%= savedProperties[a].residentialID.name %></a>
                                         <hr class="mt-0">
-                                        <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].propertyID.propertyType %></div>
-                                        <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].propertyID.propertyFor %></div>
-                                        <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].propertyID.locality %></div>
+                                        <div class=""><span class="hammersmithOne">Property Type:</span> <%= savedProperties[a].residentialID.propertyType %></div>
+                                        <div class=""><span class="hammersmithOne">Property For:</span> <%= savedProperties[a].residentialID.propertyFor %></div>
+                                        <div class=""><span class="hammersmithOne">Locality:</span> <%= savedProperties[a].residentialID.locality %></div>
                                         <br>
                                         <div class="hammersmithOne">Description:</div>
-                                        <div class=""><%= savedProperties[a].propertyID.description %></div>
+                                        <div class=""><%= savedProperties[a].residentialID.description %></div>
                                     </div>
                                 </div>
                                 <% } %> 

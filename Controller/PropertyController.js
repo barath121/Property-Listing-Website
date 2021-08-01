@@ -1,6 +1,7 @@
-const Residental = require("../Models/Residental");
+const Residential = require("../Models/Residential");
 const Commercial = require("../Models/Commercial");
 const firebase = require("./../Utils/firebaseAdminInit");
+const fs = require("fs")
 const { customAlphabet } = require("nanoid");
 const Saved = require("../Models/Saved");
 const sharp = require("sharp");
@@ -11,7 +12,10 @@ const catchAsync = (fn) => {
     fn(req, res, next).catch(next);
   };
 };
-const converttosq = (area, unit) => {
+const cleanObject = (obj) => {
+  return Object.entries(obj).reduce((a, [k, v]) => (v == null || v == '' || v == undefined ? a : (a[k] = v, a)), {});
+}
+const convertToSq = (area, unit) => {
   if (unit == "Sqft") {
     return area;
   } else if (unit == "Acre") {
@@ -20,26 +24,26 @@ const converttosq = (area, unit) => {
     return area * 10.7639;
   } else return area;
 };
-module.exports.ViewProperty = (req, res, next) => {
+module.exports.viewProperty = catchAsync(async(req, res, next) => {
   let id = req.query.id;
   let type = req.query.type;
   let similarproperties = [];
   let localityproperties = [];
   if (type == "residential") {
     let savedetails = {};
-    Residental.findById(id)
+    Residential.findById(id)
       .then(async (property) => {
         if (property) {
           savedetails.propertytype = "residential";
           savedetails.propertyid = property._id;
           try {
-            similarproperties = await Residental.find({
+            similarproperties = await Residential.find({
               $or: [
                 { propertyType: property.propertyType },
                 { propertyFor: property.propertyFor },
               ],
             }).limit(10);
-            localityproperties = await Residental.find({
+            localityproperties = await Residential.find({
               locality: property.locality,
             }).limit(10);
           } catch {
@@ -51,7 +55,7 @@ module.exports.ViewProperty = (req, res, next) => {
           if (req.isAuthenticated()) {
             saved = await Saved.findOne({
               $and: [
-                { residentalID: property._id },
+                { residentialID: property._id },
                 { customerID: req.user._id },
               ],
             });
@@ -126,9 +130,9 @@ module.exports.ViewProperty = (req, res, next) => {
         next(err);
       });
   }
-};
-module.exports.HomePage = catchAsync(async(req, res, next) => {
-  let Properties = await Residental.aggregate([
+});
+module.exports.homePage = catchAsync(async(req, res, next) => {
+  let Properties = await Residential.aggregate([
     { $match: { $and: [{ isAvaliable: true }, { propertyFor: "Sale" }] } },
     { $sample: { size: 6 } },
   ]).catch((err) => next(err));
@@ -257,7 +261,7 @@ module.exports.HomePage = catchAsync(async(req, res, next) => {
     commercialrent.push(property);
   });
 
-  let RentProperties = await Residental.aggregate([
+  let RentProperties = await Residential.aggregate([
     {
       $match: { $and: [{ isAvaliable: true }, { propertyFor: "Rent/Lease" }] },
     },
@@ -296,7 +300,7 @@ module.exports.HomePage = catchAsync(async(req, res, next) => {
     rentcommercial: commercialrent,
   });
 });
-module.exports.Search = catchAsync(async (req, res,next) => {
+module.exports.search = catchAsync(async (req, res,next) => {
   let countofpage = 0;
   let filters = req.query;
   let conditions = [];
@@ -374,11 +378,11 @@ module.exports.Search = catchAsync(async (req, res,next) => {
     let page = req.query.page || 1;
     let limit = 10;
     let skip = (page - 1) * limit;
-    let conditionedProperties = await Residental.find(condition)
+    let conditionedProperties = await Residential.find(condition)
       .sort({ _id: -1 })
       .skip(skip)
       .limit(limit);
-    countofpage = await Residental.countDocuments(condition);
+    countofpage = await Residential.countDocuments(condition);
     countofpage = parseInt(countofpage / 10);
     conditionedProperties.forEach((element) => {
       property = {};
@@ -428,9 +432,9 @@ module.exports.Search = catchAsync(async (req, res,next) => {
   }
   res.render("Search_page", { properties: properties, page: countofpage });
 });
-module.exports.EditProperty = (req, res, next) => {
+module.exports.editProperty = (req, res, next) => {
   if (req.query.type == "residential") {
-    Residental.findById(req.query._id).then((property) => {
+    Residential.findById(req.query._id).then((property) => {
       if (property) {
         let Quantity = ["", "", "", "", ""];
         let Furniture = [];
@@ -464,7 +468,7 @@ module.exports.EditProperty = (req, res, next) => {
     });
   }
 };
-module.exports.SearchCommercial = catchAsync(async (req, res, next) => {
+module.exports.searchCommercial = catchAsync(async (req, res, next) => {
   let filters = req.query;
   let conditions = [];
   conditions.push({ isAvaliable: true });
@@ -595,21 +599,21 @@ module.exports.createProperty = catchAsync(async (req, res, next) => {
   }
 
   if (req.body.superBuiltUpArea[0] != "")
-    property.propertyFeatures.superBuiltUpArea = converttosq(
+    property.propertyFeatures.superBuiltUpArea = convertToSq(
       req.body.superBuiltUpArea[0],
       req.body.superBuiltUpArea[1]
     );
   if (req.body.builtUpArea[0] != "")
-    property.propertyFeatures.builtUpArea = converttosq(
+    property.propertyFeatures.builtUpArea = convertToSq(
       req.body.builtUpArea[0],
       req.body.builtUpArea[1]
     );
-  property.propertyFeatures.carpetArea = converttosq(
+  property.propertyFeatures.carpetArea = convertToSq(
     req.body.carpetArea[0],
     req.body.carpetArea[1]
   );
 
-  property.propertyFeatures.balconies = req.body.Balconies;
+  property.propertyFeatures.balconies = req.body.Balconies[0]||req.body.Balconies[1];
   property.propertyFeatures.bathroom = req.body.bathroom;
   property.propertyFeatures.floorNo = req.body.floorNo;
   property.propertyFeatures.totalFloors = req.body.totalFloors;
@@ -741,9 +745,8 @@ module.exports.createProperty = catchAsync(async (req, res, next) => {
     property.Images.imageid = imageid;
   }
   if (req.body._id) {
-    Residental.findByIdAndUpdate(req.body._id, property)
+    Residential.findByIdAndUpdate(req.body._id, property)
       .catch((err) => {
-        console.log(err);
         next(err);
       })
       .then((result) => {
@@ -751,9 +754,8 @@ module.exports.createProperty = catchAsync(async (req, res, next) => {
         if (result) res.redirect("/admin/admindashboard");
       });
   } else {
-    Residental.create(property)
+    Residential.create(cleanObject(property))
       .catch((err) => {
-        console.log(err);
         next(err);
       })
       .then((result) => {
@@ -762,23 +764,25 @@ module.exports.createProperty = catchAsync(async (req, res, next) => {
       });
   }
 });
-module.exports.CommercialProperty = catchAsync(async (req, res, next) => {
-  let commercial = {};
+module.exports.commercialProperty = catchAsync(async (req, res, next) => {
+  let commercial = req.body;
   commercial.areaDetails = {};
   if (req.body.superBuiltUpArea[0] != "")
-    commercial.areaDetails.superBuiltUpArea = converttosq(
+    commercial.areaDetails.superBuiltUpArea = convertToSq(
       req.body.superBuiltUpArea[0],
       req.body.superBuiltUpArea[1]
     );
   if (req.body.builtUpArea[0] != "")
-    commercial.areaDetails.builtUpArea = converttosq(
+    commercial.areaDetails.builtUpArea = convertToSq(
       req.body.builtUpArea[0],
       req.body.builtUpArea[1]
     );
-  commercial.areaDetails.carpetArea = converttosq(
+  commercial.areaDetails.carpetArea = convertToSq(
     req.body.carpetArea[0],
     req.body.carpetArea[1]
   );
+  if(req.body.propertyType=='Commercial Shop'||req.body.propertyType=='Commercial Showroom')
+  commercial.balconies = commercial.balconies[0]||commercial.balconies[1]
   if (req.body.PropertyType == "Commercial Office Space") {
     commercial.officeSetup = {};
     commercial.officeSetup.minSeats = req.body.minSeats;
@@ -836,7 +840,6 @@ module.exports.CommercialProperty = catchAsync(async (req, res, next) => {
     let imagesArray = [];
     let i = 0;
     const images = req.files;
-    console.log(req.files);
     let optimizeimages = [];
     const imageid = nanoid();
     await Promise.all(
@@ -864,22 +867,26 @@ module.exports.CommercialProperty = catchAsync(async (req, res, next) => {
     commercial.Images.images = imagesArray;
     commercial.Images.imageid = imageid;
 
-    Commercial.create(commercial)
+    Commercial.create(cleanObject(commercial))
       .catch((err) => {
-        console.log(err);
         next(err);
       })
       .then((result) => {
-        if (result) res.redirect("/");
+        if (result) {
+          req.flash(flashSuccess, "Property has been Added");
+          res.redirect("/admin/admindashboard")
+        };
       });
   } else {
     Commercial.findByIdAndUpdate(req.body._id, commercial)
       .catch((err) => {
-        console.log(err);
         next(err);
       })
       .then((result) => {
-        if (result) res.redirect("/");
+        if (result) {
+          req.flash(flashSuccess, "Property has been Added");
+          res.redirect("/admin/admindashboard")
+        }
         else res.redirect("/404");
       });
   }

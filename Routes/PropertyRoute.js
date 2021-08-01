@@ -7,8 +7,8 @@ var upload = multer({
     storage : multer.memoryStorage()
 });
 PropertyRoute.use(AdminController.isAdmin);
-PropertyRoute.get('/editproperty',PropertyController.EditProperty);
+PropertyRoute.get('/editproperty',PropertyController.editProperty);
 PropertyRoute.use(upload.any());
-PropertyRoute.post('/createproperty',PropertyController.createProperty);
-PropertyRoute.post('/commercialproperty',PropertyController.CommercialProperty);
+PropertyRoute.post('/createresidentialproperty',PropertyController.createProperty);
+PropertyRoute.post('/createcommercialproperty',PropertyController.commercialProperty);
 module.exports = PropertyRoute;

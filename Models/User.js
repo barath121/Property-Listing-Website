@@ -4,6 +4,11 @@ email : {
     type : String,
     required : true,
     unique : true,
+    validate: {
+        validator: function(v) {
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+        }
+    }
 },
 phone : {
     type : Number,

@@ -47,10 +47,10 @@
               <% if (req.user) { %>
                 <% if (req.user.isAdmin) { %>
                   <li class="nav-item">
-                    <a class="nav-link text-light text-center d-md-none d-block" href="/newproperty">Add resident</a>
+                    <a class="nav-link text-light text-center d-md-none d-block" href="/createresidentialproperty">Add resident</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-light text-center d-md-none d-block" href="/commercialproperty">Add Commercial</a>
+                    <a class="nav-link text-light text-center d-md-none d-block" href="/createcommercialproperty">Add Commercial</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link text-light text-center d-md-none d-block" href="/admin/admindashboard">Dashboard</a>
@@ -75,8 +75,8 @@
                   <div class="text-white nav-link ml-3 d-md-block d-none" type="button">Add <span class="" uk-icon="icon: triangle-down"></span></div>
                   <div uk-dropdown="mode: click; pos: bottom-justify; offset: 20">
                     <ul class="uk-nav uk-dropdown-nav">
-                      <li><a class="text-center text-dark hammersmithOne" href="/newproperty">Add resident</a></li>
-                      <li><a class="text-center text-dark hammersmithOne" href="/commercialproperty">Add Commercial</a></li>
+                      <li><a class="text-center text-dark hammersmithOne" href="/createresidentialproperty">Add Residential</a></li>
+                      <li><a class="text-center text-dark hammersmithOne" href="/createcommercialproperty">Add Commercial</a></li>
                     </ul>
                   </div>
                 </li>

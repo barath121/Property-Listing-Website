@@ -1,42 +1,10 @@
 const Commercial = require("../Models/Commercial");
 const Enquiry = require("../Models/Enquiry");
-const Residental = require("../Models/Residental");
+const Residential = require("../Models/Residential");
 const Saved = require("../Models/Saved");
 const User = require("./../Models/User");
 const firebase = require("./../Utils/firebaseAdminInit");
 const flashSuccess = "success";
-const converttocardData = (Data) => {
-  Data.forEach((element) => {
-    property = {};
-    element.Images.images.forEach((img) => {
-      if (img.includes("CoverImages")) {
-        property.image = img;
-      }
-    });
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name +
-      ", " +
-      element.locality;
-    property.area = element.propertyFeatures.carpetArea;
-    property.furnishing = element.propertyFeatures.furnishingStatus;
-    property.status =
-      element.priceDetails.possessionStatus ||
-      "Possession by " +
-      element.priceDetails.avaliableFrom.month +
-      " " +
-      element.priceDetails.avaliableFrom.year;
-    property.price =
-      element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
-    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-    property.bathroom = element.propertyFeatures.bathroom + " Bath";
-    properties.push(property);
-  });
-  return Data;
-};
 const catchAsync = (fn) => {
   return (req, res, next) => {
     fn(req, res, next).catch(next);
@@ -50,7 +18,7 @@ module.exports.isAdmin = (req, res, next) => {
   }
 };
 
-module.exports.AdminDashboard = catchAsync(async (req, res, next) => {
+module.exports.adminDashboard = catchAsync(async (req, res, next) => {
   const Page = req.query.page || 1;
   const limit = req.query.limit * 1 || 14;
   const skip = (Page - 1) * limit;
@@ -58,7 +26,7 @@ module.exports.AdminDashboard = catchAsync(async (req, res, next) => {
   if (req.query.number) {
     let user = await User.findOne({ phone: req.query.number });
     saved = await Saved.find({ customerID: user._id }).populate({
-      path: "residentalID commercialID",
+      path: "residentialID commercialID",
       select: "propertyType propertyFor name locality furnishing description",
     });
   }
@@ -153,7 +121,7 @@ module.exports.AdminDashboard = catchAsync(async (req, res, next) => {
       },
     },
   ]);
-  let residentalresult = await Residental.aggregate([
+  let residentialresult = await Residential.aggregate([
     {
       $facet: {
         ActivatedProperty: [
@@ -257,7 +225,7 @@ module.exports.AdminDashboard = catchAsync(async (req, res, next) => {
   res.render("adminDashboard", {
     customer: customer,
     commercial: commercialresult,
-    properties: residentalresult,
+    properties: residentialresult,
     enquiries: enquiries,
     unsolved: enquiries_count,
     solved: enquiries_solved,
@@ -265,7 +233,7 @@ module.exports.AdminDashboard = catchAsync(async (req, res, next) => {
   });
 });
 
-module.exports.TogglePropertyAvaliablity = catchAsync((req, res, next) => {
+module.exports.togglePropertyAvaliablity = catchAsync(async(req, res, next) => {
   if (req.body.type == "commercial") {
     Commercial.findByIdAndUpdate(req.body.id, { isAvaliable: req.body.status })
       .then((property) => {
@@ -280,7 +248,7 @@ module.exports.TogglePropertyAvaliablity = catchAsync((req, res, next) => {
         next(err);
       });
   } else {
-    Residental.findByIdAndUpdate(req.body.id, { isAvaliable: req.body.status })
+    Residential.findByIdAndUpdate(req.body.id, { isAvaliable: req.body.status })
       .then((property) => {
         if (req.body.status == "true") {
           req.flash(flashSuccess, "Property has ben Activated");
@@ -295,39 +263,37 @@ module.exports.TogglePropertyAvaliablity = catchAsync((req, res, next) => {
   }
 });
 
-module.exports.DeletePropertyAvaliablity = catchAsync((req, res, next) => {
+module.exports.deleteProperty = catchAsync(async(req, res, next) => {
   if (req.body.type == "commercial") {
     Commercial.findById(req.body.id)
       .then((result) => {
         firebase.deleteFile(result.Images.images);
-        Saved.remove({ residentalID: req.body.id });
+        Saved.remove({ residentialID: req.body.id });
         Commercial.findByIdAndDelete(req.body.id).then((deleted) => {
           req.flash(flashSuccess, "Property Has Been Removed");
           res.redirect("/admin/admindashboard");
         });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   } else {
-    Residental.findById(req.body.id)
+    Residential.findById(req.body.id)
       .then((result) => {
         firebase.deleteFile(result.Images.images);
-        Saved.remove({ residentalID: req.body.id });
-        Residental.findByIdAndDelete(req.body.id).then((deleted) => {
+        Saved.remove({ residentialID: req.body.id });
+        Residential.findByIdAndDelete(req.body.id).then((deleted) => {
           req.flash(flashSuccess, "Property Has Been Removed");
           res.redirect("/admin/admindashboard");
         });
       })
       .catch((err) => {
-        console.log(err);
         next(err);
       });
   }
 });
 
-module.exports.MarkQuerySolved = catchAsync((req, res,next) => {
+module.exports.markQuerySolved = catchAsync(async(req, res,next) => {
   Enquiry.findByIdAndUpdate(req.body.id, { contacted: true }).then((saved) => {
     req.flash(flashSuccess, "Enquiry Has Been Solved");
     res.redirect("/admin/admindashboard");

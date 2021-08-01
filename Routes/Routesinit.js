@@ -25,24 +25,27 @@ const Routesinit = (app) => {
     app.use('/user',UserRoute);
     app.use('/admin',AdminRoute);
     app.use((req, res, next) => {
-        res.render("404");
+        res.redirect("/404");
     });
    
     app.use((err, req, res, next) => {
         err.statusCode = err.statusCode || 500;
         err.status = err.status || 'Internal Server Error';
         if (err.name === 'MongoError' && err.code === 11000) {
-            err.message =  "Email  or Phone Number already exists"
+            err.message =  "Email or Phone Number already exists"
         }
         else if (err.name === 'ValidationError') {
            err.message =  "Please enter all required fields"
         }
+        if(process.env.NODE_ENV=='test')
+        res.status(err.statusCode).json({
+            status: err.status,
+            message: err.message
+        })
+        else{
         req.flash("error",err.message);
         res.redirect('back');
-        // res.status(err.statusCode).json({
-        //     status: err.status,
-        //     message: err.message
-        // })
+        }
     })
 }
 module.exports = Routesinit;

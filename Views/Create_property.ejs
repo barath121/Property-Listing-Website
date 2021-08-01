@@ -15,7 +15,7 @@
       <span uk-spinner="ratio: 4.5"></span>
     </div>
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="/property/createproperty" enctype="multipart/form-data" id="propertyform" method="POST">
+      <form action="/property/createresidentialproperty" enctype="multipart/form-data" id="propertyform" method="POST">
         <% if(property) {%>
           <input type="hidden" name="_id" value="<%= property._id %>">
           <%}%>
@@ -1675,7 +1675,7 @@
                                                                 <option value="September">September</option>
                                                                 <option value="October">October</option>
                                                                 <option value="November">November</option>
-                                                                <option value="Devember">Devember</option>
+                                                                <option value="December">December</option>
                                                               </select>
                                                               <br>
                                                               <label for="year">Year</label>

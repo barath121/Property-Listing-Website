@@ -9,13 +9,13 @@ UserRoute.route('/login').post(passport.authenticate('local',{
     failureRedirect : "/login",
     failureFlash : true
 }));
-UserRoute.route("/loginredirect").get(UserController.Redirect);
-UserRoute.route('/register').post(UserController.Register);
+UserRoute.route("/loginredirect").get(UserController.redirect);
+UserRoute.route('/register').post(UserController.register);
 UserRoute.route('/logout').get(UserController.logout);
-UserRoute.route('/addenquiry').post(UserController.AddEnquiry);
-UserRoute.route('/forgotpassword').post(UserController.forgotpassword);
-UserRoute.use(UserController.CheckLogin);
-UserRoute.route('/addsaved').get(UserController.AddSaved);
-UserRoute.route('/removesaved').get(UserController.RemoveSaved);
-UserRoute.route('/changepassword').post(UserController.changepassword);
+UserRoute.route('/addenquiry').post(UserController.addEnquiry);
+UserRoute.route('/forgotpassword').post(UserController.forgotPassword);
+UserRoute.use(UserController.checkLogin);
+UserRoute.route('/addsaved').get(UserController.addSaved);
+UserRoute.route('/removesaved').get(UserController.removeSaved);
+UserRoute.route('/changepassword').post(UserController.changePassword);
 module.exports = UserRoute;

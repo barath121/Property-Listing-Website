@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const savedSchema = mongoose.Schema({
-residentalID : { type: mongoose.Schema.Types.ObjectId, ref: 'Residental' },
+residentialID : { type: mongoose.Schema.Types.ObjectId, ref: 'Residential' },
 commercialID : { type: mongoose.Schema.Types.ObjectId, ref: 'Commercial' },
 customerID : {
-    type : String,
+    type :  mongoose.Schema.Types.ObjectId,
+    ref : "User",
     required : true
 }
 },{

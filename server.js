@@ -1,8 +1,8 @@
 const app = require('./Config/app');
-const DatabaseSetup =require('./Config/database');
+const db =require('./Config/database');
 const Routesinit = require('./Routes/Routesinit');
 
-DatabaseSetup();
+db.connect();
 Routesinit(app);
 
 const port = process.env.PORT || 3000;

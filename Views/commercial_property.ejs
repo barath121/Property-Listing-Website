@@ -11,7 +11,7 @@
     </div>
   <div class="uk-background-muted p-4">
     <div class="container-fluid uk-width-1-2@m uk-background-default p-4">
-      <form action="/property/commercialproperty" enctype="multipart/form-data" id="propertyform" method="POST">
+      <form action="/property/createcommercialproperty" enctype="multipart/form-data" id="propertyform" method="POST">
         <% if(property) {%>
           <input type="hidden" name="_id" value="<%= property._id %>">
         <%}%>
@@ -2402,7 +2402,7 @@
                               <option value="September">September</option>
                               <option value="October">October</option>
                               <option value="November">November</option>
-                              <option value="Devember">Devember</option>
+                              <option value="December">December</option>
                             </select>
                             <br>
                             <label for="year">Year</label>
@@ -2574,7 +2574,7 @@
           </div>
 
 
-          <div id="commercialShop" class="d-none">
+          <!-- <div id="commercialShop" class="d-none">
             <h3>Commercial Shop</h3>
             <div id="commercialShopfeatures">
               <h5>Balconies</h5>
@@ -2607,7 +2607,7 @@
           <div id="washroomPics">
 
           </div>
-        </div>
+        </div> -->
 
           <h3>Others</h3>
           <div class='mb-3'>
@@ -2695,15 +2695,15 @@
         if (document.getElementById("extras").classList.contains("d-none")) {
           document.getElementById("extras").classList.remove("d-none")
         }
-        if (document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
-          document.getElementById("CommercialOfficeSpace").classList.remove("d-none")
-        }
-        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
-          document.getElementById("CommercialShowroom").classList.add("d-none")
-        }
-        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
-          document.getElementById("commercialShop").classList.add("d-none")
-        }
+        // if (document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+        //   document.getElementById("CommercialOfficeSpace").classList.remove("d-none")
+        // }
+        // if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+        //   document.getElementById("CommercialShowroom").classList.add("d-none")
+        // }
+        // if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+        //   document.getElementById("commercialShop").classList.add("d-none")
+        // }
         document.getElementById("Office").classList.remove("d-none")
 
         document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
@@ -2740,15 +2740,15 @@
         if (document.getElementById("extras").classList.contains("d-none")) {
           document.getElementById("extras").classList.remove("d-none")
         }
-        if (document.getElementById("CommercialShowroom").classList.contains("d-none")) {
-          document.getElementById("CommercialShowroom").classList.remove("d-none")
-        }
-        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
-          document.getElementById("commercialShop").classList.add("d-none")
-        }
-        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
-          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
-        }
+        // if (document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+        //   document.getElementById("CommercialShowroom").classList.remove("d-none")
+        // }
+        // if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+        //   document.getElementById("commercialShop").classList.add("d-none")
+        // }
+        // if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+        //   document.getElementById("CommercialOfficeSpace").classList.add("d-none")
+        // }
         document.getElementById("showroom").classList.remove("d-none")
 
         document.getElementById("showroom").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
@@ -2777,15 +2777,15 @@
         if (document.getElementById("extras").classList.contains("d-none")) {
           document.getElementById("extras").classList.remove("d-none")
         }
-        if (document.getElementById("commercialShop").classList.contains("d-none")) {
-          document.getElementById("commercialShop").classList.remove("d-none")
-        }
-        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
-          document.getElementById("CommercialShowroom").classList.add("d-none")
-        }
-        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
-          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
-        }
+        // if (document.getElementById("commercialShop").classList.contains("d-none")) {
+        //   document.getElementById("commercialShop").classList.remove("d-none")
+        // }
+        // if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+        //   document.getElementById("CommercialShowroom").classList.add("d-none")
+        // }
+        // if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+        //   document.getElementById("CommercialOfficeSpace").classList.add("d-none")
+        // }
         document.getElementById("Shop").classList.remove("d-none")
 
         document.getElementById("Shop").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
@@ -2813,15 +2813,15 @@
         if (!document.getElementById("Shop").classList.contains("d-none")) {
           document.getElementById("Shop").classList.add("d-none")
         }
-        if (!document.getElementById("commercialShop").classList.contains("d-none")) {
-          document.getElementById("commercialShop").classList.add("d-none")
-        }
-        if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
-          document.getElementById("CommercialShowroom").classList.add("d-none")
-        }
-        if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
-          document.getElementById("CommercialOfficeSpace").classList.add("d-none")
-        }
+        // if (!document.getElementById("commercialShop").classList.contains("d-none")) {
+        //   document.getElementById("commercialShop").classList.add("d-none")
+        // }
+        // if (!document.getElementById("CommercialShowroom").classList.contains("d-none")) {
+        //   document.getElementById("CommercialShowroom").classList.add("d-none")
+        // }
+        // if (!document.getElementById("CommercialOfficeSpace").classList.contains("d-none")) {
+        //   document.getElementById("CommercialOfficeSpace").classList.add("d-none")
+        // }
         document.getElementById("Office").querySelectorAll("input, select, checkbox, textarea, radio").forEach(ele => {
           ele.removeAttribute("required");
         })
@@ -2994,59 +2994,59 @@
       }
     }
 
-    function balcony() {
-      if(document.getElementById("balconyPics")){
-      document.getElementById("balconyPics").innerHTML = null;
-      for (var i = 0; i < document.getElementById("balconies").value; i++) {
-        img("balconyPics", i);
-      }
-    }
-    }
-    function shopbalcony() {
-      if(document.getElementById("shopbalconyPics")){
-      document.getElementById("shopbalconyPics").innerHTML = null;
-      for (var i = 0; i < document.getElementById("shopbalconies").value; i++) {
-        img("shopbalconyPics", i);
-      }
-    }
-    }
-    function washroomQuantity() {
-      if(document.getElementById("washroomPics")){
-        if(document.getElementById("WashroomParent").classList.contains("d-none")){
-          document.getElementById("WashroomParent").classList.remove("d-none");
-        }
-        document.getElementById("washroomPics").innerHTML = null;
-      for (var i = 0; i < document.getElementById("quantity").value; i++) {
-        img("washroomPics", i);
-      }
-      }
-    }
+    // function balcony() {
+    //   if(document.getElementById("balconyPics")){
+    //   document.getElementById("balconyPics").innerHTML = null;
+    //   for (var i = 0; i < document.getElementById("balconies").value; i++) {
+    //     img("balconyPics", i);
+    //   }
+    // }
+    // }
+    // function shopbalcony() {
+    //   if(document.getElementById("shopbalconyPics")){
+    //   document.getElementById("shopbalconyPics").innerHTML = null;
+    //   for (var i = 0; i < document.getElementById("shopbalconies").value; i++) {
+    //     img("shopbalconyPics", i);
+    //   }
+    // }
+    // }
+    // function washroomQuantity() {
+    //   if(document.getElementById("washroomPics")){
+    //     if(document.getElementById("WashroomParent").classList.contains("d-none")){
+    //       document.getElementById("WashroomParent").classList.remove("d-none");
+    //     }
+    //     document.getElementById("washroomPics").innerHTML = null;
+    //   for (var i = 0; i < document.getElementById("quantity").value; i++) {
+    //     img("washroomPics", i);
+    //   }
+    //   }
+    // }
 
-    function meetingRooms() {
-      if(document.getElementById("meetingRoomsDiv")){
-        document.getElementById("meetingRoomsDiv").innerHTML = null;
-        for (var i = 1; i <= document.getElementById("noOfMeetingRooms").value; i++) {
-        img("meetingRoomsDiv", i, "Meeting Room");
-      }
-      }
-    }
+    // function meetingRooms() {
+    //   if(document.getElementById("meetingRoomsDiv")){
+    //     document.getElementById("meetingRoomsDiv").innerHTML = null;
+    //     for (var i = 1; i <= document.getElementById("noOfMeetingRooms").value; i++) {
+    //     img("meetingRoomsDiv", i, "Meeting Room");
+    //   }
+    //   }
+    // }
 
-    function conferenceRooms(check) {
-      if(document.getElementById("CommercialOfficeSpacefeatures")){
-        if (check.checked) {
-        img("CommercialOfficeSpacefeatures", 0, "Conference Room");
-      }
-      if (!check.checked) {
-        document.getElementById("CommercialOfficeSpacefeatures").childNodes.forEach(ele => {
-          if (ele.innerText == "Conference Room") {
-            // console.log(ele.)
-            document.getElementById("CommercialOfficeSpacefeatures").removeChild(ele)
-            document.getElementById("ConferenceRoom").innerHTML = null;
-          }
-        })
-      }
-      }
-    }
+    // function conferenceRooms(check) {
+    //   if(document.getElementById("CommercialOfficeSpacefeatures")){
+    //     if (check.checked) {
+    //     img("CommercialOfficeSpacefeatures", 0, "Conference Room");
+    //   }
+    //   if (!check.checked) {
+    //     document.getElementById("CommercialOfficeSpacefeatures").childNodes.forEach(ele => {
+    //       if (ele.innerText == "Conference Room") {
+    //         // console.log(ele.)
+    //         document.getElementById("CommercialOfficeSpacefeatures").removeChild(ele)
+    //         document.getElementById("ConferenceRoom").innerHTML = null;
+    //       }
+    //     })
+    //   }
+    //   }
+    // }
 
     function receptionAreas(check) {
       if(document.getElementById("CommercialOfficeSpacefeatures")){
@@ -3099,6 +3099,14 @@
     }else{
       document.getElementById("errormsg").classList.remove("d-none")
     }
+    var contactForm = document.getElementById('propertyform');
+    if (contactForm.checkValidity() == false) {
+    var list = contactForm.querySelectorAll(':invalid');
+    for (var item of list) {
+        console.log(item)
+        item.setAttribute("style", "background-color: red;")
+    }
+}
    }
   </script>
   <%- include('./layouts/Footer') -%>
