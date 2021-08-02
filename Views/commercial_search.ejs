@@ -140,34 +140,49 @@
                         </h3>
                     </div>
                     <div class="">
-                        <% if(properties.length !=0) { %>
-                            <% for(var i=0; i< properties.length ; i++) {%>
-                                <a href="/property?type=commercial&id=<%= properties[i].id %>"
+                        <% if(properties.length >0) { %>
+                            <% properties.forEach(property=>{%>
+                                <a href="/property?type=commercial&id=<%= property.id %>"
                                     style="text-decoration: none;">
                                     <div class="card mb-4 rounded uk-card uk-card-hover" style="cursor: pointer;">
                                         <div class="row card-body">
                                             <div class="col-lg-4 col-12">
-                                                <img src="<%= properties[i].image %>" alt="Img" height="500px">
+                                                <% property.Images.images.forEach(img=>{ %>
+                                                <% if (img.includes("CoverImages")) { %>
+                                                    <img src="<%= img %>" alt="Img" height="500px">
+                                                <% }}) %>
                                             </div>
                                             <div class="col-lg-8 col-12 mt-lg-0 mt-4">
                                                 <h3 class="mb-4 text-danger hammersmithOne">
-                                                    <%= properties[i].title %>
+                                                    <%= property.propertyType +" For " +property.propertyFor + " at " +property.name +", " + property.locality %>
                                                 </h3>
                                                 <div class="row">
                                                     <div class="col-6 text-muted mb-1 hammersmithOne">Carpet Area<p>
-                                                            <%= properties[i].area %>SqFt
+                                                            <%= property.areaDetails.carpetArea %>SqFt
                                                         </p>
                                                     </div>
+                                                    <% if(property.possessionStatus == "Under Construction" && property.propertyFor == "Sale"){ %>
                                                     <div class="col-6 text-muted mb-1 hammersmithOne">Status<p>
-                                                            <%= properties[i].status %>
-                                                        </p>
+                                                        <%= property.possessionStatus+", Possession by " +property.avaliableFrom.month +" " +property.avaliableFrom.year %>
+                                                    </p>
                                                     </div>
+                                                    <%}else if(property.propertyFor == "Sale"){%>
+                                                    <div class="col-6 text-muted mb-1 hammersmithOne">Status<p>
+                                                        <%= property.possessionStatus +", " +property.ageOfConstruction %>
+                                                    </p>
+                                                    </div>
+                                                    <%}else{%>
+                                                        <div class="col-6 text-muted mb-1 hammersmithOne">Status<p>
+                                                            Ready to Move
+                                                        </p>
+                                                        </div>
+                                                    <% } %>
                                                 </div>
                                                 <div class="row justify-content-start">
                                                     <p class="m-2">
                                                         <span
                                                             class="bg-success p-2 shadow rounded-pill text-white hammersmithOne">₹
-                                                            <%= properties[i].price %>
+                                                            <%=  property.expectedPrice || property.expectedRent %>
                                                         </span>
                                                     </p>
                                                 </div>
@@ -175,7 +190,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <% } %>
+                                <% }) %>
                                     <% } else { %>
                                         <div style="display: flex;flex-direction: column; align-items: center;">
                                             <img src="/undraw_Building_vpxo.svg" alt="Img" width="250px">

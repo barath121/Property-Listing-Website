@@ -4,7 +4,7 @@
   "description": "Webiste for Santosh Property Real Estate Consultant",
   "main": "index.js",
   "scripts": {
-    "test": "set NODE_ENV=test&&mocha server-test --timeout  100000 --exit",
+    "test": "set NODE_ENV=test&&mocha server-test --timeout  1000000 --exit",
     "testStart": "set NODE_ENV=test&&nodemon server.js",
     "start": "node server.js",
     "devStart": "set NODE_ENV=dev&&nodemon server.js"

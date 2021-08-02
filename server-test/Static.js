@@ -3,16 +3,19 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 const baseUrl = "localhost:3000"
 const db = require('../Config/database');
+const request  = require("supertest");
+const agent = request.agent(baseUrl);
+const app = require('./../server')
 chai.use(chaiHttp);
 describe('Static Pages Tests',()=>{
     before((done)=>{
-        done();
+            done();
     });
     after((done)=>{
-        done();
+            done();
     });
     it('Home Page Working',(done)=>{
-        chai.request(baseUrl)
+        agent
         .get('/')
         .end((err,res)=>{
             expect(res).to.have.status(200);

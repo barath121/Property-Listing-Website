@@ -6,16 +6,15 @@ const baseUrl = "localhost:3000"
 const db = require('../Config/database');
 const User = require("../Models/User");
 const Commercial = require("../Models/Commercial")
-const app = require("./../Config/app");
+const app = require("./../server");
 const request  = require("supertest");
 const agent = request.agent(baseUrl);
 const path = require('path');
-const Residental = require("../Models/Residental");
+const Residental = require("../Models/Residential");
 chai.use(chaiHttp);
 describe('Admin Routes Tests',()=>{
     before((done)=>{
     bcrypt.hash("testingpassword",parseInt(process.env.Salt)).then(password=>{
-        db.connect();
         let user ={
             email : "test@test.com",
             phone:9699179186,
@@ -34,8 +33,7 @@ describe('Admin Routes Tests',()=>{
         User.deleteMany({}).then(()=>{
             Commercial.deleteMany({}).then(()=>{
                 Residental.deleteMany({}).then(()=>{
-                    db.close();
-                    done();  
+                        done();  
                 });
             });
         });  

@@ -132,172 +132,25 @@ module.exports.viewProperty = catchAsync(async(req, res, next) => {
   }
 });
 module.exports.homePage = catchAsync(async(req, res, next) => {
-  let Properties = await Residential.aggregate([
-    { $match: { $and: [{ isAvaliable: true }, { propertyFor: "Sale" }] } },
-    { $sample: { size: 6 } },
-  ]).catch((err) => next(err));
-  properties = [];
-  Properties.forEach((element) => {
-    property = {};
-    element.Images.images.forEach((img) => {
-      if (img.includes("CoverImages")) {
-        property.image = img;
-      }
-    });
-    property.id = element._id;
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name +
-      ", " +
-      element.locality;
-    property.area = element.propertyFeatures.carpetArea;
-    property.furnishing = element.propertyFeatures.furnishingStatus;
-    if (
-      element.priceDetails.possessionStatus == "Under Construction" &&
-      element.propertyFor == "Sale"
-    ) {
-      property.status = element.priceDetails.possessionStatus;
-      "Possession by " +
-        element.priceDetails.avaliableFrom.month +
-        " " +
-        element.priceDetails.avaliableFrom.year;
-    } else if (element.propertyFor == "Sale") {
-      property.status =
-        element.priceDetails.possessionStatus +
-        ", " +
-        element.priceDetails.ageOfConstruction;
-    } else {
-      property.status = "Ready to Move";
+  let residential = await Residential.aggregate(
+   [{ $facet: {
+    saleProperties : [{ $match: { $and: [{ isAvaliable: true }, { propertyFor: "Sale" }] } },{ $sample: { size: 6 } }],
+    rentProperties : [{$match: { $and: [{ isAvaliable: true }, { propertyFor: "Rent/Lease" }] },},{ $sample: { size: 6 } }]
     }
-    property.price =
-      element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
-    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-    property.bathroom = element.propertyFeatures.bathroom + " Bath";
-    properties.push(property);
-  });
-  let commercialsale = [];
-  let commercialrent = [];
-  let CommercialSale = await Commercial.aggregate([
-    { $match: { $and: [{ isAvaliable: true }, { propertyFor: "Sale" }] } },
-    { $sample: { size: 6 } },
-  ]).catch((err) => next(err));
-  CommercialSale.forEach((element) => {
-    property = {};
-    element.Images.images.forEach((img) => {
-      if (img.includes("CoverImages")) {
-        property.image = img;
-      }
-    });
-    property.id = element._id;
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name +
-      ", " +
-      element.locality;
-    property.area = element.areaDetails.carpetArea;
-    if (
-      element.possessionStatus == "Under Construction" &&
-      element.propertyFor == "Sale"
-    ) {
-      property.status = element.possessionStatus;
-      "Possession by " +
-        element.avaliableFrom.month +
-        " " +
-        element.avaliableFrom.year;
-    } else if (element.propertyFor == "Sale") {
-      property.status =
-        element.possessionStatus + ", " + element.ageOfConstruction;
-    } else {
-      property.status = "Ready to Move";
-    }
-    property.price = element.expectedPrice || element.expectedRent;
-    commercialsale.push(property);
-  });
-  let CommercialRent = await Commercial.aggregate([
-    {
-      $match: { $and: [{ isAvaliable: true }, { propertyFor: "Rent/Lease" }] },
-    },
-    { $sample: { size: 6 } },
-  ]).catch((err) => next(err));
-  CommercialRent.forEach((element) => {
-    property = {};
-    element.Images.images.forEach((img) => {
-      if (img.includes("CoverImages")) {
-        property.image = img;
-      }
-    });
-    property.id = element._id;
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name +
-      ", " +
-      element.locality;
-    property.area = element.areaDetails.carpetArea;
-    if (
-      element.possessionStatus == "Under Construction" &&
-      element.propertyFor == "Sale"
-    ) {
-      property.status = element.possessionStatus;
-      "Possession by " +
-        element.avaliableFrom.month +
-        " " +
-        element.avaliableFrom.year;
-    } else if (element.propertyFor == "Sale") {
-      property.status =
-        element.possessionStatus + ", " + element.ageOfConstruction;
-    } else {
-      property.status = "Ready to Move";
-    }
-    property.price = element.expectedPrice || element.expectedRent;
-    commercialrent.push(property);
-  });
-
-  let RentProperties = await Residential.aggregate([
-    {
-      $match: { $and: [{ isAvaliable: true }, { propertyFor: "Rent/Lease" }] },
-    },
-    { $sample: { size: 6 } },
-  ]).catch((err) => next(err));
-  rentproperties = [];
-  RentProperties.forEach((element) => {
-    property = {};
-    element.Images.images.forEach((img) => {
-      if (img.includes("CoverImages")) {
-        property.image = img;
-      }
-    });
-    property.id = element._id;
-    property.title =
-      element.propertyType +
-      " For " +
-      element.propertyFor +
-      " at " +
-      element.name +
-      ", " +
-      element.locality;
-    property.area = element.propertyFeatures.carpetArea;
-    property.furnishing = element.propertyFeatures.furnishingStatus;
-    property.status = "Ready to Move";
-    property.price =
-      element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
-    property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-    property.bathroom = element.propertyFeatures.bathroom + " Bath";
-    rentproperties.push(property);
-  });
+  }]
+  )
+  let commercial = await Commercial.aggregate(
+    [{ $facet: {
+     saleProperties : [{ $match: { $and: [{ isAvaliable: true }, { propertyFor: "Sale" }] } },{ $sample: { size: 6 } }],
+     rentProperties : [{$match: { $and: [{ isAvaliable: true }, { propertyFor: "Rent/Lease" }] },},{ $sample: { size: 6 } }]
+     }
+   }]
+   )
   res.render("index", {
-    saleproperties: properties,
-    rentproperties: rentproperties,
-    salecommercial: commercialsale,
-    rentcommercial: commercialrent,
+    saleproperties: residential[0].saleProperties,
+    rentproperties: residential[0].rentProperties,
+    salecommercial: commercial[0].saleProperties,
+    rentcommercial: commercial[0].rentProperties,
   });
 });
 module.exports.search = catchAsync(async (req, res,next) => {
@@ -371,66 +224,18 @@ module.exports.search = catchAsync(async (req, res,next) => {
   if (filters.bedrooms) {
     conditions.push({ "propertyFeatures.bedrooms": filters.bedrooms });
   }
-  let properties = [];
-  {
-    let condition = {};
-    if (conditions.length) condition = { $and: conditions };
-    let page = req.query.page || 1;
-    let limit = 10;
-    let skip = (page - 1) * limit;
-    let conditionedProperties = await Residential.find(condition)
-      .sort({ _id: -1 })
-      .skip(skip)
-      .limit(limit);
-    countofpage = await Residential.countDocuments(condition);
-    countofpage = parseInt(countofpage / 10);
-    conditionedProperties.forEach((element) => {
-      property = {};
-      element.Images.images.forEach((img) => {
-        if (img.includes("CoverImages")) {
-          property.image = img;
-        }
-      });
-      property.id = element.id;
-
-      property.type = element.propertyType;
-
-      property.title =
-        element.propertyType +
-        " For " +
-        element.propertyFor +
-        " at " +
-        element.name +
-        ", " +
-        element.locality;
-      property.area = element.propertyFeatures.carpetArea;
-      property.furnishing = element.propertyFeatures.furnishingStatus;
-      if (
-        element.priceDetails.possessionStatus == "Under Construction" &&
-        element.propertyFor == "Sale"
-      ) {
-        property.status = element.priceDetails.possessionStatus;
-        "Possession by " +
-          element.priceDetails.avaliableFrom.month +
-          " " +
-          element.priceDetails.avaliableFrom.year;
-      } else if (element.propertyFor == "Sale") {
-        property.status =
-          element.priceDetails.possessionStatus +
-          ", " +
-          element.priceDetails.ageOfConstruction;
-      } else {
-        property.status = "Ready to Move";
-      }
-      property.price =
-        element.priceDetails.expectedPrice || element.priceDetails.expectedRent;
-
-      property.bedroom = element.propertyFeatures.bedrooms + " Bed";
-      property.bathroom = element.propertyFeatures.bathroom + " Bath";
-      properties.push(property);
-    });
-  }
-  res.render("Search_page", { properties: properties, page: countofpage });
+  let condition = {};
+  if (conditions.length) condition = { $and: conditions };
+  let page = req.query.page || 1;
+  let limit = 10;
+  let skip = (page - 1) * limit;
+  let conditionedProperties = await Residential.find(condition)
+    .sort({ _id: -1 })
+    .skip(skip)
+    .limit(limit);
+  countofpage = await Residential.countDocuments(condition);
+  countofpage = parseInt(countofpage / 10);
+  res.render("Search_page", { properties: conditionedProperties, page: countofpage });
 });
 module.exports.editProperty = (req, res, next) => {
   if (req.query.type == "residential") {
@@ -530,61 +335,59 @@ module.exports.searchCommercial = catchAsync(async (req, res, next) => {
     conditions.push({ "areaDetails.carpetArea": { $lte: filters.sqmax } });
   }
   let properties = [];
-  {
-    let condition = {};
-    if (conditions.length) condition = { $and: conditions };
-    let page = req.query.page || 1;
-    let limit = 10;
-    let skip = (page - 1) * limit;
-    let conditionedProperties = await Commercial.find(condition)
-      .sort({ _id: -1 })
-      .skip(skip)
-      .limit(limit);
-    countofpage = await Commercial.countDocuments(condition);
-    countofpage = parseInt(countofpage / 10);
-    conditionedProperties.forEach((element) => {
-      property = {};
-      element.Images.images.forEach((img) => {
-        if (img.includes("CoverImages")) {
-          property.image = img;
-        }
-      });
-      property.id = element.id;
-
-      property.type = element.propertyType;
-
-      property.title =
-        element.propertyType +
-        " For " +
-        element.propertyFor +
-        " at " +
-        element.name +
-        ", " +
-        element.locality;
-      property.area = element.areaDetails.carpetArea;
-      if (
-        element.possessionStatus == "Under Construction" &&
-        element.propertyFor == "Sale"
-      ) {
-        property.status = element.possessionStatus;
-        "Possession by " +
-          element.avaliableFrom.month +
-          " " +
-          element.avaliableFrom.year;
-      } else if (element.propertyFor == "Sale") {
-        property.status =
-          element.possessionStatus + ", " + element.ageOfConstruction;
-      } else {
-        property.status = "Ready to Move";
+  let condition = {};
+  if (conditions.length) condition = { $and: conditions };
+  let page = req.query.page || 1;
+  let limit = 10;
+  let skip = (page - 1) * limit;
+  let conditionedProperties = await Commercial.find(condition)
+    .sort({ _id: -1 })
+    .skip(skip)
+    .limit(limit);
+  countofpage = await Commercial.countDocuments(condition);
+  countofpage = parseInt(countofpage / 10);
+  conditionedProperties.forEach((element) => {
+    property = {};
+    element.Images.images.forEach((img) => {
+      if (img.includes("CoverImages")) {
+        property.image = img;
       }
-      property.price = element.expectedPrice || element.expectedRent;
-      properties.push(property);
     });
-  }
-  res.render("commercial_search", {
-    properties: properties,
-    page: countofpage,
+    property.id = element.id;
+
+    property.type = element.propertyType;
+
+    property.title =
+      element.propertyType +
+      " For " +
+      element.propertyFor +
+      " at " +
+      element.name +
+      ", " +
+      element.locality;
+    property.area = element.areaDetails.carpetArea;
+    if (
+      element.possessionStatus == "Under Construction" &&
+      element.propertyFor == "Sale"
+    ) {
+      property.status = element.possessionStatus;
+      "Possession by " +
+        element.avaliableFrom.month +
+        " " +
+        element.avaliableFrom.year;
+    } else if (element.propertyFor == "Sale") {
+      property.status =
+        element.possessionStatus + ", " + element.ageOfConstruction;
+    } else {
+      property.status = "Ready to Move";
+    }
+    property.price = element.expectedPrice || element.expectedRent;
+    properties.push(property);
   });
+res.render("commercial_search", {
+  properties: conditionedProperties,
+  page: countofpage,
+});
 });
 module.exports.createProperty = catchAsync(async (req, res, next) => {
   let property = req.body;
