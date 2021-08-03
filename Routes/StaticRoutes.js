@@ -3,7 +3,7 @@ const UserController = require("./../Controller/UserController");
 const AdminController = require("./../Controller/AdminController");
 const StaticController = require("./../Controller/Static");
 const StaticRoutes = (app) => {
-    app.get('/', PropertyController.homePage);
+    app.get('/',PropertyController.cachedHomePage,PropertyController.homePage);
     app.get('/login', StaticController.renderLoginPage);
     app.get('/register', StaticController.renderRegisterPage);
     app.get('/contact', StaticController.renderAboutPage);

@@ -7,6 +7,8 @@ const Saved = require("../Models/Saved");
 const sharp = require("sharp");
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 15);
 const flashSuccess = "success";
+const redis = require("redis");
+const client = redis.createClient();
 const catchAsync = (fn) => {
   return (req, res, next) => {
     fn(req, res, next).catch(next);
@@ -131,6 +133,24 @@ module.exports.viewProperty = catchAsync(async(req, res, next) => {
       });
   }
 });
+module.exports.cachedHomePage = catchAsync(async(req,res,next)=>{
+  client.get("residentialProperty",(err,residential)=>{
+    client.get("commercialProperty",(err,commercial)=>{
+    if(residential!==null&&commercial!==null){
+      residential =  JSON.parse(residential);
+      commercial =  JSON.parse(commercial);
+        res.render("index", {
+          saleproperties: residential[0].saleProperties,
+          rentproperties: residential[0].rentProperties,
+          salecommercial: commercial[0].saleProperties,
+          rentcommercial: commercial[0].rentProperties,
+        });
+      }else{
+        next();
+      }
+    });
+  })
+})
 module.exports.homePage = catchAsync(async(req, res, next) => {
   let residential = await Residential.aggregate(
    [{ $facet: {
@@ -146,6 +166,8 @@ module.exports.homePage = catchAsync(async(req, res, next) => {
      }
    }]
    )
+  client.setex("residentialProperty", 3600 ,JSON.stringify(residential));
+  client.setex("commercialProperty", 3600 ,JSON.stringify(commercial));
   res.render("index", {
     saleproperties: residential[0].saleProperties,
     rentproperties: residential[0].rentProperties,
