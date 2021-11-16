@@ -115,6 +115,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# #firebase Credentails
-# Utils/Firebase Credentails
-# keys.json
+#firebase Credentails
+Utils/Firebase Credentails
+keys.json
+prodkeys.json

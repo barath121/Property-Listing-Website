@@ -1,28 +1,41 @@
 const Cloud = require('@google-cloud/storage')
 const path = require('path')
 const util = require('util')
+const fs = require("fs")
 const { format } = util
-
 const { Storage } = Cloud
-
-let serviceKey = path.join(__dirname, './Firebase Credentials/keys.json')
-let storage = new Storage({
-keyFilename: serviceKey,
-projectId: process.env.FBProjectId,
-})
-let gc = storage
-let bucket = gc.bucket(process.env.FBStorageBucket)
-let fburl = process.env.FirebaseURL;
-
+let gc
+let bucket
+let fburl 
+let dir = path.join(__dirname,'./Firebase Credentials');
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
 if(process.env.NODE_ENV == 'prod'){
-  serviceKey = path.join(__dirname, './Firebase Credentials/prodkeys.json')
-  storage = new Storage({
+  let prodKeyJSON = Buffer.from(process.env.FirebaseProdKey, 'base64');
+  fs.writeFile("./Firebase Credentials/keys.json",prodKeyJSON.toString(),(err)=>{
+  let serviceKey = path.join(__dirname, './Firebase Credentials/prodkeys.json')
+  let storage = new Storage({
     keyFilename: serviceKey,
     projectId: process.env.FBProjectProdId,
   })
   gc = storage
   bucket = gc.bucket(process.env.FBProdStorageBucket)
   fburl = process.env.FirebaseProdURL;
+  });
+}
+else{
+let devKeyJSON = Buffer.from(process.env.FirebaseDevKey, 'base64');
+fs.writeFile(dir+"/keys.json",devKeyJSON.toString(),(err)=>{
+  let serviceKey = path.join(__dirname, './Firebase Credentials/keys.json')
+  let storage = new Storage({
+  keyFilename: serviceKey,
+  projectId: process.env.FBProjectId,
+  })
+  gc = storage
+  bucket = gc.bucket(process.env.FBStorageBucket)
+  fburl = process.env.FirebaseURL;
+});
 }
 
 module.exports.uploadFile = (file,imageid,i) => new Promise((resolve, reject) => {
