@@ -1,5 +1,5 @@
-# Santosh Property [![Build Status](https://travis-ci.com/barath121/santoshproperty.svg?token=bWYLwkmUeypcguPpbZqp&branch=master)](https://travis-ci.com/barath121/santoshproperty)
-<a href="https://santoshproperty.herokuapp.com/">Santosh Property</a> is a business to consumer application. Where a real estate agent can sell or rent apartments and the customers can check out those according to their needs. This website was made according to the requirements and demand of a real estate consultancy after through research and meets all the requirements of the client.
+# Propetry Listing Website [![Build Status](https://travis-ci.com/barath121/santoshproperty.svg?token=bWYLwkmUeypcguPpbZqp&branch=master)](https://travis-ci.com/barath121/santoshproperty)
+<a href="https://santoshproperty.herokuapp.com/"> Propetry Listing Website</a> is a business to consumer application. Where a real estate agent can sell or rent apartments and the customers can check out those according to their needs. This website was made according to the requirements and demand of a real estate consultancy after through research and meets all the requirements of the client.
 
 # Technologies Used
 ### Backend
